@@ -1,0 +1,98 @@
+\documentclass[11pt,a4paper,oneside]{article}
+
+% =====================================================
+% Configuración central: portada, estilo y bibliografía
+% =====================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{newtxtext,newtxmath}
+\usepackage[a4paper,left=3cm,right=3cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{graphicx,xcolor}
+\usepackage{booktabs,longtable,tabularx,array}
+\usepackage{csquotes}
+\usepackage{hyperref}
+\usepackage[backend=biber,style=ieee,citestyle=ieee,sorting=none]{biblatex}
+
+% Permite compilar desde la raíz del repositorio o desde docs/.
+\IfFileExists{docs/referencias.bib}{%
+  \addbibresource{docs/referencias.bib}%
+}{%
+  \addbibresource{referencias.bib}%
+}
+\newcommand{\seccion}[1]{%
+  \IfFileExists{docs/secciones/#1.tex}{%
+    \input{docs/secciones/#1.tex}%
+  }{%
+    \input{secciones/#1.tex}%
+  }%
+}
+\hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue!55!black}
+\newcommand{\pendiente}[1]{{\color{red!65!black}\textbf{[Pendiente: #1]}}}
+
+% Datos de portada: actualizar con datos oficiales del equipo.
+\newcommand{\nombreproyecto}{Sistema de Gestión de Refuerzo Académico (SGRA)}
+\newcommand{\asignatura}{Aplicaciones Distribuidas}
+\newcommand{\periodoacademico}{\pendiente{periodo académico}}
+\newcommand{\fechadeentrega}{29 de noviembre de 2026}
+\newcommand{\repositoriopfc}{\pendiente{URL del repositorio definitivo}}
+\newcommand{\arquitecto}{\pendiente{integrante}}
+\newcommand{\liderdesarrollo}{\pendiente{integrante}}
+\newcommand{\responsablecalidad}{\pendiente{integrante}}
+\newcommand{\responsabledocumentacion}{\pendiente{integrante}}
+
+\begin{document}
+
+% =====================================================
+% 1. PORTADA OFICIAL
+% =====================================================
+\begin{titlepage}
+\begin{center}
+  {\large\bfseries Universidad Técnica Estatal de Quevedo}\\[0.6cm]
+  {\large\bfseries Aplicaciones Distribuidas}\\[1.5cm]
+  {\Large\bfseries Proyecto Fin de Curso --- Entrega 1}\\[0.5cm]
+  {\LARGE\bfseries \nombreproyecto}\\[0.6cm]
+  {\large TA-PFC-E1: Propuesta y Análisis del Sistema Distribuido}\\[1.4cm]
+\end{center}
+\noindent\textbf{Integrantes:} Mario, Belinda, Bryan y Khriz.\\[0.5cm]
+\noindent\textbf{Roles oficiales:}\\[0.2cm]
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+Arquitecto: & \arquitecto\\
+Líder de Desarrollo: & \liderdesarrollo\\
+Responsable de Calidad: & \responsablecalidad\\
+Responsable de Documentación: & \responsabledocumentacion\\
+\end{tabularx}
+\vfill
+\noindent\textbf{Periodo académico:} \periodoacademico\\[0.3cm]
+\noindent\textbf{Fecha de entrega:} \fechadeentrega\\[0.3cm]
+\noindent\textbf{Repositorio:} \repositoriopfc
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+% =====================================================
+% Apartados 2-17: editar en docs/secciones/
+% La sección 1 corresponde a la portada.
+% =====================================================
+\setcounter{section}{1}
+\seccion{02-resumen}
+\seccion{03-contexto}
+\seccion{04-objetivos}
+\seccion{05-relacionados}
+\seccion{06-requisitos}
+\seccion{07-justificacion}
+\seccion{08-arquitectura}
+\seccion{09-comunicacion}
+\seccion{10-cap-pacelc}
+\seccion{11-adr}
+\seccion{12-riesgos}
+\seccion{13-plan}
+\seccion{14-esqueleto}
+\seccion{15-aportes}
+\seccion{16-ia}
+\seccion{17-referencias}
+
+\end{document}
