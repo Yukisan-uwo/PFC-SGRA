@@ -17,10 +17,10 @@
 \usepackage[backend=biber,style=ieee,citestyle=ieee,sorting=none]{biblatex}
 
 % Permite compilar desde la raíz del repositorio o desde docs/.
-\IfFileExists{docs/referencias.bib}{%
-  \addbibresource{docs/referencias.bib}%
+\IfFileExists{docs/referencias/referencias.bib}{%
+  \addbibresource{docs/referencias/referencias.bib}%
 }{%
-  \addbibresource{referencias.bib}%
+  \addbibresource{referencias/referencias.bib}%
 }
 \newcommand{\seccion}[1]{%
   \IfFileExists{docs/secciones/#1.tex}{%
@@ -30,6 +30,7 @@
   }%
 }
 \hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue!55!black}
+\urlstyle{same}
 \newcommand{\pendiente}[1]{{\color{red!65!black}\textbf{[Pendiente: #1]}}}
 
 % Datos de portada: actualizar con datos oficiales del equipo.

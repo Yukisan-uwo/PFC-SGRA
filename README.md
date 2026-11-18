@@ -13,7 +13,7 @@
 
 - `docs/main.tex`: portada, preámbulo, configuración y enlaces a las secciones.
 - `docs/secciones/`: apartados 2 al 17 de E1; cada integrante edita los archivos asignados.
-- `docs/referencias.bib`: referencias reales para `biblatex` + `biber`.
+- `docs/referencias/referencias.bib`: referencias reales para `biblatex` + `biber`.
 - `docs/adr/`: ADR-001 y ADR-002 en Markdown, pendientes de decisión.
 - `docs/diagramas/`: diagramas C4 editables de contexto y contenedores, por elaborar.
 - `docs/figuras/`: ilustraciones y exportaciones que se citarán en el informe.
