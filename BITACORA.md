@@ -77,3 +77,37 @@ Todo bien
 ### Tiempo dedicado
 
 1 hora.
+
+## 17 de noviembre de 2026 — Registro técnico del SGRA
+
+**Integrantes participantes:** Bryan Humberto Lombeida Escaleras.
+
+### Actividades realizadas
+
+- Se converso la estructura del backend y del frontend para identificar módulos, dependencias y mecanismos de comunicación.
+- Registré el contexto y las alternativas de estilo arquitectónico en `docs/adr/ADR-001-estilo-arquitectura.md`.
+- Registré el contexto y las alternativas de comunicación en `docs/adr/ADR-002-mecanismo-comunicacion.md`.
+- Actualicé las secciones del informe que recogen estos registros.
+
+### Decisiones
+
+- El estilo arquitectónico se evalúa entre monolito modular por capas con SPA separada, microservicios por dominio y arquitectura orientada a eventos.
+- El mecanismo de comunicación se evalúa entre REST/HTTP JSON síncrono, gRPC y mensajería asíncrona.
+- Los registros técnicos se conservan en `docs/adr/` y se resumen en las secciones 8, 9 y 11 del informe.
+
+### Problemas y comportamientos observados
+
+Ninguno.
+
+### Solución y recuperación
+
+Sin incidencias.
+
+### Resultados obtenidos
+
+- Los dos ADR contienen el contexto técnico y las opciones consideradas.
+- El informe incorpora los registros en las secciones correspondientes.
+
+### Tiempo dedicado
+
+2 horas.
