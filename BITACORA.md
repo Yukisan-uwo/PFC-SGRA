@@ -38,3 +38,20 @@ Todo bien
 ### Tiempo dedicado
 
 4 horas y 23 minutos.
+
+## 17 de noviembre de 2026 — Planificación de E1 y E2
+
+**Integrante participante:** TOAQUIZA ZAMBRANO BELINDA BETZABETH.
+
+### Actividades realizadas
+
+- Revisé las rúbricas y preparé la planificación y el reparto de trabajo de E1 y E2 para el tablero **PFC-SGRA | Aplicaciones Distribuidas** en GitHub Projects.
+- Detallé E1 en tareas principales y subtareas con responsables, archivos a editar, dependencias, fechas objetivo y criterios de cierre.
+- Distribuí las tareas de análisis, implementación, documentación y revisión entre los cuatro integrantes. Asumí la coordinación de la planificación, el resumen ejecutivo y los trabajos relacionados de E1.
+- Identifiqué las entrevistas y la trazabilidad del SGRA previo como insumos para E1. Incorporé una tarea para recuperar y verificar la evidencia original antes de vincularla con los requisitos reformulados.
+
+### Acuerdos de trabajo
+
+- Los roles orientan las responsabilidades. Los cuatro integrantes aportan a la documentación y a la revisión de la entrega.
+- El equipo decidirá en conjunto qué reutilizar del SGRA previo, qué tecnologías emplear y qué convenciones seguir para diagramas, documentación y trazabilidad.
+- Se tomó la semana 6 como referencia para E2 y se programó la integración de E1 antes del cierre del sábado 28 de noviembre.

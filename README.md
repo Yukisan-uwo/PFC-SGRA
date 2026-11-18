@@ -5,8 +5,9 @@
 **Proyecto:** Sistema de Gestión de Refuerzo Académico (SGRA).  
 **Equipo:** Mario, Belinda, Bryan y Khriz.  
 **Asignatura:** Aplicaciones Distribuidas.  
-**Roles oficiales:** por asignar: Arquitecto, Líder de Desarrollo, Responsable de Calidad y Responsable de Documentación.  
-**Entrega E1:** 29 de noviembre de 2026, 23:55.
+**Roles oficiales:** Khriz Coronel, Líder de Desarrollo; Bryan Lombeida, Arquitecto; Belinda Toaquiza, Responsable de Documentación; Mario Zambrano, Responsable de Calidad.
+
+**Entrega E1:** sábado 28 de noviembre de 2026, 11:59 (hora de Ecuador).
 
 ## Estructura
 
