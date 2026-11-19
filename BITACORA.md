@@ -126,7 +126,6 @@ Sin incidencias.
 
 2 horas.
 
-<<<<<<< HEAD
 ## 18 de noviembre de 2026 — Documentación del contexto y problemática del SGRA
 
 **Integrante participante:** Mario Zambrano.
@@ -165,7 +164,6 @@ Se ajustó la configuración de LaTeX para mostrar la denominación «Tabla» y 
 ### Tiempo dedicado
 
 1 hora y 14 minutos.
-=======
 ## 18 de noviembre de 2026 — Segunda sesión del día: alcance, reutilización, tecnologías y datos críticos
 
 **Integrantes participantes:** Khriz Alexander Coronel Gomez, Bryan Humberto Lombeida Escaleras, Belinda Betzabeth Toaquiza Zambrano, Luis Mario Zambrano Parraga.
@@ -208,4 +206,45 @@ Sin incidencias.
 
 1 hora.
 
->>>>>>> ceff95d (Se agrega ADR-003 sobre alcance, reutilización y tecnologías)
+## 19 de noviembre de 2026 — Recuperación y verificación de evidencias del levantamiento del SGRA
+
+**Integrante participante:** TOAQUIZA ZAMBRANO BELINDA BETZABETH.
+
+### Actividades realizadas
+
+- Revisé las transcripciones del levantamiento anterior del SGRA y las referencias con enlaces a entrevistas, encuestas y conversaciones de validación.
+- Recuperé de Google Drive cinco audios de entrevistas y tres consentimientos firmados. Revisé visualmente los consentimientos y comprobé su autorización para grabar voz y utilizar los audios con fines educativos.
+- Organicé el material en `evidencias/levantamiento/`, con carpetas de audios, consentimientos y fotografías. Preparé un inventario que relaciona cada entrevista con su participante, su archivo, su enlace y el respaldo de consentimiento disponible.
+- Incorporé una copia de la documentación anterior y recuperé sus cinco transcripciones, conservando las intervenciones y las marcas de tiempo disponibles.
+- Recuperé una fotografía del trabajo presencial con los interesados y la incorporé como evidencia referencial.
+- Añadí al informe el Anexo A de evidencias del levantamiento y trazabilidad y el Anexo B con las transcripciones de las cinco entrevistas.
+- Actualicé la bibliografía y las citas del contexto para enlazar la entrevista de coordinación. Registré también las fuentes de los consentimientos y el panel de resultados de la encuesta.
+- Recompilé el documento después de integrar los cambios del equipo y comprobé las referencias y la presentación de los anexos.
+
+### Problemas y comportamientos observados
+
+La sección de contexto citaba la carpeta de validaciones posteriores en lugar del audio de la entrevista de coordinación. Las transcripciones de Angelita Bosquez y Daisy Nata carecen de marcas de tiempo. Los tres consentimientos recuperados muestran firmas, pero carecen de fecha de firma visible. Durante la compilación, la fuente monoespaciada configurada impedía generar el PDF y algunos enlaces largos se extendían fuera de los márgenes.
+
+### Solución y recuperación
+
+Corregí la referencia de la entrevista de coordinación, asocié las fuentes con identificadores de entrevista y conservé las preguntas y respuestas de las transcripciones sin agregar tiempos. Documenté las limitaciones de los consentimientos y las comprobaciones pendientes. Ajusté la fuente monoespaciada y los saltos de línea de los enlaces bibliográficos para completar la compilación.
+
+### Resultados obtenidos
+
+- Las cinco entrevistas, los tres consentimientos firmados y la fotografía referencial quedaron organizados y enlazados en el inventario.
+- El informe incluye las evidencias y las cinco transcripciones en anexos consultables desde el índice.
+- Se corrigió la trazabilidad bibliográfica del contexto hacia el audio de coordinación.
+- El PDF recompilado tiene 24 páginas e incorpora los cambios del equipo.
+- El inventario identifica como pendientes el cotejo de los fragmentos con los audios, la recuperación de las respuestas crudas de la encuesta y las comprobaciones de acceso y fechas que correspondan al issue #8.
+- Los cambios del levantamiento quedaron registrados en GitHub y asociados al issue #8.
+
+### Evidencias
+
+- **Issue:** [#8 — Recuperar y verificar la evidencia original](https://github.com/Yukisan-uwo/PFC-SGRA/issues/8).
+- **Commit:** [482f02e — Incorpora evidencias del levantamiento y transcripciones](https://github.com/Yukisan-uwo/PFC-SGRA/commit/482f02e).
+- **Inventario:** [Evidencias del levantamiento](evidencias/levantamiento/README.md).
+- **Archivos modificados:** `README.md`, `docs/main.tex`, `docs/main.pdf`, `docs/referencias/referencias.bib`, `docs/secciones/03-contexto.tex`, `docs/secciones/17-referencias.tex`, `docs/secciones/18-evidencias.tex`, `docs/secciones/19-transcripciones.tex` y los archivos de `evidencias/levantamiento/`.
+
+### Tiempo dedicado
+
+2 horas.
