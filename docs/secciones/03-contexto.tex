@@ -1,5 +1,105 @@
 \section{Contexto y planteamiento del problema}
-\subsection{Organización y usuarios}\pendiente{Identificar el contexto real y quiénes utilizarán el SGRA.}
-\subsection{Proceso actual y consecuencias}\pendiente{Describir cómo se resuelve hoy, con tiempos, costos o errores medidos.}
-\subsection{Interesados y necesidades}\pendiente{Identificar stakeholders y áreas afectadas.}
-\subsection{Levantamiento y trazabilidad}\pendiente{Entrevista real con acta y firma o audio consentido. Si no hay organización real, adjuntar encuesta a 15 usuarios potenciales y datos crudos. Usar el capítulo 1 de SWEBOK v4.0a~\cite{swebok-v40a} como guía de elicitación y vincular cada hallazgo con su requisito.}
+
+\subsection{Organización y usuarios}
+
+En la Universidad Técnica Estatal de Quevedo (UTEQ), el refuerzo académico requiere la participación de estudiantes, docentes y personal de coordinación para organizar sesiones de apoyo según las necesidades de cada asignatura. Durante una entrevista realizada en 2025, la coordinadora de la carrera de Ingeniería en Software explicó que sus responsabilidades incluyen la planificación académica, el seguimiento del rendimiento estudiantil y la supervisión de las actividades formativas. También señaló que el seguimiento directo de las tutorías corresponde a los coordinadores de área, mientras que los docentes organizan la atención de los estudiantes de acuerdo con su disponibilidad \cite{Ponce2025-Validacion}.
+
+El diseño funcional anterior del SGRA contempló cinco perfiles de usuario: estudiante, docente, coordinador académico, gestor de espacios físicos y administrador. Los estudiantes realizan solicitudes de refuerzo y consultan su estado, mientras que los docentes gestionan su disponibilidad y las sesiones asignadas. La coordinación académica supervisa el desarrollo de estas actividades y el gestor de espacios físicos interviene en la asignación de aulas para encuentros presenciales. El administrador, por su parte, mantiene los usuarios, permisos y parámetros generales de la plataforma. Cada perfil cumple una función específica dentro del proceso de gestión del refuerzo académico.
+
+\subsection{Proceso actual y consecuencias}
+
+Durante el levantamiento de información realizado en 2025, se identificó que la coordinación de los refuerzos académicos dependía principalmente de los acuerdos entre estudiantes y docentes. Para organizar estas actividades se recurría a distintos medios de comunicación, como WhatsApp, correo electrónico y encuentros virtuales fuera del horario habitual. La coordinadora de la carrera de Ingeniería en Software señaló que los docentes destinaban parte de su tiempo disponible a la atención de estudiantes, aunque debían distribuirlo entre varias asignaturas y responsabilidades académicas \cite{Ponce2025-Validacion}.
+
+La disponibilidad docente fue uno de los aspectos relevantes durante la entrevista, debido a las limitaciones de tiempo que podían dificultar la organización de las sesiones. La coordinadora propuso establecer horarios de atención a partir del distributivo académico y destacó la utilidad de las notificaciones para informar oportunamente sobre las solicitudes. Estas necesidades reflejan la importancia de disponer de mecanismos que faciliten la programación de los refuerzos y la comunicación entre sus participantes \cite{Ponce2025-Validacion}.
+
+El uso de diferentes canales también representaba una dificultad para mantener un registro unificado de las tutorías. Cuando las solicitudes, los acuerdos de horario y las confirmaciones se gestionan mediante conversaciones independientes, el seguimiento de cada atención puede volverse más complejo. Esta situación motivó la incorporación de funcionalidades de registro, programación y consulta de solicitudes en el SGRA anterior. Aunque las entrevistas permiten reconocer estas dificultades, no ofrecen mediciones suficientes para establecer su frecuencia, los tiempos de respuesta o los costos asociados.
+
+\subsection{Interesados y necesidades}
+
+La gestión del refuerzo académico requiere la participación de distintos actores, cuyas necesidades están relacionadas con la organización de las sesiones, la comunicación y el seguimiento de las actividades realizadas. Durante el levantamiento anterior, la coordinación académica destacó la importancia de contar con horarios definidos, notificaciones oportunas y mecanismos que permitan organizar tutorías individuales o grupales de acuerdo con la disponibilidad docente. También señaló que las sesiones deben relacionarse con las asignaturas activas del período académico \cite{Ponce2025-Validacion}.
+
+A partir de estos hallazgos y del diseño funcional desarrollado previamente, se identificaron cinco perfiles vinculados con la operación del SGRA. La Tabla~\ref{tab:interesados-sgra} resume sus principales necesidades y distingue aquellas respaldadas por la entrevista de coordinación de las que fueron consideradas durante el diseño del sistema.
+
+\begin{table}[htbp]
+\centering
+\caption{Interesados y necesidades identificadas para el SGRA}
+\label{tab:interesados-sgra}
+\small
+\begin{tabularx}{\textwidth}{@{}p{0.21\textwidth}X p{0.24\textwidth}@{}}
+\toprule
+\textbf{Interesado} & \textbf{Necesidad principal} & \textbf{Origen} \\
+\midrule
+Estudiante &
+Conocer los horarios disponibles, recibir información sobre sus solicitudes y contar con recordatorios de las sesiones programadas. &
+Entrevista a coordinación. \\
+
+Docente &
+Organizar su disponibilidad, recibir solicitudes oportunamente y disponer de alternativas para atender refuerzos individuales o grupales. &
+Entrevista a coordinación. \\
+
+Coordinación académica &
+Supervisar las actividades de refuerzo y mantener su relación con las asignaturas y docentes del período académico. &
+Entrevista a coordinación. \\
+
+Gestor de espacios físicos &
+Consultar y administrar la disponibilidad de aulas o laboratorios para evitar conflictos en las sesiones presenciales. &
+Diseño funcional anterior. \\
+
+Administrador &
+Mantener los usuarios, permisos y parámetros necesarios para el funcionamiento y control de la plataforma. &
+Diseño funcional anterior. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Las necesidades identificadas reflejan las distintas responsabilidades que intervienen en la gestión del refuerzo académico. Mientras los estudiantes y docentes requieren mecanismos para coordinar las sesiones y mantenerse informados, la coordinación académica necesita dar seguimiento a las actividades realizadas. Por su parte, la gestión de espacios y la administración de la plataforma cumplen funciones de apoyo que permiten organizar los recursos y mantener el control de la información.
+
+\subsection{Levantamiento y trazabilidad}
+
+El análisis del contexto institucional se apoya en la información recopilada durante el desarrollo anterior del SGRA. Entre las fuentes disponibles se encuentra una entrevista realizada a la Ing. Jessica Ponce, coordinadora de la carrera de Ingeniería en Software de la Universidad Técnica Estatal de Quevedo. En esta conversación se abordaron las prácticas utilizadas para organizar tutorías, la disponibilidad del personal docente y las necesidades de comunicación y seguimiento académico \cite{Ponce2025-Validacion}.
+
+La entrevista permitió identificar dificultades concretas del proceso y propuestas de mejora desde la perspectiva de coordinación. Para mantener la trazabilidad de estos hallazgos, se relacionaron las intervenciones relevantes con las necesidades funcionales que podrían incorporarse al alcance del PFC. La Tabla~\ref{tab:trazabilidad-contexto} presenta esta relación, utilizando las marcas de tiempo de la transcripción como referencia para localizar cada intervención.
+
+\begin{table}[htbp]
+\centering
+\caption{Trazabilidad de hallazgos del levantamiento inicial del SGRA}
+\label{tab:trazabilidad-contexto}
+\small
+\begin{tabularx}{\textwidth}{@{}p{0.09\textwidth}p{0.36\textwidth}p{0.16\textwidth}X@{}}
+\toprule
+\textbf{ID} &
+\textbf{Hallazgo identificado} &
+\textbf{Minuto} &
+\textbf{Necesidad asociada} \\
+\midrule
+
+H-01 &
+Los docentes disponen de tiempo limitado y deben distribuirlo entre distintas actividades académicas. &
+03:24 &
+Organizar y consultar la disponibilidad docente. \\
+
+H-02 &
+La coordinación considera necesarias las notificaciones oportunas para atender solicitudes. &
+06:44 &
+Informar a los participantes sobre nuevas solicitudes y cambios de estado. \\
+
+H-03 &
+Se requiere flexibilidad para organizar tutorías individuales o grupales. &
+07:54 &
+Permitir la selección de la modalidad de atención. \\
+
+H-04 &
+Las tutorías deben corresponder a asignaturas activas del período académico. &
+11:28 &
+Validar la relación entre docente, asignatura y período vigente. \\
+
+H-05 &
+Los estudiantes necesitan recordatorios sobre el lugar, horario y modalidad de sus sesiones. &
+13:24 &
+Proporcionar recordatorios e información de las sesiones programadas. \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Los testimonios recopilados muestran que la disponibilidad docente, la comunicación oportuna y la relación entre las tutorías y las asignaturas vigentes son aspectos relevantes para organizar el refuerzo académico. Estos hallazgos permiten identificar necesidades concretas de programación, notificación y seguimiento, que servirán como base para la especificación de los requisitos del SGRA \cite{Ponce2025-Validacion}.
