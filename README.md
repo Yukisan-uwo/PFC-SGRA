@@ -53,4 +53,6 @@ El código existente se incorporará a este repositorio o se reorganizará segú
 
 ## Evidencia y autoría
 
+El inventario del levantamiento anterior está en [evidencias/levantamiento/README.md](evidencias/levantamiento/README.md). Relaciona los audios, los consentimientos firmados, las transcripciones y una fotografía de validación. El informe incorpora un anexo de evidencias con sus fuentes y las comprobaciones pendientes del issue #8.
+
 Cada integrante debe tener al menos 4 commits significativos propios e issues asignados/cerrados; el historial debe abarcar al menos 4 días diferentes. Registrar únicamente entrevistas, capturas, pruebas, reuniones, medidas y resultados reales. Los entregables previos FORM-AC-01, FORM-TL-02 y FORM-IC-01 son requisitos para presentar E1.

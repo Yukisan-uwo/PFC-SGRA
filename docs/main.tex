@@ -8,14 +8,19 @@
 \usepackage[spanish,es-nodecimaldot]{babel}
 \addto\captionsspanish{\renewcommand{\tablename}{Tabla}}
 \usepackage{newtxtext,newtxmath}
+\renewcommand{\ttdefault}{cmtt}
 \usepackage[a4paper,left=3cm,right=3cm,top=2.5cm,bottom=2.5cm]{geometry}
 \usepackage{setspace}
 \onehalfspacing
 \usepackage{graphicx,xcolor}
 \usepackage{booktabs,longtable,tabularx,array}
 \usepackage{csquotes}
+\usepackage{xurl}
 \usepackage{hyperref}
 \usepackage[backend=biber,style=ieee,citestyle=ieee,sorting=none]{biblatex}
+\setcounter{biburlnumpenalty}{100}
+\setcounter{biburlucpenalty}{100}
+\setcounter{biburllcpenalty}{100}
 
 % Permite compilar desde la raíz del repositorio o desde docs/.
 \IfFileExists{docs/referencias/referencias.bib}{%
@@ -95,5 +100,11 @@ Responsable de Documentación: & \responsabledocumentacion\\
 \seccion{15-aportes}
 \seccion{16-ia}
 \seccion{17-referencias}
+
+\clearpage
+\appendix
+\seccion{18-evidencias}
+\clearpage
+\seccion{19-transcripciones}
 
 \end{document}
