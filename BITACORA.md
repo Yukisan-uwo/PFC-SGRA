@@ -1,5 +1,19 @@
 # Bitácora — SGRA, PFC
 
+## 18 de noviembre de 2026 — Revisión del issue #5
+
+**Integrante responsable de la revisión:** TOAQUIZA ZAMBRANO BELINDA BETZABETH.
+
+### Revisión de la documentación disponible
+
+- Revisé el issue #5 y el aporte de Bryan en el commit `9c47573`. Los ADR documentan módulos, dependencias y alternativas del SGRA previo.
+- Contrasté ese registro con la propuesta de comunicación de Khriz del commit `0f35cd1`. ADR-001 permanece en evaluación y ADR-002 registra una propuesta pendiente de validación.
+- Identifiqué pendientes para completar el cierre del issue: registrar los acuerdos sobre alcance, reutilización, tecnologías, datos críticos y convenciones de documentación; completar la fecha y los asistentes reales de la sesión; y enlazar el primer bosquejo y la fotografía con integrantes y fecha visibles.
+
+### Resultado
+
+El aporte técnico de Bryan está registrado. El cierre del issue #5 queda pendiente de incorporar los acuerdos y las evidencias de la sesión que solicita su descripción.
+
 ## 17 de noviembre de 2026
 
 **Integrantes participantes**
