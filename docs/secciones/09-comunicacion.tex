@@ -1,4 +1,48 @@
 \section{Modelo de comunicación entre servicios}
-La SPA Angular consume la API mediante peticiones HTTP/JSON bajo \texttt{/api}. En desarrollo, el proxy redirige esas peticiones al servicio backend en el puerto 8080 y el interceptor \texttt{credentialsInterceptor} añade credenciales a cada petición. El backend valida una sesión HTTP con cookie \texttt{httpOnly}, \texttt{SameSite=Lax} y tiempo de espera de 30 minutos. Las operaciones de carga de recursos usan \texttt{multipart/form-data}.
+\subsection{Alcance y estado del diseño}
+Se propone REST sobre HTTP con mensajes JSON y comunicación síncrona para una consulta académica mínima entre dos servicios de E1. ADR-002 conserva el estado \textbf{Propuesto}: faltan las mediciones originales de PE-U1, el C4 nivel 2 definitivo y la comprobación del esqueleto. El inventario siguiente distingue las integraciones del SGRA anterior de la nueva interacción propuesta; no afirma que este repositorio ya las implemente.
 
-Las alternativas evaluadas para la comunicación entre servicios son REST/HTTP JSON síncrono, gRPC y mensajería asíncrona. REST mantiene la autenticación por sesión y permite depurar cada petición; gRPC ofrece contratos tipados y eficiencia de serialización con una capa intermedia para el navegador; la mensajería asíncrona elimina la dependencia temporal a costa de consistencia eventual, orden de mensajes e infraestructura de broker. Los datos críticos considerados en el análisis son solicitudes, programación de sesiones, asistencia y estados.
+\subsection{Inventario de interacciones}
+La revisión del backend previo identifica persistencia JPA/PostgreSQL, correo SMTP, almacenamiento Azure Blob y una llamada HTTP/JSON al proveedor Groq. Las fuentes y la revisión del código se enlazan en ADR-002. La interacción SPA--API procede de la arquitectura previa descrita en este informe. Las filas H corresponden a ese sistema; la fila E1 corresponde a la demostración propuesta.
+
+\begingroup
+\small
+\begin{longtable}{@{}p{0.06\textwidth}p{0.20\textwidth}p{0.22\textwidth}p{0.17\textwidth}p{0.22\textwidth}@{}}
+\toprule
+\textbf{ID}&\textbf{Origen y destino}&\textbf{Finalidad}&\textbf{Tipo y mecanismo}&\textbf{Motivo}\\\midrule\endhead
+H1 & SPA Angular $\rightarrow$ API Spring Boot & Consultar y gestionar refuerzos; cargar recursos. & Síncrona; HTTP/JSON o multipart. & El cliente espera respuesta de la operación; es la interfaz del sistema previo.\\
+H2 & API $\rightarrow$ PostgreSQL & Consultar y persistir datos. & Síncrona; SQL mediante JPA/JDBC. & Las operaciones esperan el resultado de la base; no es una API REST.\\
+H3 & API $\rightarrow$ servidor de correo & Enviar notificaciones. & Envío SMTP síncrono; existe variante con delegación local. & El envío puede esperar confirmación SMTP o delegarse; la recepción por la persona ocurre después.\\
+H4 & API $\rightarrow$ Azure Blob & Subir, consultar y eliminar archivos. & Síncrona; API Blob mediante SDK HTTP. & El cliente síncrono espera el resultado para devolver archivo o URL.\\
+H5 & API $\rightarrow$ Groq & Complementar la validación de cargas. & Síncrona; HTTP POST con JSON. & Se espera la respuesta antes de combinarla con las reglas Java.\\
+E1 & Servicio de refuerzos $\rightarrow$ servicio académico & Consultar una asignatura sintética por ID. & Síncrona; REST/HTTP JSON. & Permite observar una consulta entre dos procesos con respuesta inmediata y contrato pequeño.\\
+\bottomrule
+\end{longtable}
+\endgroup
+
+En H3, \texttt{sendEmail} espera la operación SMTP y \texttt{sendEmailAsync} declara una delegación con \texttt{@Async}; su ejecución asíncrona efectiva depende de la configuración de Spring. Esto no acredita una cola durable ni un broker. En H5, el código conserva las validaciones Java si el proveedor no está configurado o falla. Las llamadas internas entre módulos Java no se cuentan como comunicaciones entre servicios desplegados independientemente.
+
+\pendiente{Cotejar todas las flechas del C4 nivel 2 del issue \#15 con este inventario, conservar IDs y nombres consistentes y actualizar las filas si cambia el alcance.}
+
+\subsection{Contrato de la consulta mínima propuesta}
+El \textbf{servicio de refuerzos} escuchará en \texttt{127.0.0.1:8081} y expondrá \texttt{GET /api/demo/asignaturas/\{id\}}. Al recibir una entrada válida consultará al \textbf{servicio académico}, que escuchará en \texttt{127.0.0.1:8082} y expondrá \texttt{GET /api/asignaturas/\{id\}}. El emisor devolverá el resultado al cliente; no resolverá la consulta con una copia local.
+
+El catálogo será sintético y contendrá únicamente el entero positivo \texttt{1}. La respuesta correcta será HTTP \texttt{200}, con tipo \texttt{application/json} y el cuerpo siguiente:
+\begin{quote}
+\small\ttfamily
+\{"id":1,"nombre":"Asignatura de demostración"\}
+\end{quote}
+
+Un ID no entero o no positivo producirá \texttt{400} con código \texttt{ID\_INVALIDO}, sin llamar al receptor. Un entero positivo distinto de \texttt{1} producirá \texttt{404} con código \texttt{ASIGNATURA\_NO\_ENCONTRADA}; refuerzos conservará este resultado. Una desconexión, espera agotada, respuesta \texttt{5xx} o respuesta incompatible del receptor producirá \texttt{503} con código \texttt{SERVICIO\_ACADEMICO\_NO\_DISPONIBLE}. Los errores tendrán un objeto JSON con la propiedad \texttt{codigo}, según ADR-002.
+
+Se propone un presupuesto total de \textbf{dos segundos} para la llamada saliente, incluyendo conexión y lectura, con una sola tentativa y sin reintentos automáticos. Es una configuración inicial pendiente de medición, no un resultado experimental ni una garantía de duración de toda la petición. Se registrarán ruta, servicio, estado y duración para observar la comunicación.
+
+La demostración usará memoria y datos sintéticos, sin base de datos, escrituras ni autenticación, y ambos procesos escucharán exclusivamente en loopback. La autenticación por sesión del navegador en el SGRA anterior se mantiene como contexto separado. Exponer los nuevos servicios fuera del equipo requerirá definir autenticación entre servicios y transporte protegido. Estas rutas son propuestas nuevas; no sustituyen las del sistema anterior.
+
+\subsection{Justificación y evidencia pendiente}
+REST/HTTP JSON permite usar las herramientas HTTP conocidas y comprobar el contrato sin un broker ni generación de clientes. gRPC permitiría un contrato Protocol Buffers y clientes generados, pero no hay una medición disponible que justifique introducir esas herramientas en este caso. Entre dos servicios backend gRPC no necesita una capa para navegador. La mensajería permite procesamiento diferido; para esta consulta exigiría correlacionar solicitud y respuesta y tratar entregas y duplicados. No se declara una ventaja de latencia o rendimiento de una alternativa sobre otra.
+
+\pendiente{Incorporar desde el issue \#6 las mediciones reales de PE-U1: mecanismos ensayados, equipo y red, carga y tamaño de mensaje, repeticiones, métricas con unidades, errores y enlace a datos originales. Explicar su relación y límites respecto a esta consulta; revisar la propuesta si la evidencia o los RNF la contradicen.}
+
+\subsection{Comprobación y cierre}
+La implementación corresponde a los issues \#19 y \#33 y las evidencias de ejecución al \#34. Se deberá comprobar la consulta correcta (\texttt{200}), ID inválido (\texttt{400}), asignatura inexistente (\texttt{404}) y receptor detenido, lento o incompatible (\texttt{503}), verificando que no haya reintentos automáticos. Las pruebas todavía no se han ejecutado. El issue \#16 permanecerá abierto hasta incorporar PE-U1 y comprobar que C4, ADR-002 y llamada ejecutada describen la misma interacción.
