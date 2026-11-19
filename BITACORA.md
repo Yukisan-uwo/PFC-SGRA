@@ -111,3 +111,42 @@ Sin incidencias.
 ### Tiempo dedicado
 
 2 horas.
+
+## 18 de noviembre de 2026 — Documentación del contexto y problemática del SGRA
+
+**Integrante participante:** Mario Zambrano.
+
+### Actividades realizadas
+
+- Revisé la documentación del SGRA desarrollada en semestres anteriores para recuperar información sobre el proceso de refuerzo académico en la UTEQ.
+- Consulté el levantamiento de información realizado con coordinación académica, identificando las principales dificultades relacionadas con la disponibilidad docente, la comunicación y la organización de tutorías.
+- Desarrollé los cuatro subapartados de `docs/secciones/03-contexto.tex`: organización y usuarios, proceso actual y consecuencias, interesados y necesidades, y levantamiento y trazabilidad.
+- Elaboré dos tablas para identificar las necesidades de los interesados y relacionar los hallazgos de la entrevista con sus respectivas marcas de tiempo.
+- Incorporé la referencia bibliográfica de la entrevista en `docs/referencias/referencias.bib` y revisé las citas utilizadas en el texto.
+- Ajusté la presentación de las tablas en LaTeX y recompilé el documento para verificar su visualización.
+
+### Problemas y comportamientos observados
+
+Durante la compilación del documento, las tablas aparecían identificadas como «Cuadro» en lugar de «Tabla». También observé que la referencia de la entrevista no se mostraba correctamente debido a una diferencia entre la clave utilizada en el texto y la registrada en el archivo bibliográfico.
+
+### Solución y recuperación
+
+Se ajustó la configuración de LaTeX para mostrar la denominación «Tabla» y se corrigió la clave bibliográfica correspondiente. Después de recompilar el documento, las tablas y las citas se visualizaron correctamente.
+
+### Resultados obtenidos
+
+- Se completó la redacción inicial del apartado de contexto y planteamiento del problema del SGRA.
+- Se identificaron las necesidades de los actores involucrados y las dificultades documentadas durante el levantamiento anterior.
+- Se incorporaron dos tablas de apoyo para organizar los interesados y la trazabilidad de los hallazgos.
+- Se verificó la presentación del contenido en el documento PDF.
+- Los cambios quedaron registrados en GitHub y asociados al issue #9.
+
+### Evidencias
+
+- **Issue:** [#9 — Documentar el proceso actual y sus consecuencias](https://github.com/Yukisan-uwo/PFC-SGRA/issues/9).
+- **Commit:** [773b0be — Desarrollar contexto y trazabilidad del SGRA](https://github.com/Yukisan-uwo/PFC-SGRA/commit/773b0be).
+- **Archivos modificados:** `docs/secciones/03-contexto.tex`, `docs/referencias/referencias.bib`, `docs/main.tex` y `docs/main.pdf`.
+
+### Tiempo dedicado
+
+1 hora y 14 minutos.
