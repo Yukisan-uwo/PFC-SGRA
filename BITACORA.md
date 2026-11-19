@@ -94,7 +94,7 @@ Todo bien
 
 ## 17 de noviembre de 2026 — Registro técnico del SGRA
 
-**Integrantes participantes:** Bryan Humberto Lombeida Escaleras.
+**Integrantes participantes:** Khriz Alexander Coronel Gomez, Bryan Humberto Lombeida Escaleras, Belinda Betzabeth Toaquiza Zambrano, Luis Mario Zambrano Parraga
 
 ### Actividades realizadas
 
@@ -126,6 +126,7 @@ Sin incidencias.
 
 2 horas.
 
+<<<<<<< HEAD
 ## 18 de noviembre de 2026 — Documentación del contexto y problemática del SGRA
 
 **Integrante participante:** Mario Zambrano.
@@ -164,3 +165,47 @@ Se ajustó la configuración de LaTeX para mostrar la denominación «Tabla» y 
 ### Tiempo dedicado
 
 1 hora y 14 minutos.
+=======
+## 18 de noviembre de 2026 — Segunda sesión del día: alcance, reutilización, tecnologías y datos críticos
+
+**Integrantes participantes:** Khriz Alexander Coronel Gomez, Bryan Humberto Lombeida Escaleras, Belinda Betzabeth Toaquiza Zambrano, Luis Mario Zambrano Parraga.
+
+### Actividades realizadas
+
+- Revisé con el equipo el alcance del SGRA para E1 y la base funcional reutilizable.
+- Acordamos los límites del sistema, los módulos que se reutilizan y la base tecnológica.
+- Identificamos los datos críticos candidatos para el análisis de consistencia y disponibilidad.
+- Registré los acuerdos en `docs/adr/ADR-003-alcance-reutilizacion-tecnologias.md` y en la sección 11 del informe.
+
+### Acuerdos
+
+- Alcance: estudiantes, docentes, coordinación y administración; autenticación, catálogos académicos, solicitudes, programación, asistencia, recursos, historial y administración de usuarios y roles. Quedan fuera de E1 los pagos, la videoconferencia integrada, la aplicación móvil nativa, el chat propio y la analítica predictiva.
+- Reutilización: se conserva la organización por capas y dominios del backend, las funciones de refuerzo y seguridad y la estructura de la SPA por roles; se adaptan nombres, configuración y documentación al PFC.
+- Tecnologías: Java 21, Spring Boot 4.0.3, Maven, Spring Data JPA, PostgreSQL, Spring Session, Angular 21, TypeScript 5.9, Bootstrap 5.3, Chart.js 4.5 y REST/HTTP JSON.
+- Datos críticos: identidad y permisos, solicitudes, programación de sesiones, participantes, asistencia, recursos e historial.
+
+### Evidencia de la sesión
+
+![Captura de la reunión del 18 de noviembre de 2026](evidencias/Reunion-18-11-2026.png)
+
+La captura muestra a los cuatro integrantes en la sesión y el tablero del proyecto; el reloj de la reunión indica 18/11/2026 23:48.
+
+### Problemas y comportamientos observados
+
+Ninguno.
+
+### Solución y recuperación
+
+Sin incidencias.
+
+### Resultados obtenidos
+
+- Los acuerdos de alcance, reutilización, tecnologías y datos críticos quedaron registrados en el ADR-003.
+- El informe resume los acuerdos en la sección de registros de arquitectura.
+- La sesión queda documentada con la captura de la reunión.
+
+### Tiempo dedicado
+
+1 hora.
+
+>>>>>>> ceff95d (Se agrega ADR-003 sobre alcance, reutilización y tecnologías)
