@@ -1,3 +1,153 @@
 \section{Trabajos relacionados}
-% Mínimo 3 sistemas o estudios publicados; citar con \cite{clave}.
-\pendiente{Analizar 3 trabajos reales: problema, solución, aprendizaje aplicable y diferencia respecto al SGRA.}
+
+El Sistema de Gestión de Refuerzo Académico (SGRA) organiza solicitudes de apoyo por asignatura, su revisión por el docente, la programación de sesiones, el registro de asistencia y el seguimiento por coordinación. Su investigación y desarrollo iniciales proporcionaron una base funcional que se revisa y reestructura en este proyecto bajo el enfoque de aplicaciones distribuidas~\cite{SGRA-documentacion-original}.
+
+Para fundamentar la solución se analizaron tres sistemas publicados que abordaron problemas semejantes: EPIS--UNH, ASP tutTrak y TutorYuk. La selección consideró la coordinación de tutorías, la gestión de solicitudes y el seguimiento de las atenciones, junto con la disponibilidad de los textos completos en acceso abierto. En cada caso se identificaron la solución presentada, el aprendizaje aplicable al SGRA y las diferencias relevantes para su alcance.
+
+\subsection{Sistema web de tutorías de EPIS--UNH}
+
+Huamán Rojas y Rojas Bujaico~\cite{Rojas2023} desarrollaron un sistema web para apoyar la gestión de tutorías en la Escuela Profesional de Ingeniería de Sistemas de la Universidad Nacional de Huancavelica, Perú. Utilizaron PHP y MySQL y compararon registros de asistencia y cantidad de tutorías antes y después de su implementación. El estudio reportó mejoras en esos indicadores y describió el uso de registros para identificar necesidades de atención personalizada. Su diseño preexperimental no permite trasladar esos resultados directamente a otra universidad.
+
+Para el SGRA se toma como referencia el seguimiento mediante registros de asistencia y reportes verificables. La diferencia está en el énfasis de la solución: EPIS--UNH evaluó indicadores de participación; el SGRA contempla el ciclo de solicitud, revisión, aceptación, rechazo y reprogramación, relacionado con las asignaturas y los docentes del período académico de la UTEQ. La comparación permite definir qué información conservar para supervisar el refuerzo y cómo evaluar sus resultados. La diferencia de énfasis no implica que EPIS--UNH carezca de funciones que el artículo no detalló.
+
+\subsection{ASP tutTrak: reserva y seguimiento institucional de tutorías}
+
+Grigoryan~\cite{grigoryan2024-tuttrak} estudió ASP tutTrak, una aplicación utilizada por centros de apoyo académico de una institución de educación superior de Emiratos Árabes Unidos. El sistema permitió reservar tutorías, registrar asistencia, enviar confirmaciones por correo y consultar reportes. El artículo analizó cinco páginas o piezas visuales mediante un estudio cualitativo de interactividad. Su evaluación se centró en la relación entre interfaz, contenido y usuario, por lo que sus resultados no constituyen mediciones de rendimiento o disponibilidad.
+
+Para el SGRA se toma como referencia la continuidad entre programación, comunicación, asistencia y consulta del historial, así como la claridad de las acciones disponibles en cada pantalla. La diferencia está en la organización de la atención: ASP tutTrak incluyó tutores pares, docentes y personal institucional; el SGRA se centra en solicitudes de refuerzo por asignatura atendidas por docentes y supervisadas por coordinación. Por ello, el aprendizaje se aplica a la trazabilidad de la sesión y a la presentación de sus estados, manteniendo la relación con los catálogos académicos de la UTEQ y las responsabilidades de cada actor.
+
+\subsection{TutorYuk: selección de tutores y gestión de solicitudes}
+
+Seah y colaboradores~\cite{seah2023-tutoryuk} diseñaron TutorYuk para conectar estudiantes con tutores mediante un enfoque de \textit{Design Thinking}. Describieron selección por especialidad, reservas, confirmación del servicio, notificaciones y un panel de solicitudes para el tutor. Presentaron pruebas de caja negra de registro, inicio de sesión y acceso a funciones. Esas pruebas respaldaron los escenarios descritos, pero no demostraron la operación completa del servicio a escala institucional. El trabajo también identificó necesidades de mejora en la supervisión de las interacciones y la sostenibilidad del servicio.
+
+El aprendizaje para el SGRA es hacer visibles las solicitudes pendientes, en atención o canceladas y comprobar que cada actor acceda a las acciones autorizadas. Esto orienta la revisión de las transiciones del proceso y de las responsabilidades de estudiantes, docentes y coordinación. La diferencia principal es el modelo del servicio: TutorYuk planteó tutoría entre pares con tarifas, mientras el SGRA organiza refuerzo académico institucional por asignatura y disponibilidad docente. La comparación aprovecha la gestión de solicitudes y sus estados; los pagos y las valoraciones comerciales quedan fuera del alcance de E1.
+
+\subsection{Comparación de los antecedentes}
+
+La Tabla~\ref{tab:comparacion-relacionados} resume los criterios utilizados para contrastar los tres trabajos con el SGRA. Las diferencias corresponden al alcance descrito por las publicaciones; las funciones no documentadas no se consideran ausentes.
+
+\begin{table}[htbp]
+\centering
+\caption{Comparación de sistemas relacionados y aprendizajes para el SGRA}
+\label{tab:comparacion-relacionados}
+\small
+\renewcommand{\arraystretch}{1.18}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.17\textwidth}*{3}{>{\raggedright\arraybackslash}X}@{}}
+\toprule
+\textbf{Criterio} & \textbf{EPIS--UNH}~\cite{Rojas2023} & \textbf{ASP tutTrak}~\cite{grigoryan2024-tuttrak} & \textbf{TutorYuk}~\cite{seah2023-tutoryuk} \\
+\midrule
+Problema atendido &
+Gestión y seguimiento de tutorías universitarias. &
+Reserva y seguimiento de atenciones en centros de apoyo académico. &
+Vinculación de estudiantes con tutores según sus necesidades. \\
+\addlinespace
+Funciones descritas &
+Registros de asistencia, atención personalizada y reportes. &
+Reservas, correo de confirmación, asistencia e historial de tutorías. &
+Selección de tutor, reservas, confirmación y panel de solicitudes. \\
+\addlinespace
+Evaluación realizada &
+Comparación de indicadores antes y después de implementar el sistema. &
+Análisis cualitativo de interactividad de cinco páginas o piezas visuales. &
+Pruebas de caja negra de registro, acceso y funciones de interfaz. \\
+\addlinespace
+Aprendizaje para el SGRA &
+Conservar registros verificables para evaluar el seguimiento. &
+Relacionar la programación con asistencia, comunicación e historial. &
+Mostrar estados y verificar las acciones permitidas por actor. \\
+\addlinespace
+Diferencia respecto al SGRA &
+Énfasis en participación; el SGRA integra solicitud, revisión y reprogramación por asignatura. &
+Incluye tutoría entre pares; el SGRA organiza atención docente y supervisión de coordinación. &
+Plantea tutoría con tarifas; el SGRA gestiona refuerzo institucional sin pagos en E1. \\
+\addlinespace
+Límite de la evidencia &
+Resultados sujetos a su contexto y diseño preexperimental. &
+La interactividad no demuestra rendimiento ni disponibilidad. &
+Los escenarios probados no acreditan toda la operación institucional. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Síntesis de los aprendizajes para el SGRA}
+
+La comparación fundamenta tres criterios para el SGRA: trazabilidad mediante registros de atención, transiciones explícitas entre solicitud y sesión, y acciones comprensibles y autorizadas para cada actor. Estos criterios vinculan las necesidades del refuerzo académico con el diseño y la evaluación del sistema. La elección del estilo arquitectónico, los límites entre servicios y la gestión de datos distribuidos requiere además analizar los requisitos y las dependencias del código. Los antecedentes aportan referencias funcionales y de evaluación, sin determinar por sí solos una arquitectura de microservicios.
+
+\subsection{Fundamentos teóricos y alternativas para la distribución}
+\label{sec:fundamentos-distribucion}
+Este apartado reúne literatura técnica que complementa los antecedentes funcionales. Su propósito es explicar alternativas y criterios que deben conocerse antes de decidir la arquitectura del SGRA y fundamentar su posterior justificación.
+
+\subsubsection{Descomposición, modularidad y servicios}
+La modularidad organiza responsabilidades y dependencias; la distribución añade fronteras entre procesos y comunicación remota. Por ello, separar módulos en el código y desplegar servicios independientes son decisiones diferentes. Abgaz y colaboradores~\cite{abgaz2023-decomposition} examinaron 35 estudios y organizaron la descomposición en recolección de información, análisis del monolito, identificación de servicios, optimización, evaluación y despliegue. Identificaron análisis de dominio, estático, dinámico y de versiones como fuentes complementarias de información.
+
+Los autores señalaron que el predominio del análisis estático no demostraba su superioridad y que la falta de métricas comparables impedía ordenar universalmente los métodos (pp. 4234--4236). Para estudiar el SGRA, esto plantea revisar qué reglas pertenecen a cada capacidad, qué datos comparten y qué operaciones se ejecutan juntas. Los nombres de tablas o paquetes no bastan para establecer fronteras.
+
+Söylemez, Tekinerdogan y Kolukısa Tarhan~\cite{soylemez2022-challenges} complementaron esta perspectiva al revisar 85 estudios y clasificar los desafíos en nueve categorías. En descomposición identificaron el tamaño adecuado de la capacidad de negocio como un problema que puede afectar desempeño, disponibilidad y fiabilidad. Esto introduce un límite a la división por entidades: reducir el tamaño del servicio no demuestra, por sí solo, que disminuya el acoplamiento del sistema.
+
+Desde evidencia de organizaciones y discusiones técnicas, Michael Ayas, Leitner y Hebig~\cite{ayas2023-migration} relacionaron el análisis de la aplicación con dominio, flujos de ejecución y cambios iterativos. Las tres perspectivas son complementarias: identificar dependencias de código, comprender capacidades del negocio y contrastar la operación real. Para el SGRA, permiten formular preguntas sobre las relaciones entre asignaturas, solicitudes y programación antes de establecer fronteras de despliegue.
+
+\begingroup
+\small\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.12}
+\begin{longtable}{@{}p{0.24\textwidth}p{0.35\textwidth}p{0.35\textwidth}@{}}
+\caption{Alternativas de organización y preguntas previas para el SGRA.}\\
+\toprule\textbf{Alternativa}&\textbf{Propiedades y costos por estudiar}&\textbf{Pregunta para el SGRA}\\\midrule\endfirsthead
+\toprule\textbf{Alternativa}&\textbf{Propiedades y costos por estudiar}&\textbf{Pregunta para el SGRA}\\\midrule\endhead
+Monolito modular & Módulos con interfaces explícitas dentro de un mismo despliegue; llamadas locales y coordinación de datos concentrada. Comparte liberación y recursos del proceso. & ¿Qué dependencias entre catálogo, solicitud y programación pueden delimitarse sin convertirlas todavía en llamadas remotas?\\\midrule
+Servicios por capacidades amplias & Agrupa operaciones relacionadas bajo contratos remotos. Permite separar despliegues, pero exige tratar red, permisos, errores y propiedad de datos. & ¿Qué conjuntos de funciones podrían operar por contrato sin depender continuamente de detalles internos de otros módulos?\\\midrule
+Microservicios de granularidad fina & Divide responsabilidades en unidades menores. Su autonomía depende de contratos y datos; más unidades implican más coordinación y componentes operativos. & ¿La independencia requerida compensa los intercambios necesarios para solicitudes, participantes, horarios y asistencia?\\
+\bottomrule
+\end{longtable}
+\endgroup
+
+La comunicación por eventos describe cómo se informan o procesan cambios; la granularidad describe cómo se reparten responsabilidades y despliegues. No son alternativas mutuamente excluyentes. Su relación debe estudiarse por interacción y requisito, en lugar de asumir que toda distribución necesita eventos o que cada módulo necesita un proceso propio.
+
+\subsubsection{Migración y propiedad de datos}
+Michael Ayas, Leitner y Hebig~\cite{ayas2023-migration} estudiaron 19 entrevistas y 215 discusiones de StackOverflow. Describieron la migración como un proceso iterativo que incluye cambios de organización, preparación de infraestructura y transformaciones técnicas. Su evidencia es cualitativa: no demuestra una mejora cuantitativa de rendimiento para cualquier sistema.
+
+En la separación de datos (sección 4.3.3), documentaron alternativas como bases compartidas junto con bases individuales y copias temporales de lectura. Una base compartida facilita acceso conjunto, pero conserva dependencias de esquema y operación; una base propia por servicio exige definir propiedad, intercambios y actualización de datos. Separar esquemas dentro de un servidor y separar servidores tampoco producen el mismo aislamiento. Cambiar de arquitectura no demuestra por sí solo que sea necesario sustituir un motor relacional.
+
+Kazanavičius, Mažeika y Kalibatienė~\cite{kazanavicius2022-database} estudiaron la adaptación de una base de datos de mainframe hacia persistencia multimodelo expuesta mediante servicios. Su prueba de concepto mostró una alternativa de transformación del modelo y acceso a los datos. Sin embargo, los autores distinguieron su enfoque de dividir una base por cada microservicio y reconocieron el trabajo manual y la participación de expertos del negocio. Para el SGRA, este caso permite separar tres preguntas: quién es propietario de los datos, cómo se accede a ellos y qué modelo de almacenamiento requieren. La experiencia de mainframe no demuestra que PostgreSQL deba reemplazarse.
+
+Daraghmi, Zhang y Yuan~\cite{daraghmi2022-saga} abordaron otro problema: coordinar cambios que abarcan servicios distintos. Una saga encadena transacciones locales y acciones de compensación, pero puede exponer estados intermedios al carecer del aislamiento de una transacción local. Los autores propusieron una variante con caché de cuotas y un servicio de sincronización de confirmaciones, evaluada en comercio electrónico. Sus resultados corresponden a esa implementación; no acreditan que cualquier saga resuelva reservas o programación concurrente. La compensación expresa una acción de negocio y no debe confundirse con deshacer automáticamente todos los efectos externos.
+
+En el SGRA interesa estudiar quién puede modificar matrícula, asignación docente, período, solicitud y programación; qué restricciones necesitan una comprobación conjunta; y qué información podría tolerar una copia retrasada. Si una operación afecta datos en procesos distintos, deben analizarse atomicidad, estados intermedios, duplicados y recuperación. Estos son problemas de investigación previos a elegir entre persistencia compartida, propiedad separada o replicación selectiva.
+
+\subsubsection{Comunicación síncrona, mensajería y tecnologías}
+Una interacción síncrona necesita una respuesta para continuar su flujo; una interacción diferida permite separar en el tiempo la solicitud de trabajo y su procesamiento. Un intermediario de mensajes también puede utilizarse para simular una llamada de ida y vuelta. Por tanto, comparar protocolos exige especificar el patrón de interacción y no solo el nombre de la tecnología.
+
+Kazanavičius y Mažeika~\cite{kazanavicius2023-communication} evaluaron REST, gRPC, GraphQL, RabbitMQ y Kafka mediante llamadas entre cinco procesos. Variaron tamaño y complejidad de mensajes y carga; midieron latencia, solicitudes correctas por segundo, consumo de recursos y otros criterios. El entorno fue C\#/.NET en un único equipo Windows, sin red externa (pp. 7--9). Los autores reconocieron que lenguaje, bibliotecas y plataforma podían cambiar los resultados (pp. 31--33). Sus cifras no son mediciones del SGRA ni permiten declarar un ganador universal para Java o Azure.
+
+Bolanowski y colaboradores~\cite{bolanowski2022-rest-grpc} compararon REST y gRPC en servicios .NET, variando operaciones, carga y uso de TLS. Examinaron clases de intercambio, en lugar de tratar toda comunicación como una carga uniforme, y plantearon repetir el estudio con otras plataformas y patrones. Este contraste indica que, para estudiar consultas de catálogos o estados en SGRA, importan el mensaje y el escenario completo; el formato binario o el uso de HTTP no bastan para anticipar el tiempo de respuesta.
+
+Maharjan y colaboradores~\cite{maharjan2023-queues} evaluaron Redis, ActiveMQ Artemis, RabbitMQ y Kafka con OpenMessaging Benchmark y distintas cargas en una instalación local. Encontraron diferencias entre los resultados de latencia y capacidad de procesamiento. Dejaron para trabajo futuro ampliar el análisis de persistencia, tolerancia a fallos, recursos y entornos de despliegue. Por tanto, comparar sus resultados con el experimento de llamadas de ida y vuelta exige distinguir el patrón de comunicación y las garantías evaluadas. En SGRA, la latencia de una consulta y la recuperación de una notificación pendiente son preguntas diferentes.
+
+\begingroup
+\small\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.12}
+\begin{longtable}{@{}p{0.20\textwidth}p{0.36\textwidth}p{0.38\textwidth}@{}}
+\caption{Tecnologías de comunicación y aspectos que deben investigarse.}\\
+\toprule\textbf{Tecnología}&\textbf{Características que comparar}&\textbf{Relación con preguntas del SGRA}\\\midrule\endfirsthead
+\toprule\textbf{Tecnología}&\textbf{Características que comparar}&\textbf{Relación con preguntas del SGRA}\\\midrule\endhead
+REST/HTTP JSON & Contratos de recursos y mensajes inspeccionables; costo de serialización y dependencia de respuesta remota. & Consultas de asignaturas y estados: ¿qué presupuesto de espera y tratamiento de errores requieren?\\\midrule
+gRPC & Contratos tipados, generación de clientes y serialización binaria; herramientas y evolución de contratos. & ¿El tamaño o frecuencia de las comunicaciones justificarían el cambio de herramientas y contratos?\\\midrule
+RabbitMQ & Intermediación y procesamiento mediante consumidores; configuración de confirmaciones, persistencia, reintentos y mensajes fallidos. & Correos y trabajos diferidos: ¿qué retraso y repetición son tolerables y qué ocurre si un consumidor reinicia?\\\midrule
+Kafka & Registro de eventos, consumo y reproducción; partición, retención y orden por estudiar. & ¿Existe una necesidad de reconstruir eventos o alimentar varios consumidores independientes?\\
+\bottomrule
+\end{longtable}
+\endgroup
+
+La evaluación de RPC del artículo no acredita por sí sola entrega durable de notificaciones. Asimismo, que un método se ejecute de forma asíncrona dentro de una aplicación no demuestra que exista una cola persistente ni recuperación tras reinicios. Para estudiar cada tecnología deben distinguirse respuesta de negocio, aceptación de trabajo, entrega y procesamiento efectivo.
+
+\subsubsection{Criterios complementarios antes de decidir}
+La distribución también requiere estudiar seguridad y operación. De Almeida y Canedo~\cite{almeida2022-authentication} revisaron mecanismos de autenticación y autorización, entre ellos OAuth 2.0, OpenID Connect, JWT y pasarelas de API. Reconocieron escasez de validaciones prácticas y advirtieron que la frecuencia de mención no permite inferir el uso real de un mecanismo. Estos elementos cumplen funciones diferentes: su presencia en la literatura no constituye una configuración de seguridad completa para SGRA.
+
+Berardi y colaboradores~\cite{berardi2022-security} analizaron 290 publicaciones sobre seguridad y señalaron problemas abiertos de procedencia de datos, modelos de amenaza y transferencia de soluciones a la práctica. Su revisión amplía la discusión más allá del inicio de sesión: también interesa qué componente produce un dato y bajo qué confianza lo utiliza otro servicio. Söylemez y colaboradores~\cite{soylemez2022-challenges} identificaron, además, dificultades de pruebas, orquestación y correlación de registros heterogéneos. Un servicio que responde o un contenedor que inicia no acreditan por sí solos la corrección y observabilidad del flujo completo.
+
+Estas fuentes permiten formular criterios previos para el SGRA:
+\begin{enumerate}
+\item \textbf{Consistencia y concurrencia:} identificar reglas de programación, estados válidos y resultados inciertos o repetidos. La separación de datos y los límites de aislamiento de las sagas sustentan revisar qué necesita una transacción y qué tolera retraso~\cite{ayas2023-migration,kazanavicius2022-database,daraghmi2022-saga}.
+\item \textbf{Identidad y auditoría:} estudiar autenticación del usuario y del servicio, permisos remotos, procedencia del dato y correlación de acciones. Los trabajos de seguridad y operación permiten plantear estas preguntas sin presuponer un mecanismo concreto~\cite{almeida2022-authentication,berardi2022-security,soylemez2022-challenges}.
+\item \textbf{Archivos y efectos externos:} analizar qué ocurre si guardar un recurso, registrar su referencia o enviar un correo produce resultados parciales. La consistencia distribuida y las limitaciones de los experimentos de mensajería motivan comprobar recuperación y duplicados, sin afirmar que esos estudios validaron el almacenamiento de archivos del SGRA~\cite{daraghmi2022-saga,maharjan2023-queues,ayas2023-migration}.
+\item \textbf{Operación y despliegue:} comparar reproducibilidad, configuración, supervisión y costo de administrar procesos, BD e intermediarios. La migración incluye preparación operativa y evaluación de la descomposición, además del cambio de código~\cite{ayas2023-migration,abgaz2023-decomposition,soylemez2022-challenges}.
+\item \textbf{Evaluación:} contrastar escenarios y recursos comparables, registrando latencia, errores, resultados correctos y consumo total. Los experimentos de comunicación y colas muestran por qué debe explicitarse la carga y distinguir rendimiento de garantías no ensayadas~\cite{kazanavicius2023-communication,bolanowski2022-rest-grpc,maharjan2023-queues}.
+\end{enumerate}
+La selección arquitectónica y su justificación corresponden a una etapa posterior. Este marco aporta conceptos, opciones, límites de evidencia y preguntas para sustentarla.
