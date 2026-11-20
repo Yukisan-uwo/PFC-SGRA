@@ -292,3 +292,42 @@ Realicé ajustes en la distribución de las columnas y en el salto de página de
 ### Tiempo dedicado
 
 2 horas y 54 minutos.
+## 19 de noviembre de 2026 — Actualización de la planificación y responsabilidades de E1
+
+**Integrante participante:** TOAQUIZA ZAMBRANO BELINDA BETZABETH.
+
+### Actividades realizadas
+
+- Revisé la planificación existente con la rúbrica de E1 y actualicé 33 descripciones de issues para explicar qué deben hacer los integrantes, con quién necesitan coordinarse, por qué se realiza cada tarea y qué resultado permite cerrarla.
+- Creé el issue #35 para elaborar entre los cuatro integrantes el boceto preliminar de C4. La actividad contempla discutir las vistas de contexto y contenedores, conservar el primer bosquejo y registrar los acuerdos y la fotografía de la sesión con integrantes y fecha visibles.
+- Vinculé el boceto como sub-issue de arquitectura (#13) y lo ubiqué inmediatamente antes de la elaboración de los C4 formales (#15). Lo asigné a los cuatro integrantes y marqué su entrega como E1 en GitHub Projects.
+- Aclaré el reparto de implementación y documentación. Khriz toma la iniciativa sobre el servicio que inicia la interacción (#20), con apoyo de Mario para integrar y probar la llamada al receptor. En la documentación de ejecución y las tres capturas (#34), Khriz redacta las instrucciones y Mario las comprueba desde un clon limpio y obtiene las capturas exigidas.
+- Retiré del tablero los issues duplicados #21 y #33 y los desvinculé de la tarea principal #18. Conservé #20 para implementar el emisor y #34 para documentar la ejecución y obtener las capturas.
+
+### Problemas y comportamientos observados
+
+Algunas descripciones ofrecían poca orientación sobre la colaboración y el propósito de las tareas. El primer boceto grupal necesitaba una actividad propia antes de los diagramas formales. Los issues #21 y #33 se habían reincorporado al tablero y duplicaban actividades ya contempladas en #34 y #20, respectivamente.
+
+### Solución y recuperación
+
+Desarrollé las instrucciones de las actividades con explicaciones directas y criterios de cierre comprensibles. Organicé el boceto como una tarea grupal previa al C4 formal y aclaré las responsabilidades de Khriz y Mario en la demostración y su documentación. Retiré los duplicados del proyecto y de la relación de subtareas, conservando los issues en el repositorio.
+
+### Resultados obtenidos
+
+- El equipo dispone de descripciones más detalladas para ejecutar y revisar el trabajo de E1.
+- El boceto preliminar está asignado a los cuatro integrantes y vinculado con las tareas de arquitectura y revisión de evidencias.
+- Las subtareas de arquitectura quedaron ordenadas como #14, #35, #15, #16 y #17.
+- Se aclaró la colaboración para la implementación del emisor, las instrucciones de ejecución y las tres capturas.
+- La tarea #18 conserva las subtareas #19 (receptor), #20 (emisor) y #34 (documentación y capturas), sin los duplicados #21 y #33 en el tablero.
+
+### Evidencias
+
+- **Tablero:** [PFC-SGRA | Aplicaciones Distribuidas](https://github.com/users/Yukisan-uwo/projects/1/views/6).
+- **Boceto grupal:** [#35 — Elaborar en grupo el boceto preliminar de C4](https://github.com/Yukisan-uwo/PFC-SGRA/issues/35).
+- **Arquitectura:** [#13](https://github.com/Yukisan-uwo/PFC-SGRA/issues/13) y [#15](https://github.com/Yukisan-uwo/PFC-SGRA/issues/15).
+- **Responsabilidades aclaradas:** [#20](https://github.com/Yukisan-uwo/PFC-SGRA/issues/20) y [#34](https://github.com/Yukisan-uwo/PFC-SGRA/issues/34).
+- **Subtareas depuradas:** [#18 — Implementar y demostrar el esqueleto funcional](https://github.com/Yukisan-uwo/PFC-SGRA/issues/18).
+
+### Tiempo dedicado
+
+30 min.
