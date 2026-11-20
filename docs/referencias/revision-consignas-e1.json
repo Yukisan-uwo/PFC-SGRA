@@ -1,0 +1,164 @@
+{
+  "fecha_revision": "2026-11-20",
+  "repositorio": "https://github.com/gleiston-guerrero/Asignaturas",
+  "carpeta_revisada": "AplicacionesDistribuidas",
+  "alcance": "Revisión de las instrucciones y observaciones pertinentes para planificar E1. No es una evaluación formal del SGRA ni de otras entregas del equipo.",
+  "arboles_revisados": {
+    "2026 SPA": "85b94a530c593b054f5e7f7b80c056319aefdf13",
+    "2026 PPA": "2dbeb8cb2df61b6b1ff2a2dd1688510b1ce8cbb5",
+    "Material de clases": "c44bad48d77972eb9809af6db3728344bf259b3f",
+    "nota": "Árboles recursivos devueltos sin truncamiento; lectura dirigida a guías, rúbricas y retroalimentación, sin revisar todas las entregas de estudiantes."
+  },
+  "conclusion_sobre_vigencia": "El encuadre SPA 2026–2027 es la referencia general actual. Se localizaron guías actuales de E3 y E4, pero no una guía específica de E1 identificada en 2026 SPA. La rúbrica científica encontrada en 2026 PPA tiene portada del período Regular 2025–2026 SPA y siete dimensiones, frente a las seis del encuadre actual. No debe aplicarse automáticamente como rúbrica vigente de E1.",
+  "fuentes": [
+    {
+      "id": "SPA-ENCUADRE",
+      "clasificacion": "Período actual; normas generales",
+      "url": "https://github.com/gleiston-guerrero/Asignaturas/blob/main/AplicacionesDistribuidas/2026%20SPA/Encuadre_DistApp_SPA_2026-2027.pdf",
+      "git_blob_sha": "fde580cc69b5fb1a12e5b0f195ca300f24428f5d",
+      "localizadores": "Páginas físicas del PDF 5-6 (cronograma), 9 (aporte individual), 10-11 (entrega, referencias e IA), 12-16 (rúbrica general). La numeración impresa lleva un desfase de una página."
+    },
+    {
+      "id": "PPA-E1-CIENTIFICA",
+      "clasificacion": "Histórica; orientación de calidad, vigencia para E1 actual no confirmada",
+      "url": "https://github.com/gleiston-guerrero/Asignaturas/blob/main/AplicacionesDistribuidas/2026%20PPA/rubrica_PFC_E1_cientifica.docx",
+      "git_blob_sha": "044e189866f944efde56df5006b76f12be007cd8",
+      "localizadores": "Portada; condiciones obligatorias; criterios 1.2, 1.3, 2.1, 2.3, 3.1-3.3 y 4.3."
+    },
+    {
+      "id": "PPA-GUIA-TEMAS",
+      "clasificacion": "Histórica y expresamente orientativa; casos distintos del SGRA",
+      "url": "https://github.com/gleiston-guerrero/Asignaturas/blob/main/AplicacionesDistribuidas/2026%20PPA/PFC/Guia_Aplicacion_Temas_PFC_DistApp.tex",
+      "git_blob_sha": "b5813e2891de2b76f3460114b25fbac2b2ada8fb",
+      "localizadores": "Líneas 59-67: carácter orientativo; 99-108: progresión de entregas; 407-420: recomendaciones y nota final."
+    },
+    {
+      "id": "SPA-FB01",
+      "clasificacion": "Retroalimentación actual de otra actividad formativa; no evaluación del PFC",
+      "url": "https://github.com/gleiston-guerrero/Asignaturas/blob/main/AplicacionesDistribuidas/2026%20SPA/Evaluaciones/FORM-FB-01_Informes_Evaluacion.txt",
+      "git_blob_sha": "85b4f8f0a77148b1ed72387776dc75af1a056970",
+      "localizadores": "Líneas 133-157: fichas de Belinda; 410-433: fichas de Bryan."
+    },
+    {
+      "id": "SPA-AC01",
+      "clasificacion": "Retroalimentación actual de otra actividad vinculada con E1; correcciones posteriores no comprobadas",
+      "url": "https://github.com/gleiston-guerrero/Asignaturas/blob/main/AplicacionesDistribuidas/2026%20SPA/Evaluaciones/Reporte_FORM-AC-01_A_Evaluacion.txt",
+      "git_blob_sha": "132649961f71a8c0ab471df186a25b9d3d5c06f2",
+      "localizadores": "Líneas 421-460: observaciones del equipo EHPT; 814-823: notas de revisión y condición de vinculación."
+    },
+    {
+      "id": "SPA-E3",
+      "clasificacion": "Guía actual de entrega posterior; orienta planificación, no exigencia de implementación completa en E1",
+      "url": "https://github.com/gleiston-guerrero/Asignaturas/blob/main/AplicacionesDistribuidas/2026%20SPA/TA-PFC-E3_Guia_Rubrica.pdf",
+      "git_blob_sha": "f71b8441d39d487c87c54146c74c827e3853a7de",
+      "localizadores": "Página física 1: progresión de E1/E2 a datos distribuidos y procesamiento; apartado de documento acumulativo."
+    },
+    {
+      "id": "SPA-E4",
+      "clasificacion": "Guía actual de entrega posterior; no trasladar todos sus requisitos a E1",
+      "url": "https://github.com/gleiston-guerrero/Asignaturas/blob/main/AplicacionesDistribuidas/2026%20SPA/TA-PFC-E4_Guia_Rubrica.pdf",
+      "git_blob_sha": "c5920c7b338b3700b2c6f57404abfed9b5e0b6d2",
+      "localizadores": "Página física 1: propósito e ISO/IEC 25010:2023; módulo A: capas y ADR; módulo B: despliegue integrado."
+    },
+    {
+      "id": "SPA-CAPAS",
+      "clasificacion": "Material de Unidad 5; apoyo para una etapa posterior",
+      "url": "https://github.com/gleiston-guerrero/Asignaturas/blob/main/AplicacionesDistribuidas/2026%20SPA/11_actividades.tex",
+      "git_blob_sha": "3401d4cb9878b5a3164eb5aa9660db63a6c83eaf",
+      "localizadores": "Capítulo Aplicación al Proyecto Fin de Curso; actividades 11.1-11.4."
+    }
+  ],
+  "hallazgos": [
+    {
+      "id": "H01",
+      "fuentes": ["SPA-ENCUADRE"],
+      "estado": "Norma general actual",
+      "hallazgo": "El contenido evaluable se entrega en GitHub; el SGA recibe solo una carátula PDF de una página, con datos identificativos y URL completa en una sola línea.",
+      "implicacion_sgra": "Preparar y comprobar la carátula de entrega; un texto enlazado que oculte la URL no equivale a la URL escrita."
+    },
+    {
+      "id": "H02",
+      "fuentes": ["SPA-ENCUADRE", "SPA-AC01"],
+      "estado": "Norma general y observación real",
+      "hallazgo": "Se exige compilación desde clon limpio e instrucciones completas en README. La retroalimentación de FORM-AC-01 señaló rutas de figuras e instrucciones de compilación incompletas.",
+      "implicacion_sgra": "La compilación local realizada no sustituye la prueba final desde clon limpio; comprobar rutas, dependencias, figuras y orden de comandos. No se verificó aquí el estado actual del repositorio de aquella formativa."
+    },
+    {
+      "id": "H03",
+      "fuentes": ["SPA-ENCUADRE", "SPA-FB01"],
+      "estado": "Norma general y recomendación actual",
+      "hallazgo": "La correspondencia exacta entre DOI, autoría, título y datos bibliográficos es crítica. Las notas de fichas deben explicar qué afirmación o decisión respalda cada fuente y localizar datos concretos.",
+      "implicacion_sgra": "Mantener la comparación ligada a funciones y decisiones del SGRA, con localizadores verificables; no contar la mera existencia de DOI como prueba de calidad o indexación."
+    },
+    {
+      "id": "H04",
+      "fuentes": ["SPA-ENCUADRE"],
+      "estado": "Norma general actual",
+      "hallazgo": "La declaración de uso de IA no exime de autoría ni de verificación. El encuadre distingue apoyo de contenido generado presentado como propio y exige herramienta, versión, propósito y comprobación.",
+      "implicacion_sgra": "La redacción asistida permanece identificada como tal y requiere revisión, elaboración crítica y defensa por los integrantes. No atribuir a una revisión asistida resultados humanos que no ocurrieron."
+    },
+    {
+      "id": "H05",
+      "fuentes": ["SPA-ENCUADRE", "PPA-E1-CIENTIFICA"],
+      "estado": "Diferencia entre períodos",
+      "hallazgo": "El encuadre actual utiliza seis dimensiones para las sumativas. La rúbrica científica histórica de E1 utiliza siete y sitúa E1 en semana 4; el encuadre actual la sitúa en semana 5.",
+      "implicacion_sgra": "No fusionar pesos, calendarios o mínimos entre ambos documentos. Cotejar la guía específica de E1 del SGA antes de cambiar los requisitos del proyecto."
+    },
+    {
+      "id": "H06",
+      "fuentes": ["PPA-E1-CIENTIFICA"],
+      "estado": "Orientación histórica; no requisito vigente confirmado",
+      "hallazgo": "Para el nivel sobresaliente, el criterio 1.3 pide al menos ocho fuentes académicas en el estado del arte; el criterio 4.3 pide diez referencias, seis artículos indexados recientes con DOI y dos estándares. Tres comparaciones de sistemas no equivalen a ese estado del arte ampliado.",
+      "implicacion_sgra": "Conservar los tres antecedentes funcionales y planificar literatura técnica adicional. No dar por cerrado el issue #24 ni sustituir automáticamente los mínimos de ocho/cuatro aportados por el usuario."
+    },
+    {
+      "id": "H07",
+      "fuentes": ["PPA-E1-CIENTIFICA"],
+      "estado": "Orientación histórica para fortalecer la propuesta",
+      "hallazgo": "La rúbrica plantea comparación de alternativas con criterios medibles, preguntas de investigación, métricas y protocolo experimental antes de las entregas que ejecutarán las pruebas.",
+      "implicacion_sgra": "En el análisis posterior, estudiar el monolito como línea base y planificar cómo evaluar los beneficios o costos de distribuirlo, sin inventar mediciones ni asegurar mejoras por anticipado."
+    },
+    {
+      "id": "H08",
+      "fuentes": ["PPA-GUIA-TEMAS"],
+      "estado": "Orientación expresamente no prescriptiva",
+      "hallazgo": "La guía presenta alternativas para cuatro proyectos distintos del SGRA y permite justificar otras decisiones.",
+      "implicacion_sgra": "Su estructura ayuda a relacionar necesidades, conceptos y evidencia; no copiar una combinación de tecnologías o una arquitectura de otro proyecto como obligación del SGRA."
+    },
+    {
+      "id": "H09",
+      "fuentes": ["SPA-E3", "SPA-E4", "SPA-CAPAS"],
+      "estado": "Planificación de entregas posteriores",
+      "hallazgo": "Las guías actuales incluyen datos distribuidos, procesamiento y después sistema integrado, capas, pruebas, observabilidad e ISO/IEC 25010:2023.",
+      "implicacion_sgra": "Prever la evolución en la arquitectura sin exigir en E1 que todo esté implementado. Revisar la diferencia entre ISO/IEC 25010:2011, usada por los RNF actuales, y 2023 antes de cambiar la clasificación de calidad."
+    },
+    {
+      "id": "H10",
+      "fuentes": ["SPA-ENCUADRE"],
+      "estado": "Discrepancia local pendiente de cotejo",
+      "hallazgo": "E1 figura en la semana del 23 al 29 de noviembre de 2026. El cierre general es sábado 23:59 salvo indicación específica; README del SGRA dice 28 de noviembre a las 11:59.",
+      "implicacion_sgra": "Confirmar la hora de la guía del SGA antes de modificar el plazo local."
+    },
+    {
+      "id": "H11",
+      "fuentes": ["SPA-ENCUADRE", "SPA-AC01"],
+      "estado": "Vinculación formativa por confirmar con la guía específica",
+      "hallazgo": "El cronograma vincula FORM-AC-01 con E1; vincula FORM-TL-02 con PE-U2/E2 y FORM-IC-01 con TA-IND-02. El README local enumera las tres como requisitos para presentar E1.",
+      "implicacion_sgra": "Cotejar la consigna específica antes de mantener esa vinculación triple. Revisar si las observaciones de la formativa vinculada fueron subsanadas; el informe consultado no prueba su estado posterior."
+    },
+    {
+      "id": "H12",
+      "fuentes": ["SPA-ENCUADRE"],
+      "estado": "Norma general actual",
+      "hallazgo": "La nota individual de una actividad grupal combina 60 % del equipo y 40 % del aporte individual, con evidencia del historial, autoría y defensa.",
+      "implicacion_sgra": "Conservar aportes verificables y revisión real del contenido; la tabla de roles o un número de commits no sustituye la calidad del aporte."
+    }
+  ],
+  "acciones_realizadas": [
+    "Se eliminó de trabajos relacionados la frase que distinguía el idioma de los dos últimos artículos.",
+    "Se precisó el idioma de la copia de EPIS–UNH: título y resumen bilingües, cuerpo en español.",
+    "Se guardaron pautas de consulta del material docente en AGENTS.md.",
+    "Se registraron las diferencias sin cambiar por inferencia los requisitos, la fecha de entrega ni las ediciones de normas."
+  ],
+  "pendiente": "Contrastar con la guía específica vigente de TA-PFC-E1 publicada en el SGA. No se accedió al SGA ni se comprobó el estado posterior de las otras entregas del equipo."
+}

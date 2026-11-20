@@ -1,0 +1,2108 @@
+{
+  "date": "2026-11-20",
+  "method": "Revisión dirigida de código, sin ejecución de los repositorios. Búsqueda exploratoria en SciSpace, contraste con PDF y Crossref; no revisión sistemática exhaustiva.",
+  "snapshots": [
+    {
+      "repository": "BelindaTZ/SEG-INF-back-SGRA-Docker",
+      "commit": "858ff67fb91604e7a2974efcfeaae3c0f3e40612",
+      "tree_complete": true
+    },
+    {
+      "repository": "BelindaTZ/SEG-INF-front-SGRA-Docker",
+      "commit": "e590f774c1012d1a4537a9a826bec7f251cf35f9",
+      "tree_complete": true
+    }
+  ],
+  "sources": [
+    {
+      "repository": "BelindaTZ/SEG-INF-back-SGRA-Docker",
+      "path": "pom.xml",
+      "blob_sha": "39fd62f2cea4d2d78e7532eda2ca448e9efdfc1e",
+      "url": "https://github.com/BelindaTZ/SEG-INF-back-SGRA-Docker/blob/858ff67fb91604e7a2974efcfeaae3c0f3e40612/pom.xml",
+      "lines": 176
+    },
+    {
+      "repository": "BelindaTZ/SEG-INF-back-SGRA-Docker",
+      "path": "src/main/java/com/CLMTZ/Backend/config/SessionAuthFilter.java",
+      "blob_sha": "ca99ad9b5959f852b6c4c388b83d4123d928c24a",
+      "url": "https://github.com/BelindaTZ/SEG-INF-back-SGRA-Docker/blob/858ff67fb91604e7a2974efcfeaae3c0f3e40612/src/main/java/com/CLMTZ/Backend/config/SessionAuthFilter.java",
+      "lines": 124
+    },
+    {
+      "repository": "BelindaTZ/SEG-INF-back-SGRA-Docker",
+      "path": "src/main/java/com/CLMTZ/Backend/config/DynamicDataSourceService.java",
+      "blob_sha": "48929d1aa2a38c67005b179c1fbd592311e23520",
+      "url": "https://github.com/BelindaTZ/SEG-INF-back-SGRA-Docker/blob/858ff67fb91604e7a2974efcfeaae3c0f3e40612/src/main/java/com/CLMTZ/Backend/config/DynamicDataSourceService.java",
+      "lines": 97
+    },
+    {
+      "repository": "BelindaTZ/SEG-INF-back-SGRA-Docker",
+      "path": "src/main/java/com/CLMTZ/Backend/config/AuditAwareDataSource.java",
+      "blob_sha": "4cf652fc1ef944ac32eb9a5107bfcb8bb2c95d87",
+      "url": "https://github.com/BelindaTZ/SEG-INF-back-SGRA-Docker/blob/858ff67fb91604e7a2974efcfeaae3c0f3e40612/src/main/java/com/CLMTZ/Backend/config/AuditAwareDataSource.java",
+      "lines": 81
+    },
+    {
+      "repository": "BelindaTZ/SEG-INF-back-SGRA-Docker",
+      "path": "src/main/java/com/CLMTZ/Backend/controller/reinforcement/student/StudentCatalogController.java",
+      "blob_sha": "453ad0c7f2b08ec425f1c19920fae88621bdf6dd",
+      "url": "https://github.com/BelindaTZ/SEG-INF-back-SGRA-Docker/blob/858ff67fb91604e7a2974efcfeaae3c0f3e40612/src/main/java/com/CLMTZ/Backend/controller/reinforcement/student/StudentCatalogController.java",
+      "lines": 108
+    },
+    {
+      "repository": "BelindaTZ/SEG-INF-back-SGRA-Docker",
+      "path": "src/main/java/com/CLMTZ/Backend/repository/reinforcement/student/impl/StudentCatalogRepositoryImpl.java",
+      "blob_sha": "95b2dc46a0258ab7be777688d79379611056f4f2",
+      "url": "https://github.com/BelindaTZ/SEG-INF-back-SGRA-Docker/blob/858ff67fb91604e7a2974efcfeaae3c0f3e40612/src/main/java/com/CLMTZ/Backend/repository/reinforcement/student/impl/StudentCatalogRepositoryImpl.java",
+      "lines": 103
+    },
+    {
+      "repository": "BelindaTZ/SEG-INF-back-SGRA-Docker",
+      "path": "src/main/java/com/CLMTZ/Backend/repository/reinforcement/student/impl/StudentRequestRepositoryImpl.java",
+      "blob_sha": "c258403f96cc7dd71cacefabf648372116890b1b",
+      "url": "https://github.com/BelindaTZ/SEG-INF-back-SGRA-Docker/blob/858ff67fb91604e7a2974efcfeaae3c0f3e40612/src/main/java/com/CLMTZ/Backend/repository/reinforcement/student/impl/StudentRequestRepositoryImpl.java",
+      "lines": 82
+    },
+    {
+      "repository": "BelindaTZ/SEG-INF-back-SGRA-Docker",
+      "path": "src/main/java/com/CLMTZ/Backend/repository/reinforcement/teacher/impl/TeacherRequestRepositoryImpl.java",
+      "blob_sha": "ce3d837f7b520fb2266a93b1971fb215388ba953",
+      "url": "https://github.com/BelindaTZ/SEG-INF-back-SGRA-Docker/blob/858ff67fb91604e7a2974efcfeaae3c0f3e40612/src/main/java/com/CLMTZ/Backend/repository/reinforcement/teacher/impl/TeacherRequestRepositoryImpl.java",
+      "lines": 243
+    },
+    {
+      "repository": "BelindaTZ/SEG-INF-back-SGRA-Docker",
+      "path": "src/main/java/com/CLMTZ/Backend/service/reinforcement/student/impl/StudentRequestServiceImpl.java",
+      "blob_sha": "c5a97bc91c1bc67557bbdb82dc49547fb1df3028",
+      "url": "https://github.com/BelindaTZ/SEG-INF-back-SGRA-Docker/blob/858ff67fb91604e7a2974efcfeaae3c0f3e40612/src/main/java/com/CLMTZ/Backend/service/reinforcement/student/impl/StudentRequestServiceImpl.java",
+      "lines": 256
+    },
+    {
+      "repository": "BelindaTZ/SEG-INF-back-SGRA-Docker",
+      "path": "src/main/java/com/CLMTZ/Backend/service/external/impl/EmailService.java",
+      "blob_sha": "8e03525026ecfc473852dcb219403ec66fb34ce5",
+      "url": "https://github.com/BelindaTZ/SEG-INF-back-SGRA-Docker/blob/858ff67fb91604e7a2974efcfeaae3c0f3e40612/src/main/java/com/CLMTZ/Backend/service/external/impl/EmailService.java",
+      "lines": 145
+    },
+    {
+      "repository": "BelindaTZ/SEG-INF-front-SGRA-Docker",
+      "path": "package.json",
+      "blob_sha": "7769c10589e100fe1de04aa551ec6a60fdf6fce2",
+      "url": "https://github.com/BelindaTZ/SEG-INF-front-SGRA-Docker/blob/e590f774c1012d1a4537a9a826bec7f251cf35f9/package.json",
+      "lines": 51
+    },
+    {
+      "repository": "BelindaTZ/SEG-INF-front-SGRA-Docker",
+      "path": "src/app/core/interceptors/credentials.interceptor.ts",
+      "blob_sha": "ac4e08ecd57af9a354aa18e3c2baf89541b0a85d",
+      "url": "https://github.com/BelindaTZ/SEG-INF-front-SGRA-Docker/blob/e590f774c1012d1a4537a9a826bec7f251cf35f9/src/app/core/interceptors/credentials.interceptor.ts",
+      "lines": 9
+    }
+  ],
+  "claims": [
+    {
+      "id": "C1",
+      "observation": "Catálogo para refuerzos llama funciones del esquema reforzamiento para asignaturas, docentes, período y compañeros.",
+      "files": [
+        "StudentCatalogRepositoryImpl.java:26-96"
+      ],
+      "consequence": "Los nombres de paquetes no acreditan fronteras de persistencia."
+    },
+    {
+      "id": "C2",
+      "observation": "Crear solicitud consulta docente/período, crea registro, sube archivos y registra URLs, agrega participantes y solicita correos.",
+      "files": [
+        "StudentRequestServiceImpl.java:39-100"
+      ],
+      "consequence": "Riesgo de fallos parciales que debe probarse; no se ha demostrado una transacción global."
+    },
+    {
+      "id": "C3",
+      "observation": "Aceptar/reprogramar delega en funciones fn_tx_teacher_*; existen anotaciones @Transactional.",
+      "files": [
+        "TeacherRequestRepositoryImpl.java:138-222"
+      ],
+      "consequence": "No se inspeccionó el cuerpo SQL ni el enlace efectivo entre transacciones y DataSource dinámico."
+    },
+    {
+      "id": "C4",
+      "observation": "Sesión CTX y ThreadLocal; conexión por credenciales de usuario y fallback de sistema; auditoría configura mi_app.idauditacceso.",
+      "files": [
+        "SessionAuthFilter.java:65-110",
+        "DynamicDataSourceService.java:38-61",
+        "AuditAwareDataSource.java:35-41"
+      ],
+      "consequence": "No propagar contraseñas de BD ni asumir que ThreadLocal cruza la red."
+    },
+    {
+      "id": "C5",
+      "observation": "EmailService usa @Async y captura excepción, sin cola persistente en ese adaptador.",
+      "files": [
+        "EmailService.java:45-55"
+      ],
+      "consequence": "Delegación local no acredita entrega durable."
+    },
+    {
+      "id": "C6",
+      "observation": "No se encontraron archivos .sql, db/migration ni db/changelog en árbol completo del backend.",
+      "consequence": "Solicitar exportación saneada de esquema, funciones, permisos y triggers; pendiente de revisar BD real."
+    }
+  ],
+  "scope_limits": [
+    "Revisión dirigida sin ejecución ni mediciones propias.",
+    "No se ha definido ni recomendado formalmente una arquitectura del SGRA en esta etapa.",
+    "Las observaciones de código delimitan preguntas para investigación; no sustituyen SQL ni validación."
+  ],
+  "searches": [
+    {
+      "query": "What empirical studies compare performance, scalability, complexity and migration costs of modular monoliths, coarse-grained services and microservices for transactional web applications? year:2022-2026 oa:true limit:10",
+      "results": [
+        {
+          "id": "monolithic-vs-microservice-architecture-a-performance-and-30ky9e6p",
+          "title": "Monolithic vs. Microservice Architecture: A Performance and Scalability Evaluation",
+          "url": "https://scispace.com/papers/monolithic-vs-microservice-architecture-a-performance-and-30ky9e6p?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "stepwise-migration-of-a-monolith-to-a-microservices-139v8ea7",
+          "title": "Stepwise Migration of a Monolith to a Microservices Architecture:\n  Performance and Migration Effort Evaluation",
+          "url": "https://scispace.com/papers/stepwise-migration-of-a-monolith-to-a-microservices-139v8ea7?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "comparative-testing-of-applications-developed-based-on-9qy2lj6l",
+          "title": "Comparative testing of applications developed based on monolithic and microservices architectures",
+          "url": "https://scispace.com/papers/comparative-testing-of-applications-developed-based-on-9qy2lj6l?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "analysis-of-selected-features-of-application-based-on-2qxxa223",
+          "title": "Analysis of selected features of application based on monolithic and microservice architecture",
+          "url": "https://scispace.com/papers/analysis-of-selected-features-of-application-based-on-2qxxa223?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "evaluating-the-impact-of-cloud-based-microservices-732slimk",
+          "title": "Evaluating The Impact Of Cloud-Based Microservices Architecture On\n  Application Performance",
+          "url": "https://scispace.com/papers/evaluating-the-impact-of-cloud-based-microservices-732slimk?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "evaluation-of-the-impacts-of-decomposing-a-monolithic-dm6c76rt",
+          "title": "Evaluation of the impacts of decomposing a monolithic application into\n  microservices: A case study",
+          "url": "https://scispace.com/papers/evaluation-of-the-impacts-of-decomposing-a-monolithic-dm6c76rt?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "development-of-a-quality-based-model-for-software-34j3izl2",
+          "title": "Development of a Quality-Based Model for Software Architecture Optimization: A Case Study of Monolith and Microservice Architectures",
+          "url": "https://scispace.com/papers/development-of-a-quality-based-model-for-software-34j3izl2?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "systematic-mapping-of-monolithic-applications-to-2luf8vkp",
+          "title": "Systematic Mapping of Monolithic Applications to Microservices Architecture",
+          "url": "https://scispace.com/papers/systematic-mapping-of-monolithic-applications-to-2luf8vkp?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "systematic-mapping-of-monolithic-applications-to-1ecu714x",
+          "title": "Systematic Mapping of Monolithic Applications to Microservices Architecture",
+          "url": "https://scispace.com/papers/systematic-mapping-of-monolithic-applications-to-1ecu714x?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "analysis-of-monolithic-and-microservice-architectures-3gxbcxwb",
+          "title": "Analysis of monolithic and microservice architectures features and metrics",
+          "url": "https://scispace.com/papers/analysis-of-monolithic-and-microservice-architectures-3gxbcxwb?utm_source=chatgpt&utm_medium=tool"
+        }
+      ]
+    },
+    {
+      "query": "What studies describe incremental migration of Java Spring monoliths to microservices, with service boundaries, shared databases and transaction consistency trade-offs? year:2022-2026 oa:true limit:10",
+      "results": [
+        {
+          "id": "stepwise-migration-of-a-monolith-to-a-microservices-139v8ea7",
+          "title": "Stepwise Migration of a Monolith to a Microservices Architecture:\n  Performance and Migration Effort Evaluation",
+          "url": "https://scispace.com/papers/stepwise-migration-of-a-monolith-to-a-microservices-139v8ea7?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "cargo-ai-guided-dependency-analysis-for-migrating-monolithic-win8xsh9",
+          "title": "CARGO: AI-Guided Dependency Analysis for Migrating Monolithic Applications to Microservices Architecture",
+          "url": "https://scispace.com/papers/cargo-ai-guided-dependency-analysis-for-migrating-monolithic-win8xsh9?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "cargo-ai-guided-dependency-analysis-for-migrating-monolithic-3htent5s",
+          "title": "CARGO: AI-Guided Dependency Analysis for Migrating Monolithic\n  Applications to Microservices Architecture",
+          "url": "https://scispace.com/papers/cargo-ai-guided-dependency-analysis-for-migrating-monolithic-3htent5s?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "systematic-mapping-of-monolithic-applications-to-1ecu714x",
+          "title": "Systematic Mapping of Monolithic Applications to Microservices Architecture",
+          "url": "https://scispace.com/papers/systematic-mapping-of-monolithic-applications-to-1ecu714x?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "systematic-mapping-of-monolithic-applications-to-2luf8vkp",
+          "title": "Systematic Mapping of Monolithic Applications to Microservices Architecture",
+          "url": "https://scispace.com/papers/systematic-mapping-of-monolithic-applications-to-2luf8vkp?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "an-empirical-study-of-the-systemic-and-technical-migration-2ahnmfoy",
+          "title": "An empirical study of the systemic and technical migration towards microservices",
+          "url": "https://scispace.com/papers/an-empirical-study-of-the-systemic-and-technical-migration-2ahnmfoy?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "an-approach-to-migrate-a-monolith-database-into-multi-model-2rmuuq7h",
+          "title": "An Approach to Migrate a Monolith Database into Multi-Model Polyglot Persistence Based on Microservice Architecture: A Case Study for Mainframe Database",
+          "url": "https://scispace.com/papers/an-approach-to-migrate-a-monolith-database-into-multi-model-2rmuuq7h?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "from-monolith-to-microservices-static-and-dynamic-analysis-223m0gbo",
+          "title": "From Monolith to Microservices: Static and Dynamic Analysis Comparison",
+          "url": "https://scispace.com/papers/from-monolith-to-microservices-static-and-dynamic-analysis-223m0gbo?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "decomposition-of-monolith-applications-into-microservices-1uacqjvc",
+          "title": "Decomposition of Monolith Applications Into Microservices Architectures: A Systematic Review",
+          "url": "https://scispace.com/papers/decomposition-of-monolith-applications-into-microservices-1uacqjvc?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "comparative-testing-of-applications-developed-based-on-9qy2lj6l",
+          "title": "Comparative testing of applications developed based on monolithic and microservices architectures",
+          "url": "https://scispace.com/papers/comparative-testing-of-applications-developed-based-on-9qy2lj6l?utm_source=chatgpt&utm_medium=tool"
+        }
+      ]
+    },
+    {
+      "query": "What empirical studies compare REST HTTP JSON, gRPC and asynchronous messaging for communication between microservices under different payloads, loads and failure conditions? year:2022-2026 oa:true limit:10",
+      "results": [
+        {
+          "id": "evaluation-of-microservice-communication-while-decomposing-29hgceib",
+          "title": "Evaluation of Microservice Communication While Decomposing Monoliths",
+          "url": "https://scispace.com/papers/evaluation-of-microservice-communication-while-decomposing-29hgceib?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "eficiency-of-rest-and-grpc-realizing-communication-tasks-in-1qfw8uxm",
+          "title": "Eficiency of REST and gRPC realizing communication tasks in\n  microservice-based ecosystems",
+          "url": "https://scispace.com/papers/eficiency-of-rest-and-grpc-realizing-communication-tasks-in-1qfw8uxm?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "eficiency-of-rest-and-grpc-realizing-communication-tasks-in-2sfvwa7r",
+          "title": "Eficiency of REST and gRPC Realizing Communication Tasks in Microservice-Based Ecosystems",
+          "url": "https://scispace.com/papers/eficiency-of-rest-and-grpc-realizing-communication-tasks-in-2sfvwa7r?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "microservice-communication-for-iot-based-systems-e435ikep",
+          "title": "Microservice Communication for IoT-based Systems. Architecture Review and Performance Test",
+          "url": "https://scispace.com/papers/microservice-communication-for-iot-based-systems-e435ikep?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "comparative-review-of-selected-internet-communication-tes3uthe",
+          "title": "Comparative Review of Selected Internet Communication Protocols",
+          "url": "https://scispace.com/papers/comparative-review-of-selected-internet-communication-tes3uthe?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "realizatsiia-mizhprotsesnoyi-vzaiemodiyi-v-mikroservisnii-2enk3gwg",
+          "title": "Реалізація міжпроцесної взаємодії в мікросервісній архітектурі",
+          "url": "https://scispace.com/papers/realizatsiia-mizhprotsesnoyi-vzaiemodiyi-v-mikroservisnii-2enk3gwg?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "efficient-asynchronous-rpc-calls-for-microservices-1ubs8955",
+          "title": "Efficient Asynchronous RPC Calls for Microservices: DeathStarBench Study",
+          "url": "https://scispace.com/papers/efficient-asynchronous-rpc-calls-for-microservices-1ubs8955?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "optimized-strategy-for-inter-service-communication-in-chy5jbig",
+          "title": "Optimized Strategy for Inter-Service Communication in Microservices",
+          "url": "https://scispace.com/papers/optimized-strategy-for-inter-service-communication-in-chy5jbig?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "performance-impact-of-microservices-architecture-176l32f8",
+          "title": "Performance Impact of Microservices Architecture",
+          "url": "https://scispace.com/papers/performance-impact-of-microservices-architecture-176l32f8?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "benchmarking-message-queues-25ijh5vp",
+          "title": "Benchmarking Message Queues",
+          "url": "https://scispace.com/papers/benchmarking-message-queues-25ijh5vp?utm_source=chatgpt&utm_medium=tool"
+        }
+      ]
+    },
+    {
+      "query": "What systematic reviews and empirical studies compare monolith decomposition, service granularity and service boundary identification methods? year:2022-2026 oa:true limit:8",
+      "results": [
+        {
+          "id": "decomposition-of-monolith-applications-into-microservices-1uacqjvc",
+          "title": "Decomposition of Monolith Applications Into Microservices Architectures: A Systematic Review",
+          "url": "https://scispace.com/papers/decomposition-of-monolith-applications-into-microservices-1uacqjvc?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "from-monolith-to-microservices-static-and-dynamic-analysis-223m0gbo",
+          "title": "From Monolith to Microservices: Static and Dynamic Analysis Comparison",
+          "url": "https://scispace.com/papers/from-monolith-to-microservices-static-and-dynamic-analysis-223m0gbo?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "monolith-development-history-for-microservices-1ucknmfm",
+          "title": "Monolith Development History for Microservices Identification: a\n  Comparative Analysis",
+          "url": "https://scispace.com/papers/monolith-development-history-for-microservices-1ucknmfm?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "code-vectorization-and-sequence-of-accesses-strategies-for-1803nrab",
+          "title": "Code Vectorization and Sequence of Accesses Strategies for Monolith\n  Microservices Identification",
+          "url": "https://scispace.com/papers/code-vectorization-and-sequence-of-accesses-strategies-for-1803nrab?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "semgromi-a-semantic-grouping-algorithm-to-identifying-2ikdeq34",
+          "title": "SEMGROMI—a semantic grouping algorithm to identifying microservices using semantic similarity of user stories",
+          "url": "https://scispace.com/papers/semgromi-a-semantic-grouping-algorithm-to-identifying-2ikdeq34?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "systematic-mapping-of-monolithic-applications-to-1ecu714x",
+          "title": "Systematic Mapping of Monolithic Applications to Microservices Architecture",
+          "url": "https://scispace.com/papers/systematic-mapping-of-monolithic-applications-to-1ecu714x?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "a-hierarchical-dbscan-method-for-extracting-microservices-n992yzbx",
+          "title": "A Hierarchical-DBSCAN Method for Extracting Microservices from\n  Monolithic Applications",
+          "url": "https://scispace.com/papers/a-hierarchical-dbscan-method-for-extracting-microservices-n992yzbx?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "a-comparative-study-of-meta-data-based-microservice-6yh6pja2",
+          "title": "A Comparative Study of Meta-Data-Based Microservice Extraction Tools",
+          "url": "https://scispace.com/papers/a-comparative-study-of-meta-data-based-microservice-6yh6pja2?utm_source=chatgpt&utm_medium=tool"
+        }
+      ]
+    },
+    {
+      "query": "What studies analyze database ownership, distributed transactions, sagas and data consistency during migration from monoliths to microservices? year:2022-2026 oa:true limit:8",
+      "results": [
+        {
+          "id": "an-approach-to-migrate-a-monolith-database-into-multi-model-2rmuuq7h",
+          "title": "An Approach to Migrate a Monolith Database into Multi-Model Polyglot Persistence Based on Microservice Architecture: A Case Study for Mainframe Database",
+          "url": "https://scispace.com/papers/an-approach-to-migrate-a-monolith-database-into-multi-model-2rmuuq7h?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "enhancing-saga-pattern-for-distributed-transactions-within-a-7qz0rjdp",
+          "title": "Enhancing Saga Pattern for Distributed Transactions within a Microservices Architecture",
+          "url": "https://scispace.com/papers/enhancing-saga-pattern-for-distributed-transactions-within-a-7qz0rjdp?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "cargo-ai-guided-dependency-analysis-for-migrating-monolithic-win8xsh9",
+          "title": "CARGO: AI-Guided Dependency Analysis for Migrating Monolithic Applications to Microservices Architecture",
+          "url": "https://scispace.com/papers/cargo-ai-guided-dependency-analysis-for-migrating-monolithic-win8xsh9?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "cargo-ai-guided-dependency-analysis-for-migrating-monolithic-3htent5s",
+          "title": "CARGO: AI-Guided Dependency Analysis for Migrating Monolithic\n  Applications to Microservices Architecture",
+          "url": "https://scispace.com/papers/cargo-ai-guided-dependency-analysis-for-migrating-monolithic-3htent5s?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "systematic-mapping-of-monolithic-applications-to-2luf8vkp",
+          "title": "Systematic Mapping of Monolithic Applications to Microservices Architecture",
+          "url": "https://scispace.com/papers/systematic-mapping-of-monolithic-applications-to-2luf8vkp?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "decomposition-of-monolith-applications-into-microservices-1uacqjvc",
+          "title": "Decomposition of Monolith Applications Into Microservices Architectures: A Systematic Review",
+          "url": "https://scispace.com/papers/decomposition-of-monolith-applications-into-microservices-1uacqjvc?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "from-monolith-to-microservices-static-and-dynamic-analysis-223m0gbo",
+          "title": "From Monolith to Microservices: Static and Dynamic Analysis Comparison",
+          "url": "https://scispace.com/papers/from-monolith-to-microservices-static-and-dynamic-analysis-223m0gbo?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "an-empirical-study-of-the-systemic-and-technical-migration-2ahnmfoy",
+          "title": "An empirical study of the systemic and technical migration towards microservices",
+          "url": "https://scispace.com/papers/an-empirical-study-of-the-systemic-and-technical-migration-2ahnmfoy?utm_source=chatgpt&utm_medium=tool"
+        }
+      ]
+    },
+    {
+      "query": "What empirical studies compare REST gRPC RabbitMQ Kafka communication latency throughput and reliability in microservices? year:2022-2026 oa:true limit:8",
+      "results": [
+        {
+          "id": "evaluation-of-microservice-communication-while-decomposing-29hgceib",
+          "title": "Evaluation of Microservice Communication While Decomposing Monoliths",
+          "url": "https://scispace.com/papers/evaluation-of-microservice-communication-while-decomposing-29hgceib?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "benchmarking-message-queues-25ijh5vp",
+          "title": "Benchmarking Message Queues",
+          "url": "https://scispace.com/papers/benchmarking-message-queues-25ijh5vp?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "eficiency-of-rest-and-grpc-realizing-communication-tasks-in-2sfvwa7r",
+          "title": "Eficiency of REST and gRPC Realizing Communication Tasks in Microservice-Based Ecosystems",
+          "url": "https://scispace.com/papers/eficiency-of-rest-and-grpc-realizing-communication-tasks-in-2sfvwa7r?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "eficiency-of-rest-and-grpc-realizing-communication-tasks-in-1qfw8uxm",
+          "title": "Eficiency of REST and gRPC realizing communication tasks in\n  microservice-based ecosystems",
+          "url": "https://scispace.com/papers/eficiency-of-rest-and-grpc-realizing-communication-tasks-in-1qfw8uxm?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "microservice-communication-for-iot-based-systems-e435ikep",
+          "title": "Microservice Communication for IoT-based Systems. Architecture Review and Performance Test",
+          "url": "https://scispace.com/papers/microservice-communication-for-iot-based-systems-e435ikep?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "comparative-review-of-selected-internet-communication-tes3uthe",
+          "title": "Comparative Review of Selected Internet Communication Protocols",
+          "url": "https://scispace.com/papers/comparative-review-of-selected-internet-communication-tes3uthe?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "comparative-analysis-of-message-brokers-3fcndp90",
+          "title": "Comparative analysis of message brokers",
+          "url": "https://scispace.com/papers/comparative-analysis-of-message-brokers-3fcndp90?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "a-performance-study-on-the-throughput-and-latency-of-zenoh-pt8exmvf",
+          "title": "A Performance Study on the Throughput and Latency of Zenoh, MQTT, Kafka,\n  and DDS",
+          "url": "https://scispace.com/papers/a-performance-study-on-the-throughput-and-latency-of-zenoh-pt8exmvf?utm_source=chatgpt&utm_medium=tool"
+        }
+      ]
+    },
+    {
+      "query": "What systematic reviews address microservice security authentication authorization observability distributed tracing testing and deployment challenges? year:2022-2026 oa:true limit:8",
+      "results": [
+        {
+          "id": "authentication-and-authorization-in-microservices-3sijujv1",
+          "title": "Authentication and Authorization in Microservices Architecture: A Systematic Literature Review",
+          "url": "https://scispace.com/papers/authentication-and-authorization-in-microservices-3sijujv1?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "microservice-security-a-systematic-literature-review-1g3mifgk",
+          "title": "Microservice security: a systematic literature review",
+          "url": "https://scispace.com/papers/microservice-security-a-systematic-literature-review-1g3mifgk?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "challenges-and-solution-directions-of-microservice-1e9ncciq",
+          "title": "Challenges and Solution Directions of Microservice Architectures: A Systematic Literature Review",
+          "url": "https://scispace.com/papers/challenges-and-solution-directions-of-microservice-1e9ncciq?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "security-of-microservice-applications-a-practitioners-1l1w5yxi",
+          "title": "Security of Microservice Applications: A Practitioners' Perspective on\n  Challenges and Best Practices",
+          "url": "https://scispace.com/papers/security-of-microservice-applications-a-practitioners-1l1w5yxi?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "sok-security-of-microservice-applications-a-practitioners-1n492kww",
+          "title": "SoK: Security of Microservice Applications: A Practitioners’ Perspective on Challenges and Best Practices",
+          "url": "https://scispace.com/papers/sok-security-of-microservice-applications-a-practitioners-1n492kww?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "microservice-security-metrics-for-secure-communication-2p83amb9",
+          "title": "Microservice Security Metrics for Secure Communication, Identity Management, and Observability",
+          "url": "https://scispace.com/papers/microservice-security-metrics-for-secure-communication-2p83amb9?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "towards-the-observability-of-cloud-native-applications-the-20uenwxh",
+          "title": "Towards the Observability of Cloud-native applications: The Overview of the State-of-the-Art",
+          "url": "https://scispace.com/papers/towards-the-observability-of-cloud-native-applications-the-20uenwxh?utm_source=chatgpt&utm_medium=tool"
+        },
+        {
+          "id": "static-analysis-based-solutions-to-security-challenges-in-3wc7i7ub",
+          "title": "Static-Analysis-Based Solutions to Security Challenges in Cloud-Native Systems: Systematic Mapping Study",
+          "url": "https://scispace.com/papers/static-analysis-based-solutions-to-security-challenges-in-3wc7i7ub?utm_source=chatgpt&utm_medium=tool"
+        }
+      ]
+    }
+  ],
+  "selected_literature": [
+    {
+      "bib_key": "abgaz2023-decomposition",
+      "doi": "10.1109/tse.2023.3287297",
+      "scispace_id": "decomposition-of-monolith-applications-into-microservices-1uacqjvc",
+      "scispace_url": "https://scispace.com/papers/decomposition-of-monolith-applications-into-microservices-1uacqjvc",
+      "file": "docs/referencias/PDFs_Fuentes/Abgaz-2023-Decomposition-Review.pdf",
+      "download_url": "https://doras.dcu.ie/28925/2/Decomposition_of_Monolith_Applications_Into_Microservices_Architectures_A_Systematic_Review.pdf",
+      "bytes": 5228469,
+      "sha256": "43f790a5120f41a5596f11ed2df0ae6c7e9634b227518767229bdfd7981fddd9",
+      "pages": 30,
+      "body_language": "English",
+      "full_text_checked": true,
+      "locators": [
+        {
+          "pdf_pages": [
+            1,
+            2
+          ],
+          "printed_pages": "4213-4214",
+          "use": "35 estudios, alcance y proceso de selección"
+        },
+        {
+          "pdf_pages": [
+            22,
+            23,
+            24
+          ],
+          "printed_pages": "4234-4236",
+          "use": "Amenazas, análisis estático/dinámico, fases y falta de comparabilidad"
+        }
+      ],
+      "crossref": {
+        "queried": "10.1109/TSE.2023.3287297",
+        "status": 200,
+        "metadata": {
+          "DOI": "10.1109/tse.2023.3287297",
+          "title": [
+            "Decomposition of Monolith Applications Into Microservices Architectures: A Systematic Review"
+          ],
+          "author": [
+            {
+              "ORCID": "https://orcid.org/0000-0002-3887-5342",
+              "authenticated-orcid": false,
+              "given": "Yalemisew",
+              "family": "Abgaz",
+              "sequence": "first",
+              "affiliation": [
+                {
+                  "name": "School of Computing, SFI Research Centre for Software, Dublin City University and Lero, Dublin, Ireland"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "ORCID": "https://orcid.org/0000-0002-7297-0984",
+              "authenticated-orcid": false,
+              "given": "Andrew",
+              "family": "McCarren",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Dublin City University and Insight, the SFI Research Centre for Data Analytics, School of Computing, Dublin City University, Dublin, Ireland"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "given": "Peter",
+              "family": "Elger",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "fourTheorem Limited, The Rubicon, Cork Institute of Technology, Cork, Ireland"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "ORCID": "https://orcid.org/0009-0005-1067-7319",
+              "authenticated-orcid": false,
+              "given": "David",
+              "family": "Solan",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "FINEOS Corporation Limited, Dublin, Ireland"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "ORCID": "https://orcid.org/0000-0001-8258-190X",
+              "authenticated-orcid": false,
+              "given": "Neil",
+              "family": "Lapuz",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "School of Computing, SFI Research Centre for Software, Dublin City University and Lero, Dublin, Ireland"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "given": "Marin",
+              "family": "Bivol",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "fourTheorem Limited, The Rubicon, Cork Institute of Technology, Cork, Ireland"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "ORCID": "https://orcid.org/0009-0005-7389-4409",
+              "authenticated-orcid": false,
+              "given": "Glenn",
+              "family": "Jackson",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "School of Computing, SFI Research Centre for Software, Dublin City University and Lero, Dublin, Ireland"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "ORCID": "https://orcid.org/0000-0002-2446-3224",
+              "authenticated-orcid": false,
+              "given": "Murat",
+              "family": "Yilmaz",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Department of Computer Engineering, Faculty of Engineering, Gazi University, Ankara, Turkey"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "ORCID": "https://orcid.org/0000-0001-6928-6746",
+              "authenticated-orcid": false,
+              "given": "Jim",
+              "family": "Buckley",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Lero/Department of CSIS, University of Limerick, Limerick, Ireland"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "ORCID": "https://orcid.org/0000-0002-4487-627X",
+              "authenticated-orcid": false,
+              "given": "Paul",
+              "family": "Clarke",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "School of Computing, SFI Research Centre for Software, Dublin City University and Lero, Dublin, Ireland"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            }
+          ],
+          "container-title": [
+            "IEEE Transactions on Software Engineering"
+          ],
+          "volume": "49",
+          "issue": "8",
+          "page": "4213-4242",
+          "article-number": null,
+          "published": {
+            "date-parts": [
+              [
+                2023,
+                8
+              ]
+            ]
+          },
+          "URL": "https://doi.org/10.1109/tse.2023.3287297",
+          "license": [
+            {
+              "start": {
+                "date-parts": [
+                  [
+                    2023,
+                    8,
+                    1
+                  ]
+                ],
+                "date-time": "2023-08-01T00:00:00Z",
+                "timestamp": 1690848000000
+              },
+              "content-version": "vor",
+              "delay-in-days": 0,
+              "URL": "https://creativecommons.org/licenses/by/4.0/legalcode"
+            }
+          ]
+        }
+      },
+      "indexing": {
+        "status": "Pendiente de verificación documental del índice concreto; no se infiere del DOI."
+      }
+    },
+    {
+      "bib_key": "ayas2023-migration",
+      "doi": "10.1007/s10664-023-10308-9",
+      "scispace_id": "an-empirical-study-of-the-systemic-and-technical-migration-2ahnmfoy",
+      "scispace_url": "https://scispace.com/papers/an-empirical-study-of-the-systemic-and-technical-migration-2ahnmfoy",
+      "file": "docs/referencias/PDFs_Fuentes/Ayas-2023-Migration.pdf",
+      "download_url": "https://research.chalmers.se/publication/536023/file/536023_Fulltext.pdf",
+      "bytes": 6096325,
+      "sha256": "b9bbd390c2b6b139832d7d4db6d3fdd79588282c875a2fd1cb1854f23362800c",
+      "pages": 51,
+      "body_language": "English",
+      "full_text_checked": true,
+      "locators": [
+        {
+          "pdf_pages": [
+            2
+          ],
+          "use": "Autoría y resumen: 19 entrevistas, 215 discusiones"
+        },
+        {
+          "pdf_pages": [
+            31,
+            32
+          ],
+          "section": "4.3.3",
+          "use": "Separación de datos y alternativas transitorias"
+        },
+        {
+          "pdf_pages": [
+            47
+          ],
+          "section": "6",
+          "use": "Amenazas a validez y representatividad"
+        }
+      ],
+      "crossref": {
+        "queried": "10.1007/s10664-023-10308-9",
+        "status": 200,
+        "metadata": {
+          "DOI": "10.1007/s10664-023-10308-9",
+          "title": [
+            "An empirical study of the systemic and technical migration towards microservices"
+          ],
+          "author": [
+            {
+              "ORCID": "https://orcid.org/0000-0002-3926-3196",
+              "authenticated-orcid": false,
+              "given": "Hamdy",
+              "family": "Michael Ayas",
+              "sequence": "first",
+              "affiliation": [],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "given": "Philipp",
+              "family": "Leitner",
+              "sequence": "additional",
+              "affiliation": [],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "given": "Regina",
+              "family": "Hebig",
+              "sequence": "additional",
+              "affiliation": [],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            }
+          ],
+          "container-title": [
+            "Empirical Software Engineering"
+          ],
+          "volume": "28",
+          "issue": "4",
+          "page": null,
+          "article-number": "85",
+          "published": {
+            "date-parts": [
+              [
+                2023,
+                5,
+                22
+              ]
+            ]
+          },
+          "URL": "https://doi.org/10.1007/s10664-023-10308-9",
+          "license": [
+            {
+              "start": {
+                "date-parts": [
+                  [
+                    2023,
+                    5,
+                    22
+                  ]
+                ],
+                "date-time": "2023-05-22T00:00:00Z",
+                "timestamp": 1684713600000
+              },
+              "content-version": "tdm",
+              "delay-in-days": 0,
+              "URL": "https://creativecommons.org/licenses/by/4.0"
+            },
+            {
+              "start": {
+                "date-parts": [
+                  [
+                    2023,
+                    5,
+                    22
+                  ]
+                ],
+                "date-time": "2023-05-22T00:00:00Z",
+                "timestamp": 1684713600000
+              },
+              "content-version": "vor",
+              "delay-in-days": 0,
+              "URL": "https://creativecommons.org/licenses/by/4.0"
+            }
+          ]
+        }
+      },
+      "indexing": {
+        "status": "Pendiente de verificación documental del índice concreto; no se infiere del DOI."
+      }
+    },
+    {
+      "bib_key": "kazanavicius2023-communication",
+      "doi": "10.31577/cai_2023_1_1",
+      "scispace_id": "evaluation-of-microservice-communication-while-decomposing-29hgceib",
+      "scispace_url": "https://scispace.com/papers/evaluation-of-microservice-communication-while-decomposing-29hgceib",
+      "file": "docs/referencias/PDFs_Fuentes/Kazanavicius-2023-Communication.pdf",
+      "download_url": "https://cai.type.sk/content/2023/1/evaluation-of-microservice-communication-while-decomposing-monoliths/5689.pdf",
+      "bytes": 2354316,
+      "sha256": "ddfddbbfa8821f0210369f88fe3d824075549259c17002325a985f111e14f2e8",
+      "pages": 36,
+      "body_language": "English",
+      "full_text_checked": true,
+      "locators": [
+        {
+          "pdf_pages": [
+            7,
+            8,
+            9
+          ],
+          "use": "Cinco procesos, mensajes y carga, criterios, C# y hardware/red local"
+        },
+        {
+          "pdf_pages": [
+            31,
+            32,
+            33
+          ],
+          "use": "Discusión de resultados y límites de lenguaje/entorno"
+        }
+      ],
+      "crossref": {
+        "queried": "10.31577/cai_2023_1_1",
+        "status": 200,
+        "metadata": {
+          "DOI": "10.31577/cai_2023_1_1",
+          "title": [
+            "Evaluation of Microservice Communication While Decomposing Monoliths"
+          ],
+          "author": [
+            {
+              "given": "Justas",
+              "family": "Kazanavičius",
+              "sequence": "first",
+              "affiliation": [],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "given": "Dalius",
+              "family": "Mažeika",
+              "sequence": "additional",
+              "affiliation": [],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            }
+          ],
+          "container-title": [
+            "Computing and Informatics"
+          ],
+          "volume": "42",
+          "issue": "1",
+          "page": "1-36",
+          "article-number": null,
+          "published": {
+            "date-parts": [
+              [
+                2023
+              ]
+            ]
+          },
+          "URL": "https://doi.org/10.31577/cai_2023_1_1",
+          "license": null
+        }
+      },
+      "indexing": {
+        "status": "Pendiente de verificación documental del índice concreto; no se infiere del DOI."
+      }
+    },
+    {
+      "bib_key": "soylemez2022-challenges",
+      "doi": "10.3390/app12115507",
+      "scispace_id": "challenges-and-solution-directions-of-microservice-1e9ncciq",
+      "scispace_url": "https://scispace.com/papers/challenges-and-solution-directions-of-microservice-1e9ncciq",
+      "file": "docs/referencias/PDFs_Fuentes/Soylemez-2022-Challenges.pdf",
+      "download_url": "https://mdpi-res.com/d_attachment/applsci/applsci-12-05507/article_deploy/applsci-12-05507.pdf",
+      "bytes": 948611,
+      "sha256": "99b60925041d73be4d4d801ac9419741f8ed0da7716f5d97a8dd18609645cc4c",
+      "pages": 40,
+      "body_language": "English",
+      "full_text_checked": true,
+      "locators": [
+        {
+          "use": "Descomposición",
+          "pdf_pages": [
+            15
+          ]
+        },
+        {
+          "use": "Operación y trazas",
+          "pdf_pages": [
+            14
+          ]
+        },
+        {
+          "use": "Conclusiones",
+          "pdf_pages": [
+            32
+          ]
+        }
+      ],
+      "crossref": {
+        "status": 200,
+        "metadata": {
+          "DOI": "10.3390/app12115507",
+          "title": [
+            "Challenges and Solution Directions of Microservice Architectures: A Systematic Literature Review"
+          ],
+          "author": [
+            {
+              "ORCID": "https://orcid.org/0000-0003-2826-5273",
+              "authenticated-orcid": false,
+              "given": "Mehmet",
+              "family": "Söylemez",
+              "sequence": "first",
+              "affiliation": [
+                {
+                  "name": "Department of Computer Engineering, Hacettepe University, 06800 Ankara, Turkey"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "ORCID": "https://orcid.org/0000-0002-8538-7261",
+              "authenticated-orcid": false,
+              "given": "Bedir",
+              "family": "Tekinerdogan",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Information Technology Group, Wageningen University & Research, 6706 PB Wageningen, The Netherlands"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "given": "Ayça",
+              "family": "Kolukısa Tarhan",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Department of Computer Engineering, Hacettepe University, 06800 Ankara, Turkey"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            }
+          ],
+          "container-title": [
+            "Applied Sciences"
+          ],
+          "volume": "12",
+          "issue": "11",
+          "page": "5507",
+          "article-number": null,
+          "published": {
+            "date-parts": [
+              [
+                2022,
+                5,
+                29
+              ]
+            ]
+          },
+          "URL": "https://doi.org/10.3390/app12115507",
+          "license": [
+            {
+              "start": {
+                "date-parts": [
+                  [
+                    2022,
+                    5,
+                    29
+                  ]
+                ],
+                "date-time": "2022-05-29T00:00:00Z",
+                "timestamp": 1653782400000
+              },
+              "content-version": "vor",
+              "delay-in-days": 0,
+              "URL": "https://creativecommons.org/licenses/by/4.0/"
+            }
+          ]
+        }
+      },
+      "indexing": {
+        "status": "No se infiere indexación a partir de DOI; verificación de índice específico pendiente."
+      }
+    },
+    {
+      "bib_key": "kazanavicius2022-database",
+      "doi": "10.3390/app12126189",
+      "scispace_id": "an-approach-to-migrate-a-monolith-database-into-multi-model-2rmuuq7h",
+      "scispace_url": "https://scispace.com/papers/an-approach-to-migrate-a-monolith-database-into-multi-model-2rmuuq7h",
+      "file": "docs/referencias/PDFs_Fuentes/Kazanavicius-2022-Database.pdf",
+      "download_url": "https://mdpi-res.com/d_attachment/applsci/applsci-12-06189/article_deploy/applsci-12-06189.pdf",
+      "bytes": 2453818,
+      "sha256": "318da4349de65ae5d220c9cc5419156eb1d1c4d9a6e3be04041206227fd0d3b5",
+      "pages": 30,
+      "body_language": "English",
+      "full_text_checked": true,
+      "locators": [
+        {
+          "use": "Prueba de concepto",
+          "pdf_pages": [
+            1,
+            2,
+            6,
+            7
+          ]
+        },
+        {
+          "use": "Discusión y límites",
+          "pdf_pages": [
+            27
+          ]
+        }
+      ],
+      "crossref": {
+        "status": 200,
+        "metadata": {
+          "DOI": "10.3390/app12126189",
+          "title": [
+            "An Approach to Migrate a Monolith Database into Multi-Model Polyglot Persistence Based on Microservice Architecture: A Case Study for Mainframe Database"
+          ],
+          "author": [
+            {
+              "given": "Justas",
+              "family": "Kazanavičius",
+              "sequence": "first",
+              "affiliation": [
+                {
+                  "name": "Department of Information Systems, Vilnius Gediminas Technical University, 10223 Vilnius, Lithuania"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "given": "Dalius",
+              "family": "Mažeika",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Department of Information Systems, Vilnius Gediminas Technical University, 10223 Vilnius, Lithuania"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "ORCID": "https://orcid.org/0000-0002-1317-6561",
+              "authenticated-orcid": false,
+              "given": "Diana",
+              "family": "Kalibatienė",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Department of Information Systems, Vilnius Gediminas Technical University, 10223 Vilnius, Lithuania"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            }
+          ],
+          "container-title": [
+            "Applied Sciences"
+          ],
+          "volume": "12",
+          "issue": "12",
+          "page": "6189",
+          "article-number": null,
+          "published": {
+            "date-parts": [
+              [
+                2022,
+                6,
+                17
+              ]
+            ]
+          },
+          "URL": "https://doi.org/10.3390/app12126189",
+          "license": [
+            {
+              "start": {
+                "date-parts": [
+                  [
+                    2022,
+                    6,
+                    17
+                  ]
+                ],
+                "date-time": "2022-06-17T00:00:00Z",
+                "timestamp": 1655424000000
+              },
+              "content-version": "vor",
+              "delay-in-days": 0,
+              "URL": "https://creativecommons.org/licenses/by/4.0/"
+            }
+          ]
+        }
+      },
+      "indexing": {
+        "status": "No se infiere indexación a partir de DOI; verificación de índice específico pendiente."
+      }
+    },
+    {
+      "bib_key": "daraghmi2022-saga",
+      "doi": "10.3390/app12126242",
+      "scispace_id": "enhancing-saga-pattern-for-distributed-transactions-within-a-7qz0rjdp",
+      "scispace_url": "https://scispace.com/papers/enhancing-saga-pattern-for-distributed-transactions-within-a-7qz0rjdp",
+      "file": "docs/referencias/PDFs_Fuentes/Daraghmi-2022-Saga.pdf",
+      "download_url": "https://mdpi-res.com/d_attachment/applsci/applsci-12-06242/article_deploy/applsci-12-06242.pdf",
+      "bytes": 3987998,
+      "sha256": "dbd2a224aa5c4f07ef115cca0d3a7f2517f3eeebd68588a61d45f770c782bf8b",
+      "pages": 26,
+      "body_language": "English",
+      "full_text_checked": true,
+      "locators": [
+        {
+          "use": "Aislamiento",
+          "pdf_pages": [
+            1
+          ]
+        },
+        {
+          "use": "Implementación experimental",
+          "pdf_pages": [
+            9
+          ]
+        },
+        {
+          "use": "Conclusiones",
+          "pdf_pages": [
+            25
+          ]
+        }
+      ],
+      "crossref": {
+        "status": 200,
+        "metadata": {
+          "DOI": "10.3390/app12126242",
+          "title": [
+            "Enhancing Saga Pattern for Distributed Transactions within a Microservices Architecture"
+          ],
+          "author": [
+            {
+              "ORCID": "https://orcid.org/0000-0001-8986-4232",
+              "authenticated-orcid": false,
+              "given": "Eman",
+              "family": "Daraghmi",
+              "sequence": "first",
+              "affiliation": [
+                {
+                  "name": "Applied Computing Department, Palestine Technical University Kadoorie, Tulkarm p3050950, Palestine"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "given": "Cheng-Pu",
+              "family": "Zhang",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Computer Science Department, National Yang Ming Chiao Tung University, Hsinchu 300, Taiwan"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "ORCID": "https://orcid.org/0000-0002-3621-9528",
+              "authenticated-orcid": false,
+              "given": "Shyan-Ming",
+              "family": "Yuan",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Computer Science Department, National Yang Ming Chiao Tung University, Hsinchu 300, Taiwan"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            }
+          ],
+          "container-title": [
+            "Applied Sciences"
+          ],
+          "volume": "12",
+          "issue": "12",
+          "page": "6242",
+          "article-number": null,
+          "published": {
+            "date-parts": [
+              [
+                2022,
+                6,
+                19
+              ]
+            ]
+          },
+          "URL": "https://doi.org/10.3390/app12126242",
+          "license": [
+            {
+              "start": {
+                "date-parts": [
+                  [
+                    2022,
+                    6,
+                    19
+                  ]
+                ],
+                "date-time": "2022-06-19T00:00:00Z",
+                "timestamp": 1655596800000
+              },
+              "content-version": "vor",
+              "delay-in-days": 0,
+              "URL": "https://creativecommons.org/licenses/by/4.0/"
+            }
+          ]
+        }
+      },
+      "indexing": {
+        "status": "No se infiere indexación a partir de DOI; verificación de índice específico pendiente."
+      }
+    },
+    {
+      "bib_key": "maharjan2023-queues",
+      "doi": "10.3390/telecom4020018",
+      "scispace_id": "benchmarking-message-queues-25ijh5vp",
+      "scispace_url": "https://scispace.com/papers/benchmarking-message-queues-25ijh5vp",
+      "file": "docs/referencias/PDFs_Fuentes/Maharjan-2023-Queues.pdf",
+      "download_url": "https://mdpi-res.com/d_attachment/telecom/telecom-04-00018/article_deploy/telecom-04-00018.pdf",
+      "bytes": 848635,
+      "sha256": "21c5260cedeb70eb0123875e9f2e57ee7a78b7a10b3fc8aa3364e006e1607176",
+      "pages": 15,
+      "body_language": "English",
+      "full_text_checked": true,
+      "locators": [
+        {
+          "use": "Método",
+          "pdf_pages": [
+            2,
+            4,
+            5,
+            7
+          ]
+        },
+        {
+          "use": "Límites y trabajo futuro",
+          "pdf_pages": [
+            14
+          ]
+        }
+      ],
+      "crossref": {
+        "status": 200,
+        "metadata": {
+          "DOI": "10.3390/telecom4020018",
+          "title": [
+            "Benchmarking Message Queues"
+          ],
+          "author": [
+            {
+              "ORCID": "https://orcid.org/0009-0009-4372-1717",
+              "authenticated-orcid": false,
+              "given": "Rokin",
+              "family": "Maharjan",
+              "sequence": "first",
+              "affiliation": [
+                {
+                  "name": "Department of Computer Science, Baylor University, Waco, TX 76706, USA"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "given": "Md Showkat Hossain",
+              "family": "Chy",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Department of Computer Science, Baylor University, Waco, TX 76706, USA"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "given": "Muhammad Ashfakur",
+              "family": "Arju",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Department of Computer Science, Baylor University, Waco, TX 76706, USA"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "ORCID": "https://orcid.org/0000-0002-5882-5502",
+              "authenticated-orcid": false,
+              "given": "Tomas",
+              "family": "Cerny",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Department of Computer Science, Baylor University, Waco, TX 76706, USA"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            }
+          ],
+          "container-title": [
+            "Telecom"
+          ],
+          "volume": "4",
+          "issue": "2",
+          "page": "298-312",
+          "article-number": null,
+          "published": {
+            "date-parts": [
+              [
+                2023,
+                6,
+                13
+              ]
+            ]
+          },
+          "URL": "https://doi.org/10.3390/telecom4020018",
+          "license": [
+            {
+              "start": {
+                "date-parts": [
+                  [
+                    2023,
+                    6,
+                    13
+                  ]
+                ],
+                "date-time": "2023-06-13T00:00:00Z",
+                "timestamp": 1686614400000
+              },
+              "content-version": "vor",
+              "delay-in-days": 0,
+              "URL": "https://creativecommons.org/licenses/by/4.0/"
+            }
+          ]
+        }
+      },
+      "indexing": {
+        "status": "No se infiere indexación a partir de DOI; verificación de índice específico pendiente."
+      }
+    },
+    {
+      "bib_key": "bolanowski2022-rest-grpc",
+      "doi": "10.3233/faia220242",
+      "scispace_id": "eficiency-of-rest-and-grpc-realizing-communication-tasks-in-1qfw8uxm",
+      "scispace_url": "https://scispace.com/papers/eficiency-of-rest-and-grpc-realizing-communication-tasks-in-1qfw8uxm",
+      "file": "docs/referencias/PDFs_Fuentes/Bolanowski-2022-REST-gRPC.pdf",
+      "download_url": "https://arxiv.org/pdf/2208.00682",
+      "bytes": 2000936,
+      "sha256": "fd299bd093dea1bf2dc9ff253ea1f8226eb33d03131eb27d3585be0fc14ed453",
+      "pages": 12,
+      "body_language": "English",
+      "full_text_checked": true,
+      "locators": [
+        {
+          "use": "Escenarios",
+          "pdf_pages": [
+            4
+          ]
+        },
+        {
+          "use": "Conclusiones y límites",
+          "pdf_pages": [
+            10
+          ]
+        }
+      ],
+      "crossref": {
+        "status": 200,
+        "metadata": {
+          "DOI": "10.3233/faia220242",
+          "title": [
+            "Eficiency of REST and gRPC Realizing Communication Tasks in Microservice-Based Ecosystems"
+          ],
+          "author": [
+            {
+              "ORCID": "https://orcid.org/0000-0003-4645-967X",
+              "authenticated-orcid": false,
+              "given": "Marek",
+              "family": "Bolanowski",
+              "sequence": "first",
+              "affiliation": [
+                {
+                  "name": "Rzeszow University of Technology, Rzeszów, Poland"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "ORCID": "https://orcid.org/0000-0001-7497-8608",
+              "authenticated-orcid": false,
+              "given": "Kamil",
+              "family": "Żak",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Rzeszow University of Technology, Rzeszów, Poland"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "ORCID": "https://orcid.org/0000-0001-7573-3856",
+              "authenticated-orcid": false,
+              "given": "Andrzej",
+              "family": "Paszkiewicz",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Rzeszow University of Technology, Rzeszów, Poland"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "ORCID": "https://orcid.org/0000-0001-7714-4844",
+              "authenticated-orcid": false,
+              "given": "Maria",
+              "family": "Ganzha",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Polish Academy of Sciences, Warszawa, Poland"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "ORCID": "https://orcid.org/0000-0002-8069-2152",
+              "authenticated-orcid": false,
+              "given": "Marcin",
+              "family": "Paprzycki",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Polish Academy of Sciences, Warszawa, Poland"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "ORCID": "https://orcid.org/0000-0002-2543-9461",
+              "authenticated-orcid": false,
+              "given": "Piotr",
+              "family": "Sowiński",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Polish Academy of Sciences, Warszawa, Poland"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "ORCID": "https://orcid.org/0000-0002-6002-4050",
+              "authenticated-orcid": false,
+              "given": "Ignacio",
+              "family": "Lacalle",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Communications Department Universitat Politècnica de València, Valencia, Spain"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "ORCID": "https://orcid.org/0000-0002-3795-5404",
+              "authenticated-orcid": false,
+              "given": "Carlos E.",
+              "family": "Palau",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Communications Department Universitat Politècnica de València, Valencia, Spain"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            }
+          ],
+          "container-title": [
+            "Frontiers in Artificial Intelligence and Applications",
+            "New Trends in Intelligent Software Methodologies, Tools and Techniques"
+          ],
+          "volume": null,
+          "issue": null,
+          "page": null,
+          "article-number": null,
+          "published": {
+            "date-parts": [
+              [
+                2022,
+                9,
+                14
+              ]
+            ]
+          },
+          "URL": "https://doi.org/10.3233/faia220242",
+          "license": null
+        }
+      },
+      "indexing": {
+        "status": "No se infiere indexación a partir de DOI; verificación de índice específico pendiente."
+      },
+      "consulted_version": "Prepublicación arXiv:2208.00682; contrastada con metadatos del capítulo publicado."
+    },
+    {
+      "bib_key": "almeida2022-authentication",
+      "doi": "10.3390/app12063023",
+      "scispace_id": "authentication-and-authorization-in-microservices-3sijujv1",
+      "scispace_url": "https://scispace.com/papers/authentication-and-authorization-in-microservices-3sijujv1",
+      "file": "docs/referencias/PDFs_Fuentes/Almeida-2022-Authentication.pdf",
+      "download_url": "https://mdpi-res.com/d_attachment/applsci/applsci-12-03023/article_deploy/applsci-12-03023.pdf",
+      "bytes": 516456,
+      "sha256": "fb1a9b582c88a03c7127997242e71d4451af83ba2d6414ef4cfdc0cfc82bd25e",
+      "pages": 20,
+      "body_language": "English",
+      "full_text_checked": true,
+      "locators": [
+        {
+          "use": "Mecanismos",
+          "pdf_pages": [
+            1,
+            2,
+            11,
+            12
+          ]
+        },
+        {
+          "use": "Límites",
+          "pdf_pages": [
+            17
+          ]
+        },
+        {
+          "use": "Conclusiones",
+          "pdf_pages": [
+            18
+          ]
+        }
+      ],
+      "crossref": {
+        "status": 200,
+        "metadata": {
+          "DOI": "10.3390/app12063023",
+          "title": [
+            "Authentication and Authorization in Microservices Architecture: A Systematic Literature Review"
+          ],
+          "author": [
+            {
+              "ORCID": "https://orcid.org/0000-0002-4545-9099",
+              "authenticated-orcid": false,
+              "given": "Murilo Góes",
+              "family": "de Almeida",
+              "sequence": "first",
+              "affiliation": [
+                {
+                  "name": "Department of Computer Science, University of Brasília (UnB), P.O. Box 4466, Brasilia 70910-900, Brazil"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "ORCID": "https://orcid.org/0000-0002-2159-339X",
+              "authenticated-orcid": false,
+              "given": "Edna Dias",
+              "family": "Canedo",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Department of Computer Science, University of Brasília (UnB), P.O. Box 4466, Brasilia 70910-900, Brazil"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            }
+          ],
+          "container-title": [
+            "Applied Sciences"
+          ],
+          "volume": "12",
+          "issue": "6",
+          "page": "3023",
+          "article-number": null,
+          "published": {
+            "date-parts": [
+              [
+                2022,
+                3,
+                16
+              ]
+            ]
+          },
+          "URL": "https://doi.org/10.3390/app12063023",
+          "license": [
+            {
+              "start": {
+                "date-parts": [
+                  [
+                    2022,
+                    3,
+                    16
+                  ]
+                ],
+                "date-time": "2022-03-16T00:00:00Z",
+                "timestamp": 1647388800000
+              },
+              "content-version": "vor",
+              "delay-in-days": 0,
+              "URL": "https://creativecommons.org/licenses/by/4.0/"
+            }
+          ]
+        }
+      },
+      "indexing": {
+        "status": "No se infiere indexación a partir de DOI; verificación de índice específico pendiente."
+      }
+    },
+    {
+      "bib_key": "berardi2022-security",
+      "doi": "10.7717/peerj-cs.779",
+      "scispace_id": "microservice-security-a-systematic-literature-review-1g3mifgk",
+      "scispace_url": "https://scispace.com/papers/microservice-security-a-systematic-literature-review-1g3mifgk",
+      "file": "docs/referencias/PDFs_Fuentes/Berardi-2022-Security.pdf",
+      "download_url": "https://www.fabriziomontesi.com/files/bgmmmp22.pdf",
+      "bytes": 8991461,
+      "sha256": "11263043d92dd104247054a6e895a7da9f8f0958acb86f94e106e7928f07b7ab",
+      "pages": 66,
+      "body_language": "English",
+      "full_text_checked": true,
+      "locators": [
+        {
+          "use": "Amenazas a validez",
+          "pdf_pages": [
+            30
+          ]
+        },
+        {
+          "use": "Discusión y límites",
+          "pdf_pages": [
+            3,
+            13,
+            31
+          ]
+        }
+      ],
+      "crossref": {
+        "status": 200,
+        "metadata": {
+          "DOI": "10.7717/peerj-cs.779",
+          "title": [
+            "Microservice security: a systematic literature review"
+          ],
+          "author": [
+            {
+              "given": "Davide",
+              "family": "Berardi",
+              "sequence": "first",
+              "affiliation": [
+                {
+                  "name": "Department of Computer Science and Engineering, University of Bologna, Bologna, Italy"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "given": "Saverio",
+              "family": "Giallorenzo",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Department of Computer Science and Engineering, University of Bologna, Bologna, Italy"
+                },
+                {
+                  "name": "INRIA, Sophia Antipolis, France"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "given": "Jacopo",
+              "family": "Mauro",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Department of Mathematics and Computer Science, University of Southern Denmark, Odense, Denmark"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "given": "Andrea",
+              "family": "Melis",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Department of Computer Science and Engineering, University of Bologna, Bologna, Italy"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "ORCID": "https://orcid.org/0000-0003-4666-901X",
+              "authenticated-orcid": true,
+              "given": "Fabrizio",
+              "family": "Montesi",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Department of Mathematics and Computer Science, University of Southern Denmark, Odense, Denmark"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "given": "Marco",
+              "family": "Prandini",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Department of Computer Science and Engineering, University of Bologna, Bologna, Italy"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            }
+          ],
+          "container-title": [
+            "PeerJ Computer Science"
+          ],
+          "volume": "7",
+          "issue": null,
+          "page": "e779",
+          "article-number": "e779",
+          "published": {
+            "date-parts": [
+              [
+                2022,
+                1,
+                5
+              ]
+            ]
+          },
+          "URL": "https://doi.org/10.7717/peerj-cs.779",
+          "license": [
+            {
+              "start": {
+                "date-parts": [
+                  [
+                    2022,
+                    1,
+                    5
+                  ]
+                ],
+                "date-time": "2022-01-05T00:00:00Z",
+                "timestamp": 1641340800000
+              },
+              "content-version": "unspecified",
+              "delay-in-days": 0,
+              "URL": "https://creativecommons.org/licenses/by/4.0/"
+            }
+          ]
+        }
+      },
+      "indexing": {
+        "status": "No se infiere indexación a partir de DOI; verificación de índice específico pendiente."
+      }
+    }
+  ],
+  "metadata_corrections": [
+    "SciSpace omitió Bivol, Jackson y Yilmaz en la ficha de Abgaz; se conservan los diez autores de PDF y Crossref.",
+    "SciSpace omitió al primer autor Hamdy Michael Ayas; Crossref registra familia Michael Ayas, nombre Hamdy.",
+    "El DOI registrado de comunicación usa guiones bajos: 10.31577/cai_2023_1_1 (Crossref 200); variante con puntos 404.",
+    "Maharjan: se incorporaron Chy y Arju, omitidos en SciSpace, según PDF y Crossref.",
+    "Daraghmi: se corrigió Chenghui Zhang a Cheng-Pu Zhang según PDF y Crossref.",
+    "Berardi: Crossref devuelve volumen 7; la ficha PubMed PMID 35111904 registra volumen 8 para 2022. Se utiliza 8; DOI y e779 coinciden.",
+    "Bolanowski: copia consultada arXiv 2208.00682; metadatos del capítulo DOI 10.3233/FAIA220242 contrastados. No se contabiliza como artículo de revista."
+  ],
+  "not_selected": [
+    {
+      "title": "Monolithic vs. Microservice Architecture: A Performance and Scalability Evaluation",
+      "doi": "10.1109/ACCESS.2022.3152803",
+      "reason": "Candidato relevante, excluido de la selección activa al no obtener copia completa correcta. IEEE devolvió 418; enlace institucional de Varsovia no devolvió PDF. Otro enlace universitario descargó actas de 2019 ajenas al artículo; se detectó al extraer texto y se retiró. No se cita como evidencia técnica en el informe."
+    },
+    {
+      "title": "Stepwise Migration of a Monolith to a Microservices Architecture: Performance and Migration Effort Evaluation",
+      "reason": "Prepublicación candidata no incorporada; se priorizaron tres artículos revisados con texto completo verificado."
+    },
+    {
+      "title": "SEMGROMI—a semantic grouping algorithm to identifying microservices using semantic similarity of user stories",
+      "doi": "10.7717/peerj-cs.1380",
+      "reason": "No se pudo obtener PDF completo desde editorial (403) ni localizarlo en la respuesta de PMC. No incorporado ni citado."
+    }
+  ],
+  "quality_model_decision": {
+    "edition": "ISO/IEC 25010:2011",
+    "decided_by": "Usuario, 2026-11-20",
+    "reason": "Texto de 2011 consultable gratis por el equipo; sin presupuesto para adquirir edición 2023.",
+    "limit": "No declara conformidad ni equivalencia con 2023; contrastar consigna aplicable."
+  },
+  "scope_correction": "El usuario aclaró que solo autorizó investigación teórica previa, sin editar sección 7 ni ADR. Se retiraron las recomendaciones del informe y se conservaron fuentes y observaciones como insumos separados; ninguna alternativa adoptada.",
+  "placement": "Aclaración posterior: teoría al final de Trabajos relacionados como subapartado; sección 7 y ADR restaurados sin modificaciones de esta investigación.",
+  "expansion_2026_11_20": {
+    "request": "Retirar metodología del informe y fundamentar cada subapartado nuevo con al menos tres fuentes pertinentes.",
+    "removed_paragraph_destination": "BITACORA.md; trazabilidad detallada en este archivo.",
+    "coverage": {
+      "5.6.1": [
+        "abgaz2023-decomposition",
+        "soylemez2022-challenges",
+        "ayas2023-migration"
+      ],
+      "5.6.2": [
+        "ayas2023-migration",
+        "kazanavicius2022-database",
+        "daraghmi2022-saga"
+      ],
+      "5.6.3": [
+        "kazanavicius2023-communication",
+        "bolanowski2022-rest-grpc",
+        "maharjan2023-queues"
+      ],
+      "5.6.4": [
+        "almeida2022-authentication",
+        "berardi2022-security",
+        "soylemez2022-challenges"
+      ]
+    },
+    "validation": {
+      "distinct_cited_sources": {
+        "Descomposición, modularidad y servicios": 3,
+        "Migración y propiedad de datos": 3,
+        "Comunicación síncrona, mensajería y tecnologías": 3,
+        "Criterios complementarios antes de decidir": 10
+      },
+      "all_ten_pdf_hashes_verified": true,
+      "pdf_pages": 35,
+      "visual_review": "Marco teórico, tablas, declaración de asistencia y bibliografía revisados.",
+      "unresolved_citations": false
+    }
+  }
+}

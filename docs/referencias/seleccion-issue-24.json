@@ -1,0 +1,324 @@
+{
+  "issue": "https://github.com/Yukisan-uwo/PFC-SGRA/issues/24",
+  "fecha_consulta": "2026-11-20",
+  "alcance": "Selección y comparación de tres antecedentes funcionales. Investigación técnica posterior autorizada el 2026-11-20 y registrada por separado.",
+  "metodo": "Revisión bibliográfica dirigida; no se presenta como revisión sistemática ni exhaustiva.",
+  "criterios_inclusion": [
+    "Sistema o estudio publicado sobre gestión y seguimiento de tutorías universitarias",
+    "Proximidad a solicitudes, programación, reservas, asistencia o reportes del SGRA",
+    "Texto completo descargable sin pago ni inicio de sesión desde editorial o repositorio institucional",
+    "Autoría y fecha contrastables con la publicación",
+    "Preferencia por trabajos de 2022 en adelante para evitar ambigüedad sobre el límite de los últimos cinco años",
+    "Los antecedentes segundo y tercero deben tener texto completo en inglés, conforme a la corrección del usuario."
+  ],
+  "consultas_representativas": [
+    "sistema gestión de tutorías revista 2023 2024 2025 pdf",
+    "tutoring management system university journal 2022 2023 2024 open access",
+    "academic tutoring web system management journal 2024 2025",
+    "sistema tutorías software 2024 doi gestión universidad",
+    "sistema de tutorías sistema web 2022 2023 2024 revista gestión asistencia",
+    "What published English-language systems manage university academic tutoring requests, tutor availability, appointment scheduling, attendance and follow-up reports? year:2022-2026 oa:true limit:12",
+    "What English-language software systems have been developed for university academic consultation booking, lecturer appointment scheduling and tutoring session management? year:2022-2026 oa:true limit:15",
+    "What do the published English-language studies Tutorial Booking and Tracking Application Interactivity and Elevating TutorYuk Online Peer Tutoring Services report about tutoring management systems? year:2022-2026 limit:8"
+  ],
+  "seleccionados": [
+    {
+      "clave_bib": "Rojas2023",
+      "origen": "Recuperado del documento y del .bib originales del SGRA",
+      "tipo": "Artículo de revista, 2023, volumen 4, número 1, páginas 21-27",
+      "doi": "10.47422/jstri.v4i1.35",
+      "pagina_editorial": "https://journalindustrial.com/index.php/jstri/article/view/35",
+      "url_pdf": "https://journalindustrial.com/index.php/jstri/article/download/35/35",
+      "archivo": "PDFs_Fuentes/Huaman-Rojas-2023-EPIS-UNH.pdf",
+      "paginas_pdf": 7,
+      "bytes": 316713,
+      "sha256": "0ab185fc704dd2d6088f299485b904f8ff728389b161f2ed91ffa090031cf8c1",
+      "acceso": "PDF completo descargado del sitio editorial sin autenticación",
+      "licencia_declarada_en_ficha": "CC BY 4.0; el PDF conserva una leyenda de derechos reservados",
+      "localizadores": [
+        {
+          "pagina_pdf": 1,
+          "pagina_impresa": "21",
+          "uso": "Autoría, título, DOI y fecha"
+        },
+        {
+          "pagina_pdf": 2,
+          "pagina_impresa": "22",
+          "uso": "PHP/MySQL y diseño antes/después"
+        },
+        {
+          "paginas_pdf": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "paginas_impresas": "23-26",
+          "uso": "Asistencia, tutorías y límites de interpretación de resultados"
+        }
+      ],
+      "depuracion": "Autores corregidos: Huamán Rojas, Vanessa; Rojas Bujaico, John Fredy. El PDF previo citaba un artículo distinto con [21].",
+      "indizacion": {
+        "estado": "No contabilizado como revista indexada verificada en esta etapa",
+        "evidencia_editorial": "https://journalindustrial.com/index.php/jstri/indexing",
+        "limitacion": "El enlace editorial a Latindex ficha 27932 no pudo verificarse; un DOI o un logotipo de Scopus no acredita indexación."
+      },
+      "idioma_texto_completo": "Título y resumen bilingües (inglés/español); desarrollo en español en el PDF descargado"
+    },
+    {
+      "clave_bib": "grigoryan2024-tuttrak",
+      "origen": "SciSpace y contraste con revista SFU Educational Review",
+      "tipo": "Artículo de revista, 2024, volumen 16, número 1, páginas 101-124",
+      "idioma_texto_completo": "Inglés",
+      "doi": "10.21810/sfuer.v16i1.6666",
+      "pagina_editorial": "https://journals.lib.sfu.ca/index.php/sfuer/article/view/6666",
+      "url_pdf": "https://journals.lib.sfu.ca/index.php/sfuer/article/download/6666/5920",
+      "scispace_id": "tutorial-booking-and-tracking-application-interactivity-30i238n2d85h",
+      "scispace_url": "https://scispace.com/papers/tutorial-booking-and-tracking-application-interactivity-30i238n2d85h",
+      "archivo": "PDFs_Fuentes/Grigoryan-2024-ASP-tutTrak.pdf",
+      "licencia": "CC BY-NC 4.0",
+      "localizadores": [
+        {
+          "pagina_pdf": 1,
+          "pagina_impresa": "101, sin numeración visible",
+          "uso": "Título, autoría, idioma y resumen"
+        },
+        {
+          "paginas_pdf": [
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "paginas_impresas": "107-112",
+          "uso": "Método, actores, reserva, asistencia, correo y reportes"
+        },
+        {
+          "paginas_pdf": [
+            19,
+            20
+          ],
+          "paginas_impresas": "119-120",
+          "uso": "Limitaciones y conclusión del análisis de interactividad"
+        }
+      ],
+      "indizacion": {
+        "estado": "Revista incluida en DOAJ",
+        "fuente": "https://doaj.org/toc/1916-050X",
+        "corroboracion": "https://portal.issn.org/resource/ISSN/1916-050X",
+        "limitacion": "No se afirma indexación en Scopus o Web of Science."
+      },
+      "bytes": 472733,
+      "sha256": "4a8d884e976fd56add7523db5b54e133ae972e44baa62e1d59c1ff07e966ad8e",
+      "paginas_pdf": 24,
+      "acceso": "PDF completo descargado sin pago ni autenticación desde la revista"
+    },
+    {
+      "clave_bib": "seah2023-tutoryuk",
+      "origen": "SciSpace y contraste con revista Journal of Information Systems and Informatics",
+      "tipo": "Artículo de revista, 2023, volumen 5, número 3, páginas 956-970",
+      "idioma_texto_completo": "Inglés",
+      "doi": "10.51519/journalisi.v5i3.523",
+      "pagina_editorial": "https://journal-isi.org/index.php/isi/article/view/523",
+      "url_pdf": "https://journal-isi.org/index.php/isi/article/download/523/253/",
+      "scispace_id": "elevating-tutoryuk-online-peer-tutoring-services-through-9t2lkb7z5q",
+      "scispace_url": "https://scispace.com/papers/elevating-tutoryuk-online-peer-tutoring-services-through-9t2lkb7z5q",
+      "archivo": "PDFs_Fuentes/Seah-2023-TutorYuk.pdf",
+      "licencia": "CC BY 4.0",
+      "localizadores": [
+        {
+          "pagina_pdf": 1,
+          "pagina_impresa": "956",
+          "uso": "Título, autores, DOI e idioma"
+        },
+        {
+          "paginas_pdf": [
+            3,
+            4
+          ],
+          "paginas_impresas": "958-959",
+          "uso": "Design Thinking, prototipo y método de pruebas"
+        },
+        {
+          "paginas_pdf": [
+            8,
+            9
+          ],
+          "paginas_impresas": "963-964",
+          "uso": "Selección de tutor, reservas, solicitudes y tarifas"
+        },
+        {
+          "paginas_pdf": [
+            10,
+            11,
+            12,
+            13
+          ],
+          "paginas_impresas": "965-968",
+          "uso": "Tablas 1-3 de caja negra y límites de la evaluación"
+        }
+      ],
+      "indizacion": {
+        "estado": "Revista incluida en DOAJ",
+        "fuente": "https://doaj.org/toc/2656-4882",
+        "limitacion": "No se afirma cobertura en Scopus o Web of Science ni aceptación automática de DOAJ por una rúbrica que exija otro índice."
+      },
+      "bytes": 888573,
+      "sha256": "791d9e1d651a816f3d83a4b251fed3ebf6e0eefb7886549c77f4e5cf8cc394b9",
+      "paginas_pdf": 15,
+      "acceso": "PDF completo descargado sin pago ni autenticación desde la revista"
+    }
+  ],
+  "candidatos_no_seleccionados": [
+    {
+      "clave_original": "Pugatch2018",
+      "motivo": "Antecedente válido de intervención sobre participación, de 2018; menos cercano a la gestión integral y fuera del período reciente. No demuestra que la falta de notificaciones causara una caída drástica de asistencia.",
+      "fuente": "https://www.sciencedirect.com/science/article/pii/S0272775717303849"
+    },
+    {
+      "claves_originales": [
+        "Li2008",
+        "Priya2012",
+        "Thuku2019"
+      ],
+      "motivo": "Fuera del período reciente. Se mantienen identificados para seguimiento histórico, sin incorporarlos a la bibliografía activa ni trasladar sus conclusiones."
+    },
+    {
+      "clave_original": "Zhang2023",
+      "motivo": "El estudio evaluó tutoría uno a uno en séptimo grado; menor proximidad al proceso universitario del SGRA. No se comprobó una descarga editorial abierta del texto completo.",
+      "fuente": "https://www.tandfonline.com/doi/abs/10.1080/10494820.2021.1958234"
+    },
+    {
+      "clave_original": "Mar2021",
+      "motivo": "Se priorizaron publicaciones de 2022 en adelante y sistemas con mayor coincidencia de funciones; no se recuperó un PDF abierto en esta selección."
+    },
+    {
+      "titulo": "Propuesta metodológica de un sistema de gestión de tutorías aplicando software libre",
+      "motivo": "Propuesta de seguimiento integral de trayectoria; menor coincidencia con el refuerzo por asignatura que los tres trabajos elegidos.",
+      "fuente": "https://revistas.milpaalta.tecnm.mx/index.php/IPSUMTEC/article/download/91/139/151"
+    },
+    {
+      "doi": "10.33010/recie.v8i0.2512",
+      "motivo": "Estudio de satisfacción con SII pertinente para futura evaluación; menor detalle del flujo de solicitudes y programación que los seleccionados. No se añadió su entrada ni un PDF no recuperado."
+    },
+    {
+      "titulo": "MENTOR – Intelligent Mobile Online Peer Tutoring Application for Face-to-Face and Remote Peer Tutoring",
+      "motivo": "SciSpace lo presentó como artículo de 2022, pero el DOI corresponde a actas ASCILITE 2019. Descartado por antigüedad y tipo documental.",
+      "doi": "10.14742/apubs.2019.293"
+    },
+    {
+      "titulo": "GrabTutor: A web and mobile application for tutor appointment system with GPS security feature",
+      "motivo": "Coincidencia funcional, pero fecha editorial 2020, fuera del período reciente.",
+      "fuente": "https://indjst.org/articles/grabtutor-a-web-and-mobile-application-for-tutor-appointment-system-with-gps-security-feature"
+    }
+  ],
+  "otros_problemas_del_bib_aportado": [
+    {
+      "clave": "Kano1984",
+      "problema": "Clave duplicada con datos diferentes; no importada."
+    },
+    {
+      "claves": [
+        "ISO-IEC-IEEE-2018",
+        "ISO29148",
+        "ISO29148_2018"
+      ],
+      "problema": "Tres entradas de la misma edición. El PFC seleccionó 2011; no se cambió la edición sin revisar el uso existente."
+    },
+    {
+      "claves": [
+        "Schwaber2020",
+        "ScrumGuide2020",
+        "SchwaberSutherland2020ScrumGuide"
+      ],
+      "problema": "Misma guía en varias entradas; no se importó ni se atribuyó Scrum al PFC."
+    },
+    {
+      "claves": [
+        "Kucharski2023",
+        "Li2008",
+        "Priya2012",
+        "Thuku2019"
+      ],
+      "problema": "Entradas @article para publicaciones de congreso; no deben contabilizarse como artículos de revista."
+    },
+    {
+      "clave": "Kalamkarian2023StudentSuccessTech",
+      "problema": "El enlace ED629294 corresponde a otro trabajo sobre ansiedad matemática; referencia excluida.",
+      "fuente": "https://eric.ed.gov/?id=ED629294"
+    },
+    {
+      "clave": "Cabezas2024EarlyAlertQuizzes",
+      "problema": "El DOI corresponde a otro título y otra autoría respecto de la entrada aportada; excluida hasta corregir todos los metadatos.",
+      "fuente": "https://link.springer.com/article/10.1007/s10639-024-12610-5"
+    }
+  ],
+  "control_rubrica": {
+    "comparaciones_completadas": 3,
+    "pdf_completos_nuevos": 3,
+    "fuentes_externas_recientes_en_bib_activo": 6,
+    "claves_externas_recientes": [
+      "swebok-v40a",
+      "atodiresei-c4-2024",
+      "aws-adr",
+      "Rojas2023",
+      "grigoryan2024-tuttrak",
+      "seah2023-tutoryuk"
+    ],
+    "fuentes_externas_recientes_citadas_en_tex": 5,
+    "clave_reciente_aun_no_citada": "swebok-v40a",
+    "articulos_recientes_con_doi_en_bib_activo": 4,
+    "claves_articulos": [
+      "atodiresei-c4-2024",
+      "Rojas2023",
+      "grigoryan2024-tuttrak",
+      "seah2023-tutoryuk"
+    ],
+    "advertencia": "Seis fuentes externas recientes en la biblioteca activa, cinco citadas. Hay cuatro artículos recientes con DOI, pero solo se verificó aquí la inclusión en DOAJ de las revistas de ASP tutTrak y TutorYuk. Faltan fuentes e indexación para cerrar el issue. No se cuenta el informe interno del SGRA ni entrevistas como literatura externa.",
+    "issue_cerrado": false,
+    "pendiente": "Completar y verificar la bibliografía técnica de E1 en la siguiente etapa y revisar las comparaciones con el equipo.",
+    "articulos_seleccionados_con_revista_en_doaj_verificada": 2
+  },
+  "revision": {
+    "asistencia": "Codex",
+    "validacion_humana": "Pendiente",
+    "limites": "Se sustituyeron dos antecedentes por artículos en inglés y se contrastaron las fichas de SciSpace con los PDF originales. El SGRA previo se reconoce como base funcional; la distribución es una evolución propuesta y pendiente de validación técnica.",
+    "limitacion_scispace": "La extracción preliminar no describió todos los flujos ni limitaciones presentes en los PDF; las comparaciones finales se apoyan en los pasajes originales localizados.",
+    "ajuste_de_idioma": "Se eliminó la distinción de idiomas de la introducción; no se afirma que EPIS–UNH tenga todo su desarrollo en inglés."
+  },
+  "herramientas_busqueda": [
+    "SciSpace: búsqueda, ficha y extracción preliminar",
+    "Búsqueda web y contraste con revistas y PDF originales"
+  ],
+  "sustituidos_por_requisito_de_idioma": [
+    {
+      "clave": "pluma2024-asesorame",
+      "fuente": "https://cientifica-ipn.com/index.php/esime/article/view/117",
+      "motivo": "Texto completo en español; sustituido a petición del usuario. Entrada retirada de la bibliografía activa y copia descargada por Codex retirada de la selección.",
+      "archivo_retirado": "PDFs_Fuentes/Pluma-Amaro-2024-AsesoraMe.pdf"
+    },
+    {
+      "clave": "garnica2025-tutorias",
+      "fuente": "https://repositorio.utc.edu.ec/handle/123456789/14306",
+      "motivo": "Texto completo en español; sustituido a petición del usuario. Entrada retirada de la bibliografía activa y copia descargada por Codex retirada de la selección.",
+      "archivo_retirado": "PDFs_Fuentes/Garnica-Herreria-2025-Tutorias-UTC.pdf"
+    }
+  ],
+  "criterio_documental_acordado": {
+    "fecha": "2026-11-20",
+    "instrucciones_persistentes": "AGENTS.md",
+    "enfoque": "Informe autónomo del SGRA, reformulado bajo el enfoque de aplicaciones distribuidas; reconocimiento breve de investigación y desarrollo iniciales, con procedencia y autoría, sin dependencia explicativa del informe anterior.",
+    "tabla_comparativa": "docs/secciones/05-relacionados.tex, etiqueta tab:comparacion-relacionados",
+    "dimensiones": [
+      "Problema atendido",
+      "Funciones descritas",
+      "Evaluación realizada",
+      "Aprendizaje para el SGRA",
+      "Diferencia respecto al SGRA",
+      "Límite de la evidencia"
+    ]
+  },
+  "investigacion_tecnica_posterior": "analisis-arquitectura-sgra.json"
+}
