@@ -18,15 +18,152 @@ RF10 & \pendiente{historia} & \pendiente{criterios}\\
 \end{longtable}
 \subsection{Requisitos no funcionales}
 Los requisitos no funcionales se asocian con las características del modelo de calidad del producto de ISO/IEC 25010:2011~\cite{iso25010-2011}.
-\pendiente{Definir al menos seis RNF. Para cada uno, elegir una característica de ISO/IEC 25010:2011~\cite{iso25010-2011} y registrar la métrica, el umbral, las condiciones de medición y el método de prueba.}
+
 \begin{longtable}{@{}p{0.10\textwidth}p{0.24\textwidth}p{0.36\textwidth}p{0.20\textwidth}@{}}
 \toprule\textbf{ID}&\textbf{Característica ISO/IEC 25010}&\textbf{Meta cuantificada}&\textbf{Método de prueba}\\\midrule\endhead
-RNF01 & \pendiente{característica} & \pendiente{umbral y condiciones} & \pendiente{método}\\
-RNF02 & \pendiente{característica} & \pendiente{umbral y condiciones} & \pendiente{método}\\
-RNF03 & \pendiente{característica} & \pendiente{umbral y condiciones} & \pendiente{método}\\
-RNF04 & \pendiente{característica} & \pendiente{umbral y condiciones} & \pendiente{método}\\
-RNF05 & \pendiente{característica} & \pendiente{umbral y condiciones} & \pendiente{método}\\
-RNF06 & \pendiente{característica} & \pendiente{umbral y condiciones} & \pendiente{método}\\
+RNF01 &
+Eficiencia del desempeño (comportamiento temporal) &
+Las operaciones de registro de solicitudes, consulta de estado, aceptación, reprogramación y visualización de reportes deberán completarse en un máximo de 5 segundos, con hasta 100 usuarios concurrentes y 10\,000 solicitudes registradas en el período académico activo, considerando Azure como entorno de referencia. &
+Realizar pruebas de carga en el entorno definido, registrar los tiempos de respuesta de cada operación y comprobar que no superen los 5 segundos bajo las condiciones establecidas. \\
+
+RNF02 &
+Fiabilidad (disponibilidad) &
+El SGRA deberá mantener una disponibilidad mínima del 99,5\,\% mensual durante el período académico, excluyendo los mantenimientos programados que hayan sido notificados con al menos 24 horas de anticipación. &
+Monitorear mensualmente la disponibilidad de las operaciones de solicitud y consulta de refuerzos. Calcular el porcentaje de tiempo operativo, descontando los mantenimientos notificados, y verificar que sea igual o superior al 99,5\,\%. \\
+
+RNF03 &
+Usabilidad (facilidad de uso y aprendizaje) &
+El SGRA deberá permitir que usuarios representativos de cada rol completen las tareas principales de su perfil, como registrar una solicitud, aceptar una sesión o consultar su estado, sin asistencia externa. La evaluación deberá alcanzar una puntuación promedio mínima de 70 puntos en la escala SUS. &
+Realizar pruebas de usabilidad con usuarios reales de los distintos roles, observar la ejecución de las tareas y aplicar el cuestionario SUS. Calcular la puntuación promedio y verificar que sea igual o superior a 70 puntos. \\
+
+RNF04 &
+Portabilidad (adaptabilidad) &
+El SGRA deberá funcionar en las dos últimas versiones estables de Google Chrome, Mozilla Firefox, Microsoft Edge y Safari, en dispositivos de escritorio, sin requerir complementos ni software adicional para utilizar sus funcionalidades. &
+Comprobar el funcionamiento de las operaciones principales del SGRA en las dos versiones indicadas de cada navegador. Registrar la versión, el sistema operativo y los errores encontrados, verificando que las operaciones puedan completarse sin fallos que impidan su uso. \\
+
+RNF05 &
+Seguridad (responsabilidad) &
+El SGRA deberá registrar el 100\,\% de las acciones críticas realizadas: registro, aceptación, rechazo, reprogramación y cancelación de solicitudes, así como generación de reportes. Cada registro deberá contener el usuario responsable, la fecha y la hora de la operación, sin permitir su eliminación mediante las funciones de la aplicación. &
+Ejecutar las seis clases de operaciones con usuarios de
+prueba y verificar que cada acción genere un registro
+con los datos requeridos. Intentar eliminar registros
+de auditoría mediante la interfaz y los endpoints
+disponibles, comprobando que estas operaciones sean
+rechazadas. \\
+
+RNF06 &
+Seguridad (integridad) &
+El SGRA deberá impedir el 100\,\% de las modificaciones no autorizadas sobre solicitudes, sesiones y registros de asistencia. Los datos presentados en los reportes deberán coincidir con la información almacenada, sin discrepancias en los registros evaluados. &
+Ejecutar pruebas de modificación con usuarios sin los permisos correspondientes y comprobar que ninguna altere la información. Comparar los datos de los reportes con sus registros de origen y verificar que no existan diferencias. \\
+
 \bottomrule
 \end{longtable}
+
+\noindent\textbf{RNF01 -- Rendimiento.}
+El tiempo máximo de 5 segundos se establece para mantener una respuesta
+oportuna en las operaciones principales del SGRA. La carga de hasta
+100 usuarios concurrentes y 10\,000 solicitudes registradas representa
+el escenario de operación considerado para evaluar el rendimiento del
+sistema. Azure se mantiene como entorno de referencia provisional para
+las pruebas, sujeto a las decisiones de despliegue del proyecto.
+
+
+\par\medskip
+\noindent\textbf{RNF02 -- Disponibilidad.}
+La disponibilidad del SGRA es necesaria para que estudiantes
+y docentes puedan gestionar sus solicitudes y consultar
+las sesiones programadas durante el período académico.
+El umbral mensual del 99,5\,\% establece el nivel mínimo
+de continuidad esperado para estas operaciones. Los
+mantenimientos programados se excluyen del cálculo
+siempre que se comuniquen con al menos 24 horas
+de anticipación.
+
+\par\medskip
+\noindent\textbf{RNF03 -- Usabilidad.}
+El SGRA dispone de funciones diferentes para estudiantes,
+docentes y personal administrativo. Por esta razón, resulta
+necesario evaluar si los usuarios pueden realizar las
+actividades correspondientes a su perfil sin ayuda externa.
+El puntaje mínimo de 70 en la escala SUS permite establecer
+un criterio cuantificable para valorar la facilidad de uso
+de la plataforma a partir de evaluaciones con usuarios reales.
+
+\par\medskip
+\noindent\textbf{RNF04 -- Compatibilidad entre navegadores.}
+El SGRA es una aplicación web utilizada por distintos perfiles
+académicos, por lo que su funcionamiento no debe depender de
+un navegador específico. La compatibilidad con las dos últimas
+versiones estables de Chrome, Firefox, Edge y Safari permite
+establecer un alcance definido para las pruebas y comprobar
+que las operaciones principales se mantengan accesibles desde
+diferentes entornos de escritorio.
+
+\par\medskip
+\noindent\textbf{RNF05 -- Auditoría de acciones.}
+El registro de las operaciones críticas permite identificar quién
+realizó un cambio y cuándo ocurrió. Esta información resulta
+necesaria para dar seguimiento a las solicitudes de refuerzo y
+revisar las decisiones tomadas durante su gestión. Se exige una
+cobertura del 100\,\% porque una operación sin registro dejaría
+incompleto el historial de acciones del SGRA.
+
+\par\medskip
+\noindent\textbf{RNF06 -- Integridad de la información.}
+Las solicitudes, sesiones y asistencias contienen información
+que debe conservarse sin alteraciones realizadas por usuarios
+no autorizados. Un cambio indebido puede afectar el estado
+de una tutoría o la información utilizada por coordinación
+académica. Por ello, se exige impedir todas las modificaciones
+no autorizadas y mantener la correspondencia entre los
+registros almacenados y los reportes generados.
+
 \subsection{Trazabilidad}\pendiente{Aplicar la guía de trazabilidad de ISO/IEC/IEEE 29148:2011~\cite{iso29148-2011}. Asociar cada requisito con el folio o minuto de la fuente, el hallazgo y el criterio o evidencia de validación.}
+
+
+\subsubsection{Trazabilidad de requisitos no funcionales}
+
+La Tabla~\ref{tab:trazabilidad-rnf} presenta la correspondencia
+entre los requisitos no funcionales del SGRA, sus identificadores
+de calidad y los criterios establecidos para verificar su cumplimiento.
+
+\begin{longtable}{@{}p{0.12\textwidth}p{0.16\textwidth}p{0.60\textwidth}@{}}
+\caption{Trazabilidad de los requisitos no funcionales}
+\label{tab:trazabilidad-rnf}\\
+\toprule
+\textbf{RNF} & \textbf{RQA} & \textbf{Condición de verificación}\\
+\midrule
+\endfirsthead
+
+\toprule
+\textbf{RNF} & \textbf{RQA} & \textbf{Condición de verificación}\\
+\midrule
+\endhead
+
+RNF01 & RQA06 &
+Tiempo máximo de 5 segundos con 100 usuarios concurrentes
+y 10\,000 solicitudes registradas. \\
+
+RNF02 & RQA01 &
+Disponibilidad mensual mínima del 99,5\,\%,
+considerando las exclusiones por mantenimiento. \\
+
+RNF03 & RQA07 &
+Ejecución autónoma de las tareas principales y
+promedio SUS mínimo de 70 puntos. \\
+
+RNF04 & RQA08 &
+Funcionamiento en las dos últimas versiones
+estables de los cuatro navegadores definidos. \\
+
+RNF05 & RQA03 &
+Registro del 100\,\% de las acciones críticas
+evaluadas, con usuario, fecha y hora. \\
+
+RNF06 & RQA05 &
+Rechazo de todas las modificaciones no autorizadas
+evaluadas y ausencia de discrepancias en los reportes. \\
+
+\bottomrule
+\end{longtable}
+
