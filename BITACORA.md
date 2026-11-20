@@ -248,3 +248,47 @@ Corregí la referencia de la entrevista de coordinación, asocié las fuentes co
 ### Tiempo dedicado
 
 2 horas.
+
+## 19 de noviembre de 2026 — Definición de requisitos no funcionales del SGRA
+
+**Integrante participante:** Mario Zambrano.
+
+### Actividades realizadas
+
+- Revisé el issue #12 y los requisitos de calidad del SGRA para adaptarlos a la primera entrega del PFC de Aplicaciones Distribuidas.
+- Desarrollé seis requisitos no funcionales en `docs/secciones/06-requisitos.tex`, relacionados con rendimiento, disponibilidad, usabilidad, compatibilidad entre navegadores, auditoría e integridad de la información.
+- Establecí las características correspondientes de ISO/IEC 25010, las metas cuantificadas, las condiciones de evaluación y los métodos de prueba.
+- Redacté las justificaciones de los seis requisitos, considerando su importancia para el funcionamiento y la gestión de refuerzos académicos.
+- Incorporé una tabla de trazabilidad que relaciona los requisitos RNF01–RNF06 con sus identificadores de calidad RQA.
+- Compilé el documento LaTeX con pdfLaTeX y Biber para revisar la presentación de las tablas, las justificaciones y la trazabilidad en el PDF.
+- Realicé ajustes puntuales en la estructura de la tabla y en la redacción de la trazabilidad.
+
+### Problemas y comportamientos observados
+
+Durante la revisión del PDF observé que la tabla de requisitos no funcionales se distribuía en varias páginas y presentaba una separación excesiva de palabras debido al ancho de las columnas. También identifiqué que el título de la subsección quedaba separado del inicio de la tabla.
+
+Además, quedó pendiente precisar algunos criterios de medición, especialmente las condiciones de ejecución y la duración de las pruebas de rendimiento.
+
+### Solución y recuperación
+
+Realicé ajustes en la distribución de las columnas y en el salto de página de la subsección. También corregí la descripción introductoria de la tabla de trazabilidad para relacionarla directamente con los requisitos no funcionales.
+
+### Resultados obtenidos
+
+- Se definieron los seis requisitos no funcionales solicitados en el issue #12.
+- Cada requisito cuenta con una característica de calidad, una meta verificable y un método de prueba.
+- Se incorporaron las justificaciones de los umbrales establecidos.
+- Se añadió la tabla de trazabilidad entre los identificadores RQA y RNF.
+- Se comprobó que el contenido desarrollado aparece en el documento PDF.
+- Los cambios quedaron registrados en GitHub. El issue #12 permanece abierto hasta completar la revisión final de los criterios de medición.
+
+### Evidencias
+
+- **Issue:** [#12 — Definir seis requisitos no funcionales verificables](https://github.com/Yukisan-uwo/PFC-SGRA/issues/12).
+- **Commit:** [7b67c86 — Definir seis requisitos no funcionales verificables](https://github.com/Yukisan-uwo/PFC-SGRA/commit/7b67c86785).
+- **Archivo modificado:** `docs/secciones/06-requisitos.tex`.
+- **Verificación:** compilación local del documento LaTeX y revisión visual de las tablas y justificaciones en el PDF.
+
+### Tiempo dedicado
+
+2 horas y 54 minutos.
