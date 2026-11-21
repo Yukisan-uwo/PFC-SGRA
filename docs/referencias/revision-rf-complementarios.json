@@ -1,0 +1,266 @@
+{
+  "date": "2026-11-21",
+  "scope": "Ampliación funcional solicitada por la usuaria: RF11–RF14 y RF15 para responder a reprogramaciones; ajustes de coherencia en RF07–RF10. No se cambian ADR, C4 ni la justificación arquitectónica.",
+  "status": "Especificación para revisión; no acredita implementación, pruebas funcionales ni aprobación de arquitectura por el equipo.",
+  "standard": {
+    "reference": "ISO/IEC/IEEE 29148:2011",
+    "clauses": [
+      "5.2.5",
+      "5.2.6",
+      "5.2.7",
+      "5.2.8.1"
+    ],
+    "application": "Identificadores únicos, condiciones verificables, vocabulario de estados consistente y desglose de administración en obligaciones identificadas."
+  },
+  "user_clarifications": [
+    "Coordinación se limita al seguimiento dentro del enfoque actual de integración con un SGA simulado.",
+    "El gestor atiende sesiones presenciales individuales y grupales.",
+    "El docente indica Aula o Laboratorio al programar una sesión presencial.",
+    "El rechazo de una reserva admite motivo opcional.",
+    "Reasignar un espacio y cancelar la solicitud completa deben diferenciarse.",
+    "Si no hay reemplazo inmediato para una reserva afectada por un imprevisto, el refuerzo vuelve a En espera de espacio.",
+    "Cada cambio de estado y los datos de programación deben comunicarse por correo mediante Gmail.",
+    "Cada estudiante puede aceptar o rechazar una reprogramación con motivo opcional.",
+    "En una grupal, al menos una aceptación permite continuar; si todos rechazan, se rechaza en su totalidad."
+  ],
+  "architecture_review": {
+    "consulted": [
+      "docs/adr/ADR-001-estilo-arquitectura.md",
+      "docs/adr/ADR-003-alcance-reutilizacion-tecnologias.md",
+      "docs/secciones/07-justificacion.tex",
+      "docs/secciones/08-arquitectura.tex",
+      "docs/secciones/03-contexto.tex"
+    ],
+    "findings": [
+      "ADR-001 propone un núcleo modular de refuerzos integrado con un SGA simulado; mantiene revisión y aprobación pendientes.",
+      "ADR-003 ya enumera al gestor de áreas de trabajo entre cinco actores; ADR-001 y el texto del C4 siguen aludiendo a cuatro actores o a incorporación pendiente. Se registra la discrepancia sin reescribir decisiones ajenas a esta tarea.",
+      "El original atribuía cargas académicas a coordinación y administración de catálogos académicos al administrador. Los nuevos RF separan el seguimiento y la configuración local de la provisión de datos académicos atribuida al SGA en la propuesta."
+    ],
+    "remaining_alignment": "Corresponde al equipo alinear actores, permisos y propiedad de datos en ADR y C4; estos requisitos no convierten la propuesta arquitectónica en decisión aprobada."
+  },
+  "original_document": "evidencias/levantamiento/SGRA-documentacion-original.pdf",
+  "requirements": [
+    {
+      "id": "RF11",
+      "capability": "Seguimiento de coordinación",
+      "original_ids": [
+        "RF29",
+        "RF30",
+        "RP08",
+        "HU-05"
+      ],
+      "original_printed_pages": [
+        81,
+        91,
+        197,
+        198
+      ],
+      "original_pdf_pages": [
+        81,
+        91,
+        190,
+        191
+      ],
+      "elicitation": "ENT-01 00:51–01:16: seguimiento académico. Solo lectura y exclusión de cargas son delimitaciones actuales.",
+      "checks": [
+        "Filtrar período, docente, asignatura, estado y fechas",
+        "Exportar PDF y Excel y cotejar filtros y datos",
+        "Resultado vacío",
+        "Denegar escritura con rol de coordinación y acceso fuera de su ámbito"
+      ]
+    },
+    {
+      "id": "RF12",
+      "capability": "Resolver reservas físicas",
+      "original_ids": [
+        "RF13",
+        "RF18",
+        "RF19",
+        "RF20",
+        "RP03",
+        "HU-04"
+      ],
+      "original_printed_pages": [
+        79,
+        80,
+        90,
+        196
+      ],
+      "original_pdf_pages": [
+        79,
+        80,
+        90,
+        189
+      ],
+      "elicitation": "ENT-02 01:37–02:20: dificultad de disponer de laboratorios y atención presencial. Las distinciones de reasignación y cancelación completa proceden de las aclaraciones de la usuaria.",
+      "adaptations": [
+        "Se distingue el rechazo de una reserva del rechazo o cancelación del refuerzo académico.",
+        "El rechazo de reserva deja el refuerzo pendiente de espacio; no inventa una aceptación académica ni cancela la solicitud.",
+        "El motivo de rechazo de reserva es opcional, sustituyendo la obligación que figuraba en RP03.",
+        "La reasignación puede resolver el reemplazo directamente o dejar pendiente la nueva asignación; la cancelación completa exige confirmación explícita."
+      ],
+      "checks": [
+        "Reserva dentro de jurisdicción, tipo solicitado, capacidad y disponibilidad del intervalo",
+        "Denegar tipo o capacidad incompatible y solapamiento",
+        "Aceptar reserva inicial y recuperar Aceptada",
+        "Asignar reserva de una sesión reprogramada y recuperar Reprogramada",
+        "Rechazar reserva con y sin motivo, manteniendo En espera de espacio",
+        "Reasignar a espacio válido y liberar anterior sin cancelar refuerzo",
+        "Sin reemplazo inmediato, liberar reserva afectada y pasar a En espera de espacio",
+        "Cancelar solicitud completa y liberar reserva; sin confirmación no efectuar esa cancelación",
+        "Impedir decisiones en una sesión Realizada y notificar las decisiones"
+      ]
+    },
+    {
+      "id": "RF13",
+      "capability": "Administración del SGRA",
+      "original_ids": [
+        "RF24",
+        "RF25",
+        "RF26",
+        "RF27",
+        "RF28",
+        "RF30",
+        "RF33",
+        "RF34",
+        "RF35",
+        "HU-06"
+      ],
+      "original_printed_pages": [
+        80,
+        81,
+        82,
+        198,
+        199
+      ],
+      "original_pdf_pages": [
+        80,
+        81,
+        82,
+        191,
+        192
+      ],
+      "source_type": "Análisis funcional anterior; adaptación a administración local del SGRA con datos académicos externos en la propuesta.",
+      "children": {
+        "RF13.1": "Cuentas, roles y permisos locales",
+        "RF13.2": "Parámetros internos y jurisdicciones",
+        "RF13.3": "Auditoría y reportes de administración",
+        "RF13.4": "Respaldos",
+        "RF13.5": "Correo de salida",
+        "RF13.6": "Identidad visual institucional"
+      },
+      "checks": [
+        "Cuenta administradora y usuario sin permisos",
+        "Datos válidos, obligatorios ausentes y duplicados",
+        "Activación, desactivación y conservación de histórico",
+        "Auditoría consultable e inalterable",
+        "Respaldo, historial y recuperación en entorno de prueba autorizado",
+        "Configuración de correo y protección de secretos",
+        "Logo válido e inválido",
+        "No otorgar escritura en la fuente académica SGA por este RF"
+      ],
+      "limit": "RF13 es una historia agrupadora; se desglosa porque una obligación genérica de toda la gestión no es singular ni suficientemente verificable."
+    },
+    {
+      "id": "RF14",
+      "capability": "Notificar estados y eventos relacionados",
+      "original_ids": [
+        "RF31",
+        "RP09",
+        "HU-07"
+      ],
+      "original_printed_pages": [
+        81,
+        91,
+        199
+      ],
+      "original_pdf_pages": [
+        81,
+        91,
+        192
+      ],
+      "elicitation": "ENT-01 06:44 y 13:24: avisos y datos de sesión. Gmail y cobertura explícita de cada estado proceden de la solicitud actual.",
+      "interpretation": "Gmail se describe como cuenta/servicio de envío configurado. Los destinatarios conservan sus correos registrados; no se exige que todos usen el dominio gmail.com ni se define una biblioteca o intermediario.",
+      "checks": [
+        "Registro inicial y cada transición confirmada",
+        "Destinatarios según vínculo con refuerzo o reserva",
+        "Identificar si cambia el refuerzo, la reserva o la participación",
+        "Datos de día, inicio, duración, tipo, modalidad, docente y ubicación o enlace",
+        "Distinguir datos pendientes de confirmados",
+        "Motivo opcional y privacidad de las respuestas individuales",
+        "Reserva reasignada sin cambio global del refuerzo también notificada",
+        "Fallo de envío deja evidencia pendiente para reintento sin deshacer la transición",
+        "Consulta y validación fallida no generan un cambio notificado"
+      ],
+      "limit": "Registro de envío no equivale a lectura por el destinatario. No se atribuye al código actual una cola durable ya implementada."
+    },
+    {
+      "id": "RF15",
+      "capability": "Responder a reprogramación",
+      "original_ids_as_background_only": [
+        "RP04",
+        "RP06"
+      ],
+      "original_printed_pages": [
+        90,
+        91
+      ],
+      "original_pdf_pages": [
+        90,
+        91
+      ],
+      "source_type": "Extensión solicitada por la usuaria. RP06 regula participación grupal, pero no acredita por sí solo este flujo de aceptación de horarios reprogramados.",
+      "checks": [
+        "Respuesta propia Acepta o Rechaza con y sin motivo",
+        "Respuesta asociada al horario vigente y visible al docente",
+        "No reutilizar respuestas del horario anterior ni aceptar respuestas sobre una versión sustituida",
+        "Un rechazo y una aceptación permiten continuar para quien aceptó",
+        "Todos responden Rechaza: estado global Rechazada y liberación de reserva",
+        "Cero aceptaciones con respuestas pendientes: no inferir rechazo global",
+        "Sesión presencial no ejecutable sin espacio confirmado",
+        "Asistencia solo de quienes aceptaron; rechazar participación no genera una ausencia",
+        "Nadie responde por otro estudiante"
+      ],
+      "silence_policy": "No se fija plazo de respuesta no aportado por la usuaria; el silencio queda como pendiente y no es rechazo automático."
+    }
+  ],
+  "related_updates": {
+    "RF07": "En modalidad presencial, exigir tipo Aula o Laboratorio y generar reserva; queda En espera de espacio.",
+    "RF08": "Habilitar al docente asignado a reprogramar Aceptada o Reprogramada y En espera de espacio con programación existente, para evitar que una reserva rechazada bloquee toda modificación. Volver a validar reserva y pedir respuestas RF15.",
+    "RF09": "En reprogramadas, tomar asistencia solo de quienes aceptaron el horario vigente.",
+    "RF10": "Exigir al menos una aceptación del horario vigente si hubo reprogramación."
+  },
+  "verification": {
+    "latex_compile": "pdfLaTeX + Biber; sin citas sin resolver",
+    "visual_review": "RF07–RF15, desglose administrativo, trazabilidad y declaración de asistencia revisados.",
+    "functional_tests": "No ejecutadas; los casos son criterios de aceptación",
+    "team_review": "Pendiente",
+    "pdf_pages": 50,
+    "unique_parent_identifiers": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15"
+    ],
+    "administration_child_count": 6,
+    "unchanged_rnf": true,
+    "unchanged_architecture_documents": [
+      "docs/secciones/07-justificacion.tex",
+      "docs/secciones/08-arquitectura.tex",
+      "docs/adr/ADR-001-estilo-arquitectura.md",
+      "docs/adr/ADR-003-alcance-reutilizacion-tecnologias.md"
+    ]
+  },
+  "consulted_source_sha256": "c0f77743b58357a448461a0853db098fc12ec55c651367d67ba213a4fcc1e6f6"
+}

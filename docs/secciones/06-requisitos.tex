@@ -8,15 +8,149 @@ A partir de estos antecedentes, se reformularon las
 historias de usuario de acuerdo con el alcance
 establecido para el PFC.
 
-% Al menos 10 historias de usuario con criterios de aceptación observables.
-\pendiente{Redactar al menos 10 requisitos funcionales como historias de usuario, con ID, actor, necesidad, beneficio, fuente del levantamiento y criterios de aceptación. Usar ISO/IEC/IEEE 29148:2011~\cite{iso29148-2011} como guía para revisar que sean claros y verificables.}
+Las historias identifican actor, necesidad y beneficio, y se acompañan
+de criterios observables. Su redacción considera las características
+individuales y del conjunto de requisitos y sus atributos de
+identificación y dependencia de ISO/IEC/IEEE 29148:2011,
+apartados 5.2.5--5.2.8~\cite{iso29148-2011}.
+RF01--RF05 corresponden a solicitud y seguimiento por el estudiante;
+RF06--RF10, a atención y programación por el docente.
+RF11--RF15 amplían el conjunto con seguimiento de coordinación,
+gestión de espacios, administración, notificaciones y respuesta
+del estudiante a una reprogramación.
+El estudiante solicita el refuerzo y el docente determina su
+programación al aceptarlo.
+
+Coordinación consulta el seguimiento del refuerzo; la provisión
+de datos académicos corresponde al SGA en el enfoque de integración
+propuesto. El gestor atiende espacios para sesiones presenciales
+individuales y grupales. La reserva de un espacio y la solicitud
+de refuerzo tienen decisiones diferenciadas: reasignar o rechazar
+una reserva no equivale a cancelar el refuerzo.
+
+RF01--RF05 requieren autenticación como estudiante. Desde su cuenta,
+el estudiante consulta las solicitudes que registró y las grupales
+en las que participa, con sus sesiones y recursos; desde ese
+rol solo puede cancelar las que registró. Los accesos
+fuera de ese ámbito, incluidos los intentos directos por identificador,
+se rechazan sin revelar información ajena ni modificar registros.
+
 \begin{longtable}{@{}p{0.10\textwidth}p{0.40\textwidth}p{0.40\textwidth}@{}}
 \toprule\textbf{ID}&\textbf{Historia de usuario}&\textbf{Criterios de aceptación}\\\midrule\endhead
-RF01 & \pendiente{historia} & \pendiente{criterios}\\
-RF02 & \pendiente{historia} & \pendiente{criterios}\\
-RF03 & \pendiente{historia} & \pendiente{criterios}\\
-RF04 & \pendiente{historia} & \pendiente{criterios}\\
-RF05 & \pendiente{historia} & \pendiente{criterios}\\
+% RF01. Origen: SGRA RF03, RF04 y RP01; HU-01.
+RF01 &
+Como estudiante, quiero registrar una solicitud de refuerzo
+en una asignatura del período vigente indicando mi disponibilidad,
+para recibir apoyo
+del docente que me imparte esa asignatura
+\cite{Ponce2025-Entrevista,SGRA-documentacion-original}. &
+Solo se admiten asignaturas en las que el estudiante esté
+matriculado en el período vigente. Al seleccionar una
+asignatura sin docente asignado a su paralelo, se muestra
+el aviso en el formulario y se impide registrar la solicitud,
+sin esperar al envío. Si existe asignación, se asocia ese docente.
+\par\smallskip\noindent
+El campo Horario de preferencia recoge la disponibilidad
+del estudiante y queda guardado con la solicitud, visible
+para el docente al revisarla. Es una preferencia;
+la programación se confirma mediante RF07.
+\par\smallskip\noindent
+El motivo debe tener al menos 10 caracteres después de
+retirar espacios iniciales y finales; el tipo es Individual
+o Grupal. Una solicitud grupal exige al menos otro estudiante
+de la misma asignatura, curso y paralelo, sin duplicados.
+\par\smallskip\noindent
+El archivo de apoyo es opcional. Si se adjunta, debe ser
+PDF, DOCX, XLSX, JPG o PNG y no superar 10 MB
+(10\,000\,000 bytes).
+\par\smallskip\noindent
+Con datos válidos, se guarda la solicitud con identificador,
+solicitante, asignatura y docente, en estado Pendiente,
+disponible para su consulta y revisión docente (RF06).
+Si falla una validación, se indica el dato a corregir
+y no se guarda la solicitud. \\
+
+% RF02. Origen: SGRA RF06; HU-02.
+RF02 &
+Como estudiante, quiero consultar el estado de mis
+solicitudes de refuerzo, para conocer su avance
+y saber si debo asistir a una sesión
+\cite{Ponce2025-Entrevista,SGRA-documentacion-original}. &
+La consulta lista las solicitudes registradas por el estudiante
+y las grupales en las que participa, identifica al solicitante
+y muestra el estado vigente del refuerzo asociado:
+Pendiente, En espera de espacio, Aceptada, Reprogramada,
+Cancelada, Realizada o Rechazada.
+\par\smallskip\noindent
+Se puede filtrar por estado, asignatura y tipo de sesión;
+solo se muestran registros que satisfagan los filtros.
+Si no hay coincidencias, se informa que no hay resultados.
+\par\smallskip\noindent
+Después de una aceptación, rechazo, reprogramación,
+cancelación o cierre confirmado, al volver a consultar
+se muestra el estado resultante. La consulta no modifica
+la solicitud ni programa una sesión. \\
+
+% RF03. Origen: SGRA RF07; HU-02.
+RF03 &
+Como estudiante, quiero cancelar una solicitud pendiente
+que registré, para retirar un pedido de refuerzo
+que ya no necesito \cite{SGRA-documentacion-original}. &
+Desde el rol de estudiante, solo el solicitante puede cancelarla y
+únicamente si sigue en estado Pendiente al confirmar.
+En una solicitud grupal, los demás participantes pueden
+consultarla, pero no tienen habilitada la acción Cancelar.
+\par\smallskip\noindent
+Al confirmar, el estado cambia a Cancelada, se conserva
+el registro para consulta y se registra la acción
+según RNF05.
+\par\smallskip\noindent
+Si la solicitud ha dejado de estar Pendiente al confirmar,
+se rechaza la cancelación, se indica
+la causa y se conserva el estado vigente.
+Si el estudiante no confirma la acción, la solicitud no cambia. \\
+
+% RF04. Origen: SGRA RF08 y RP03; HU-02.
+RF04 &
+Como estudiante, quiero consultar el detalle actualizado
+de una sesión de refuerzo a la que estoy vinculado,
+para conocer cuándo y cómo recibiré la atención
+\cite{Ponce2025-Entrevista,SGRA-documentacion-original}. &
+Si existe programación, se muestran asignatura, docente,
+fecha, franja horaria, duración, modalidad y estado vigente.
+Después de una reprogramación confirmada (RF08),
+la consulta muestra los nuevos datos.
+\par\smallskip\noindent
+Para una sesión virtual se muestra el enlace cuando el
+docente lo haya registrado; si falta, se indica que está
+pendiente. Para una presencial se muestra el espacio
+asignado o se indica que su asignación está pendiente.
+\par\smallskip\noindent
+Si la solicitud todavía no tiene sesión programada,
+se informa esa situación sin presentar fecha, espacio
+o enlace como confirmados. La consulta no permite
+al estudiante cambiar la programación. \\
+
+% RF05. Origen: SGRA RF09; HU-02.
+RF05 &
+Como estudiante, quiero consultar el historial de mis
+sesiones realizadas con sus recursos de apoyo,
+para repasar los contenidos del refuerzo recibido
+\cite{Daz2025,SGRA-documentacion-original}. &
+El historial incluye únicamente sesiones en estado Realizada
+a las que el estudiante esté vinculado, con asignatura,
+docente y fecha. Una sesión aceptada o reprogramada
+no aparece como realizada hasta su cierre (RF10).
+\par\smallskip\noindent
+Se puede filtrar por asignatura y rango de fechas,
+incluyendo sus extremos. Un rango cuyo inicio sea posterior
+al fin se rechaza indicando la corrección necesaria.
+Sin coincidencias, se informa que no hay resultados.
+\par\smallskip\noindent
+Los recursos publicados por el docente para cada sesión
+pueden consultarse y descargarse conservando su asociación
+con ella. Si no hay recursos, se informa esa situación;
+no se muestran archivos de otras sesiones. \\
 
 % RF06 - Mario. Origen: SGRA RF10.
 RF06 &
@@ -56,14 +190,23 @@ del mismo docente, el sistema informa del conflicto y no
 guarda la programación.
 \par\smallskip\noindent
 Si los datos son válidos y no hay solapamiento, el sistema
-guarda la programación vinculada a la solicitud. \\
+guarda la programación vinculada a la solicitud.
+\par\smallskip\noindent
+En modalidad presencial se exige seleccionar el tipo de
+espacio, Aula o Laboratorio. La programación genera una
+reserva con fecha, franja, duración y cupo requerido,
+dirigida al gestor correspondiente (RF12); el refuerzo queda
+En espera de espacio hasta obtener una asignación válida.
+Una sesión virtual no genera reserva física. \\
 
 % RF08 - Mario. Origen: SGRA RP04.
 RF08 &
-Como docente, quiero reprogramar una sesión aceptada
+Como docente, quiero reprogramar una sesión de refuerzo
 cuando necesite modificar su horario, para mantener
 la atención académica sin perder la solicitud original \cite{Daz2025}. &
-Solo se permite reprogramar sesiones en estado Aceptada.
+Solo el docente asignado puede reprogramar sesiones en estado
+Aceptada o Reprogramada, o En espera de espacio con una
+programación ya registrada.
 \par\smallskip\noindent
 El docente debe seleccionar una nueva fecha y franja
 horaria sin solapamientos con otras sesiones activas.
@@ -73,7 +216,11 @@ conserva la programación anterior.
 \par\smallskip\noindent
 Al confirmar, el estado cambia a Reprogramada, se
 mantiene la solicitud original y se notifica a los
-participantes. \\
+participantes mediante RF14 para que respondan según RF15.
+Si la sesión es presencial, se vuelve a validar la reserva
+para el nuevo intervalo; si no puede mantenerse ni asignarse
+otra, queda En espera de espacio y se libera la anterior.
+La programación sustituida deja de figurar como vigente. \\
 
 % RF09. Origen: SGRA RF15.
 RF09 &
@@ -91,7 +238,9 @@ Al guardar, cada marca queda asociada al participante y a
 su sesión, y se muestra al volver a consultar la asistencia.
 \par\smallskip\noindent
 Guardar la asistencia no cambia el estado de la sesión a
-Realizada. \\
+Realizada. En una sesión reprogramada solo se registra
+asistencia de quienes aceptaron el horario vigente (RF15);
+un rechazo de participación no se registra como ausencia. \\
 
 % RF10 - Mario. Origen: SGRA RF16.
 RF10 &
@@ -100,7 +249,8 @@ resultados de una sesión realizada y adjuntar materiales
 de apoyo, para dejar constancia de la atención y facilitar
 el seguimiento académico del estudiante \cite{Daz2025}. &
 El cierre solo se permite desde una sesión en estado
-Aceptada o Reprogramada.
+Aceptada o Reprogramada. Si hubo reprogramación,
+debe existir al menos una aceptación del horario vigente (RF15).
 \par\smallskip\noindent
 Las observaciones y los resultados son obligatorios.
 \par\smallskip\noindent
@@ -109,6 +259,168 @@ Al confirmar, el estado de la sesión cambia a Realizada.
 Los recursos adjuntos son opcionales y, cuando existen,
 quedan vinculados a la sesión y disponibles en el
 historial del estudiante. \\
+
+% RF11. Origen: SGRA RF29, RF30 y RP08; alcance actual de seguimiento.
+RF11 &
+Como coordinador académico, quiero consultar el seguimiento
+de los refuerzos de mi ámbito académico, para identificar
+su cumplimiento y las necesidades de atención
+\cite{Ponce2025-Entrevista,SGRA-documentacion-original}. &
+Solo se muestran registros del ámbito académico autorizado,
+filtrables por período, docente, asignatura, estado y fechas.
+Se visualizan solicitudes, sesiones y participación registrada.
+\par\smallskip\noindent
+Los totales y reportes corresponden a los registros filtrados.
+Se pueden exportar en PDF o Excel conservando filtros,
+período y fecha de generación. Sin coincidencias, se informa
+que no hay resultados.
+\par\smallskip\noindent
+El rol es de seguimiento: no puede cargar o modificar datos
+académicos del SGA, decidir solicitudes, programar sesiones,
+asignar espacios ni alterar asistencias. Los intentos de
+modificación con ese rol se rechazan sin cambios. \\
+
+% RF12. Origen: SGRA RF13, RF18-RF20 y RP03; ampliaciones funcionales actuales.
+RF12 &
+Como gestor de espacios físicos, quiero resolver las
+reservas presenciales de mi jurisdicción, para disponer
+de un aula o laboratorio apto para cada sesión
+\cite{SGRA-documentacion-original}. &
+Solo atiende reservas de su jurisdicción. Para aceptar,
+selecciona un espacio activo del tipo pedido, con capacidad
+para el cupo requerido y libre durante todo el intervalo.
+Un conflicto impide guardar la asignación.
+\par\smallskip\noindent
+Al asignar, se registra la reserva y el refuerzo pasa de
+En espera de espacio a Aceptada, o a Reprogramada si su
+horario fue cambiado. Si rechaza la reserva, el motivo es
+opcional; se conserva el refuerzo En espera de espacio.
+\par\smallskip\noindent
+Ante un imprevisto, Reasignar espacio conserva la solicitud
+y el horario: sustituye el espacio por otro válido y libera
+el anterior. Si no hay reemplazo inmediato, libera la reserva
+afectada y deja el refuerzo En espera de espacio.
+\par\smallskip\noindent
+Cancelar la solicitud completa es otra acción y exige
+confirmación: cambia el refuerzo a Cancelada, libera
+su reserva e impide registrar su ejecución.
+Solo procede en estado Aceptada, Reprogramada o En espera
+de espacio. Las decisiones quedan
+registradas y generan las notificaciones de RF14. \\
+
+% RF13. Historia agrupadora de administración; obligaciones en RF13.1-RF13.6.
+RF13 &
+Como administrador, quiero administrar los accesos y
+la configuración del SGRA, para mantener una operación
+controlada y trazable \cite{SGRA-documentacion-original}. &
+Solo usuarios autorizados como administradores pueden
+ejecutar las funciones de la Tabla~\ref{tab:rf-administracion}.
+Los cambios válidos se conservan y registran con actor,
+fecha y acción; los inválidos se rechazan sin cambios.
+\par\smallskip\noindent
+La administración de la aplicación no autoriza a modificar
+datos académicos cuya fuente sea el SGA ni a alterar
+las decisiones operativas de estudiantes, docentes o gestores.
+Los registros históricos y de auditoría se conservan. \\
+
+% RF14. Origen: SGRA RF31 y RP09; Gmail y datos del evento según aclaración actual.
+RF14 &
+Como participante del proceso de refuerzo, quiero recibir
+por correo los cambios que me afectan, para conocer
+el estado y los datos vigentes de mi sesión
+\cite{Ponce2025-Entrevista,SGRA-documentacion-original}. &
+Cada registro inicial y cambio confirmado del estado del
+refuerzo genera aviso mediante la cuenta Gmail de envío
+configurada, a los correos registrados del docente y los
+estudiantes vinculados. El gestor recibe además los eventos
+de la reserva física que atiende. No se envían datos a terceros.
+\par\smallskip\noindent
+El aviso identifica solicitud, asignatura, evento y fecha;
+distingue el estado del refuerzo, la reserva o la participación
+que cambió y su valor anterior y nuevo. Si existe programación,
+incluye docente, tipo de sesión, día, hora de inicio, duración,
+modalidad y espacio o enlace disponible; identifica lo pendiente.
+Incluye el motivo de rechazo o cancelación si fue registrado.
+Una reprogramación muestra el nuevo horario y permite
+acceder al SGRA para responder mediante RF15.
+\par\smallskip\noindent
+También se notifican decisiones de reserva y respuestas de
+participación. El motivo de una respuesta individual se
+comunica solo a su autor y al docente.
+\par\smallskip\noindent
+Se registra destinatario, evento, fecha y resultado del envío.
+Si falla, se conserva pendiente para reintento, sin deshacer
+el cambio de negocio. Una consulta o validación fallida
+no genera un cambio notificado. El registro de envío
+no acredita que la persona haya leído el mensaje. \\
+
+% RF15. Extensión actual: respuesta a reprogramación; antecedentes RP04 y RP06.
+RF15 &
+Como estudiante vinculado a una sesión reprogramada,
+quiero aceptar o rechazar el nuevo horario, para confirmar
+si puedo participar de acuerdo con mi disponibilidad. &
+Desde su cuenta, cada estudiante responde Acepta o Rechaza
+a la programación vigente, con motivo opcional. Se conserva
+la respuesta con estudiante, horario y fecha, visible al docente;
+nadie responde en nombre de otro participante.
+\par\smallskip\noindent
+Las respuestas anteriores no confirman un horario nuevo.
+Mientras falten respuestas y nadie acepte, se muestra
+confirmación pendiente, sin tratar el silencio como rechazo.
+\par\smallskip\noindent
+Con al menos una aceptación, los estudiantes que aceptaron
+pueden asistir; el rechazo de otro no cancela la sesión.
+La ejecución exige además espacio confirmado si es presencial.
+\par\smallskip\noindent
+Si todos los estudiantes vinculados responden Rechaza,
+el refuerzo pasa a Rechazada, se libera la reserva y se
+notifica el rechazo total mediante RF14. Desde ese estado
+no se permite registrar asistencia ni cerrar como Realizada.
+Las respuestas no modifican por sí solas la fecha o franja. \\
+\bottomrule
+\end{longtable}
+
+Por la amplitud del rol, RF13 es una historia agrupadora.
+Sus obligaciones se identifican por separado para mantener
+la verificabilidad y evitar que una función ausente quede
+oculta bajo la expresión general de administrar el sistema.
+Los catálogos académicos procedentes del SGA se consultan
+mediante la integración propuesta; se distinguen de los
+parámetros propios del refuerzo.
+
+\begin{longtable}{@{}p{0.13\textwidth}p{0.37\textwidth}p{0.43\textwidth}@{}}
+\caption{Desglose verificable de la administración del SGRA}
+\label{tab:rf-administracion}\\
+\toprule\textbf{ID}&\textbf{Capacidad}&\textbf{Criterio de aceptación}\\\midrule\endfirsthead
+\toprule\textbf{ID}&\textbf{Capacidad}&\textbf{Criterio de aceptación}\\\midrule\endhead
+RF13.1 & Gestionar cuentas, roles y permisos locales. &
+Crear, consultar, editar y activar o desactivar cuentas;
+asignar o revocar roles y permisos. Rechazar identificadores
+duplicados y datos obligatorios ausentes. Verificar que un
+usuario sin autorización no pueda ejecutar estas acciones.\\\addlinespace
+RF13.2 & Configurar parámetros del refuerzo. &
+Configurar nombres y activación de los tipos de sesión,
+modalidades y tipos de espacio previstos, y asignar
+la jurisdicción de los gestores. Rechazar nombres vacíos
+o duplicados y conservar las referencias de los registros históricos.\\\addlinespace
+RF13.3 & Consultar auditoría y reportes de administración. &
+Filtrar acciones por usuario, fecha y tipo; comprobar actor,
+instante y resultado. Generar reportes con datos de origen
+concordantes. Rechazar la edición o eliminación de auditoría.\\\addlinespace
+RF13.4 & Gestionar respaldos del SGRA. &
+Ejecutar un respaldo manual y programar respaldos;
+consultar historial, resultado y descarga. Restaurar un
+respaldo seleccionado requiere confirmación y autorización
+administrativa y deja constancia del resultado.\\\addlinespace
+RF13.5 & Configurar el correo de salida. &
+Registrar o actualizar la cuenta Gmail y sus parámetros de envío;
+probar conexión e informar éxito o error. Los secretos no
+aparecen en correos, reportes ni registros de auditoría.\\\addlinespace
+RF13.6 & Configurar la identidad visual institucional. &
+Cargar o sustituir el logo PNG o JPG de hasta 2 MB
+(2\,000\,000 bytes) y comprobar su vista previa
+y su uso en nuevos correos y reportes. Una imagen inválida
+se rechaza conservando la configuración anterior.\\
 \bottomrule
 \end{longtable}
 
@@ -217,7 +529,10 @@ registros almacenados y los reportes generados.
 
 
 \subsection{Trazabilidad}
-\pendiente{Aplicar la guía de trazabilidad de ISO/IEC/IEEE 29148:2011~\cite{iso29148-2011}. Asociar cada requisito con el folio o minuto de la fuente, el hallazgo y el criterio o evidencia de validación.}
+La trazabilidad asocia los identificadores de los requisitos con
+su fuente, el localizador del hallazgo y la condición de verificación,
+siguiendo los atributos de identificación y dependencia de
+ISO/IEC/IEEE 29148:2011~\cite{iso29148-2011}.
 
 \subsubsection{Trazabilidad de requisitos funcionales}
 La Tabla~\ref{tab:trazabilidad-rf} relaciona los requisitos
@@ -231,6 +546,18 @@ ENT-02 mediante reconocimiento de voz local y remiten a los
 temas recogidos en el Anexo~\ref{transcripcion:ent02}.
 La entrevista sustenta las necesidades; los criterios de
 aceptación especifican cómo comprobarlas en el SGRA.
+
+Para RF01--RF05 se utilizaron también el catálogo funcional,
+los requisitos de proceso y las historias HU-01 y HU-02 del
+informe previo~\cite{SGRA-documentacion-original}. Las reglas
+de cancelación y detalle proceden de su análisis funcional;
+no se atribuyen a una petición literal de las entrevistas.
+Las marcas de ENT-01 y ENT-02 identifican pasajes de las
+transcripciones recuperadas en los Anexos~\ref{transcripcion:ent01}
+y~\ref{transcripcion:ent02}; esta actividad no acredita su
+cotejo auditivo. Se emplea Realizada para la sesión cerrada,
+de acuerdo con RF10 y HU-02, unificando la denominación
+Completada del catálogo anterior.
 
 \begin{longtable}{@{}p{0.10\textwidth}p{0.16\textwidth}p{0.30\textwidth}p{0.29\textwidth}@{}}
 \caption{Trazabilidad de los requisitos funcionales}
@@ -252,6 +579,56 @@ aceptación especifican cómo comprobarlas en el SGRA.
 \midrule
 \endhead
 
+RF01 &
+RF03, RF04 y RP01; HU-01. &
+ENT-01 (07:54, tipo de sesión; 11:28, asignaturas activas).
+Catálogo y proceso previos: pp. 77--78 y 90;
+HU-01: pp. 194--195. &
+Registrar una solicitud válida y rechazar motivo de
+9 caracteres, ausencia de docente, participante ajeno
+al grupo o duplicado y adjunto inválido o excesivo.
+Comprobar el aviso al seleccionar una asignatura sin docente,
+la preferencia horaria guardada, el motivo de 10 caracteres
+y el archivo en el límite. \\
+
+RF02 &
+RF06; HU-02. &
+ENT-01 (13:24, información oportuna sobre la tutoría).
+RF06 previo: p. 78; HU-02: p. 195, estados y filtros. &
+Consultar solicitudes propias y grupales vinculadas
+en los estados previstos,
+aplicar filtros con y sin coincidencias y volver a consultar
+tras una transición confirmada. Rechazar acceso a datos ajenos. \\
+
+RF03 &
+RF07; HU-02. &
+Análisis funcional del informe previo: RF07, p. 78,
+y HU-02, p. 195. La entrevista no especifica
+la cancelación por el estudiante. &
+Cancelar una solicitud propia pendiente y comprobar estado,
+conservación y auditoría. En una grupal, comprobar que solo
+su creador puede cancelar y que la acción no está habilitada
+para los demás participantes. Rechazar la cancelación
+si cambió el estado antes de confirmar. \\
+
+RF04 &
+RF08 y RP03; HU-02. &
+ENT-01 (13:24, lugar, hora y modalidad).
+RF08 previo: p. 78; RP03: p. 90;
+HU-02: p. 195. &
+Consultar datos de una sesión presencial y otra virtual,
+antes y después de reprogramar. Distinguir programación,
+espacio o enlace pendientes de los datos confirmados. \\
+
+RF05 &
+RF09; HU-02. &
+ENT-02 (14:04--14:13, evidencia de sesiones).
+RF09 previo: p. 78; HU-02: p. 195,
+historial de sesiones realizadas y recursos. &
+Consultar historial con y sin sesiones realizadas;
+filtrar fechas válidas e inválidas, descargar un recurso
+publicado y rechazar un recurso de una sesión ajena. \\
+
 RF06 &
 RF10 &
 ENT-02 (08:41--08:56).
@@ -262,32 +639,35 @@ pendientes asignadas a él y que se registre
 la decisión correspondiente. \\
 
 RF07 &
-RF11 &
+RF11, RF13 y RP03. &
 ENT-02 (01:26--02:23, modalidad;
 09:14--10:40, disponibilidad horaria;
-12:39--13:15, duración configurable). &
+12:39--13:15, duración configurable).
+RF13 previo: p. 79, tipo de espacio y reserva. &
 Comprobar que la programación válida se vincule
 a la solicitud y que no se guarde si falta un dato,
 la duración no es positiva o hay un solapamiento
-con otra sesión activa del docente. \\
+con otra sesión activa del docente. En presencial, exigir
+Aula o Laboratorio y comprobar el envío de la reserva al gestor. \\
 
 RF08 &
 RP04 &
 ENT-02 (08:41--08:56).
 Necesidad de reprogramar solicitudes
 y organizar la atención docente. &
-Verificar que una sesión aceptada pueda
-reprogramarse sin conflictos de horario,
-conservando la solicitud original. \\
+Reprogramar sin conflictos una sesión autorizada,
+conservar su solicitud y volver a validar la reserva física.
+Comprobar la notificación y las respuestas individuales
+al nuevo horario (RF14 y RF15). \\
 
 RF09 &
 RF15 &
 ENT-02 (16:45--17:04).
 Importancia de registrar la asistencia o, al menos,
 los participantes de cada sesión. &
-Marcar a un participante como Presente y a otro
-como Ausente. Volver a consultar la sesión y
-comprobar que conserva ambas marcas y su estado. \\
+Marcar a participantes como Presente o Ausente y
+comprobar persistencia y estado. Si hubo reprogramación,
+excluir de la asistencia a quien rechazó el nuevo horario. \\
 
 RF10 &
 RF16 &
@@ -297,6 +677,56 @@ de las sesiones académicas realizadas. &
 Comprobar el registro de observaciones y resultados,
 el cambio de estado y la vinculación
 de recursos cuando corresponda. \\
+
+RF11 &
+RF29, RF30 y RP08; HU-05. &
+ENT-01 (00:51--01:16, seguimiento académico).
+Catálogo previo: p. 81; RP08: p. 91;
+HU-05: pp. 197--198. &
+Filtrar y exportar datos del ámbito autorizado;
+contrastar totales y registros de origen. Rechazar
+modificaciones y consultas fuera de ese ámbito. \\
+
+RF12 &
+RF13, RF18--RF20 y RP03; HU-04. &
+ENT-02 (01:37--02:20, espacios para atención presencial).
+Catálogo: pp. 79--80; RP03: p. 90;
+HU-04: p. 196. Reasignación y cancelación completa:
+reglas complementarias de esta revisión. &
+Asignar Aula o Laboratorio con capacidad y sin solapamiento;
+rechazar reserva con motivo opcional; reasignar conservando
+el refuerzo o cancelar la solicitud completa con confirmación.
+Sin reemplazo, comprobar En espera de espacio. \\
+
+RF13 &
+RF24--RF28, RF30 y RF33--RF35; HU-06. &
+Análisis funcional del catálogo: pp. 80--82;
+HU-06: pp. 198--199. Se distingue administración
+local de datos académicos provistos por el SGA. &
+Verificar RF13.1--RF13.6 con cuentas autorizadas
+y sin permisos, datos válidos e inválidos y evidencia
+de auditoría. No usar una restauración de prueba sobre
+datos reales del proyecto. \\
+
+RF14 &
+RF31 y RP09; HU-07. &
+ENT-01 (06:44 y 13:24, avisos y datos de la tutoría).
+Catálogo: p. 81; RP09: p. 91;
+HU-07: p. 199. Gmail se incorpora en esta revisión. &
+Por cada transición, comprobar destinatarios, estado
+y datos de programación; incluir decisiones del gestor
+y respuestas de participación. Simular fallo de envío
+y comprobar registro pendiente sin revertir el cambio. \\
+
+RF15 &
+RP04 y RP06 como antecedentes. &
+Reprogramación y participación grupal: pp. 90--91.
+La respuesta individual a un nuevo horario y el umbral
+de una aceptación son reglas añadidas en esta revisión. &
+En una grupal, aceptar uno y rechazar otro sin cancelación
+global; rechazar todos y comprobar Rechazada y liberación
+de reserva. Sin respuestas, no inferir rechazo.
+Rechazar respuestas por otro estudiante o a un horario sustituido. \\
 
 \bottomrule
 \end{longtable}

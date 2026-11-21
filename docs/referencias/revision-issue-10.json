@@ -1,0 +1,301 @@
+{
+  "date": "2026-11-21",
+  "issue": "https://github.com/Yukisan-uwo/PFC-SGRA/issues/10",
+  "related_issue": "https://github.com/Yukisan-uwo/PFC-SGRA/issues/11",
+  "scope": "Fase inicial: RF01–RF05 y su trazabilidad, asumidas por la usuaria. La ampliación posterior de roles y los ajustes autorizados a RF07–RF10 están documentados por separado.",
+  "standard": {
+    "edition": "ISO/IEC/IEEE 29148:2011",
+    "file": "docs/referencias/PDFs_Fuentes/29148-2011 - ISOIECIEEE International Standard - Systems and software engineering -- Life cycle processes --Requirements.pdf",
+    "clauses": [
+      {
+        "id": "5.2.5",
+        "pdf_page": 20,
+        "printed_page": 11,
+        "application": "Una capacidad por historia, redacción necesaria, no ambigua, verificable y libre de decisiones de implementación innecesarias."
+      },
+      {
+        "id": "5.2.6",
+        "pdf_pages": [
+          20,
+          21
+        ],
+        "printed_pages": [
+          11,
+          12
+        ],
+        "application": "Coherencia del conjunto, vocabulario de estados uniforme y ausencia de duplicación con las cinco historias de atención docente."
+      },
+      {
+        "id": "5.2.7",
+        "pdf_page": 21,
+        "printed_page": 12,
+        "application": "Condiciones y límites observables, evitando expresiones abiertas como adecuado, rápido o según corresponda sin condiciones de verificación."
+      },
+      {
+        "id": "5.2.8.1",
+        "pdf_page": 22,
+        "printed_page": 13,
+        "application": "Identificadores únicos y dependencias entre historias y fuentes de origen."
+      }
+    ],
+    "limit": "Revisión de la especificación con esta guía; no certificación de conformidad ni demostración de factibilidad mediante ejecución."
+  },
+  "original_document": "evidencias/levantamiento/SGRA-documentacion-original.pdf",
+  "requirements": [
+    {
+      "id": "RF01",
+      "capability": "Registrar solicitud de refuerzo",
+      "original_ids": [
+        "RF03",
+        "RF04",
+        "RP01",
+        "HU-01"
+      ],
+      "original_pdf_pages": [
+        77,
+        78,
+        90,
+        187,
+        188
+      ],
+      "original_printed_pages": [
+        77,
+        78,
+        90,
+        194,
+        195
+      ],
+      "elicitation": [
+        {
+          "id": "ENT-01",
+          "transcript_locator": "07:54",
+          "need": "Tutorías individuales y grupales"
+        },
+        {
+          "id": "ENT-01",
+          "transcript_locator": "11:28",
+          "need": "Asignaturas activas y docente que imparte el curso"
+        }
+      ],
+      "dependencies": [
+        "RF06"
+      ],
+      "proposed_checks": [
+        "Creación válida, identificador, estado Pendiente y docente asignado",
+        "Motivo de 9 y 10 caracteres tras retirar espacios externos",
+        "Ausencia de docente o matrícula vigente",
+        "Grupo sin compañero, compañero no elegible o repetido",
+        "Sin archivo, formato admitido o rechazado y tamaño en el límite o superior",
+        "Seleccionar asignatura sin docente: aviso en el formulario antes de enviar y registro impedido",
+        "Guardar el horario de preferencia y consultarlo durante la revisión docente; no constituye programación confirmada"
+      ],
+      "adaptations": [
+        "Se conserva el máximo de 10 MB de RF03 y se expresa como 10000000 bytes para evitar ambigüedad de unidades.",
+        "Se precisa el cómputo del motivo al retirar espacios externos.",
+        "No se incluye como capacidad cubierta la aceptación de invitaciones grupales del antiguo RF05.",
+        "El estudiante indica disponibilidad en Horario de preferencia; la programación definitiva corresponde al docente en RF07."
+      ]
+    },
+    {
+      "id": "RF02",
+      "capability": "Consultar estado de solicitudes",
+      "original_ids": [
+        "RF06",
+        "HU-02"
+      ],
+      "original_pdf_pages": [
+        78,
+        188
+      ],
+      "original_printed_pages": [
+        78,
+        195
+      ],
+      "elicitation": [
+        {
+          "id": "ENT-01",
+          "transcript_locator": "13:24",
+          "need": "Información oportuna sobre la tutoría; no define literalmente los estados ni filtros"
+        }
+      ],
+      "dependencies": [
+        "RF01",
+        "RF03",
+        "RF06",
+        "RF07",
+        "RF08",
+        "RF10"
+      ],
+      "proposed_checks": [
+        "Solicitudes propias y grupales en las que participa, con identificación del solicitante",
+        "Estados y filtros documentados en HU-02",
+        "Consulta después de una transición confirmada",
+        "Filtros sin coincidencias",
+        "Rechazo de identificadores fuera de las solicitudes propias o grupales autorizadas"
+      ],
+      "adaptations": [
+        "Los estados visibles corresponden al seguimiento del refuerzo asociado; una consulta no provoca transiciones.",
+        "Se usa Realizada según HU-02 y RF10 actual en lugar de Completada del catálogo previo."
+      ]
+    },
+    {
+      "id": "RF03",
+      "capability": "Cancelar solicitud propia pendiente",
+      "original_ids": [
+        "RF07",
+        "HU-02"
+      ],
+      "original_pdf_pages": [
+        78,
+        188
+      ],
+      "original_printed_pages": [
+        78,
+        195
+      ],
+      "elicitation": [],
+      "source_type": "Análisis funcional previo; no se inventa una petición literal del estudiante en una entrevista.",
+      "dependencies": [
+        "RF01",
+        "RF02",
+        "RNF05"
+      ],
+      "proposed_checks": [
+        "Cancelación confirmada con conservación del registro y auditoría",
+        "Sin confirmación no hay cambio",
+        "En una solicitud grupal, solo el creador dispone de Cancelar; los demás participantes consultan sin permiso para cancelar",
+        "La solicitud cambia de estado antes de confirmar: cancelación rechazada y estado vigente conservado"
+      ]
+    },
+    {
+      "id": "RF04",
+      "capability": "Consultar detalle de sesión",
+      "original_ids": [
+        "RF08",
+        "RP03",
+        "HU-02"
+      ],
+      "original_pdf_pages": [
+        78,
+        90,
+        188
+      ],
+      "original_printed_pages": [
+        78,
+        90,
+        195
+      ],
+      "elicitation": [
+        {
+          "id": "ENT-01",
+          "transcript_locator": "13:24",
+          "need": "Lugar, hora y modalidad de las tutorías"
+        }
+      ],
+      "dependencies": [
+        "RF07",
+        "RF08"
+      ],
+      "proposed_checks": [
+        "Sesión vinculada al estudiante y solicitud ajena rechazada",
+        "Datos actuales tras reprogramar",
+        "Sesión virtual con enlace registrado o pendiente",
+        "Sesión presencial con espacio asignado o pendiente",
+        "Solicitud sin programación no muestra datos como confirmados"
+      ],
+      "adaptations": [
+        "El espacio se vincula con RP03; la consulta no integra videoconferencia ni modifica la programación."
+      ]
+    },
+    {
+      "id": "RF05",
+      "capability": "Consultar historial de sesiones realizadas y recursos",
+      "original_ids": [
+        "RF09",
+        "HU-02"
+      ],
+      "original_pdf_pages": [
+        78,
+        188
+      ],
+      "original_printed_pages": [
+        78,
+        195
+      ],
+      "elicitation": [
+        {
+          "id": "ENT-02",
+          "transcript_locator": "14:04–14:13",
+          "need": "Evidencia de las sesiones; el acceso del estudiante y los filtros proceden del análisis funcional previo"
+        }
+      ],
+      "dependencies": [
+        "RF10"
+      ],
+      "proposed_checks": [
+        "Solo sesiones Realizadas vinculadas al estudiante",
+        "Sesiones aceptadas o reprogramadas excluidas del historial de realizadas",
+        "Filtro de asignatura y fechas inclusivas",
+        "Rango invertido rechazado y búsqueda sin resultados informada",
+        "Recurso publicado descargable, sesión sin recursos y recurso ajeno rechazado"
+      ],
+      "adaptations": [
+        "Realizada unifica el estado con RF10 actual.",
+        "Se precisan extremos inclusivos y rechazo del rango invertido para hacer verificable el filtro."
+      ]
+    }
+  ],
+  "evidence_limits": [
+    "Se consultaron las transcripciones recuperadas; no se realizó escucha ni nueva transcripción de audio en esta actividad.",
+    "La encuesta de estudiantes figura como procedencia en el informe anterior; no se verificaron respuestas crudas ni se atribuyen respuestas individuales.",
+    "Los escenarios definen comprobaciones futuras y no son pruebas ejecutadas del sistema.",
+    "No se modifica el reparto ni el estado de los issues en GitHub. El cierre de #10 requiere la comprensión del conjunto por los cuatro integrantes, aún no acreditada."
+  ],
+  "consulted_files": [
+    {
+      "file": "docs/referencias/PDFs_Fuentes/29148-2011 - ISOIECIEEE International Standard - Systems and software engineering -- Life cycle processes --Requirements.pdf",
+      "sha256": "fbc893ca2ec08da5da5ad3f7cf0734374a30a3cadfaaa2f009db394f4965cfaa"
+    },
+    {
+      "file": "evidencias/levantamiento/SGRA-documentacion-original.pdf",
+      "sha256": "c0f77743b58357a448461a0853db098fc12ec55c651367d67ba213a4fcc1e6f6"
+    },
+    {
+      "file": "docs/secciones/19-transcripciones.tex",
+      "sha256": "d6f1ba38c8ecd219a9cc9fef227629a325d71e6971962173ae8e2c41b5bf6b44"
+    }
+  ],
+  "user_clarifications": [
+    {
+      "date": "2026-11-21",
+      "source": "Aclaración directa de la usuaria durante la revisión de RF01 y RF03",
+      "details": [
+        "Aviso al seleccionar una asignatura sin docente, antes del envío.",
+        "Campo Horario de preferencia para indicar disponibilidad del estudiante.",
+        "El acceso a solicitudes grupales desde la cuenta propia no permite cancelar si otro participante la registró."
+      ],
+      "limit": "No se infieren obligatoriedad, formato ni granularidad del horario de preferencia sin otra especificación."
+    }
+  ],
+  "subsequent_extension": "docs/referencias/revision-rf-complementarios.json",
+  "initial_issue10_verification": {
+    "latex_compile": "pdfLaTeX + Biber, ajustes de RF01–RF03 incluidos; sin citas sin resolver.",
+    "visual_review": "Revisadas las historias, el alcance de consultas grupales y la trazabilidad tras las aclaraciones de la usuaria.",
+    "pdf_pages": 43,
+    "unique_rf_ids": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10"
+    ],
+    "rf06_rf10_and_rnf_preserved": true,
+    "functional_tests_executed": false,
+    "team_review": "Pendiente"
+  }
+}
