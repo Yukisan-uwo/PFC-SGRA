@@ -581,3 +581,105 @@ Se ajustaron los intervalos de consulta a partir del audio y se distinguieron lo
 ### Tiempo dedicado
 
 30 minutos.
+
+
+## 21 de noviembre de 2026 — Historias de solicitud y seguimiento del SGRA (issue #10)
+
+**Integrante participante:** TOAQUIZA ZAMBRANO BELINDA BETZABETH.
+
+### Actividades realizadas
+
+- Asumí la elaboración de las cinco historias del issue #10 y revisé su descripción junto con las cinco historias de atención y programación del issue #11.
+- Consulté la sección de requisitos del documento original, la Tabla 41, los requisitos de proceso RP01 y RP03 y las historias HU-01 y HU-02.
+- Revisé ISO/IEC/IEEE 29148:2011, apartados 5.2.5–5.2.8, para redactar requisitos identificables, claros, consistentes, verificables y sin decisiones de implementación innecesarias.
+- Redacté con asistencia de Codex RF01 (registrar solicitud), RF02 (consultar estado), RF03 (cancelar solicitud pendiente), RF04 (consultar detalle de sesión) y RF05 (consultar historial y recursos), con actor, necesidad, beneficio y criterios observables.
+- Definí condiciones de acceso, validación y resultados para cada historia, incluyendo datos inválidos, consultas vacías, límites de archivos, cancelación tras cambio de estado y acceso a registros ajenos.
+- Incorporé la trazabilidad con los requisitos anteriores, los pasajes de las transcripciones y las comprobaciones previstas. Diferencié las reglas del análisis funcional de las necesidades expresadas en entrevistas.
+- Conservé la separación entre indicar disponibilidad al solicitar el refuerzo y confirmar la programación a cargo del docente en RF07. Unifiqué el estado Realizada con RF10 y HU-02.
+- Ajusté RF01 con la aclaración del aviso al seleccionar una asignatura sin docente y el campo Horario de preferencia. Precisé que las solicitudes grupales se consultan desde la cuenta propia y solo quien las registró puede cancelarlas.
+- Registré las fuentes, cláusulas normativas, adaptaciones y escenarios de comprobación en `docs/referencias/revision-issue-10.json`.
+- Actualicé la declaración de asistencia y compilé el informe con pdfLaTeX y Biber para revisar las historias, tablas, citas y trazabilidad.
+
+### Problemas y comportamientos observados
+
+RF01–RF05 seguían como campos pendientes y faltaban sus filas de trazabilidad. El documento anterior utilizaba Completada en el catálogo y Realizada en HU-02; además, HU-01 incluía campos de programación que podían contradecir el reparto actual de acciones entre estudiante y docente. Las reglas de cancelación procedían del análisis funcional, por lo que no correspondía presentarlas como una petición literal de las entrevistas.
+
+### Solución y recuperación
+
+Reformulé las cinco capacidades con criterios de aceptación y dependencias explícitas. Utilicé Realizada de acuerdo con RF10, mantuve la programación a cargo del docente y conservé el origen documental de cada regla. Precisé el cómputo del motivo, el límite de 10 MB en bytes y las condiciones de los filtros para facilitar su comprobación. Revisé el conjunto sin modificar el contenido de RF06–RF10 ni los RNF.
+
+### Resultados obtenidos
+
+- Las cinco historias de solicitud y seguimiento quedaron redactadas y enlazadas con sus fuentes y criterios de verificación.
+- RF01–RF10 forman un conjunto documental con identificadores únicos y separación entre acciones del estudiante y del docente.
+- Se sustituyeron los pendientes de redacción y trazabilidad funcional por contenido verificable y se dejó registro de la revisión normativa.
+- El informe recompilado contiene 43 páginas y no presenta citas sin resolver. Se revisaron visualmente las páginas modificadas; permanecen advertencias anteriores de otras secciones.
+- Los escenarios describen comprobaciones futuras: no se ejecutaron pruebas funcionales del SGRA ni un nuevo cotejo auditivo de las entrevistas.
+- Las cinco historias y sus registros de revisión se publicaron en `main` mediante el commit `39ab75a`, con referencia `refs #10` y sin cerrar el issue. La bitácora quedó fuera del commit.
+- La elaboración documental de #10 está preparada para revisión. La comprensión del conjunto por los cuatro integrantes, exigida para cerrar el issue, permanece pendiente.
+
+### Evidencias
+
+- **Issue:** [#10 — Redactar cinco historias sobre solicitud y seguimiento](https://github.com/Yukisan-uwo/PFC-SGRA/issues/10).
+- **Commit:** [39ab75a — Completa historias de solicitud y requisitos complementarios del SGRA (refs #10)](https://github.com/Yukisan-uwo/PFC-SGRA/commit/39ab75a5d7afb3252b4484820adc98c44bb8de05).
+- **Coherencia con atención docente:** [#11](https://github.com/Yukisan-uwo/PFC-SGRA/issues/11).
+- **Informe:** [requisitos y trazabilidad](docs/secciones/06-requisitos.tex) e [informe compilado](docs/main.pdf).
+- **Revisión normativa y documental:** [registro del issue #10](docs/referencias/revision-issue-10.json).
+- **Fuentes:** documento original, Tabla 41, pp. 77–78; RP01 y RP03, p. 90; HU-01 y HU-02, pp. 194–195. ISO/IEC/IEEE 29148:2011, apartados 5.2.5–5.2.8.
+- **Levantamiento:** transcripciones ENT-01 (07:54, 11:28 y 13:24) y ENT-02 (14:04–14:13), sin nuevo cotejo de audio en esta actividad.
+- **Archivos modificados:** `docs/secciones/06-requisitos.tex`, `docs/secciones/16-ia.tex`, `docs/main.pdf`, `docs/referencias/revision-issue-10.json` y `BITACORA.md`.
+
+### Tiempo dedicado
+
+50 min.
+
+
+## 21 de noviembre de 2026 — Requisitos complementarios de roles, espacios y notificaciones
+
+**Integrante participante:** TOAQUIZA ZAMBRANO BELINDA BETZABETH.
+
+### Actividades realizadas
+
+- Revisé con asistencia de Codex los requisitos originales y las historias de gestión de espacios, coordinación, administración y notificaciones, junto con el alcance y la propuesta arquitectónica actuales.
+- Incorporé RF11 para seguimiento de coordinación, RF12 para resolver reservas físicas, RF13 para administración y RF14 para notificaciones mediante Gmail.
+- Añadí RF15 para la respuesta individual del estudiante a una reprogramación, diferenciando la decisión de participación del envío de la notificación.
+- Precisé que el gestor atiende sesiones presenciales individuales y grupales y que el docente debe indicar Aula o Laboratorio al programarlas.
+- Diferencié reasignar espacio, conservar el refuerzo En espera de espacio si falta reemplazo y cancelar la solicitud completa mediante confirmación explícita.
+- Establecí que una aceptación basta para continuar una sesión reprogramada; si todos rechazan, el refuerzo pasa a Rechazada y libera su reserva. Las respuestas pendientes no se cuentan como rechazo.
+- Desglosé RF13 en seis obligaciones identificadas para cuentas y permisos, parámetros internos, auditoría, respaldos, correo e identidad visual.
+- Ajusté RF07–RF10 y la trazabilidad para conectar programación presencial, reserva, notificación, respuesta y asistencia. La cancelación del estudiante sigue limitada al solicitante; la del gestor se especifica por separado.
+- Registré fuentes, aclaraciones, adaptaciones y escenarios de comprobación en `docs/referencias/revision-rf-complementarios.json` y actualicé la declaración de asistencia.
+
+### Problemas y comportamientos observados
+
+El original asignaba a coordinación la carga de datos académicos, mientras que el enfoque de SGA separado la sitúa como perfil de seguimiento. ADR-003 ya incluye al gestor, pero ADR-001 y el texto del C4 conservan referencias a cuatro actores o a una incorporación pendiente. Tampoco quedaban distinguidos el rechazo de una reserva, la reasignación de espacio y la cancelación completa del refuerzo. La respuesta a una reprogramación necesitaba reglas distintas del envío de correo.
+
+### Solución y recuperación
+
+Delimité coordinación a seguimiento y separé los datos académicos de origen SGA de la configuración local del refuerzo. Documenté las discrepancias de arquitectura sin modificar ADR ni C4. Definí decisiones de reserva y refuerzo por separado y añadí las respuestas individuales al horario vigente, con motivo opcional, sin reutilizar confirmaciones anteriores. Amplié la reprogramación de sesiones con programación existente para permitir resolver una falta de espacio, manteniendo las validaciones de horario.
+
+### Resultados obtenidos
+
+- El conjunto funcional queda ampliado a RF01–RF15, con seis obligaciones subordinadas a RF13.
+- Los nuevos requisitos tienen actor, propósito, condiciones observables, origen documental y criterios de verificación.
+- El gestor puede reasignar conservando el refuerzo o cancelar la solicitud completa; una reserva rechazada no cancela por sí sola la atención académica.
+- Las notificaciones distinguen cambios del refuerzo, la reserva y la participación y contienen los datos vigentes de programación. Los fallos de envío no revierten el cambio de negocio.
+- La sesión reprogramada exige al menos una aceptación y, si es presencial, un espacio confirmado para ejecutarse. Quien rechaza el horario no figura como ausente.
+- Las aclaraciones de esta revisión se distinguen de las funciones documentadas en el sistema anterior. No se atribuye implementación ni ejecución de pruebas funcionales a los criterios redactados.
+- El informe recompilado contiene 50 páginas, sin citas sin resolver. Se revisaron visualmente los requisitos, el desglose administrativo y la trazabilidad; se conservaron los RNF y los documentos de arquitectura.
+- Los requisitos complementarios, sus ajustes de coherencia, el PDF y los registros se publicaron junto con las historias de #10 en el commit `39ab75a`. Esta actualización de la bitácora permanece únicamente local.
+- Queda pendiente la revisión del conjunto por el equipo y la alineación de actores y permisos en los documentos de arquitectura.
+
+### Evidencias
+
+- **Issue relacionado:** [#10 — Redactar cinco historias sobre solicitud y seguimiento](https://github.com/Yukisan-uwo/PFC-SGRA/issues/10).
+- **Commit:** [39ab75a — Completa historias de solicitud y requisitos complementarios del SGRA (refs #10)](https://github.com/Yukisan-uwo/PFC-SGRA/commit/39ab75a5d7afb3252b4484820adc98c44bb8de05).
+- **Informe:** [requisitos y trazabilidad](docs/secciones/06-requisitos.tex) e [informe compilado](docs/main.pdf).
+- **Registro:** [revisión de requisitos complementarios](docs/referencias/revision-rf-complementarios.json).
+- **Fuentes previas:** catálogo RF13, RF18–RF20, RF24–RF35 y RP03, RP04, RP06, RP08 y RP09; historias HU-04–HU-07 del documento original.
+- **Levantamiento:** ENT-01 (00:51–01:16, 06:44 y 13:24) y ENT-02 (01:37–02:20), según transcripciones recuperadas.
+- **Verificación:** compilación y revisión visual del informe; los escenarios funcionales quedan como criterios para pruebas futuras.
+
+### Tiempo dedicado
+
+45 min.
