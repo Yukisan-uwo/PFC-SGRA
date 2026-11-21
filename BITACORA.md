@@ -544,3 +544,40 @@ Para solucionar el conflicto de Git, se conservó el trabajo realizado en `06-re
 ### Tiempo dedicado
 
 1 hora.
+
+## 20 de noviembre de 2026 — Historias RF07 y RF09 y trazabilidad con el levantamiento
+
+**Integrante participante:** Bryan Lombeida.
+
+### Actividades realizadas
+
+- Se incorporaron las historias de usuario RF07 (programar sesiones de refuerzo académico) y RF09 (registrar asistencia de los participantes), siguiendo el formato de RF06, RF08 y RF10.
+- Se definieron criterios de aceptación para verificar los datos de programación, los solapamientos con otras sesiones activas del docente y el registro individual de asistencia sin cerrar la sesión.
+- Se añadieron las filas de trazabilidad que relacionan RF07 con el RF11 del SGRA y RF09 con el RF15, además de la entrevista ENT-02 y los criterios de verificación.
+- Se contrastaron los fragmentos pertinentes de la transcripción de Efraín Díaz con el audio mediante reconocimiento de voz local. Se registraron los intervalos como aproximados.
+
+### Problemas y comportamientos observados
+
+Las marcas de la transcripción localizaban los temas, pero no siempre abarcaban la respuesta completa. Además, la entrevista respalda la necesidad de programar sesiones y registrar asistencia, pero no especifica todas las reglas de validación.
+
+### Solución y recuperación
+
+Se ajustaron los intervalos de consulta a partir del audio y se distinguieron los hallazgos de la entrevista de los criterios de aceptación. También se mantuvo la separación entre aceptar una solicitud (RF06), programar la sesión inicial (RF07) y reprogramarla (RF08), y entre marcar asistencia (RF09) y cerrar la sesión (RF10).
+
+### Resultados obtenidos
+
+- RF07 y RF09 quedaron documentados con actor, necesidad, beneficio, criterios de aceptación y trazabilidad.
+- El informe se recompiló con pdfLaTeX y Biber y se revisaron visualmente las páginas de ambas tablas. No quedaron citas sin resolver.
+- Este trabajo completa la redacción de las dos historias asignadas, pero no acredita su implementación en el sistema ni el cierre del issue #11.
+- En la captura del tablero del 21 de noviembre, los issues #10 (solicitud y seguimiento) y #11 (atención y programación) figuraban **En progreso**. El #14 (justificación de la distribución y ADR-001) figuraba **Completado**; ese estado corresponde a la tarea de documentación y no acredita la aprobación del ADR.
+
+### Evidencias
+
+- **Issue:** [#11 — Redactar cinco historias sobre atención y programación](https://github.com/Yukisan-uwo/PFC-SGRA/issues/11).
+- **Informe:** [requisitos y trazabilidad](docs/secciones/06-requisitos.tex) e [informe compilado](docs/main.pdf).
+- **Fuente del levantamiento:** [audio ENT-02](evidencias/levantamiento/audios/efrain-diaz.mp3) y [transcripción](docs/secciones/19-transcripciones.tex). RF07: 01:26–02:23, 09:14–10:40 y 12:39–13:15; RF09: 16:45–17:04.
+- **Evidencia del avance:** [captura del tablero de GitHub Projects del 21 de noviembre de 2026](evidencias/capturas%20de%20trabajo%20en%20equipo/avance-tablero-githubprojects-21112026.png).
+
+### Tiempo dedicado
+
+30 minutos.

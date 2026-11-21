@@ -36,7 +36,28 @@ la aceptación ni se modifica el estado de la solicitud.
 Al rechazarla, el estado cambia a Rechazada, se permite
 registrar un motivo opcional y se notifica al estudiante. \\
 
-RF07 & \pendiente{historia} & \pendiente{criterios}\\
+% RF07. Origen: SGRA RF11.
+RF07 &
+Como docente, quiero establecer la fecha, la franja
+horaria, la duración y la modalidad de una sesión al
+aceptar una solicitud de refuerzo académico, para
+organizar la atención de los estudiantes y evitar
+conflictos con otras sesiones programadas \cite{Daz2025}. &
+Al seleccionar Aceptar en una solicitud pendiente asignada
+a él, el docente puede definir la fecha, la franja horaria,
+la duración y la modalidad de la sesión.
+\par\smallskip\noindent
+Si falta algún dato o la duración no es mayor que cero,
+el sistema impide confirmar la programación e indica
+qué dato debe corregirse.
+\par\smallskip\noindent
+Si el intervalo propuesto se solapa con otra sesión activa
+del mismo docente, el sistema informa del conflicto y no
+guarda la programación.
+\par\smallskip\noindent
+Si los datos son válidos y no hay solapamiento, el sistema
+guarda la programación vinculada a la solicitud. \\
+
 % RF08 - Mario. Origen: SGRA RP04.
 RF08 &
 Como docente, quiero reprogramar una sesión aceptada
@@ -54,7 +75,23 @@ Al confirmar, el estado cambia a Reprogramada, se
 mantiene la solicitud original y se notifica a los
 participantes. \\
 
-RF09 & \pendiente{historia} & \pendiente{criterios}\\
+% RF09. Origen: SGRA RF15.
+RF09 &
+Como docente, quiero registrar la asistencia individual
+de los estudiantes participantes en una sesión de refuerzo
+académico, para mantener evidencia de su participación y
+facilitar el seguimiento de las actividades realizadas \cite{Daz2025}. &
+El docente solo puede registrar asistencia en sesiones
+asignadas a él que estén en estado Aceptada o Reprogramada.
+\par\smallskip\noindent
+El sistema muestra a los estudiantes vinculados a la sesión
+y permite marcar a cada uno como Presente o Ausente.
+\par\smallskip\noindent
+Al guardar, cada marca queda asociada al participante y a
+su sesión, y se muestra al volver a consultar la asistencia.
+\par\smallskip\noindent
+Guardar la asistencia no cambia el estado de la sesión a
+Realizada. \\
 
 % RF10 - Mario. Origen: SGRA RF16.
 RF10 &
@@ -188,7 +225,12 @@ funcionales reformulados para el PFC con las funcionalidades
 documentadas anteriormente en el SGRA y las necesidades
 identificadas durante el levantamiento de información.
 Se consideran las entrevistas realizadas a los docentes,
-incluida la de Efraín Díaz \cite{Daz2025}.
+incluida la de Efraín Díaz \cite{Daz2025}. Para RF07 y RF09,
+los intervalos aproximados se contrastaron con el audio de
+ENT-02 mediante reconocimiento de voz local y remiten a los
+temas recogidos en el Anexo~\ref{transcripcion:ent02}.
+La entrevista sustenta las necesidades; los criterios de
+aceptación especifican cómo comprobarlas en el SGRA.
 
 \begin{longtable}{@{}p{0.10\textwidth}p{0.16\textwidth}p{0.30\textwidth}p{0.29\textwidth}@{}}
 \caption{Trazabilidad de los requisitos funcionales}
@@ -219,6 +261,16 @@ Comprobar que el docente solo gestione solicitudes
 pendientes asignadas a él y que se registre
 la decisión correspondiente. \\
 
+RF07 &
+RF11 &
+ENT-02 (01:26--02:23, modalidad;
+09:14--10:40, disponibilidad horaria;
+12:39--13:15, duración configurable). &
+Comprobar que la programación válida se vincule
+a la solicitud y que no se guarde si falta un dato,
+la duración no es positiva o hay un solapamiento
+con otra sesión activa del docente. \\
+
 RF08 &
 RP04 &
 ENT-02 (08:41--08:56).
@@ -227,6 +279,15 @@ y organizar la atención docente. &
 Verificar que una sesión aceptada pueda
 reprogramarse sin conflictos de horario,
 conservando la solicitud original. \\
+
+RF09 &
+RF15 &
+ENT-02 (16:45--17:04).
+Importancia de registrar la asistencia o, al menos,
+los participantes de cada sesión. &
+Marcar a un participante como Presente y a otro
+como Ausente. Volver a consultar la sesión y
+comprobar que conserva ambas marcas y su estado. \\
 
 RF10 &
 RF16 &
