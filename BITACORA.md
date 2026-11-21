@@ -292,6 +292,7 @@ Realicé ajustes en la distribución de las columnas y en el salto de página de
 ### Tiempo dedicado
 
 2 horas y 54 minutos.
+
 ## 19 de noviembre de 2026 — Actualización de la planificación y responsabilidades de E1
 
 **Integrante participante:** TOAQUIZA ZAMBRANO BELINDA BETZABETH.
@@ -331,3 +332,127 @@ Desarrollé las instrucciones de las actividades con explicaciones directas y cr
 ### Tiempo dedicado
 
 30 min.
+
+## 20 de noviembre de 2026 — Investigación asistida de trabajos relacionados (issue #24)
+
+**Integrante participante:** TOAQUIZA ZAMBRANO BELINDA BETZABETH.
+
+### Actividades realizadas
+
+- Revisé las referencias del documento anterior del SGRA y el archivo bibliográfico original para recuperar antecedentes sobre coordinación y seguimiento de tutorías universitarias.
+- Utilicé la asistencia de Codex para buscar fuentes de acceso libre y contrastar sus datos con las publicaciones originales.
+- Preparé una selección inicial de EPIS–UNH, AsesoraMe y un prototipo de tutorías de la Universidad Técnica de Cotopaxi. Los dos últimos se sustituyeron posteriormente.
+- Depuré las referencias seleccionadas, corregí la autoría de `Rojas2023` y distinguí artículos de revista, trabajos de congreso y tesis.
+- Organicé las copias de consulta y el registro de criterios, enlaces, localizadores y verificaciones en `docs/referencias/`.
+- Elaboré con asistencia las comparaciones iniciales en `docs/secciones/05-relacionados.tex` y comprobé las citas y su presentación mediante compilación y revisión visual del PDF.
+
+### Problemas y comportamientos observados
+
+El documento y el archivo bibliográfico anteriores presentaban discordancias entre citas y referencias, duplicados y tipos documentales incorrectos. La selección inicial requería ajustarse al idioma solicitado. Disponer de un DOI tampoco acreditaba por sí solo la indexación de una revista.
+
+### Solución y recuperación
+
+Contrasté las referencias seleccionadas con los textos completos y corregí sus metadatos sin importar toda la bibliografía histórica. Conservé los criterios y motivos de selección o descarte para seguir los cambios de la investigación. La actualización de los antecedentes por idioma se registra en la siguiente entrada.
+
+### Resultados obtenidos
+
+- Se preparó la investigación inicial del issue #24 con fuentes completas de acceso libre.
+- Las referencias seleccionadas quedaron depuradas y vinculadas con sus PDF y localizadores.
+- Se documentaron las inconsistencias encontradas en las fuentes anteriores.
+- La investigación y redacción contaron con asistencia de Codex; la revisión y aceptación por los integrantes permanecen pendientes.
+- La elaboración de las comparaciones no equivale al cierre del issue #24: falta la verificación final de sus criterios bibliográficos y de revisión.
+
+### Evidencias
+
+- **Issue:** [#24 — Trabajos relacionados](https://github.com/Yukisan-uwo/PFC-SGRA/issues/24).
+- **Registro de investigación:** [Selección de antecedentes](docs/referencias/seleccion-issue-24.json).
+- **Archivos modificados:** `docs/secciones/05-relacionados.tex`, `docs/referencias/referencias.bib` y los PDF de consulta seleccionados.
+- **Verificación:** contraste de metadatos y textos completos, compilación con pdfLaTeX y Biber y revisión visual del PDF.
+
+### Tiempo dedicado
+
+1 hora.
+
+## 20 de noviembre de 2026 — Actualización de los trabajos relacionados
+
+**Integrante participante:** TOAQUIZA ZAMBRANO BELINDA BETZABETH.
+
+### Actividades realizadas
+
+- Amplié la búsqueda con asistencia de Codex y SciSpace para incorporar dos antecedentes con texto completo en inglés.
+- Sustituí AsesoraMe y el prototipo de Cotopaxi por ASP tutTrak, de Grigoryan, y TutorYuk, de Seah y colaboradores.
+- Conservé EPIS–UNH como antecedente recuperado del trabajo anterior y contrasté la autoría, el año, el DOI y el contenido de los tres estudios seleccionados.
+- Organicé los PDF completos y actualicé la bibliografía y la comparación del informe.
+- Comprobé la inclusión de las revistas de ASP tutTrak y TutorYuk en DOAJ y registré la evidencia disponible.
+
+### Problemas y comportamientos observados
+
+Los dos antecedentes sustituidos no cumplian del todo como trabajos relacionados.
+
+### Solución y recuperación
+
+Seleccioné dos artículos con desarrollo completo y conservé EPIS–UNH. Retiré de la selección activa las referencias y copias de los trabajos sustituidos, manteniendo sus enlaces y motivos de descarte en el registro de investigación.
+
+### Resultados obtenidos
+
+- La selección funcional quedó integrada por EPIS–UNH, ASP tutTrak y TutorYuk.
+- Los tres antecedentes tienen texto completo de acceso libre guardado en la carpeta de fuentes.
+- ASP tutTrak y TutorYuk cuentan con DOI verificado y evidencia de inclusión de sus revistas en DOAJ.
+
+### Evidencias
+
+- **Issue:** [#24 — Trabajos relacionados](https://github.com/Yukisan-uwo/PFC-SGRA/issues/24).
+- **Registro de investigación:** [Selección y actualización de antecedentes](docs/referencias/seleccion-issue-24.json).
+- **Fuentes:** `Huaman-Rojas-2023-EPIS-UNH.pdf`, `Grigoryan-2024-ASP-tutTrak.pdf` y `Seah-2023-TutorYuk.pdf`, en `docs/referencias/PDFs_Fuentes/`.
+- **Archivos modificados:** `docs/secciones/05-relacionados.tex` y `docs/referencias/referencias.bib`.
+
+### Tiempo dedicado
+
+40 min.
+
+
+
+## 20 de noviembre de 2026 — Fundamentos teóricos y alternativas para la distribución del SGRA
+
+**Integrante participante:** TOAQUIZA ZAMBRANO BELINDA BETZABETH.
+
+### Actividades realizadas
+
+- Utilicé Codex y SciSpace para investigar fuentes verificables de acceso libre sobre descomposición, modularidad, migración, propiedad de datos, comunicaciones, seguridad y operación de sistemas distribuidos.
+- Contrasté las fichas bibliográficas con los textos completos, los metadatos de Crossref y otras fuentes originales cuando se detectaron discrepancias.
+- Realicé con asistencia una revisión dirigida del código disponible del backend y frontend para identificar preguntas y dependencias pertinentes para el SGRA, sin ejecutar los sistemas ni atribuir resultados de pruebas.
+- Incorporé el subapartado 5.6, «Fundamentos teóricos y alternativas para la distribución», al final de trabajos relacionados, con cuatro subapartados de teoría y comparación.
+- Amplié la investigación inicial de tres a diez fuentes técnicas, con al menos tres referencias pertinentes para cada subapartado. Relacioné sus aportes y límites con preguntas del SGRA, sin seleccionar una arquitectura.
+- Organicé los diez PDF técnicos y sus enlaces, huellas, metadatos y localizadores en el registro de investigación.
+- Retiré del cuerpo del informe la explicación del proceso de búsqueda y conservé su trazabilidad en el registro y en esta bitácora. La búsqueda fue exploratoria, con publicaciones abiertas de 2022–2026; no se presenta como revisión sistemática exhaustiva.
+- Simplifiqué la declaración de asistencia de Codex y SciSpace en un solo párrafo sobre su propósito en trabajos relacionados y fundamentos teóricos.
+- Recompilé el documento con pdfLaTeX y Biber y revisé visualmente el contenido, las tablas, la declaración de IA y las referencias.
+
+### Problemas y comportamientos observados
+
+Algunas fichas de SciSpace omitían autores o presentaban datos diferentes de los textos originales; tampoco se obtuvo el PDF completo de todos los candidatos.
+
+### Solución y recuperación
+
+Amplié y contrasté las fuentes para respaldar cada subapartado. Corregí los metadatos con los originales, distinguí la copia arXiv de Bolanowski y colaboradores de su capítulo publicado y excluí candidatos sin PDF completo verificable. Conservé en los criterios del proyecto el uso de ISO/IEC 25010:2011 por su disponibilidad de consulta gratuita para el equipo.
+
+### Resultados obtenidos
+
+- El informe incluye teoría sobre descomposición y servicios, migración y datos, comunicaciones y criterios complementarios antes de decidir.
+- Los cuatro subapartados cuentan con al menos tres fuentes pertinentes; los diez textos técnicos citados tienen PDF de consulta guardado.
+- Se explican límites de transferencia de los estudios al SGRA, incluidos aislamiento de sagas, condiciones de los experimentos y garantías no evaluadas de mensajería.
+- El PDF recompilado tiene 35 páginas y no presenta citas sin resolver. Persisten advertencias anteriores de maquetación en otras secciones.
+- Los cambios del informe, las referencias, los PDF y los criterios del proyecto se publicaron en `main` mediante el commit `71572f6`. Esta bitácora quedó fuera de esa publicación.
+- El mensaje de ese commit no incluyó `#24`; el registro bibliográfico sí conserva el enlace al issue. La revisión humana y el cierre del issue permanecen pendientes.
+
+### Evidencias
+
+- **Issue:** [#24 — Trabajos relacionados](https://github.com/Yukisan-uwo/PFC-SGRA/issues/24).
+- **Commit:** [71572f6 — Documenta trabajos relacionados y fundamentos teoricos del SGRA](https://github.com/Yukisan-uwo/PFC-SGRA/commit/71572f6c95f046e1b45a975b7ef63ccbb40d62c3).
+- **Registro de investigación:** [Análisis y fuentes técnicas](docs/referencias/analisis-arquitectura-sgra.json).
+- **Archivos modificados:** `docs/secciones/05-relacionados.tex`, `docs/secciones/16-ia.tex`, `docs/referencias/referencias.bib`, `docs/main.pdf`, `AGENTS.md` y los PDF y registros de consulta.
+- **Verificación:** compilación con pdfLaTeX y Biber, revisión visual, comprobación de citas y huellas de los PDF y contraste de la restauración de sección 7, requisitos y ADR mediante Git.
+
+### Tiempo dedicado
+
+50 min.
