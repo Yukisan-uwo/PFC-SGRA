@@ -494,3 +494,53 @@ Para las fuentes de Fu y colaboradores y de van Steen y Tanenbaum se conservaron
 ### Tiempo dedicado
 
 4 horas.
+
+## 20 de noviembre de 2026 — Reformulación de requisitos funcionales y trazabilidad del SGRA
+
+**Integrante participante:** Mario Zambrano.
+
+### Actividades realizadas
+
+- Revisé el issue #11 y coordiné con Bryan la distribución de las cinco historias de usuario relacionadas con la atención y programación de refuerzos académicos.
+- Revisé los requisitos funcionales del SGRA anterior y las entrevistas recuperadas para identificar las funcionalidades que se adaptarían al PFC.
+- Redacté tres historias de usuario: RF06 (revisar y decidir solicitudes), RF08 (reprogramar sesiones) y RF10 (registrar una sesión realizada).
+- Establecí criterios de aceptación para cada historia, considerando los permisos del docente, los estados de las solicitudes y sesiones, las validaciones y los resultados esperados.
+- Incorporé las tres historias en `docs/secciones/06-requisitos.tex`, manteniendo la estructura de la tabla y los espacios correspondientes a los requisitos de los demás integrantes.
+- Añadí una breve introducción sobre la reformulación de los requisitos a partir del levantamiento y del diseño funcional anterior del SGRA.
+- Elaboré una tabla de trazabilidad que relaciona mis tres requisitos con sus identificadores originales, la entrevista ENT-02 y las condiciones de verificación.
+- Revisé la estructura LaTeX después de encontrar problemas con el cierre y la ubicación de las tablas.
+- Actualicé mi repositorio local para incorporar los cambios recientes del equipo y resolví un conflicto de Git relacionado con `docs/main.pdf`.
+- Registré los cambios en GitHub mediante un commit referenciado al issue #11.
+
+### Problemas y comportamientos observados
+
+Durante la edición del documento se presentaron errores en LaTeX debido a la ubicación de la nueva tabla de trazabilidad y al cierre incorrecto de un entorno `longtable`.
+
+También se produjo un conflicto de Git en `docs/main.pdf` al intentar incorporar cambios realizados por otros integrantes.
+
+### Solución y recuperación
+
+Se reorganizó la sección de requisitos para cerrar correctamente las tablas y ubicar la trazabilidad funcional después de los requisitos no funcionales, dentro de su apartado correspondiente.
+
+Para solucionar el conflicto de Git, se conservó el trabajo realizado en `06-requisitos.tex` y se resolvió el conflicto del PDF sin descartar las historias de usuario.
+
+### Resultados obtenidos
+
+- Se incorporaron tres historias de usuario correspondientes a mi participación en el issue #11.
+- Los requisitos RF06, RF08 y RF10 incluyen actor, necesidad, beneficio y criterios de aceptación verificables.
+- Se documentó la correspondencia con los requisitos RF10, RP04 y RF16 del SGRA anterior.
+- Se agregó una tabla de trazabilidad con referencias a la entrevista ENT-02 y sus fragmentos relacionados.
+- Se conservó la estructura de los seis requisitos no funcionales desarrollados anteriormente.
+- Los cambios quedaron publicados en GitHub y vinculados al issue #11.
+- Queda pendiente incorporar las dos historias de Bryan y revisar el conjunto con los cinco requisitos del issue #10. Por este motivo, el issue #11 permanece abierto.
+
+### Evidencias
+
+- **Issue:** [#11 — Redactar cinco historias sobre atención y programación](https://github.com/Yukisan-uwo/PFC-SGRA/issues/11).
+- **Commit:** [abede27 — Historias de usuario y trazabilidad](https://github.com/Yukisan-uwo/PFC-SGRA/commit/abede27ff74748374008ad6629664bee4038e01f).
+- **Archivo modificado:** `docs/secciones/06-requisitos.tex`.
+- **Fuentes de consulta:** requisitos funcionales del SGRA anterior y entrevista ENT-02, disponibles en el material recuperado del levantamiento.
+
+### Tiempo dedicado
+
+1 hora.
