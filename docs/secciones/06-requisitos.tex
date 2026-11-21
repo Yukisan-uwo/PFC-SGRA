@@ -1,5 +1,13 @@
 \section{Requisitos del sistema}
 \subsection{Requisitos funcionales}
+Para la definición de los requisitos funcionales se
+consideraron las necesidades identificadas durante el
+levantamiento de información y las funcionalidades
+documentadas en la versión anterior del SGRA.
+A partir de estos antecedentes, se reformularon las
+historias de usuario de acuerdo con el alcance
+establecido para el PFC.
+
 % Al menos 10 historias de usuario con criterios de aceptación observables.
 \pendiente{Redactar al menos 10 requisitos funcionales como historias de usuario, con ID, actor, necesidad, beneficio, fuente del levantamiento y criterios de aceptación. Usar ISO/IEC/IEEE 29148:2011~\cite{iso29148-2011} como guía para revisar que sean claros y verificables.}
 \begin{longtable}{@{}p{0.10\textwidth}p{0.40\textwidth}p{0.40\textwidth}@{}}
@@ -9,13 +17,59 @@ RF02 & \pendiente{historia} & \pendiente{criterios}\\
 RF03 & \pendiente{historia} & \pendiente{criterios}\\
 RF04 & \pendiente{historia} & \pendiente{criterios}\\
 RF05 & \pendiente{historia} & \pendiente{criterios}\\
-RF06 & \pendiente{historia} & \pendiente{criterios}\\
+
+% RF06 - Mario. Origen: SGRA RF10.
+RF06 &
+Como docente, quiero revisar las solicitudes de refuerzo
+que tengo pendientes y aceptarlas o rechazarlas, para
+organizar la atención académica de mis estudiantes \cite{Daz2025}. &
+El docente solo puede gestionar solicitudes en estado
+Pendiente que estén asignadas a él.
+\par\smallskip\noindent
+Al aceptar una solicitud, se habilita su programación.
+\par\smallskip\noindent
+Al rechazarla, el estado cambia a Rechazada, se permite
+registrar un motivo opcional y se notifica al estudiante. \\
+
 RF07 & \pendiente{historia} & \pendiente{criterios}\\
-RF08 & \pendiente{historia} & \pendiente{criterios}\\
+% RF08 - Mario. Origen: SGRA RP04.
+RF08 &
+Como docente, quiero reprogramar una sesión aceptada
+cuando necesite modificar su horario, para mantener
+la atención académica sin perder la solicitud original \cite{Daz2025}. &
+Solo se permite reprogramar sesiones en estado Aceptada.
+\par\smallskip\noindent
+El docente debe seleccionar una nueva fecha y franja
+horaria sin solapamientos con otras sesiones activas.
+\par\smallskip\noindent
+Si existe un conflicto, el cambio se rechaza y se
+conserva la programación anterior.
+\par\smallskip\noindent
+Al confirmar, el estado cambia a Reprogramada, se
+mantiene la solicitud original y se notifica a los
+participantes. \\
+
 RF09 & \pendiente{historia} & \pendiente{criterios}\\
-RF10 & \pendiente{historia} & \pendiente{criterios}\\
+
+% RF10 - Mario. Origen: SGRA RF16.
+RF10 &
+Como docente, quiero registrar las observaciones y
+resultados de una sesión realizada y adjuntar materiales
+de apoyo, para dejar constancia de la atención y facilitar
+el seguimiento académico del estudiante \cite{Daz2025}. &
+El cierre solo se permite desde una sesión en estado
+Aceptada o Reprogramada.
+\par\smallskip\noindent
+Las observaciones y los resultados son obligatorios.
+\par\smallskip\noindent
+Al confirmar, el estado de la sesión cambia a Realizada.
+\par\smallskip\noindent
+Los recursos adjuntos son opcionales y, cuando existen,
+quedan vinculados a la sesión y disponibles en el
+historial del estudiante. \\
 \bottomrule
 \end{longtable}
+
 \subsection{Requisitos no funcionales}
 Los requisitos no funcionales se asocian con las características del modelo de calidad del producto de ISO/IEC 25010:2011~\cite{iso25010-2011}.
 
@@ -118,9 +172,68 @@ académica. Por ello, se exige impedir todas las modificaciones
 no autorizadas y mantener la correspondencia entre los
 registros almacenados y los reportes generados.
 
-\subsection{Trazabilidad}\pendiente{Aplicar la guía de trazabilidad de ISO/IEC/IEEE 29148:2011~\cite{iso29148-2011}. Asociar cada requisito con el folio o minuto de la fuente, el hallazgo y el criterio o evidencia de validación.}
 
 
+\subsection{Trazabilidad}
+\pendiente{Aplicar la guía de trazabilidad de ISO/IEC/IEEE 29148:2011~\cite{iso29148-2011}. Asociar cada requisito con el folio o minuto de la fuente, el hallazgo y el criterio o evidencia de validación.}
+
+\subsubsection{Trazabilidad de requisitos funcionales}
+La Tabla~\ref{tab:trazabilidad-rf} relaciona los requisitos
+funcionales reformulados para el PFC con las funcionalidades
+documentadas anteriormente en el SGRA y las necesidades
+identificadas durante el levantamiento de información.
+Se consideran las entrevistas realizadas a los docentes,
+incluida la de Efraín Díaz \cite{Daz2025}.
+
+\begin{longtable}{@{}p{0.10\textwidth}p{0.16\textwidth}p{0.30\textwidth}p{0.29\textwidth}@{}}
+\caption{Trazabilidad de los requisitos funcionales}
+\label{tab:trazabilidad-rf}\\
+
+\toprule
+\textbf{RF} &
+\textbf{Origen SGRA} &
+\textbf{Fuente del levantamiento} &
+\textbf{Criterio de verificación}\\
+\midrule
+\endfirsthead
+
+\toprule
+\textbf{RF} &
+\textbf{Origen SGRA} &
+\textbf{Fuente del levantamiento} &
+\textbf{Criterio de verificación}\\
+\midrule
+\endhead
+
+RF06 &
+RF10 &
+ENT-02 (08:41--08:56).
+Necesidad de aceptar o rechazar solicitudes
+de refuerzo. &
+Comprobar que el docente solo gestione solicitudes
+pendientes asignadas a él y que se registre
+la decisión correspondiente. \\
+
+RF08 &
+RP04 &
+ENT-02 (08:41--08:56).
+Necesidad de reprogramar solicitudes
+y organizar la atención docente. &
+Verificar que una sesión aceptada pueda
+reprogramarse sin conflictos de horario,
+conservando la solicitud original. \\
+
+RF10 &
+RF16 &
+ENT-02 (14:04--14:13).
+Importancia de conservar evidencia
+de las sesiones académicas realizadas. &
+Comprobar el registro de observaciones y resultados,
+el cambio de estado y la vinculación
+de recursos cuando corresponda. \\
+
+\bottomrule
+\end{longtable}
 \subsubsection{Trazabilidad de requisitos no funcionales}
 
 La Tabla~\ref{tab:trazabilidad-rnf} presenta la correspondencia
@@ -166,4 +279,3 @@ evaluadas y ausencia de discrepancias en los reportes. \\
 
 \bottomrule
 \end{longtable}
-
