@@ -15,8 +15,8 @@
 - `docs/secciones/`: apartados 2 al 17 de E1; cada integrante edita los archivos asignados.
 - `docs/referencias/referencias.bib`: referencias reales para `biblatex` + `biber`.
 - `docs/adr/`: ADR-001 y ADR-002 en Markdown, pendientes de decisión.
-- `docs/diagramas/`: diagramas C4 editables de contexto y contenedores, por elaborar.
-- `docs/figuras/`: ilustraciones y exportaciones que se citarán en el informe.
+- `docs/diagramas/`: bocetos C4 en `preliminares/` y editables de contexto y contenedores en `formales/`.
+- `docs/figuras/`: exportaciones de los diagramas C4 incluidas en el informe.
 - `src/`: código del esqueleto de al menos dos servicios que se comunicarán, por implementar.
 - `evidencias/`: acta o encuesta, sesiones de diseño, capturas y demás evidencias auténticas.
 - `BITACORA.md`: registro de sesiones reales, decisiones y problemas del equipo.

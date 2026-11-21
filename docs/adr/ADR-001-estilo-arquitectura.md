@@ -7,9 +7,9 @@
 
 ## Contexto y problema
 
-El SGRA apoya la organización y el seguimiento de los refuerzos académicos de la Universidad Técnica Estatal de Quevedo. El [alcance acordado en ADR-003](ADR-003-alcance-reutilizacion-tecnologias.md#alcance) contempla a estudiantes, docentes, coordinación y administración. Se propone revisar con el equipo la incorporación formal del perfil de gestión de espacios físicos; no se considera aprobado en este registro.
+El SGRA apoya la organización y el seguimiento de los refuerzos académicos de la Universidad Técnica Estatal de Quevedo. El [alcance de ADR-003](ADR-003-alcance-reutilizacion-tecnologias.md#alcance) contempla a estudiantes, docentes, coordinación académica, administración y al gestor de áreas de trabajo. Coordinación realiza seguimiento; la provisión de datos académicos se plantea mediante el SGA simulado.
 
-En la implementación previa, la SPA Angular consume por HTTP un único backend Spring Boot organizado por capas y dominios (`academic`, `general`, `reinforcement` y `security`). El backend utiliza PostgreSQL y se integra con Azure Blob Storage, correo SMTP y validación asistida de cargas con Groq. Esas dependencias externas no convierten los dominios internos en servicios desplegables por separado. La [revisión del código previo](../referencias/analisis-arquitectura-sgra.json) fue estática y encontró que algunas consultas académicas se resuelven mediante funciones de la base de datos desde el módulo de refuerzos; los paquetes no acreditan fronteras de persistencia.
+La base técnica comprende una SPA Angular, un backend Spring Boot organizado por capas y dominios (`academic`, `general`, `reinforcement` y `security`) y PostgreSQL. Azure Blob Storage y SMTP apoyan el manejo de recursos y las notificaciones. En la arquitectura propuesta, Groq solo apoya la validación del formulario de solicitudes de refuerzo. Estas dependencias externas no convierten los dominios internos en servicios desplegables por separado. La [revisión estática del código](../referencias/analisis-arquitectura-sgra.json) identificó consultas a funciones de la base de datos desde el módulo de refuerzos; la organización por paquetes no acredita fronteras de persistencia independientes.
 
 La decisión consiste en determinar si la provisión de información académica debe seguir dentro del backend o quedar a cargo de un sistema separado, y si existe razón suficiente para dividir también el núcleo de refuerzos. Los procesos de un sistema distribuido cooperan mediante comunicación por red ([Fu et al., introducción](https://doi.org/10.1145/3708476)). Esto introduce fallos parciales: una parte puede fallar mientras otras continúan operando ([van Steen y Tanenbaum, cap. 8, p. 462](https://distributed-systems.net/index.php/books/ds4/)).
 
@@ -35,7 +35,7 @@ La **mensajería asíncrona** es un complemento, no una alternativa excluyente. 
 
 Se propone la **alternativa B**: mantener un núcleo modular para solicitudes, programación, sesiones, asistencia e historial e integrar un SGA simulado para proveer, por API, los datos académicos que se acuerden. El SGRA no accedería directamente a las tablas del SGA. La separación entre contrato e implementación reduce esa dependencia sin exigir que se reescriba todo el backend ([SWEBOK, cap. 3, *Software Design*](https://ieeecs-media.computer.org/media/education/swebok/swebok-v4.pdf); [Kazanavičius et al., §2.3](https://doi.org/10.3390/app12126189)).
 
-Para E1 se propone partir de la demostración descrita en [ADR-002](ADR-002-mecanismo-comunicacion.md): `servicio-refuerzos` consulta por HTTP con JSON una asignatura sintética a `servicio-academico`. Esa consulta de solo lectura no implica haber extraído módulos del backend previo, ni demuestra una integración completa, persistencia distribuida o alta disponibilidad. Antes de cerrar los diagramas C4 se debe acordar si esos procesos representan al backend adaptado y al SGA simulado o solo a componentes de demostración.
+Para la primera entrega se propone partir de la demostración descrita en [ADR-002](ADR-002-mecanismo-comunicacion.md): `servicio-refuerzos` consulta por HTTP con JSON una asignatura sintética a `servicio-academico`. Los diagramas C4 representan la arquitectura propuesta del SGRA; los nombres de esos procesos identifican el esqueleto de la demostración. La consulta ilustra la interacción académica, pero no demuestra una extracción de módulos, una integración completa, persistencia distribuida ni alta disponibilidad.
 
 ## Consecuencias
 
@@ -43,7 +43,7 @@ La propuesta permitiría reutilizar el núcleo y separar la evolución de los do
 
 ## Validación pendiente
 
-- Revisar con el equipo el alcance del SGA simulado y el perfil de gestión de espacios frente a ADR-003.
-- Alinear los nombres, límites e interacciones de ADR-002 con los diagramas C4; ejecutar la consulta mínima y comprobar el comportamiento cuando el receptor no responde.
+- Precisar con el equipo los datos provistos por el SGA simulado y su contrato.
+- Ejecutar la consulta mínima de ADR-002 y comprobar el comportamiento cuando el receptor no responde.
 - Contrastar la propuesta con el backend previo mediante evidencia técnica comparable. Comprobar por separado rendimiento, continuidad de los flujos, auditoría e integridad conforme a los requisitos; la demostración mínima no sustituye esas pruebas.
 - Registrar la aceptación únicamente tras la revisión del equipo, con fecha, participantes y acuerdos comprobables. El registro conserva el contexto, las razones y las consecuencias de la decisión ([AWS Prescriptive Guidance, proceso de ADR](https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/)).

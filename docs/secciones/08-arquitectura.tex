@@ -1,5 +1,22 @@
+\begin{landscape}
+\setstretch{1.15}
 \section{Arquitectura base: modelo C4}
-\subsection{C4 nivel 1: contexto}\pendiente{Consultar la figura 1 del artículo de Atodiresei y colaboradores~\cite{atodiresei-c4-2024}. Crear el editable en docs/diagramas/ e insertar la figura exportada con usuarios, SGRA y sistemas externos.}
-El contexto considera cuatro actores: estudiante, docente, coordinación y administración. Los sistemas externos identificados son el servicio de correo, el almacenamiento de archivos y el proveedor de validación de datos de cargas.
-\subsection{C4 nivel 2: contenedores}\pendiente{Consultar la figura 2 del artículo de Atodiresei y colaboradores~\cite{atodiresei-c4-2024}. Mostrar en un editable los servicios, bases de datos y comunicaciones, e identificar lo implementado y lo propuesto.}
-Los contenedores considerados son la SPA Angular, la API Spring Boot, la base de datos PostgreSQL y los servicios externos de correo, almacenamiento y validación. La comunicación entre la SPA y la API se realiza mediante HTTP/JSON.
+\subsection{C4 nivel 1: contexto}
+La Figura~\ref{fig:c4-contexto} delimita el SGRA y sus relaciones con personas y sistemas externos~\cite{atodiresei-c4-2024}. El estudiante solicita y consulta refuerzos; el docente decide, programa y registra sesiones; coordinación académica realiza seguimiento; administración gestiona cuentas y configuración; y el gestor de áreas de trabajo atiende reservas. El SGA simulado proporcionaría los datos académicos por API. SMTP apoya las notificaciones, Azure Blob Storage almacena los recursos de las sesiones y Groq se propone únicamente como apoyo a la validación del formulario de solicitudes de refuerzo.
+
+\begin{center}
+  \includegraphics[width=\linewidth,height=9.8cm,keepaspectratio]{c4-nivel-1-contexto-formal.pdf}
+  \captionof{figure}{Contexto del SGRA: perfiles institucionales y sistemas externos.}
+  \label{fig:c4-contexto}
+\end{center}
+
+\clearpage
+\subsection{C4 nivel 2: contenedores}
+La Figura~\ref{fig:c4-contenedores} distingue la aplicación web Angular, la API Spring Boot y PostgreSQL dentro del límite del SGRA. La SPA usa HTTP/JSON y sesión HTTP; la API accede a PostgreSQL mediante JPA/JDBC. Los módulos Java pertenecen a un mismo backend desplegable. La API consultaría al SGA simulado por HTTP/JSON, sin acceso directo a sus tablas, y se comunicaría con SMTP, Azure Blob Storage y Groq para las funciones de apoyo indicadas.
+
+\begin{center}
+  \includegraphics[width=\linewidth,height=9.8cm,keepaspectratio]{c4-nivel-2-contenedores-formal.pdf}
+  \captionof{figure}{Contenedores del SGRA, dependencias externas y, en un recuadro separado, la demostración local propuesta de E1.}
+  \label{fig:c4-contenedores}
+\end{center}
+\end{landscape}

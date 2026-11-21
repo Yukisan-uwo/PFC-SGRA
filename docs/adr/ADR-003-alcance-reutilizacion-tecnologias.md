@@ -12,10 +12,11 @@ El SGRA cubre el proceso de refuerzo académico de la UTEQ. La base disponible s
 
 ### Alcance
 
-- Actores: estudiante, docente, coordinación, gestor de areas de trabajo y administración.
+- Actores: estudiante, docente, coordinación académica, gestor de áreas de trabajo y administración.
 - Funciones incluidas: autenticación y control de acceso; catálogos académicos de periodos, carreras, materias, paralelos y horarios; solicitud de refuerzo; revisión, aceptación, rechazo y reprogramación; programación y ejecución de sesiones; registro de participantes y asistencia; carga de recursos de la sesión; historial; tablero de coordinación; administración de usuarios y roles.
 - Fuera del alcance de la primera entrega: pagos, videoconferencia integrada, aplicación móvil nativa, chat propio y analítica predictiva.
-- Las integraciones de correo, almacenamiento de archivos y validación asistida de cargas se mantienen como servicios de apoyo y no como dominio principal.
+- Coordinación realiza seguimiento y consulta de reportes. En el diseño propuesto, los datos académicos se consultan mediante la API del SGA simulado; no se incluye un flujo de carga de estudiantes a cargo de coordinación.
+- El correo, el almacenamiento de recursos y el apoyo a la validación del formulario de solicitudes son integraciones de apoyo, no parte del dominio principal.
 - La demostración de primera entrega comprende la interacción mínima entre dos servicios; las reglas completas de negocio permanecen en el alcance del sistema.
 
 ### Reutilización
@@ -31,7 +32,7 @@ El SGRA cubre el proceso de refuerzo académico de la UTEQ. La base disponible s
 - Backend: Java 21, Spring Boot 4.0.3, Maven, Spring Data JPA, PostgreSQL, Spring Session, Spring Security Crypto y Actuator.
 - Frontend: Angular 21, TypeScript 5.9, npm 11, Bootstrap 5.3 y Chart.js 4.5.
 - Comunicación: REST/HTTP JSON y sesión HTTP para la interacción navegador-API; la demostración entre servicios usa HTTP síncrono.
-- Servicios de apoyo: correo SMTP, almacenamiento Azure Blob y validación de cargas con Groq.
+- Servicios de apoyo: correo SMTP, almacenamiento Azure Blob y, como integración propuesta, Groq para apoyar exclusivamente la validación del formulario de solicitudes de refuerzo.
 - La base tecnológica se conserva para reducir el riesgo de migración y aprovechar el conocimiento del equipo.
 
 ### Datos críticos candidatos

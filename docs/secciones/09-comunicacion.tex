@@ -1,28 +1,28 @@
 \section{Modelo de comunicación entre servicios}
 \subsection{Alcance y estado del diseño}
-Se propone REST sobre HTTP con mensajes JSON y comunicación síncrona para una consulta académica mínima entre dos servicios de E1. ADR-002 conserva el estado \textbf{Propuesto}: faltan las mediciones originales de PE-U1, el C4 nivel 2 definitivo y la comprobación del esqueleto. El inventario siguiente distingue las integraciones del SGRA anterior de la nueva interacción propuesta; no afirma que este repositorio ya las implemente.
+Se propone REST sobre HTTP con mensajes JSON y comunicación síncrona para una consulta académica mínima entre dos servicios.
 
 \subsection{Inventario de interacciones}
-La revisión del backend previo identifica persistencia JPA/PostgreSQL, correo SMTP, almacenamiento Azure Blob y una llamada HTTP/JSON al proveedor Groq. Las fuentes y la revisión del código se enlazan en ADR-002. La interacción SPA--API procede de la arquitectura previa descrita en este informe. Las filas H corresponden a ese sistema; la fila E1 corresponde a la demostración propuesta.
+Las filas C1--C7 corresponden a las relaciones del diagrama de contenedores (Figura~\ref{fig:c4-contenedores}). La fila E1 corresponde a la toma de decisiones del mecanismo de comunicación; no presupone que los procesos locales sean los componentes de producción.
 
 \begingroup
 \small
 \begin{longtable}{@{}p{0.06\textwidth}p{0.20\textwidth}p{0.22\textwidth}p{0.17\textwidth}p{0.22\textwidth}@{}}
 \toprule
 \textbf{ID}&\textbf{Origen y destino}&\textbf{Finalidad}&\textbf{Tipo y mecanismo}&\textbf{Motivo}\\\midrule\endhead
-H1 & SPA Angular $\rightarrow$ API Spring Boot & Consultar y gestionar refuerzos; cargar recursos. & Síncrona; HTTP/JSON o multipart. & El cliente espera respuesta de la operación; es la interfaz del sistema previo.\\
-H2 & API $\rightarrow$ PostgreSQL & Consultar y persistir datos. & Síncrona; SQL mediante JPA/JDBC. & Las operaciones esperan el resultado de la base; no es una API REST.\\
-H3 & API $\rightarrow$ servidor de correo & Enviar notificaciones. & Envío SMTP síncrono; existe variante con delegación local. & El envío puede esperar confirmación SMTP o delegarse; la recepción por la persona ocurre después.\\
-H4 & API $\rightarrow$ Azure Blob & Subir, consultar y eliminar archivos. & Síncrona; API Blob mediante SDK HTTP. & El cliente síncrono espera el resultado para devolver archivo o URL.\\
-H5 & API $\rightarrow$ Groq & Complementar la validación de cargas. & Síncrona; HTTP POST con JSON. & Se espera la respuesta antes de combinarla con las reglas Java.\\
+C1 & Usuarios $\rightarrow$ SPA Angular & Acceder a la interfaz según el perfil. & Navegador web. & Los perfiles interactúan con el SGRA mediante la aplicación web.\\
+C2 & SPA Angular $\rightarrow$ API SGRA & Consultar y gestionar refuerzos; adjuntar recursos. & Síncrona; HTTP/JSON y sesión HTTP; multipart para adjuntos. & El cliente espera la respuesta de la operación.\\
+C3 & API SGRA $\rightarrow$ PostgreSQL & Consultar y persistir datos del SGRA. & Síncrona; SQL mediante JPA/JDBC. & Las operaciones esperan el resultado de la base.\\
+C4 & API SGRA $\rightarrow$ SGA simulado & Consultar datos académicos. & Propuesta; HTTP/JSON. & El acceso se hace mediante una API, no mediante tablas compartidas.\\
+C5 & API SGRA $\rightarrow$ servicio SMTP & Enviar notificaciones. & SMTP. & El correo comunica cambios a los participantes.\\
+C6 & API SGRA $\rightarrow$ Azure Blob Storage & Gestionar archivos de las sesiones. & HTTPS mediante el SDK de almacenamiento. & Los recursos se almacenan fuera del núcleo del SGRA.\\
+C7 & API SGRA $\rightarrow$ Groq & Apoyar la validación del formulario de solicitudes de refuerzo. & Propuesta; HTTPS/JSON. & La consulta apoya la validación del formulario; no forma parte de la demo.\\
 E1 & Servicio de refuerzos $\rightarrow$ servicio académico & Consultar una asignatura sintética por ID. & Síncrona; REST/HTTP JSON. & Permite observar una consulta entre dos procesos con respuesta inmediata y contrato pequeño.\\
 \bottomrule
 \end{longtable}
 \endgroup
 
-En H3, \texttt{sendEmail} espera la operación SMTP y \texttt{sendEmailAsync} declara una delegación con \texttt{@Async}; su ejecución asíncrona efectiva depende de la configuración de Spring. Esto no acredita una cola durable ni un broker. En H5, el código conserva las validaciones Java si el proveedor no está configurado o falla. Las llamadas internas entre módulos Java no se cuentan como comunicaciones entre servicios desplegados independientemente.
-
-\pendiente{Cotejar todas las flechas del C4 nivel 2 del issue \#15 con este inventario, conservar IDs y nombres consistentes y actualizar las filas si cambia el alcance.}
+El envío por SMTP no implica una cola durable ni confirma la lectura por parte del destinatario. Las llamadas internas entre módulos Java tampoco cuentan como comunicaciones entre servicios desplegados independientemente.
 
 \subsection{Contrato de la consulta mínima propuesta}
 El \textbf{servicio de refuerzos} escuchará en \texttt{127.0.0.1:8081} y expondrá \texttt{GET /api/demo/asignaturas/\{id\}}. Al recibir una entrada válida consultará al \textbf{servicio académico}, que escuchará en \texttt{127.0.0.1:8082} y expondrá \texttt{GET /api/asignaturas/\{id\}}. El emisor devolverá el resultado al cliente; no resolverá la consulta con una copia local.

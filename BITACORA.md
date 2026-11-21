@@ -714,3 +714,38 @@ Se mantuvieron los bocetos en una subcarpeta identificada como preliminar y la c
 ### Tiempo dedicado
 
 2 horas y media.
+
+## 21 de noviembre de 2026 — Diagramas C4 formales e integración al informe (issue #15)
+
+**Integrante participante:** Bryan Lombeida.
+
+### Actividades realizadas
+
+- Se prepararon las vistas formales de contexto y contenedores a partir de los bocetos del issue #35.
+- Se cotejaron las vistas con ADR-001, ADR-002 y ADR-003 y con el inventario de comunicaciones del informe, con revision de un asistencia de IA para que todo este alineados y coherentes.
+- Se exportaron ambas vistas a PDF y se incorporaron a la sección 8. Se recompiló el informe con pdfLaTeX y Biber y se revisaron visualmente las figuras.
+
+### Problemas y comportamientos observados
+
+Los rótulos de Groq todavía aludían a la validación de cargas, aunque ese flujo quedó fuera del alcance. La sección 8 enumeraba cuatro perfiles y el nivel 2 no identificaba por nombre los dos procesos de la demostración.
+
+### Solución y recuperación
+
+Se incorporaron los cinco perfiles al texto del informe y se precisó que coordinación realiza seguimiento, el SGA simulado proporcionaría datos académicos por API y Groq solo apoyaría la validación del formulario de solicitudes de refuerzo. Se añadió al nivel 2 un recuadro separado para la consulta sintética local entre `servicio-refuerzos` y `servicio-academico` por HTTP/JSON. Se conservaron por separado los bocetos, los editables formales y sus exportaciones.
+
+### Resultados obtenidos
+
+- Las dos vistas C4 quedaron incorporadas al informe. El nivel 2 diferencia las relaciones de la arquitectura propuesta de los procesos de la demostración.
+- La compilación no dejó citas ni referencias sin resolver. La revisión documental no acredita que la arquitectura esté desplegada ni que se haya ejecutado la demostración.
+- Queda pendiente confirmar la revisión grupal antes de cerrar el issue #15.
+
+### Evidencias
+
+- **Issues:** [#15 — Diagramas C4 formales](https://github.com/Yukisan-uwo/PFC-SGRA/issues/15) y [#35 — Bocetos preliminares](https://github.com/Yukisan-uwo/PFC-SGRA/issues/35).
+- **Editables:** [C4 nivel 1 — Contexto](docs/diagramas/formales/c4-nivel-1-contexto-formal.drawio) y [C4 nivel 2 — Contenedores](docs/diagramas/formales/c4-nivel-2-contenedores-formal.drawio).
+- **Informe:** [sección 8](docs/secciones/08-arquitectura.tex) e [informe compilado](docs/main.pdf#page=33).
+- **Sesión de diseño:** [captura del 21 de noviembre](evidencias/sesiones%20de%20dise%C3%B1o/sesion-diseno-formal-21112026.png).
+
+### Tiempo dedicado
+
+2 horas.
