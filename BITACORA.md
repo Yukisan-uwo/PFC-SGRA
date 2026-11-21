@@ -582,7 +582,6 @@ Se ajustaron los intervalos de consulta a partir del audio y se distinguieron lo
 
 30 minutos.
 
-
 ## 21 de noviembre de 2026 — Historias de solicitud y seguimiento del SGRA (issue #10)
 
 **Integrante participante:** TOAQUIZA ZAMBRANO BELINDA BETZABETH.
@@ -683,3 +682,35 @@ Delimité coordinación a seguimiento y separé los datos académicos de origen 
 ### Tiempo dedicado
 
 45 min.
+
+## 21 de noviembre de 2026 — Bocetos preliminares C4 del SGRA (issue #35)
+
+**Integrante participante:** Bryan Lombeida (elaboración de los bocetos).
+
+### Actividades realizadas
+
+- Se elaboraron dos bocetos del SGRA: **C4 nivel 1**, para representar el sistema, sus actores y la relación con el SGA externo; y **C4 nivel 2**, para representar la interfaz web, la API, la base de datos y las integraciones externas.
+- Se organizaron los bocetos en `docs/diagramas/preliminares/` y se vinculó la captura de la sesión de diseño del 20 de noviembre.
+
+### Problemas y comportamientos observados
+
+Era necesario distinguir los bocetos antes de los diagramas formales. Además, los archivos tienen extensión `.drawio.png`: funcionan como imágenes de vista previa y conservan los datos editables del diagrama.
+
+### Solución y recuperación
+
+Se mantuvieron los bocetos en una subcarpeta identificada como preliminar y la captura de la sesión en `evidencias/`. Se comprobó que ambos PNG contienen los datos de diagrams.net, por lo que se pueden abrir allí para continuar la edición.
+
+### Resultados obtenidos
+
+- Quedaron disponibles los dos bocetos editables y la evidencia de la sesión.
+- Los bocetos sirven de punto de partida para el issue #15. Queda pendiente revisar con el equipo la correspondencia entre las dos vistas, el alcance y los ADR antes de incorporar las figuras formales al informe.
+
+### Evidencias
+
+- **Issues:** [#35 — Elaborar en grupo el boceto preliminar de C4](https://github.com/Yukisan-uwo/PFC-SGRA/issues/35) y [#15 — Elaborar C4 nivel 1 y nivel 2](https://github.com/Yukisan-uwo/PFC-SGRA/issues/15).
+- **Bocetos:** [C4 nivel 1 — Contexto](docs/diagramas/preliminares/c4-nivel-1-contexto-preliminar.drawio.png) y [C4 nivel 2 — Contenedores](docs/diagramas/preliminares/c4-nivel-2-contenedores-preliminar.drawio.png).
+- **Sesión de diseño:** [captura del 20 de noviembre de 2026](evidencias/sesiones%20de%20dise%C3%B1o/sesion-diseno-preliminar-20112026.png).
+
+### Tiempo dedicado
+
+2 horas y media.
