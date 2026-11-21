@@ -2034,6 +2034,64 @@
       }
     }
   ],
+  "adr001_proposal_sources": {
+    "scope": "Referencias adicionales para la propuesta remitida a revisión. No acreditan aprobación, implementación ni mediciones del SGRA.",
+    "verification": "Se contrastaron metadatos de los artículos con Crossref y fichas editoriales. La búsqueda por título en SciSpace no devolvió fichas exactas utilizables para los candidatos consultados; los localizadores proceden de las publicaciones, no de fichas agregadas. No se verificó indexación para contabilizar mínimos de E1.",
+    "entries": [
+      {
+        "key": "fu2025-distmeasure",
+        "doi": "10.1145/3708476",
+        "body_language": "en",
+        "pdf_url": "https://chapering.github.io/pubs/tosem24distmeasure.pdf",
+        "sha256": "d3179c8d5055d7904c00cb828c216501459fc8c53a889696f2c4b1187f384ac6",
+        "locator": "Resumen y §1, párrafo que comienza «In particular, in the most common type of distributed systems».",
+        "supports": "Cooperación de componentes por comunicación entre procesos sobre la red; no se utiliza para definir fallo parcial.",
+        "archive": "Consulta por enlace; la versión contiene un aviso que restringe volver a publicar el PDF en servidores."
+      },
+      {
+        "key": "vansteen2023-distributed",
+        "isbn": "978-90-815406-4-3",
+        "body_language": "en",
+        "author_site": "https://distributed-systems.net/index.php/books/ds4/",
+        "consulted_pdf_url": "https://repository.gctu.edu.gh/files/original/05f354408611278fa1a2f807b7beae31.pdf",
+        "sha256": "67fea30cb20f9fe45fb5efa6b5fb5751d1d87a203ed9498b68042194aa697cd1",
+        "locator": "Edición 4, versión 4.01, cap. 8, p. 462, primer párrafo.",
+        "supports": "Una parte puede fallar mientras el resto sigue operando; la continuidad de las funciones no está garantizada.",
+        "archive": "Consulta por enlace; el PDF tiene aviso de derechos reservados."
+      },
+      {
+        "key": "bonte2025-stream",
+        "doi": "10.1007/s00778-025-00927-7",
+        "body_language": "en",
+        "pdf_url": "https://link.springer.com/content/pdf/10.1007/s00778-025-00927-7.pdf",
+        "pdf_file": "PDFs_Fuentes/Bonte-2025-RDF-Stream-Processing.pdf",
+        "sha256": "6bd7e79194fb188818b96d36a512211ba5a46375408bca9ee37aa21f8c75bb2f",
+        "locator": "§2.3, «Apache Storm», p. 5 del PDF.",
+        "supports": "El procesamiento puede repetirse con entrega al menos una vez y causar problemas para operaciones no idempotentes. No se infiere una garantía concreta para la mensajería del SGRA."
+      },
+      {
+        "key": "tofan2026-tail",
+        "doi": "10.12962/j24068535.v24i2.a1516",
+        "body_language": "en",
+        "pdf_url": "https://juti.if.its.ac.id/index.php/juti/article/download/1516/600",
+        "pdf_file": "PDFs_Fuentes/Tofan-2026-Architecture-Performance.pdf",
+        "sha256": "12c1abcfcca3895af576c043f5af31246059c82d3a783be770ba2546ab5e693c",
+        "locator": "§3, metodología; §4, resultados; §4.5, limitaciones.",
+        "supports": "Comparación de latencia, solicitudes por segundo y recursos en una misma máquina; el resultado no se extrapola a otras topologías ni al SGRA."
+      },
+      {
+        "key": "botros2024-unfragile",
+        "doi": "10.1016/j.infsof.2024.107519",
+        "body_language": "en",
+        "pdf_url": "https://keele-repository.worktribe.com/OutputFile/873954",
+        "pdf_file": "PDFs_Fuentes/Botros-2024-UNFRAGILE.pdf",
+        "sha256": "077d5b2b925effbed42d630b37577acfffb883b8383299b30d764ad163cf086a",
+        "locator": "§§6.2.1–6.3, pp. 11–12: llamadas asíncronas y tiempos de espera; §§6.4–6.5, pp. 12–16, figs. 17–18: límite adaptativo de concurrencia y resultados ante la latencia inyectada.",
+        "supports": "Combinar tiempos de espera y límites de concurrencia para contener el impacto de dependencias lentas. No valida la continuidad de funciones del SGRA ni un timeout aislado.",
+        "archive": "Versión editorial completa de 20 páginas, aportada por el usuario, verificada y archivada. Licencia CC BY 4.0."
+      }
+    ]
+  },
   "metadata_corrections": [
     "SciSpace omitió Bivol, Jackson y Yilmaz en la ficha de Abgaz; se conservan los diez autores de PDF y Crossref.",
     "SciSpace omitió al primer autor Hamdy Michael Ayas; Crossref registra familia Michael Ayas, nombre Hamdy.",

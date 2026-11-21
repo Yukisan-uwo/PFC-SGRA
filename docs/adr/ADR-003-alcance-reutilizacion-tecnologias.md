@@ -6,17 +6,17 @@
 
 ## Contexto
 
-El SGRA cubre el proceso de refuerzo académico de la UTEQ. La base disponible separa las funciones académicas, generales, de refuerzo y de seguridad, y cuenta con una interfaz organizada por roles. Para E1 se requiere delimitar el sistema, identificar qué se reutiliza, fijar la base tecnológica y reconocer los datos cuya pérdida o inconsistencia afecta el proceso.
+El SGRA cubre el proceso de refuerzo académico de la UTEQ. La base disponible separa las funciones académicas, generales, de refuerzo y de seguridad, y cuenta con una interfaz organizada por roles. Para la primera entrega se requiere delimitar el sistema, identificar qué se reutiliza, fijar la base tecnológica y reconocer los datos cuya pérdida o inconsistencia afecta el proceso.
 
 ## Acuerdos
 
 ### Alcance
 
-- Actores: estudiante, docente, coordinación y administración.
+- Actores: estudiante, docente, coordinación, gestor de areas de trabajo y administración.
 - Funciones incluidas: autenticación y control de acceso; catálogos académicos de periodos, carreras, materias, paralelos y horarios; solicitud de refuerzo; revisión, aceptación, rechazo y reprogramación; programación y ejecución de sesiones; registro de participantes y asistencia; carga de recursos de la sesión; historial; tablero de coordinación; administración de usuarios y roles.
-- Fuera del alcance de E1: pagos, videoconferencia integrada, aplicación móvil nativa, chat propio y analítica predictiva.
+- Fuera del alcance de la primera entrega: pagos, videoconferencia integrada, aplicación móvil nativa, chat propio y analítica predictiva.
 - Las integraciones de correo, almacenamiento de archivos y validación asistida de cargas se mantienen como servicios de apoyo y no como dominio principal.
-- La demostración de E1 comprende la interacción mínima entre dos servicios; las reglas completas de negocio permanecen en el alcance del sistema.
+- La demostración de primera entrega comprende la interacción mínima entre dos servicios; las reglas completas de negocio permanecen en el alcance del sistema.
 
 ### Reutilización
 
@@ -50,4 +50,4 @@ Estos datos se consideran críticos porque su pérdida o inconsistencia impide p
 - La reutilización reduce el esfuerzo de implementación, pero mantiene dependencia de las versiones y de la configuración del sistema existente.
 - La base tecnológica es estable para el equipo, aunque exige actualización de dependencias y gestión externa de credenciales.
 - Los datos críticos obligan a definir transacciones, autorización, respaldos y auditoría antes de ampliar el alcance.
-- La demostración de E1 verifica la comunicación entre dos servicios; no acredita por sí sola la persistencia distribuida ni la disponibilidad de todos los módulos.
+- La demostración de la primera entrega verifica la comunicación entre dos servicios; no acredita por sí sola la persistencia distribuida ni la disponibilidad de todos los módulos.

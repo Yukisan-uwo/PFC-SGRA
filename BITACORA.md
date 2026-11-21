@@ -456,3 +456,41 @@ Amplié y contrasté las fuentes para respaldar cada subapartado. Corregí los m
 ### Tiempo dedicado
 
 50 min.
+
+## 20 de noviembre de 2026 — Revisión de ADR-001 y justificación de la arquitectura distribuida
+
+**Integrante participante:** No consignado en el registro de la actividad.
+
+### Actividades realizadas
+
+- Se revisó el borrador de ADR-001 y su correspondencia con los requisitos no funcionales, la consulta mínima de ADR-002 y el alcance acordado en ADR-003.
+- Se contrastaron las afirmaciones del borrador con la bibliografía existente y se revisaron las referencias propuestas en la conversación sobre comunicación entre procesos, fallos parciales, entrega de mensajes, rendimiento y contención de fallos.
+- Se actualizaron el ADR-001 y su resumen en el informe. Se diferenciaron los estilos arquitectónicos de la topología de despliegue y se presentó la mensajería asíncrona como un complemento, no como una cuarta alternativa excluyente.
+- Se redactó la sección 7 como una justificación autónoma. Tras revisar el borrador,se redacto a partir de las necesidades del SGRA y dejar el reconocimiento de la investigación y el desarrollo iniciales en la sección 5.
+
+### Problemas y comportamientos observados
+
+El borrador comparaba un monolito limitado a un solo servidor con alternativas que no tenían la misma restricción. También usaba notas provisionales de «Afirmación a respaldar», y algunas afirmaciones requerían fuentes más directas. La sección 7 describia la propuesta para poder explicar directamente a partir de la separación entre la gestión de refuerzos y la provisión de datos académicos.
+
+### Solución y recuperación
+
+Para las fuentes de Fu y colaboradores y de van Steen y Tanenbaum se conservaron enlaces de consulta sin redistribuir los PDF.
+
+### Resultados obtenidos
+
+- El ADR-001 documenta como **propuesta** mantener el núcleo modular del SGRA e integrarlo con un SGA simulado mediante una API. No se presenta como una decisión aprobada ni como una arquitectura implementada.
+- La sección 7 justifica la separación de responsabilidades sin depender del trabajo anterior. Vincula la propuesta con rendimiento, disponibilidad, integridad y auditoría, y distingue la consulta sintética de E1 de las pruebas necesarias para validar esos requisitos.
+- Se incorporaron cinco entradas bibliográficas y se archivaron los PDF de Bonte, Botros y Tofan. Se dejó constancia de la asistencia de IA en el informe.
+- El informe de 36 páginas se recompiló con pdfLaTeX y Biber. Se revisaron visualmente las páginas modificadas y se comprobó que no quedaran citas sin resolver.
+- Quedan pendientes la aprobación del ADR por el equipo, la delimitación del SGA simulado y la validación de la propuesta mediante pruebas. No se registraron como actividades concluidas.
+
+### Evidencias
+
+- **Decisión propuesta:** [ADR-001](docs/adr/ADR-001-estilo-arquitectura.md).
+- **Informe:** [sección 7](docs/secciones/07-justificacion.tex), [resumen de ADR](docs/secciones/11-adr.tex), [declaración de IA](docs/secciones/16-ia.tex) e [informe compilado](docs/main.pdf).
+- **Fuentes:** [bibliografía](docs/referencias/referencias.bib) y [registro de investigación](docs/referencias/analisis-arquitectura-sgra.json), apartado `adr001_proposal_sources`.
+- **Verificación:** compilación local con pdfLaTeX y Biber, revisión visual y comprobación de citas y huellas de los PDF archivados.
+
+### Tiempo dedicado
+
+4 horas.
