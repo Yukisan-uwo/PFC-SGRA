@@ -1,0 +1,108 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="C4 02 · Contenedores" id="CbF9E8WEG2pMHkDceqzU">
+    <mxGraphModel dx="2780" dy="1562" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1980" pageHeight="1640" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="v45" parent="1" style="text=1;html=1;fontFamily=Arial;fontSize=31;align=left;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;spacing=0;" value="SGRA  /  C4 NIVEL 2" vertex="1">
+          <mxGeometry height="50" width="298" x="62" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="v47" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;strokeWidth=1.6;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=12;dashed=1;dashPattern=6 5;strokeWidth=2.4;dashPattern=10 7;" value="" vertex="1">
+          <mxGeometry height="795" width="920" x="305" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="v48" parent="1" style="text=1;html=1;fontFamily=Arial;fontSize=20;align=left;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;spacing=0;strokeColor=none;" value="LÍMITE DEL SISTEMA  ·  SGRA" vertex="1">
+          <mxGeometry height="40" width="298" x="360" y="227" as="geometry" />
+        </mxCell>
+        <mxCell id="v50" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;strokeWidth=1.6;fontFamily=Arial;fontSize=14;align=center;verticalAlign=middle;spacing=12;dashed=0;dashPattern=6 5;" value="&lt;div style=&quot;font-family:Arial,sans-serif;text-align:center;line-height:1.2;&quot;&gt;&lt;span style=&quot;font-weight:700;font-size:16px&quot;&gt;Usuarios SGRA&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;font-size:12px;&quot;&gt;Cinco perfiles institucionales&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;font-size:10px;font-weight:bold&quot;&gt;«Personas»&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="126" width="205" x="55" y="352" as="geometry" />
+        </mxCell>
+        <mxCell id="v51" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;strokeWidth=1.6;fontFamily=Arial;fontSize=17;align=center;verticalAlign=middle;spacing=12;dashed=0;dashPattern=6 5;strokeWidth=2.2;" value="&lt;div style=&quot;font-family:Arial,sans-serif;text-align:center;line-height:1.2;&quot;&gt;&lt;span style=&quot;font-weight:700;font-size:16px&quot;&gt;Aplicación web SGRA&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;font-size:12px;&quot;&gt;Angular 21  ·  SPA&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;font-size:10px;font-weight:bold&quot;&gt;«Container»  ·  Interfaz por roles&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="131" width="534" x="490" y="337" as="geometry" />
+        </mxCell>
+        <mxCell id="v52" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;strokeWidth=1.6;fontFamily=Arial;fontSize=17;align=center;verticalAlign=middle;spacing=12;dashed=0;dashPattern=6 5;strokeWidth=2.2;" value="&lt;div style=&quot;font-family:Arial,sans-serif;text-align:center;line-height:1.2;&quot;&gt;&lt;span style=&quot;font-weight:700;font-size:16px&quot;&gt;API SGRA&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;font-size:12px;&quot;&gt;Java 21  ·  Spring Boot 4.0.3&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;font-size:10px;font-weight:bold&quot;&gt;«Container»  ·  Backend monolítico modular&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="164" width="534" x="490" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="v53" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;strokeWidth=1.6;fontFamily=Arial;fontSize=17;align=center;verticalAlign=middle;spacing=12;dashed=0;dashPattern=6 5;strokeWidth=2.2;" value="&lt;div style=&quot;font-family:Arial,sans-serif;text-align:center;line-height:1.2;&quot;&gt;&lt;span style=&quot;font-weight:700;font-size:16px&quot;&gt;Base de datos SGRA&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;font-size:12px;&quot;&gt;PostgreSQL  ·  JPA / JDBC&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;font-size:10px;font-weight:bold&quot;&gt;«Container: Base de datos»&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="125" width="534" x="490" y="831" as="geometry" />
+        </mxCell>
+        <mxCell id="e54" edge="1" parent="1" source="v50" style="endArrow=block;endFill=1;edgeStyle=none;rounded=0;html=1;strokeWidth=2.4;dashed=0;dashPattern=7 5;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="v51" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v55" parent="1" style="text=1;html=1;fontFamily=Arial;fontSize=14;align=left;verticalAlign=middle;whiteSpace=wrap;fontStyle=0;spacing=0;strokeColor=none;" value="Navegador web" vertex="1">
+          <mxGeometry height="26" width="101" x="350" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="e56" edge="1" parent="1" source="v51" style="endArrow=block;endFill=1;edgeStyle=none;rounded=0;html=1;strokeWidth=2.4;dashed=0;dashPattern=7 5;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="v52" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v57" parent="1" style="text=1;html=1;fontFamily=Arial;fontSize=15;align=left;verticalAlign=middle;whiteSpace=wrap;fontStyle=0;spacing=0;strokeColor=none;rotation=0;" value="HTTP / JSON · sesión HTTP" vertex="1">
+          <mxGeometry height="32" width="205" x="775" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="e58" edge="1" parent="1" source="v52" style="endArrow=block;endFill=1;edgeStyle=none;rounded=0;html=1;strokeWidth=2.4;dashed=0;dashPattern=7 5;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="v53" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v59" parent="1" style="text=1;html=1;fontFamily=Arial;fontSize=15;align=left;verticalAlign=middle;whiteSpace=wrap;fontStyle=0;spacing=0;strokeColor=none;" value="JPA / JDBC · consultas y escrituras" vertex="1">
+          <mxGeometry height="28" width="245" x="775" y="764" as="geometry" />
+        </mxCell>
+        <mxCell id="v60" parent="1" style="text=1;html=1;fontFamily=Arial;fontSize=16;align=left;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;spacing=0;" value="SERVICIOS / SISTEMAS FUERA DEL LÍMITE SGRA" vertex="1">
+          <mxGeometry height="31" width="506" x="1418" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="v61" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;strokeWidth=1.6;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=12;dashed=1;dashPattern=6 5;strokeWidth=2;" value="&lt;div style=&quot;font-family:Arial,sans-serif;text-align:center;line-height:1.2;&quot;&gt;&lt;span style=&quot;font-weight:700;font-size:16px&quot;&gt;SGA simulado&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;font-size:12px;&quot;&gt;Catálogo y datos académicos&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;font-size:10px;font-weight:bold&quot;&gt;«Sistema externo propuesto»&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="123" width="385" x="1480" y="289" as="geometry" />
+        </mxCell>
+        <mxCell id="e62" edge="1" parent="1" source="v52" style="endArrow=block;endFill=1;edgeStyle=none;rounded=0;html=1;strokeWidth=2;dashed=1;dashPattern=7 5;exitX=1;exitY=0.19;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="v61" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v63" parent="1" style="text=1;html=1;fontFamily=Arial;fontSize=13;align=left;verticalAlign=middle;whiteSpace=wrap;fontStyle=0;spacing=0;strokeColor=none;rotation=-30;" value="API / HTTP JSON · propuesta" vertex="1">
+          <mxGeometry height="42" width="180" x="1240" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="v64" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;strokeWidth=1.6;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=12;dashed=0;dashPattern=6 5;strokeWidth=2;" value="&lt;div style=&quot;font-family:Arial,sans-serif;text-align:center;line-height:1.2;&quot;&gt;&lt;span style=&quot;font-weight:700;font-size:16px&quot;&gt;Servicio SMTP&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;font-size:12px;&quot;&gt;Envío de notificaciones&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;font-size:10px;font-weight:bold&quot;&gt;«Sistema externo»&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="123" width="385" x="1480" y="465" as="geometry" />
+        </mxCell>
+        <mxCell id="e65" edge="1" parent="1" source="v52" style="endArrow=block;endFill=1;edgeStyle=none;rounded=0;html=1;strokeWidth=2;dashed=0;dashPattern=7 5;exitX=1;exitY=0.395;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="v64" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v66" parent="1" style="text=1;html=1;fontFamily=Arial;fontSize=13;align=left;verticalAlign=middle;whiteSpace=wrap;fontStyle=0;spacing=0;strokeColor=none;rotation=-15;" value="SMTP · correo" vertex="1">
+          <mxGeometry height="42" width="101" x="1270" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="v67" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;strokeWidth=1.6;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=12;dashed=0;dashPattern=6 5;strokeWidth=2;" value="&lt;div style=&quot;font-family:Arial,sans-serif;text-align:center;line-height:1.2;&quot;&gt;&lt;span style=&quot;font-weight:700;font-size:16px&quot;&gt;Azure Blob Storage&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;font-size:12px;&quot;&gt;Recursos de sesiones&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;font-size:10px;font-weight:bold&quot;&gt;«Almacenamiento externo»&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="123" width="385" x="1480" y="641" as="geometry" />
+        </mxCell>
+        <mxCell id="e68" edge="1" parent="1" source="v52" style="endArrow=block;endFill=1;edgeStyle=none;rounded=0;html=1;strokeWidth=2;dashed=0;dashPattern=7 5;exitX=1;exitY=0.6;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="v67" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v69" parent="1" style="text=1;html=1;fontFamily=Arial;fontSize=13;align=left;verticalAlign=middle;whiteSpace=wrap;fontStyle=0;spacing=0;strokeColor=none;rotation=5;" value="HTTPS · SDK de almacenamiento" vertex="1">
+          <mxGeometry height="42" width="205" x="1253.5" y="641" as="geometry" />
+        </mxCell>
+        <mxCell id="v70" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;strokeWidth=1.6;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=12;dashed=0;dashPattern=6 5;strokeWidth=2;" value="&lt;div style=&quot;font-family:Arial,sans-serif;text-align:center;line-height:1.2;&quot;&gt;&lt;span style=&quot;font-weight:700;font-size:16px&quot;&gt;Groq&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;font-size:12px;&quot;&gt;Apoyo a la validación del formulario de solicitudes de refuerzo&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot;font-size:10px;font-weight:bold&quot;&gt;«Integración externa propuesta»&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="123" width="385" x="1480" y="817" as="geometry" />
+        </mxCell>
+        <mxCell id="e71" edge="1" parent="1" source="v52" style="endArrow=block;endFill=1;edgeStyle=none;rounded=0;html=1;strokeWidth=2;dashed=0;dashPattern=7 5;exitX=1;exitY=0.8049999999999999;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="v70" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v72" parent="1" style="text=1;html=1;fontFamily=Arial;fontSize=13;align=left;verticalAlign=middle;whiteSpace=wrap;fontStyle=0;spacing=0;strokeColor=none;rotation=15;" value="HTTPS / JSON · apoyo al formulario" vertex="1">
+          <mxGeometry height="42" width="224" x="1240" y="764" as="geometry" />
+        </mxCell>
+        <mxCell id="v73" parent="1" style="text=1;html=1;fontFamily=Arial;fontSize=13;align=left;verticalAlign=middle;whiteSpace=wrap;fontStyle=0;spacing=0;strokeColor=none;" value="Módulos: reinforcement / academic / general / security  ·  no son contenedores separados" vertex="1">
+          <mxGeometry height="28" width="537.5" x="380" y="963" as="geometry" />
+        </mxCell>
+        <mxCell id="demo-e1" parent="1" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#f4f7fa;strokeColor=#526878;strokeWidth=1.6;" value="" vertex="1">
+          <mxGeometry x="850" y="46" width="1015" height="124" as="geometry" />
+        </mxCell>
+        <mxCell id="demo-e1-title" parent="1" style="text=1;html=1;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=18;fontStyle=1;align=center;verticalAlign=middle;" value="DEMOSTRACIÓN LOCAL PROPUESTA DE E1 · NO ES UN DESPLIEGUE" vertex="1">
+          <mxGeometry x="868" y="52" width="980" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="demo-e1-refuerzos" parent="1" style="rounded=1;arcSize=15;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=17;fontStyle=1;fillColor=#ffffff;strokeColor=#526878;strokeWidth=1.5;" value="servicio-refuerzos" vertex="1">
+          <mxGeometry x="883" y="100" width="285" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="demo-e1-academico" parent="1" style="rounded=1;arcSize=15;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=17;fontStyle=1;fillColor=#ffffff;strokeColor=#526878;strokeWidth=1.5;" value="servicio-academico" vertex="1">
+          <mxGeometry x="1547" y="100" width="285" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="demo-e1-consulta" edge="1" parent="1" source="demo-e1-refuerzos" target="demo-e1-academico" style="edgeStyle=none;endArrow=block;endFill=1;html=1;strokeColor=#526878;strokeWidth=2;fontFamily=Arial;fontSize=15;labelBackgroundColor=#f4f7fa;" value="HTTP/JSON · Consulta de asignatura sintética">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="0" y="-17" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
