@@ -898,3 +898,60 @@ Estas pruebas manuales evidencian comunicación síncrona entre dos procesos loc
 ### Tiempo dedicado
 
 48 minutos.
+
+## 21 de noviembre de 2026 — Documentación de ejecución reproducible del esqueleto (issue #19 y #34)
+
+**Integrante participante:** ZAMBRANO PARRAGA LUIS MARIO.
+
+### Actividades realizadas
+
+- Revisé los archivos del servicio académico y del servicio de refuerzos para documentar su funcionamiento y las condiciones necesarias para ejecutarlos.
+- Actualicé el apartado «Ejecución del esqueleto» del `README.md` principal, que anteriormente conservaba una indicación pendiente de implementación.
+- Documenté las dependencias utilizadas: Java 21, Spring Boot 4.0.10, Maven Wrapper y Spring Web MVC.
+- Incorporé la configuración local de ambos servicios mediante sus respectivos archivos `application.properties`, diferenciando los puertos 8082 y 8081.
+- Expliqué los comandos necesarios para iniciar cada servicio en una terminal independiente utilizando Maven Wrapper.
+- Registré las rutas HTTP empleadas para comprobar la comunicación entre los procesos y las respuestas esperadas para los escenarios 200, 400, 404 y 503.
+- Añadí el procedimiento para detener temporalmente el servicio académico, verificar la indisponibilidad desde refuerzos y comprobar la recuperación posterior.
+- Incorporé enlaces a las tres capturas principales de integración y al registro complementario de evidencias.
+- Revisé la descripción del repositorio para diferenciar el esqueleto ya implementado de las actividades que todavía corresponden a la integración final de E1.
+
+### Problemas y comportamientos observados
+
+El README todavía describía el repositorio como una plantilla inicial y señalaba que los servicios estaban pendientes de implementación, aunque ambos ya se encontraban publicados.
+Además, las instrucciones debían permitir distinguir claramente qué servicio se inicia primero, qué puerto utiliza cada uno y cómo verificar las respuestas HTTP sin depender de herramientas adicionales.
+
+### Solución y recuperación
+
+Se organizó la documentación técnica siguiendo la secuencia de instalación, configuración, ejecución y comprobación.
+Se incluyeron comandos específicos para Windows mediante PowerShell, así como las respuestas JSON esperadas de acuerdo con el contrato del ADR-002.
+Las instrucciones se basaron en las pruebas manuales que realicé previamente.
+
+### Resultados obtenidos
+
+- Se redactaron instrucciones para iniciar ambos servicios desde el repositorio.
+- Quedaron documentadas las dependencias mínimas y las configuraciones de los puertos 8081 y 8082.
+- Se incorporaron procedimientos de comprobación para las respuestas HTTP 200, 400, 404 y 503.
+- Se documentó la recuperación de la comunicación después de reiniciar el servicio académico.
+- Se enlazaron las tres capturas principales requeridas para demostrar la ejecución y comunicación de los servicios.
+- La documentación diferencia las pruebas locales ya realizadas de la verificación desde un clon limpio, que todavía está pendiente.
+
+### Actividades pendientes
+
+- Solicitar que otro integrante reproduzca las instrucciones desde un clon limpio.
+- Completar `docs/secciones/14-esqueleto.tex` con la descripción de la implementación y las evidencias.
+- Integrar las actualizaciones al PDF final del informe.
+- Verificar los enlaces del video y las evidencias antes de cerrar el issue #34.
+
+### Evidencias
+
+- **Issue:** [#34 — Documentar la ejecución y obtener tres capturas](https://github.com/Yukisan-uwo/PFC-SGRA/issues/34).
+- **README principal:** [README.md](README.md).
+- **Servicio académico:** `src/servicio-academico/`.
+- **Servicio de refuerzos:** `src/servicio-refuerzos/`.
+- **Capturas:** `evidencias/Implementacion/07-integracion-http-200.png`, `08-integracion-http-400-404.png` y `09-integracion-consulta-entre-servicios.png`.
+- **Registro complementario:** [README de integración](evidencias/Implementacion/README-integracion.md).
+- **Contrato técnico:** [ADR-002](docs/adr/ADR-002-mecanismo-comunicacion.md).
+
+### Tiempo dedicado
+
+18 minutos.
