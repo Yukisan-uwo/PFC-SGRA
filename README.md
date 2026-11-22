@@ -51,6 +51,8 @@ Esta implementación demuestra la comunicación entre procesos y el manejo de er
 - Conexión a Internet para descargar las dependencias de Maven durante la primera ejecución.
 - PowerShell en Windows, o una terminal compatible con Maven Wrapper en otro sistema operativo.
 
+En Windows, clona el repositorio en una carpeta con una ruta corta. Un destino con muchos niveles puede superar el límite de longitud al extraer algunos PDF de referencia.
+
 Ambos proyectos utilizan Spring Boot 4.0.10, Spring Web MVC y Maven.
 No es necesario instalar Maven globalmente, porque cada servicio incluye Maven Wrapper.
 
