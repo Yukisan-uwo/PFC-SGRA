@@ -14,7 +14,7 @@ La base técnica del SGRA contempla una SPA Angular y una API Spring Boot con HT
 
 E1 exige demostrar dos servicios comunicándose, sin completar todavía las reglas de negocio. Se propone una consulta de asignatura entre un servicio de refuerzos y un servicio académico. El caso se relaciona con los módulos `reinforcement` y `academic` y con las consultas de asignaturas del SGRA anterior; no representa una extracción de módulos ya realizada.
 
-La vista C4 de contenedores representa la relación propuesta entre la API del SGRA y el SGA simulado. La demostración la ilustra mediante dos procesos locales, sin constituir su despliegue definitivo. Quedan pendientes las mediciones de PE-U1, la ejecución del esqueleto y la revisión del equipo; no se atribuyen resultados de rendimiento ni cumplimiento de RNF.
+La vista C4 de contenedores representa la relación propuesta entre la API del SGRA y el SGA simulado. La demostración la ilustra mediante dos procesos locales, sin constituir su despliegue definitivo. El [receptor académico de E1](../../src/servicio-academico/pom.xml) utiliza Spring Boot 4.0.10, Java 21 y Maven; el ajuste frente a la base inicial está registrado en [ADR-003](ADR-003-alcance-reutilizacion-tecnologias.md#tecnologías). Las pruebas aisladas del receptor no sustituyen la ejecución de ambos procesos, las mediciones de PE-U1 ni la revisión del equipo.
 
 ## Opciones consideradas
 
@@ -62,7 +62,7 @@ Los nombres y rutas son nuevos y propuestos. No sustituyen los endpoints del SGR
 |---|---|---|
 | Fundamentación empírica | Informe o datos originales de PE-U1: mecanismo realmente ensayado, equipo y red, carga/tamaño de mensaje, repeticiones, métricas, unidades, errores y localizador. | Pendiente del issue #6. |
 | Coherencia de diseño | C4 nivel 2 con la flecha HTTP/JSON entre la API del SGRA y el SGA simulado e inventario de las interacciones. El contrato identifica por separado los procesos de la demostración. | Cotejo documental en las secciones 8 y 9; falta verificar la llamada ejecutada. |
-| Consulta correcta | Ejecución del emisor y registro de la llamada al receptor para ID `1`, con el `200` y el JSON pactado. | Pendiente de #19, #33 y #34. |
+| Consulta correcta | Ejecución del emisor y registro de la llamada al receptor para ID `1`, con el `200` y el JSON pactado. | El receptor tiene evidencia aislada en #19; falta comprobar la llamada desde el emisor. |
 | Entradas y fallos | Pruebas de ID inválido (`400`), inexistente (`404`), receptor detenido, respuesta incompatible y espera agotada (`503`), sin reintentos. | Pendiente de implementación y prueba. |
 | Aceptación del ADR | Revisión del equipo y fecha de aceptación, conservando las limitaciones y el respaldo de PE-U1. | Pendiente; estado Propuesto. |
 

@@ -181,6 +181,8 @@ Las capturas auténticas se encuentran en
 
 Las pruebas fueron realizadas localmente mediante PowerShell y `curl.exe`. La reproducción desde un clon limpio por otro integrante sigue pendiente de verificación.
 
+**Ajuste de versión para E1:** la base inicial del backend preveía Spring Boot 4.0.3. El [receptor académico](src/servicio-academico/pom.xml) se generó con Spring Boot 4.0.10, disponible en Spring Initializr, manteniendo Java 21 y Maven. Véase [ADR-003](docs/adr/ADR-003-alcance-reutilizacion-tecnologias.md#tecnologías).
+
 ## GitHub Projects y video
 
 - **Tablero de tareas E1/E2:** pendiente de enlace, asignación y cierre de issues.
