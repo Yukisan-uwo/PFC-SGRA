@@ -1133,3 +1133,53 @@ Se reunió la trazabilidad de los quince RF en una tabla con localizadores y hal
 
 ### Tiempo dedicado
 40 min.
+
+## 21 de noviembre de 2026 — Elaboración de la matriz de riesgos técnicos del SGRA (issue #25)
+
+**Responsable:** ZAMBRANO PARRAGA LUIS MARIO.
+
+### Actividades realizadas
+
+- Revisé la práctica FORM-AC-01, correspondiente al análisis de la caída de Cloudflare del 21 de junio de 2022, para identificar las causas del incidente y las lecciones que podían aplicarse al SGRA.
+- Analicé los problemas de configuración, propagación de cambios defectuosos y recuperación descoordinada identificados en dicha práctica.
+- Elaboré una matriz con cinco riesgos técnicos relacionados con la arquitectura y las funcionalidades previstas del SGRA.
+- Relacioné tres riesgos directamente con el incidente FORM-AC-01: configuración incorrecta entre servicios, propagación de cambios incompatibles y recuperación descoordinada.
+- Incorporé dos riesgos adicionales: indisponibilidad del servicio académico y posibles duplicaciones de confirmaciones o notificaciones.
+- Definí una escala cualitativa de probabilidad e impacto con los niveles bajo, medio y alto.
+- Establecí medidas de mitigación para cada riesgo, incluyendo revisión de configuraciones, pruebas de integración, despliegues controlados, coordinación de recuperaciones y control de operaciones duplicadas.
+- Relacioné el riesgo de indisponibilidad con las pruebas HTTP 503 y la recuperación del servicio académico realizadas durante E1.
+- Integré el análisis en `docs/secciones/12-riesgos.tex`, compilé el informe LaTeX y revisé la presentación de la matriz en el PDF.
+- Publiqué los cambios en GitHub mediante un commit relacionado con el issue #25.
+
+### Problemas y comportamientos observados
+
+Durante la revisión fue necesario diferenciar los fallos reales analizados en FORM-AC-01 de los riesgos que podrían presentarse en el SGRA. Aunque el proyecto no utiliza la misma infraestructura de red que Cloudflare, ambos casos permiten reconocer las consecuencias de introducir cambios incorrectos o recuperar componentes sin suficiente coordinación.
+
+También identifiqué que algunas mitigaciones, como los despliegues escalonados y el procesamiento idempotente de notificaciones, corresponden a funcionalidades previstas para etapas posteriores y todavía no están implementadas en el esqueleto E1.
+
+### Solución y resultados obtenidos
+
+Se documentaron cinco riesgos técnicos con sus causas, consecuencias, valoraciones de probabilidad e impacto y medidas de mitigación.
+
+Los riesgos R1, R2 y R3 quedaron vinculados con las lecciones de FORM-AC-01. El riesgo R4 se relacionó con las pruebas reales de comunicación entre los servicios académico y de refuerzos. El riesgo R5 retomó la posibilidad de inconsistencias entre el registro de una asignación y su notificación, identificada previamente en la práctica.
+
+La matriz quedó incorporada en el apartado 12 del informe. La compilación permitió visualizar la tabla con sus columnas, numeración y contenido legible.
+
+### Actividades pendientes
+
+- Solicitar a Bryan y Khriz la revisión de las estimaciones de probabilidad e impacto.
+- Confirmar que las mitigaciones propuestas sean compatibles con la arquitectura y las tecnologías previstas.
+- Incorporar las observaciones que surjan de la revisión del equipo.
+- Completar los criterios de aceptación del issue #25 antes de cerrarlo.
+
+### Evidencias
+
+- **Issue:** [#25 — Elaborar y revisar la matriz de riesgos](https://github.com/Yukisan-uwo/PFC-SGRA/issues/25).
+- **Commit:** [a1d6922 — Incorporación de la matriz de cinco riesgos técnicos](https://github.com/Yukisan-uwo/PFC-SGRA/commit/a1d69227db1e8b150eec4c4ce03621892b1f50b7).
+- **Matriz:** `docs/secciones/12-riesgos.tex`.
+- **Informe compilado:** `docs/main.pdf`.
+- **Práctica utilizada:** [FORM-AC-01 — Análisis de un fallo en un sistema distribuido real](https://github.com/Yukisan-uwo/FORM-AC-01-Analisis-de-Caso-Fallo-en-Sistema-Distribuido-Real).
+
+### Tiempo dedicado
+
+10 minutos.
