@@ -3,11 +3,22 @@
 **Estado:** E1 en integración: esqueleto funcional implementado y probado localmente; pendientes verificación desde clon limpio e integración final del informe
 
 **Proyecto:** Sistema de Gestión de Refuerzo Académico (SGRA).  
-**Equipo:** Mario, Belinda, Bryan y Khriz.  
+**Equipo:** Lombeida Escaleras Bryan Humberto; Coronel Gomez Khriz Alexander; Zambrano Parraga Luis Mario; Toaquiza Zambrano Belinda Betzabeth.
 **Asignatura:** Aplicaciones Distribuidas.  
 **Roles oficiales:** Khriz Coronel, Líder de Desarrollo; Bryan Lombeida, Arquitecto; Belinda Toaquiza, Responsable de Documentación; Mario Zambrano, Responsable de Calidad.
 
-**Entrega E1:** domingo 22 de noviembre de 2026, 00:00.
+
+**Facultad:** Facultad de Ciencias de la Computación.
+
+**Carrera y curso:** Ingeniería de Software, séptimo semestre, paralelo A.
+
+**Período académico:** REGULAR 2026–2027 SPA.
+
+**Fecha de entrega E1:** 21 de noviembre de 2026.
+
+**Repositorio:** https://github.com/Yukisan-uwo/PFC-SGRA
+
+**Carátula para el SGA:** [PDF de una página](docs/caratula-e1.pdf). Comparte datos y diseño con la portada del informe mediante `docs/datos-portada.tex` y `docs/portada.tex`. Para regenerarla desde `docs/`, ejecutar `pdflatex -interaction=nonstopmode -halt-on-error caratula-e1.tex`.
 
 ## Estructura
 

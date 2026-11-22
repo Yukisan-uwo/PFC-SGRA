@@ -42,42 +42,15 @@
 \urlstyle{same}
 \newcommand{\pendiente}[1]{{\color{red!65!black}\textbf{[Pendiente: #1]}}}
 
-% Datos de portada: actualizar con datos oficiales del equipo.
-\newcommand{\nombreproyecto}{Sistema de Gestión de Refuerzo Académico (SGRA)}
-\newcommand{\asignatura}{Aplicaciones Distribuidas}
-\newcommand{\periodoacademico}{\pendiente{periodo académico}}
-\newcommand{\fechadeentrega}{28 de noviembre de 2026}
-\newcommand{\repositoriopfc}{\pendiente{URL del repositorio definitivo}}
-\newcommand{\arquitecto}{LOMBEIDA ESCALERAS BRYAN HUMBERTO}
-\newcommand{\liderdesarrollo}{CORONEL GOMEZ KHRIZ ALEXANDER}
-\newcommand{\responsablecalidad}{ZAMBRANO PARRAGA LUIS MARIO}
-\newcommand{\responsabledocumentacion}{TOAQUIZA ZAMBRANO BELINDA BETZABETH}
+% Datos compartidos por la portada del informe y la carátula del SGA.
+\IfFileExists{docs/datos-portada.tex}{\input{docs/datos-portada.tex}}{\input{datos-portada.tex}}
 
 \begin{document}
 
 % =====================================================
 % 1. PORTADA OFICIAL
 % =====================================================
-\begin{titlepage}
-\begin{center}
-  {\large\bfseries Universidad Técnica Estatal de Quevedo}\\[0.6cm]
-  {\large\bfseries Aplicaciones Distribuidas}\\[1.5cm]
-  {\Large\bfseries Proyecto Fin de Curso --- Entrega 1}\\[0.5cm]
-  {\LARGE\bfseries \nombreproyecto}\\[0.6cm]
-  {\large TA-PFC-E1: Propuesta y Análisis del Sistema Distribuido}\\[1.4cm]
-\end{center}
-\noindent\textbf{Integrantes y roles oficiales:}\\[0.2cm]
-\begin{tabularx}{\textwidth}{@{}lX@{}}
-Arquitecto: & \arquitecto\\
-Líder de Desarrollo: & \liderdesarrollo\\
-Responsable de Calidad: & \responsablecalidad\\
-Responsable de Documentación: & \responsabledocumentacion\\
-\end{tabularx}
-\vfill
-\noindent\textbf{Periodo académico:} \periodoacademico\\[0.3cm]
-\noindent\textbf{Fecha de entrega:} \fechadeentrega\\[0.3cm]
-\noindent\textbf{Repositorio:} \repositoriopfc
-\end{titlepage}
+\IfFileExists{docs/portada.tex}{\input{docs/portada.tex}}{\input{portada.tex}}
 
 \tableofcontents
 \clearpage

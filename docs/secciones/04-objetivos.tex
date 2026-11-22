@@ -1,11 +1,31 @@
 \section{Objetivos}
-\subsection{Objetivo general}\pendiente{Redactar un objetivo verificable del PFC.}
-\subsection{Objetivos específicos e indicadores}
-% Incorporar entre 3 y 5 objetivos específicos, cada uno con su indicador.
-\begin{longtable}{@{}p{0.10\textwidth}p{0.53\textwidth}p{0.27\textwidth}@{}}
-\toprule\textbf{ID}&\textbf{Objetivo específico}&\textbf{Indicador de cumplimiento}\\\midrule\endhead
-OE1 & \pendiente{objetivo} & \pendiente{indicador}\\
-OE2 & \pendiente{objetivo} & \pendiente{indicador}\\
-OE3 & \pendiente{objetivo} & \pendiente{indicador}\\
+\subsection{Objetivo general}
+
+Desarrollar una aplicación web distribuida para la gestión del refuerzo académico en la Universidad Técnica Estatal de Quevedo, mediante la integración de servicios independientes que intercambien información académica y gestionen las solicitudes, para facilitar la coordinación y el seguimiento de las sesiones entre estudiantes y docentes.
+
+\subsection{Objetivos específicos}
+
+\begin{enumerate}
+\item Analizar el proceso de refuerzo académico para identificar las necesidades de sus participantes y delimitar las funciones y los datos que deberán coordinarse entre los servicios de la aplicación.
+\item Diseñar la arquitectura distribuida de la aplicación, definiendo las responsabilidades de los servicios, los contratos de comunicación y el control de acceso a la información.
+\item Implementar los servicios de la aplicación para gestionar el ciclo de atención del refuerzo académico y proporcionar la información académica necesaria para su funcionamiento.
+\item Integrar los servicios mediante comunicación por red, contemplando el intercambio de datos, el tratamiento de fallos y las notificaciones a los participantes.
+\item Evaluar el funcionamiento integrado, el rendimiento y la facilidad de uso de la aplicación distribuida mediante pruebas técnicas y tareas realizadas por usuarios representativos.
+\end{enumerate}
+
+\subsection{Indicadores de cumplimiento}
+
+La evaluación final del proyecto utilizará los siguientes indicadores para comprobar el cumplimiento de cada objetivo específico.
+
+\begin{longtable}{@{}p{0.10\textwidth}>{\raggedright\arraybackslash}p{0.80\textwidth}@{}}
+\toprule
+\textbf{Objetivo} & \textbf{Indicador y comprobación prevista}\\
+\midrule
+\endhead
+OE1 & Se comprobará que el análisis cubra a los cinco perfiles: estudiante, docente, coordinación, gestor de espacios y administración. Para cada perfil se identificarán sus actividades y necesidades; cada grupo de datos utilizado se asociará con la función que lo administra.\\[0.15cm]
+OE2 & El 100\,\% de los servicios del diseño tendrá una responsabilidad definida y cada interacción especificará emisor, receptor, datos, permisos y tratamiento de fallos. Se comprobará la correspondencia entre los diagramas y los contratos.\\[0.15cm]
+OE3 & Se ejecutarán al menos dos servicios de forma independiente. Se probará el ciclo completo de una solicitud individual y otra grupal, con consulta académica, programación, reserva presencial, reprogramación, asistencia y cierre, incluyendo la variante virtual.\\[0.15cm]
+OE4 & Se comprobarán cinco escenarios de consulta: dato válido, entrada inválida, dato inexistente, servicio académico no disponible y recuperación del servicio. Para cada cambio de estado se verificará el envío de la notificación a los destinatarios correspondientes.\\[0.15cm]
+OE5 & Se medirán los tiempos de las operaciones principales con hasta 100 usuarios concurrentes y 10\,000 solicitudes, con una meta máxima de 5 segundos. Se observará la ejecución de tareas sin asistencia y se aplicará SUS, con una meta promedio de al menos 70 puntos.\\
 \bottomrule
 \end{longtable}
