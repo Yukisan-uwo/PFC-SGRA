@@ -43,7 +43,9 @@ El emisor devuelve al cliente el resultado de la consulta, sin utilizar una copi
 
 El catálogo utilizado es sintético y contiene únicamente la asignatura con identificador \texttt{1}. Para esta consulta, la respuesta correcta es HTTP \texttt{200}, con tipo de contenido \texttt{application/json} y el siguiente cuerpo:
 
-\begin{verbatim} {"id":1,"nombre":"Asignatura de demostración"} \end{verbatim}
+\begin{verbatim}
+{"id":1,"nombre":"Asignatura de demostración"}
+\end{verbatim}
 
 Un identificador no entero o no positivo produce HTTP \texttt{400}, con el código \texttt{ID\_INVALIDO}, sin consultar al receptor.
 
