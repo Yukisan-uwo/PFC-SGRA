@@ -37,7 +37,7 @@ E1 & Servicio de refuerzos $\rightarrow$ servicio académico & Consultar una asi
 El envío por SMTP no implica una cola durable ni confirma la lectura por parte del destinatario. Las llamadas internas entre módulos Java tampoco cuentan como comunicaciones entre servicios desplegados independientemente.
 
 \subsection{Contrato de la consulta mínima implementada}
-El \textbf{servicio de refuerzos} escucha en \texttt{127.0.0.1:8081} y expone la ruta \texttt{GET /api/demo/asignaturas/\{id\}}. Al recibir una entrada válida, consulta al \textbf{servicio académico}, que escucha en \texttt{127.0.0.1:8082} y expone la ruta \texttt{GET /api/asignaturas/\{id\}}.
+El \textbf{servicio de refuerzos} escucha en \texttt{127.0.0.1:8081} y expone la ruta \texttt{GET} \nolinkurl{/api/demo/asignaturas/{id}}. Al recibir una entrada válida, consulta al \textbf{servicio académico}, que escucha en \texttt{127.0.0.1:8082} y expone la ruta \texttt{GET} \nolinkurl{/api/asignaturas/{id}}.
 
 El emisor devuelve al cliente el resultado de la consulta, sin utilizar una copia local de los datos académicos.
 
@@ -49,15 +49,15 @@ El catálogo utilizado es sintético y contiene únicamente la asignatura con id
 
 Un identificador no entero o no positivo produce HTTP \texttt{400}, con el código \texttt{ID\_INVALIDO}, sin consultar al receptor.
 
-Un entero positivo distinto de \texttt{1} produce HTTP \texttt{404}, con el código \texttt{ASIGNATURA\_NO\_ENCONTRADA}. El servicio de refuerzos conserva este resultado.
+Un entero positivo distinto de \texttt{1} produce HTTP \texttt{404}, con el código \nolinkurl{ASIGNATURA_NO_ENCONTRADA}. El servicio de refuerzos conserva este resultado.
 
 Cuando ocurre una desconexión, se agota un tiempo de espera, se recibe una respuesta HTTP \texttt{5xx} o el contenido del receptor es incompatible con el contrato esperado, el emisor está preparado para devolver HTTP \texttt{503}, con el código \texttt{SERVICIO\_ACADEMICO\_NO\_DISPONIBLE}.
 
-Las pruebas manuales verificaron los estados HTTP \texttt{200}, \texttt{400} y \texttt{404}, así como el error \texttt{503} al detener el receptor y la recuperación posterior. No se realizaron pruebas específicas de agotamiento de tiempos de espera, respuestas incompatibles o errores HTTP \texttt{5xx} generados por el receptor.
+Las pruebas manuales verificaron los estados HTTP \texttt{200}, \texttt{400} y \texttt{404}, así como el error \texttt{503} al detener el receptor y la recuperación posterior. El registro de integración recoge además ocho comprobaciones automatizadas con un receptor controlado, que incluyen respuestas incompatibles, un error HTTP \texttt{500}, el agotamiento del tiempo de lectura y la recuperación posterior. Estas comprobaciones se distinguen de las capturas de las pruebas manuales.
 
 El mecanismo de comunicación REST/HTTP JSON fue aceptado por el equipo e implementado en la demostración E1. El cliente HTTP del servicio de refuerzos utiliza un tiempo de espera de conexión de un segundo y otro de lectura de un segundo, con una sola tentativa y sin reintentos automáticos.
 
-Estos valores corresponden a la configuración implementada y no garantizan un tiempo máximo total de respuesta. No se realizaron mediciones experimentales de latencia.
+Estos valores corresponden a la configuración implementada y no garantizan un tiempo máximo total de respuesta. No se realizaron mediciones de latencia de las operaciones completas del SGRA.
 
 Para una implementación posterior se propone registrar el servicio, la ruta, el estado HTTP y la duración de cada operación.
 
@@ -67,10 +67,50 @@ La autenticación por sesión del navegador en el SGRA anterior se mantiene como
 
 Las rutas implementadas corresponden a la demostración E1 y no sustituyen los endpoints del SGRA anterior.
 
-\subsection{Justificación y evidencia pendiente}
-REST/HTTP JSON permite usar las herramientas HTTP conocidas y comprobar el contrato sin un broker ni generación de clientes. gRPC permitiría un contrato Protocol Buffers y clientes generados, pero no hay una medición disponible que justifique introducir esas herramientas en este caso. Entre dos servicios backend gRPC no necesita una capa para navegador. La mensajería permite procesamiento diferido; para esta consulta exigiría correlacionar solicitud y respuesta y tratar entregas y duplicados. No se declara una ventaja de latencia o rendimiento de una alternativa sobre otra.
+\subsection{Justificación y evidencia experimental}
 
-\pendiente{Incorporar desde el issue \#6 las mediciones reales de PE-U1: mecanismos ensayados, equipo y red, carga y tamaño de mensaje, repeticiones, métricas con unidades, errores y enlace a datos originales. Explicar su relación y límites respecto a esta consulta; revisar la propuesta si la evidencia o los RNF la contradicen.}
+REST/HTTP con JSON se eligió para la consulta académica porque permite reutilizar las herramientas HTTP del equipo, mantener un contrato pequeño y comprobar las respuestas sin incorporar un intermediario de mensajes ni generar clientes. gRPC ofrece contratos Protocol Buffers y clientes generados; la mensajería permite diferir el procesamiento, pero una consulta con respuesta inmediata requiere además correlación y control de entregas. La elección considera esas necesidades y el esfuerzo de integración, además de las diferencias de rendimiento que puedan observarse en un ensayo concreto.
+
+\paragraph{Condiciones de PE-U1.}
+La práctica experimental comparó sockets TCP con JSON y gRPC con Protocol Buffers, mediante solicitudes y acuses entre tres procesos independientes en el mismo equipo~\cite{peu1-2026-resultados}. Se utilizó un AMD Ryzen 7 7730U, con ocho núcleos, dieciséis procesadores lógicos y aproximadamente 15,34 GiB de memoria física, Windows 11 y Python 3.13.15. El entorno gRPC empleó \texttt{grpcio} 1.76.0 y Protobuf 6.33.0. Las conexiones fueron persistentes y se establecieron antes de medir, sobre \texttt{localhost}, sin una red física entre equipos.
+
+Se ensayaron cargas útiles de 100 y 10\,240 bytes de texto UTF-8, sin contar identificadores, serialización ni cabeceras. Para cada mecanismo, tamaño y modo se ejecutaron cinco repeticiones de 100 intercambios, después de una corrida de calentamiento excluida del análisis. En el modo concurrente, los tres emisores repartieron los cien intentos en 35, 35 y 30; esa carga no equivale a cien usuarios simultáneos. La comparación reúne 4\,000 intentos medidos en cuarenta corridas.
+
+El tiempo de ida y vuelta (RTT) se midió en milisegundos desde la preparación y el envío hasta la validación y el registro del acuse, excluyendo la conexión inicial. El rendimiento se calculó como intercambios completados por segundo de duración del lote, incluida la coordinación local entre procesos. La Tabla~\ref{tab:peu1-comunicacion} presenta la media y el percentil 95 del RTT y la media del rendimiento. Los archivos originales conservan además la dispersión y los intervalos de confianza~\cite{peu1-2026-resultados}.
+
+\begingroup
+\small
+\begin{longtable}{@{}llrrrr@{}}
+\caption{Resultados de PE-U1: cinco corridas y 500 intentos por condición}
+\label{tab:peu1-comunicacion}\\
+\toprule
+Modo & Mecanismo & Bytes & \shortstack{RTT medio\\(ms)} & \shortstack{RTT p95\\(ms)} & \shortstack{Rendimiento\\(intercambios/s)}\\
+\midrule
+\endfirsthead
+\toprule
+Modo & Mecanismo & Bytes & \shortstack{RTT medio\\(ms)} & \shortstack{RTT p95\\(ms)} & \shortstack{Rendimiento\\(intercambios/s)}\\
+\midrule
+\endhead
+Secuencial & TCP/JSON & 100 & 0{,}305 & 0{,}376 & 2312{,}481 \\
+Secuencial & gRPC & 100 & 0{,}566 & 0{,}729 & 1426{,}462 \\
+Secuencial & TCP/JSON & 10\,240 & 0{,}433 & 0{,}684 & 1613{,}260 \\
+Secuencial & gRPC & 10\,240 & 0{,}584 & 0{,}724 & 1395{,}226 \\
+Concurrente & TCP/JSON & 100 & 0{,}416 & 0{,}541 & 6247{,}740 \\
+Concurrente & gRPC & 100 & 0{,}680 & 0{,}805 & 4043{,}802 \\
+Concurrente & TCP/JSON & 10\,240 & 0{,}483 & 0{,}610 & 5103{,}964 \\
+Concurrente & gRPC & 10\,240 & 0{,}689 & 0{,}795 & 3969{,}027 \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+En estas condiciones, TCP/JSON registró un RTT medio menor y un rendimiento mayor que gRPC en los cuatro pares de tamaño y modo. No se registraron errores ni tiempos agotados entre los 4\,000 intentos medidos. Esto describe las implementaciones y el entorno de la práctica; no establece una superioridad general de TCP sobre gRPC ni una garantía de disponibilidad.
+
+\paragraph{Aplicación al SGRA y límites.}
+PE-U1 no ensayó REST/HTTP con JSON ni un intermediario de mensajes. Los sockets TCP con JSON no incluyen el protocolo HTTP, y los procesos Python de la práctica difieren de los servicios Spring Boot del SGRA. Tampoco se midieron consultas académicas de negocio, acceso a base de datos, autenticación, redes entre equipos ni conexiones nuevas por operación. Por tanto, estos resultados no permiten calcular la latencia de la consulta del SGRA ni afirmar que REST supere a gRPC.
+
+La práctica aporta experiencia en contratos, serialización, medición y tratamiento de fallos. Para la consulta mínima se mantiene REST/HTTP con JSON por su adecuación al intercambio y su integración con la base existente. Una elección posterior deberá contrastarse mediante la misma operación de negocio, carga y entorno para cada alternativa. La configuración de tiempos de espera y las respuestas HTTP del esqueleto verifican comportamiento funcional; el rendimiento y la disponibilidad del SGRA requieren mediciones propias.
+
+Los CSV de intentos y lotes, los metadatos del equipo y los resúmenes están disponibles en el \href{https://github.com/BelindaTZ/GA-SUM-02-PE-U1/tree/7bdd543dffd08b08d881db2803629abe5b1811fa/data/comparativa_procesos_20261121_150936}{conjunto original de PE-U1}. Una copia de consulta se conserva en \nolinkurl{evidencias/PE-U1/}, vinculada con la revisión del repositorio de origen~\cite{peu1-2026-resultados}.
 
 \subsection{Comprobación y cierre}
-El esqueleto implementa ambos servicios con Spring Boot 4.0.10, Java 21 y Maven. Las pruebas de integración locales verificaron la consulta correcta (\texttt{200}), el ID inválido (\texttt{400}), la asignatura inexistente (\texttt{404}), el receptor detenido (\texttt{503}) y la recuperación posterior (\texttt{200}), sin reintentos automáticos. La reproducción desde un clon limpio y las mediciones de PE-U1 siguen pendientes; el issue \#16 permanecerá abierto hasta incorporarlas y comprobar que C4, ADR-002 y la llamada ejecutada describen la misma interacción.
+El esqueleto implementa ambos servicios con Spring Boot 4.0.10, Java 21 y Maven. Las pruebas de integración locales verificaron la consulta correcta (\texttt{200}), el ID inválido (\texttt{400}), la asignatura inexistente (\texttt{404}), el receptor detenido (\texttt{503}) y la recuperación posterior (\texttt{200}), sin reintentos automáticos. La reproducción técnica asistida desde un clon limpio está registrada en las evidencias de integración; queda por confirmar su reproducción por un segundo integrante. Los resultados de PE-U1 fundamentan la comparación con los límites descritos, y las pruebas del esqueleto respaldan la consulta HTTP implementada.

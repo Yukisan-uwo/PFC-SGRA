@@ -1,0 +1,9 @@
+mode,mechanism,payload_bytes,ok
+concurrent,grpc,100,500
+concurrent,grpc,10240,500
+concurrent,sockets,100,500
+concurrent,sockets,10240,500
+sequential,grpc,100,500
+sequential,grpc,10240,500
+sequential,sockets,100,500
+sequential,sockets,10240,500

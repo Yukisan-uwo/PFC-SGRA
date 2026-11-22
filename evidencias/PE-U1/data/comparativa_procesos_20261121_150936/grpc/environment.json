@@ -1,0 +1,34 @@
+{
+  "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "mechanism": "grpc",
+  "deployment": "tres procesos independientes en localhost",
+  "nodes": [
+    {
+      "ready": "nodo-A",
+      "pid": 31176,
+      "port": 5000
+    },
+    {
+      "ready": "nodo-B",
+      "pid": 34940,
+      "port": 5001
+    },
+    {
+      "ready": "nodo-C",
+      "pid": 10008,
+      "port": 5002
+    }
+  ],
+  "dependencies": {
+    "grpcio": "1.76.0",
+    "grpcio-tools": "1.76.0",
+    "protobuf": "6.33.0"
+  },
+  "timeout_s": 5.0,
+  "repetitions": 5,
+  "plan": "experiments\\plan_intercambios.csv",
+  "connections": "persistentes, abiertas antes del primer lote",
+  "concurrent_attempts": "100 en total, repartidos según los emisores del plan",
+  "elapsed_s": "tiempo de pared del lote, incluida la coordinación local por Pipe"
+}

@@ -42,7 +42,7 @@ La decisión no establece que REST tenga mejor rendimiento que gRPC ni que sea e
 
 La alternativa de mensajería asíncrona podrá evaluarse posteriormente para operaciones que admitan procesamiento diferido, como determinadas notificaciones. No se incorpora un intermediario de mensajes en la demostración E1.
 
-La aceptación de este ADR corresponde a la **elección del mecanismo de comunicación**. No implica que se hayan verificado todos los requisitos no funcionales ni que se hayan completado las mediciones de PE-U1.
+La aceptación de este ADR corresponde a la **elección del mecanismo de comunicación**. No implica que se hayan verificado todos los requisitos no funcionales ni que PE-U1 compare el rendimiento de REST con otras alternativas.
 
 ## Contrato de comunicación implementado para E1
 
@@ -104,7 +104,7 @@ Se identifican como evidencias principales:
 
 También se conservaron capturas complementarias del error HTTP `503` y de la recuperación posterior.
 
-**Limitaciones de las pruebas:** no se ejecutaron pruebas específicas que simularan una respuesta HTTP `5xx` del receptor, un contenido JSON incompatible o un agotamiento artificial de los tiempos de espera. Tampoco se realizaron mediciones de latencia, carga concurrente o disponibilidad prolongada. Estas situaciones no deben considerarse verificadas únicamente por estar contempladas en el código.
+**Alcance de las pruebas:** además de las capturas manuales, el registro de integración documenta ocho comprobaciones automatizadas con un receptor controlado, incluidos HTTP `500`, ID incompatible, JSON malformado, agotamiento de lectura y recuperación. No son mediciones de rendimiento bajo carga ni de disponibilidad prolongada del SGRA.
 
 ## Consecuencias
 
@@ -120,21 +120,20 @@ También se conservaron capturas complementarias del error HTTP `503` y de la re
 
 | Comprobación | Evidencia requerida | Estado actualizado |
 |---|---|---|
-| Fundamentación empírica | Resultados originales de PE-U1: mecanismos ensayados, equipo y red, carga, tamaño de mensajes, repeticiones, métricas, unidades y errores. | Pendiente de incorporar o localizar los resultados completos en la documentación del ADR. No se atribuyen mediciones no verificadas. |
+| Fundamentación empírica | Resultados originales de PE-U1: mecanismos ensayados, equipo y red, carga, tamaño de mensajes, repeticiones, métricas, unidades y errores. | Incorporados en la sección 9.4 del informe: 4 000 intentos de TCP/JSON y gRPC/Protobuf, en tres procesos locales Python. CSV y metadatos en `evidencias/PE-U1/`; verificación en `docs/referencias/revision-pe-u1.json`. REST y mensajería no fueron medidos. |
 | Coherencia del diseño | Correspondencia entre el C4 nivel 2, el inventario de interacciones y el contrato de comunicación. | Revisada documentalmente. El C4 distingue la arquitectura propuesta del SGRA y la demostración local de E1. |
 | Consulta correcta | Ejecución de ambos servicios, petición al receptor y respuesta HTTP `200` con el JSON esperado. | Verificada mediante las pruebas locales y las capturas `07` y `09`. |
-| Identificadores y fallos | HTTP `400`, `404`, `503`, recuperación, respuestas incompatibles y tiempos de espera agotados. | Verificados manualmente `400`, `404`, `503` por receptor detenido y recuperación a `200`. Pendientes pruebas específicas de respuesta incompatible, HTTP `5xx` y agotamiento de tiempos de espera. |
-| Documentación reproducible | Dependencias, configuración, comandos de arranque, peticiones de prueba y respuestas esperadas. | Documentada en `README.md` y en el apartado 14 del informe LaTeX. Pendiente reproducción independiente desde un clon limpio. |
+| Identificadores y fallos | HTTP `400`, `404`, `503`, recuperación, respuestas incompatibles y tiempos de espera agotados. | Verificados manualmente `400`, `404`, `503` por receptor detenido y recuperación a `200`. El registro de integración documenta, por separado, las comprobaciones automatizadas de respuesta incompatible, HTTP `500` y agotamiento de lectura. |
+| Documentación reproducible | Dependencias, configuración, comandos de arranque, peticiones de prueba y respuestas esperadas. | Documentada en `README.md` y en el apartado 14. Reproducción técnica asistida desde clon limpio registrada en `evidencias/Implementacion/README-integracion.md`; pendiente confirmación de un segundo integrante. |
 | Aceptación del mecanismo | Confirmación de la decisión arquitectónica por el equipo y registro de las condiciones y limitaciones. | **Aceptado**, según la confirmación del equipo comunicada por Mario Zambrano el 21 de noviembre de 2026. La aceptación no constituye una validación experimental de los RNF. |
 
 ### Verificaciones pendientes
 
 Aunque el mecanismo de comunicación fue aceptado y su implementación mínima fue comprobada, todavía deben atenderse las siguientes actividades para completar la evidencia técnica:
 
-1. Incorporar o localizar las mediciones originales de PE-U1 y explicar qué alternativas se ensayaron realmente.
-2. Solicitar a otro integrante la reproducción de ambos servicios desde un clon limpio del repositorio.
-3. Verificar en la integración final que el informe, el C4, ADR-002 y el código publicado describan el mismo mecanismo.
-4. Completar las pruebas adicionales de manejo de fallos si el equipo decide incluirlas en el alcance de E1.
+1. Solicitar a otro integrante la reproducción de ambos servicios desde un clon limpio del repositorio.
+2. Verificar en la integración final que el informe, el C4, ADR-002 y el código publicado describan el mismo mecanismo.
+3. Completar las pruebas adicionales de manejo de fallos si el equipo decide incluirlas en el alcance de E1.
 
 Si una alternativa no fue medida en PE-U1, se mantendrá como comparación conceptual y no se presentarán resultados experimentales inexistentes.
 
@@ -152,3 +151,6 @@ Código del backend previo, revisión `858ff67fb91604e7a2974efcfeaae3c0f3e40612`
 Estas fuentes documentan la base técnica reutilizada y las decisiones de diseño. No reemplazan las mediciones de PE-U1 ni constituyen evidencia de rendimiento del esqueleto implementado.
 
 La estructura del ADR se apoya en la guía de registros de decisiones de arquitectura de AWS utilizada en el informe.
+### Resultados originales de PE-U1 incorporados
+
+Se consultó [la revisión 7bdd543](https://github.com/BelindaTZ/GA-SUM-02-PE-U1/tree/7bdd543dffd08b08d881db2803629abe5b1811fa), en particular `data/comparativa_procesos_20261121_150936/`. Se excluyeron el calentamiento y la comparativa anterior con hilos. Las medias, p95, intervalos de confianza del RTT y rendimiento se recalcularon desde los CSV y coincidieron con los resúmenes publicados. La comparación solo abarca TCP/JSON y gRPC/Protobuf; no demuestra una ventaja de REST ni el cumplimiento de los RNF del SGRA.

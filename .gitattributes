@@ -1,2 +1,5 @@
 # Los PDF son binarios: conservar sus bytes y evitar diferencias por línea.
 *.pdf binary
+
+# Conservar las evidencias originales de PE-U1 y sus huellas SHA-256.
+evidencias/PE-U1/** -text
