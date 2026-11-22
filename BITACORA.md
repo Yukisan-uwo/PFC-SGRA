@@ -802,3 +802,29 @@ El issue #19 permanece abierto hasta comprobar la comunicación con el servicio 
 ### Tiempo dedicado
 
 57 minutos.
+
+## 21 de noviembre de 2026 — Revisión de cierre de las historias de solicitud y seguimiento (issue #10)
+
+### Actividades realizadas
+
+- Se revisaron con asistencia de Codex las historias RF01–RF05, sus criterios de aceptación y su trazabilidad, sin cambiar el contenido de los requisitos.
+- Se contrastaron las páginas PDF 77–78, 90 y 187–188 del documento original, los pasajes localizados de ENT-01 y ENT-02 y los apartados 5.2.5–5.2.8 de ISO/IEC/IEEE 29148:2011. Los archivos originales coinciden con las huellas SHA-256 del registro previo. Esta revisión no incluyó escucha de audios.
+- Se comprobó que las quince historias principales del conjunto tienen identificadores únicos, que RF01–RF05 incluyen actor, necesidad y beneficio y que sus claves bibliográficas están definidas. Se cotejó el alcance estudiantil con la atención docente y con las ampliaciones de reservas, notificaciones y respuesta a reprogramaciones.
+- Se revisaron visualmente las páginas físicas 14–16 y 27–28 del informe existente de 52 páginas. No se modificaron las fuentes LaTeX ni el PDF y no se realizó una nueva compilación.
+
+### Resultado y procedencia de la confirmación
+
+- La revisión documental no identificó cambios funcionales necesarios para los criterios de #10. Se conserva el alcance y las aclaraciones reales ya registradas.
+- Ante la consulta expresa de si Belinda, Bryan, Mario y Khriz habían revisado RF01–RF05 y comprendido sus criterios, el usuario confirmó en el chat: «Sí, los cuatro ya la revisamos».
+- La confirmación se registra como declaración del usuario. El asistente no observó una reunión ni acredita su fecha, duración, firmas o ejecución de pruebas funcionales.
+- El detalle de las comprobaciones, las versiones consultadas y los límites queda en `docs/referencias/revision-issue-10.json`, apartado `completion_review`. La implementación y sus pruebas no forman parte del cierre documental de este issue.
+
+### Evidencias
+
+- **Issue:** [#10 — Redactar cinco historias sobre solicitud y seguimiento](https://github.com/Yukisan-uwo/PFC-SGRA/issues/10).
+- **Contenido ya publicado:** [39ab75a — Historias y requisitos complementarios](https://github.com/Yukisan-uwo/PFC-SGRA/commit/39ab75a5d7afb3252b4484820adc98c44bb8de05).
+- **Registro:** [revisión documental y confirmación del usuario](docs/referencias/revision-issue-10.json).
+
+### Tiempo dedicado
+
+No medido en esta revisión asistida.
