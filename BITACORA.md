@@ -828,3 +828,37 @@ El issue #19 permanece abierto hasta comprobar la comunicación con el servicio 
 ### Tiempo dedicado
 
 No medido en esta revisión asistida.
+
+## 21 de noviembre de 2026 — Servicio emisor y comunicación local con el académico (issues #20 y #33)
+
+### Actividades realizadas
+
+- Se preparó con asistencia de Codex `src/servicio-refuerzos/`, usando Java 21 y Spring Boot 4.0.10 para mantener compatibilidad con el receptor académico publicado por Mario. Se reutilizó su Maven Wrapper.
+- Se implementó `GET /api/demo/asignaturas/{id}`. El emisor valida la entrada antes de consultar, conserva la respuesta `404` acordada y traduce los fallos o respuestas incompatibles del receptor a `503`.
+- Se configuró un presupuesto de 2000 ms para recibir la respuesta completa, sin reintentos automáticos ni redirecciones. La URL del receptor es configurable y la escucha permanece en loopback.
+- Se añadieron pruebas HTTP con un servidor local controlado para comprobar respuesta recibida, validación, estados, formato, redirecciones, desconexión y espera de cabeceras y cuerpo.
+- Se empaquetaron e iniciaron los dos servicios entregados y se realizaron cinco comprobaciones HTTP reales a través del emisor. Se conservaron resultados, registros y huellas de los archivos evaluados.
+
+### Problemas y recuperación
+
+- El Java predeterminado del equipo era 17. Se utilizó un JDK 21 portátil de Adoptium, con SHA-256 comprobado, sin modificar esa configuración del sistema.
+- La primera ejecución pasó 24 de 25 pruebas: al cerrar la conexión, el cliente del JDK produjo dos solicitudes en el receptor de prueba. Se sustituyó por Apache HttpClient con recuperación automática y redirecciones deshabilitadas por instancia. Las 25 pruebas pasaron después de la corrección.
+- El entorno restringido impidió inicialmente la conexión loopback de Tomcat. La ejecución con permisos autorizados permitió comprobar los dos procesos. El registro de acceso de Tomcat se recogió de su archivo `.log`; no se fabricaron capturas ni resultados.
+
+### Resultados y límites
+
+- Pasaron las 25 pruebas HTTP del emisor y la prueba de contexto existente del receptor; ambos módulos se empaquetaron.
+- En la ejecución de las dos aplicaciones se obtuvieron `200` para ID `1`, `400` para `0` y `abc`, `404` para `2` y `503` después de detener el receptor.
+- El acceso del receptor registró dos llamadas, para `1` y `2`, y ninguna para las entradas inválidas. Los procesos iniciados por esta comprobación se detuvieron al terminar.
+- Los tiempos son observaciones locales, no mediciones originales de PE-U1. No se modifica el estado de los ADR ni se acredita despliegue de producción.
+- La reproducción por otro integrante y las tres capturas quedan para #34; la revisión humana de la implementación y el registro del commit en #20 y #33 siguen pendientes.
+
+### Evidencias
+
+- **Issues:** [#20](https://github.com/Yukisan-uwo/PFC-SGRA/issues/20), [#33](https://github.com/Yukisan-uwo/PFC-SGRA/issues/33) y receptor [#19](https://github.com/Yukisan-uwo/PFC-SGRA/issues/19).
+- **Código e instrucciones:** [servicio de refuerzos](src/servicio-refuerzos/README.md).
+- **Resultados:** [comprobaciones locales](evidencias/Implementacion/servicio-refuerzos/README.md) y [registro estructurado](evidencias/Implementacion/servicio-refuerzos/resultado-pruebas.json).
+
+### Tiempo dedicado
+
+No medido como dedicación humana. Las duraciones de las ejecuciones automatizadas figuran en sus registros.

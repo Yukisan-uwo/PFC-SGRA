@@ -1,0 +1,28 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v4.0.10)
+
+2026-11-21T20:17:00.248-05:00  INFO 16028 --- [servicio-refuerzos] [           main] c.s.r.ServicioRefuerzosApplication       : Starting ServicioRefuerzosApplication v0.0.1-SNAPSHOT using Java 21.0.13.1 with PID 16028 (C:\Users\Khriz Coronel\OneDrive\Desktop\PFC-SGRA\src\servicio-refuerzos\target\servicio-refuerzos-0.0.1-SNAPSHOT.jar started by Khriz Coronel in C:\Users\Khriz Coronel\OneDrive\Desktop\PFC-SGRA)
+2026-11-21T20:17:00.255-05:00  INFO 16028 --- [servicio-refuerzos] [           main] c.s.r.ServicioRefuerzosApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-11-21T20:17:01.702-05:00  INFO 16028 --- [servicio-refuerzos] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8081 (http)
+2026-11-21T20:17:01.723-05:00  INFO 16028 --- [servicio-refuerzos] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-11-21T20:17:01.723-05:00  INFO 16028 --- [servicio-refuerzos] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.27]
+2026-11-21T20:17:01.769-05:00  INFO 16028 --- [servicio-refuerzos] [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1420 ms
+2026-11-21T20:17:02.582-05:00  INFO 16028 --- [servicio-refuerzos] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8081 (http) with context path '/'
+2026-11-21T20:17:02.602-05:00  INFO 16028 --- [servicio-refuerzos] [           main] c.s.r.ServicioRefuerzosApplication       : Started ServicioRefuerzosApplication in 3.026 seconds (process running for 3.816)
+2026-11-21T20:17:02.869-05:00  INFO 16028 --- [servicio-refuerzos] [0.1-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-11-21T20:17:02.869-05:00  INFO 16028 --- [servicio-refuerzos] [0.1-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-11-21T20:17:02.870-05:00  INFO 16028 --- [servicio-refuerzos] [0.1-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-11-21T20:17:02.914-05:00  INFO 16028 --- [servicio-refuerzos] [0.1-8081-exec-2] com.sgra.refuerzos.AcademicoClient       : Consulta saliente servicio=academico ruta=/api/asignaturas/1
+2026-11-21T20:17:03.133-05:00  INFO 16028 --- [servicio-refuerzos] [0.1-8081-exec-2] com.sgra.refuerzos.AcademicoClient       : Consulta terminada servicio=academico id=1 estado=200 duracionMs=225
+2026-11-21T20:17:03.225-05:00  INFO 16028 --- [servicio-refuerzos] [0.1-8081-exec-5] com.sgra.refuerzos.AcademicoClient       : Consulta saliente servicio=academico ruta=/api/asignaturas/2
+2026-11-21T20:17:03.230-05:00  INFO 16028 --- [servicio-refuerzos] [0.1-8081-exec-5] com.sgra.refuerzos.AcademicoClient       : Consulta terminada servicio=academico id=2 estado=404 duracionMs=5
+2026-11-21T20:17:03.304-05:00  INFO 16028 --- [servicio-refuerzos] [0.1-8081-exec-6] com.sgra.refuerzos.AcademicoClient       : Consulta saliente servicio=academico ruta=/api/asignaturas/1
+2026-11-21T20:17:03.307-05:00  WARN 16028 --- [servicio-refuerzos] [0.1-8081-exec-6] com.sgra.refuerzos.AcademicoClient       : Consulta académica fallida motivo=ExecutionException
+2026-11-21T20:17:03.307-05:00  INFO 16028 --- [servicio-refuerzos] [0.1-8081-exec-6] com.sgra.refuerzos.AcademicoClient       : Consulta terminada servicio=academico id=1 estado=503 duracionMs=3

@@ -1,0 +1,2 @@
+[21/Nov/2026:20:17:03 -0500] GET /api/asignaturas/1 200
+[21/Nov/2026:20:17:03 -0500] GET /api/asignaturas/2 404

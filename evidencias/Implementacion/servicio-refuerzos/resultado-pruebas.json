@@ -1,0 +1,194 @@
+{
+  "executed_at": "2026-11-21T20:17:03.311106-05:00",
+  "execution": "Validación local automatizada ejecutada por Codex en el equipo del usuario",
+  "machine": "DESKTOP-762JTFB",
+  "user": "Khriz Coronel",
+  "base_commit": "4c875436bbc8b0ae7c075e3e3c1c6c7fefbf2e4f",
+  "java": "openjdk version \"21.0.13.1\" 2026-11-17 LTS\nOpenJDK Runtime Environment Temurin-21.0.13.1+2 (build 21.0.13.1+2-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.13.1+2 (build 21.0.13.1+2-LTS, mixed mode, sharing)",
+  "spring_boot": "4.0.10",
+  "ports": {
+    "emitter": 8081,
+    "receiver": 8082
+  },
+  "real_processes": {
+    "receiver_pid": 4672,
+    "emitter_pid": 16028
+  },
+  "real_cases": [
+    {
+      "scenario": "consulta real entre procesos",
+      "url": "http://127.0.0.1:8081/api/demo/asignaturas/1",
+      "status": 200,
+      "body": {
+        "nombre": "Asignatura de demostración",
+        "id": 1
+      },
+      "elapsed_ms_observed": 352.242,
+      "passed": true
+    },
+    {
+      "scenario": "ID no positivo",
+      "url": "http://127.0.0.1:8081/api/demo/asignaturas/0",
+      "status": 400,
+      "body": {
+        "codigo": "ID_INVALIDO"
+      },
+      "elapsed_ms_observed": 25.391,
+      "passed": true
+    },
+    {
+      "scenario": "ID no entero",
+      "url": "http://127.0.0.1:8081/api/demo/asignaturas/abc",
+      "status": 400,
+      "body": {
+        "codigo": "ID_INVALIDO"
+      },
+      "elapsed_ms_observed": 20.578,
+      "passed": true
+    },
+    {
+      "scenario": "asignatura inexistente",
+      "url": "http://127.0.0.1:8081/api/demo/asignaturas/2",
+      "status": 404,
+      "body": {
+        "codigo": "ASIGNATURA_NO_ENCONTRADA"
+      },
+      "elapsed_ms_observed": 21.639,
+      "passed": true
+    },
+    {
+      "scenario": "receptor detenido",
+      "url": "http://127.0.0.1:8081/api/demo/asignaturas/1",
+      "status": 503,
+      "body": {
+        "codigo": "SERVICIO_ACADEMICO_NO_DISPONIBLE"
+      },
+      "elapsed_ms_observed": 31.749,
+      "passed": true
+    }
+  ],
+  "receiver_access_log": "receptor-acceso.txt",
+  "outgoing_calls_for_valid_inputs": 2,
+  "outgoing_calls_for_invalid_inputs": 0,
+  "automated_http_stub_tests": {
+    "tests": "25",
+    "failures": "0",
+    "errors": "0",
+    "skipped": "0",
+    "time": "8.452"
+  },
+  "automated_test_cases": [
+    {
+      "name": "conservaEl404YElCodigoDelReceptor",
+      "seconds": "1.166"
+    },
+    {
+      "name": "devuelveElDatoRecibidoDelOtroProceso",
+      "seconds": "0.017"
+    },
+    {
+      "name": "rechazaUn404SinElCodigoPactado",
+      "seconds": "0.048"
+    },
+    {
+      "name": "rechazaRespuestasIncompatibles(String)[1]",
+      "seconds": "0.024"
+    },
+    {
+      "name": "rechazaRespuestasIncompatibles(String)[2]",
+      "seconds": "0.009"
+    },
+    {
+      "name": "rechazaRespuestasIncompatibles(String)[3]",
+      "seconds": "0.014"
+    },
+    {
+      "name": "rechazaRespuestasIncompatibles(String)[4]",
+      "seconds": "0.011"
+    },
+    {
+      "name": "rechazaRespuestasIncompatibles(String)[5]",
+      "seconds": "0.009"
+    },
+    {
+      "name": "rechazaRespuestasIncompatibles(String)[6]",
+      "seconds": "0.01"
+    },
+    {
+      "name": "rechazaRespuestasIncompatibles(String)[7]",
+      "seconds": "0.01"
+    },
+    {
+      "name": "rechazaRespuestasIncompatibles(String)[8]",
+      "seconds": "0.01"
+    },
+    {
+      "name": "informaFalloCuandoNoHayReceptorEscuchando",
+      "seconds": "0.061"
+    },
+    {
+      "name": "rechazaIdentificadoresInvalidosSinLlamarAlReceptor(String)[1]",
+      "seconds": "0.008"
+    },
+    {
+      "name": "rechazaIdentificadoresInvalidosSinLlamarAlReceptor(String)[2]",
+      "seconds": "0.006"
+    },
+    {
+      "name": "rechazaIdentificadoresInvalidosSinLlamarAlReceptor(String)[3]",
+      "seconds": "0.007"
+    },
+    {
+      "name": "rechazaIdentificadoresInvalidosSinLlamarAlReceptor(String)[4]",
+      "seconds": "0.008"
+    },
+    {
+      "name": "traduceEstadosInesperadosAFalloDeDependencia(int)[1]",
+      "seconds": "0.01"
+    },
+    {
+      "name": "traduceEstadosInesperadosAFalloDeDependencia(int)[2]",
+      "seconds": "0.009"
+    },
+    {
+      "name": "traduceEstadosInesperadosAFalloDeDependencia(int)[3]",
+      "seconds": "0.01"
+    },
+    {
+      "name": "traduceEstadosInesperadosAFalloDeDependencia(int)[4]",
+      "seconds": "0.01"
+    },
+    {
+      "name": "limitaLaEsperaDeCabecerasSinReintentar",
+      "seconds": "2.017"
+    },
+    {
+      "name": "rechazaUnTipoDeContenidoIncorrecto",
+      "seconds": "0.013"
+    },
+    {
+      "name": "noSigueRedirecciones",
+      "seconds": "0.019"
+    },
+    {
+      "name": "noReintentaCuandoElReceptorCierraLaConexion",
+      "seconds": "0.019"
+    },
+    {
+      "name": "limitaLaEsperaDelCuerpoAunqueYaLlegaronLasCabeceras",
+      "seconds": "2.019"
+    }
+  ],
+  "source_sha256": {
+    "src/servicio-academico/src/main/java/com/sgra/academico/AsignaturaController.java": "6e39eb5bba7a3b404e67fe629b40e4242c221da34e55cb6edee622144a7dcd57",
+    "src/servicio-refuerzos/pom.xml": "b4dbeba3a925b796fda006c56dab39a1361e18ee2eff03b35a22f28a755ce3ae",
+    "src/servicio-refuerzos/src/main/java/com/sgra/refuerzos/AcademicoClient.java": "d8a3a565004f54ed0e518b87aa29d294ff0d19e3662d28eb2a78d7a41d7b7c0d",
+    "src/servicio-refuerzos/src/main/java/com/sgra/refuerzos/RefuerzoController.java": "ee96240b2eb38331ca515e3fbdae3f49dbd849e5015a98c80cec1e5c391345ef",
+    "src/servicio-refuerzos/src/main/resources/application.properties": "a7f41d514f028ae875ee4c4288d84e194bf4e7b008f1b7b861bec280797a0563",
+    "src/servicio-refuerzos/src/test/java/com/sgra/refuerzos/RefuerzoIntegrationTests.java": "759c09e4ee906e251de46d16f6f241421ccb3dbb8b01a120ff53931b31f9cf22"
+  },
+  "second_member_clean_clone_review": "Pendiente del issue #34",
+  "design_review_and_pe_u1": "No sustituidas por estas pruebas de implementación",
+  "screenshots": "No generadas en esta ejecución; pendientes del issue #34",
+  "scope": "Consulta sintética local; los tiempos son observaciones informativas, no un benchmark ni las mediciones originales de PE-U1"
+}
