@@ -805,6 +805,8 @@ El issue #19 permanece abierto hasta comprobar la comunicación con el servicio 
 
 ## 21 de noviembre de 2026 — Revisión de cierre de las historias de solicitud y seguimiento (issue #10)
 
+**Integrante participante:** CORONEL GOMEZ KHRIZ ALEXANDER.
+
 ### Actividades realizadas
 
 - Se revisaron con asistencia de Codex las historias RF01–RF05, sus criterios de aceptación y su trazabilidad, sin cambiar el contenido de los requisitos.
@@ -828,3 +830,71 @@ El issue #19 permanece abierto hasta comprobar la comunicación con el servicio 
 ### Tiempo dedicado
 
 No medido en esta revisión asistida.
+
+
+## 21 de noviembre de 2026 — Implementación del servicio de refuerzos y pruebas de comunicación distribuida (issues #33 y #34)
+
+**Integrante participante:** ZAMBRANO PARRAGA LUIS MARIO.
+
+### Actividades realizadas
+
+- Asumí la implementación del servicio de refuerzos correspondiente al issue #33, además del servicio académico receptor que había desarrollado anteriormente.
+- Revisé el contrato REST establecido en ADR-002 para mantener la comunicación entre ambos procesos.
+- Generé el proyecto `servicio-refuerzos` con Java 21, Spring Boot 4.0.10, Maven y Spring Web.
+- Incorporé el proyecto en `src/servicio-refuerzos/` y configuré su ejecución local en el puerto 8081.
+- Implementé el controlador `ConsultaAsignaturaController.java` para recibir solicitudes mediante `GET /api/demo/asignaturas/{id}`.
+- Utilicé `RestClient` para consultar por HTTP al servicio académico, que se ejecuta independientemente en el puerto 8082.
+- Incorporé validaciones para identificadores no numéricos o no positivos y el tratamiento de respuestas de asignaturas inexistentes.
+- Configuré tiempos de espera de conexión y lectura, además del manejo de errores cuando el servicio académico no responde.
+- Ejecuté los dos servicios en terminales independientes y comprobé la comunicación mediante comandos `curl.exe`.
+- Realicé pruebas con respuestas HTTP 200, 400, 404 y 503, además de comprobar la recuperación de la consulta tras reiniciar el servicio académico.
+- Registré evidencias auténticas con el usuario de Windows, nombre del equipo, fecha, hora, puertos y respuestas HTTP.
+- Publiqué el código y las capturas de integración en GitHub, vinculando el commit con los issues #33 y #34.
+
+### Problemas y comportamientos observados
+
+La implementación requería distinguir el funcionamiento independiente de ambos servicios y controlar los errores que pueden producirse cuando uno depende de otro mediante comunicación de red.
+También fue necesario comprobar qué ocurría si el servicio académico dejaba de funcionar mientras el servicio de refuerzos continuaba ejecutándose.
+La demostración se construyó sin una base de datos compartida, utilizando datos sintéticos en memoria, conforme al alcance mínimo acordado para E1.
+
+### Solución y recuperación
+
+Se implementó una comunicación síncrona REST/HTTP utilizando JSON. El servicio de refuerzos recibe las consultas, valida el identificador y realiza una petición al servicio académico.
+Para controlar los fallos de dependencia, se configuraron tiempos de espera de conexión y lectura de un segundo cada uno. Cuando el receptor no está disponible, el emisor devuelve HTTP 503 en lugar de una respuesta exitosa incorrecta.
+Durante la prueba se detuvo temporalmente el servicio académico, manteniendo activo el servicio de refuerzos. Posteriormente se reinició el receptor y se comprobó que las consultas volvían a responder correctamente, sin reiniciar el emisor.
+
+### Resultados obtenidos
+
+- Los dos servicios arrancaron independientemente en los puertos 8081 y 8082.
+- La consulta mediante refuerzos con ID `1` devolvió HTTP 200 y el JSON de la asignatura sintética.
+- La consulta con ID `0` devolvió HTTP 400 y el código `ID_INVALIDO`.
+- La consulta con ID `2` devolvió HTTP 404 y el código `ASIGNATURA_NO_ENCONTRADA`.
+- Al detener el servicio académico, el emisor devolvió HTTP 503 y el código `SERVICIO_ACADEMICO_NO_DISPONIBLE`.
+- Tras reiniciar el receptor, la consulta volvió a devolver HTTP 200.
+- Se registraron tres capturas principales de integración y evidencias complementarias de las pruebas.
+- Los archivos quedaron publicados en la rama `main`.
+
+Estas pruebas manuales evidencian comunicación síncrona entre dos procesos locales y el manejo de una indisponibilidad temporal. No acreditan alta disponibilidad, replicación, despliegue definitivo ni pruebas automatizadas completas.
+
+### Actividades pendientes
+
+- Documentar las instrucciones completas de ejecución en el `README.md` principal.
+- Completar el apartado 14 del informe LaTeX con la descripción del esqueleto y las pruebas realizadas.
+- Comprobar que otro integrante pueda reproducir los pasos desde un clon limpio.
+- Revisar con el equipo la coherencia de las versiones y tecnologías utilizadas.
+- Finalizar la verificación del issue #34 antes de cerrarlo.
+
+### Evidencias
+
+- **Issue #33:** [Implementar el servicio que inicia la interacción](https://github.com/Yukisan-uwo/PFC-SGRA/issues/33).
+- **Issue #34:** [Documentar la ejecución y obtener tres capturas](https://github.com/Yukisan-uwo/PFC-SGRA/issues/34).
+- **Commit:** [aa480609 — Implementación del servicio de refuerzos y comunicación REST](https://github.com/Yukisan-uwo/PFC-SGRA/commit/aa48060927644b957a7771a04588ddfd382b8290).
+- **Código del emisor:** `src/servicio-refuerzos/`.
+- **Código del receptor:** `src/servicio-academico/`.
+- **Evidencias:** `evidencias/Implementacion/`.
+- **Registro de integración:** `evidencias/Implementacion/README-integracion.md`.
+- **Contrato técnico:** `docs/adr/ADR-002-mecanismo-comunicacion.md`.
+
+### Tiempo dedicado
+
+48 minutos.
