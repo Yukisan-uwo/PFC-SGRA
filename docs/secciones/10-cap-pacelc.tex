@@ -1,2 +1,99 @@
 \section{Análisis CAP y PACELC}
-\pendiente{Analizar por dato crítico las prioridades durante una partición de red (CAP) y sin partición (PACELC), junto con la consecuencia visible para el usuario. Precisar supuestos de replicación.}
+
+\subsection{Alcance del análisis}
+CAP establece que, durante una partición de red, un almacén distribuido no puede garantizar a la vez que sus nodos operativos atiendan todas las solicitudes y que los datos se comporten como una única copia actualizada~\cite{vansteen2023-distributed}. PACELC añade el compromiso sin partición: coordinar las copias puede aumentar la latencia, mientras que responder sin esperar esa coordinación puede devolver datos atrasados~\cite{ahmed2023-consistency}.
+
+El SGRA no tiene una política de replicación definida. Consultar datos al SGA simulado no significa mantener dos copias del mismo registro. Por eso, el análisis distingue los fallos de comunicación con el origen de los posibles compromisos entre réplicas, sin clasificar al SGRA como \emph{CP} o \emph{AP}.
+
+\subsection{Decisiones por dato crítico}
+En la última columna, \textbf{P} indica la decisión durante una partición entre réplicas y \textbf{E} la decisión sin partición. Ambas se plantean solo si se incorporan réplicas.
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.17\textwidth}>{\raggedright\arraybackslash}p{0.23\textwidth}>{\raggedright\arraybackslash}p{0.25\textwidth}>{\raggedright\arraybackslash}p{0.26\textwidth}@{}}
+\caption{Decisiones ante fallos y escenarios de replicación por dato crítico}\label{tab:cap-datos}\\
+\toprule
+\textbf{Dato} & \textbf{Dónde se guarda y quién lo modifica} & \textbf{Si falla la comunicación} & \textbf{Si hubiera réplicas}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Dato} & \textbf{Dónde se guarda y quién lo modifica} & \textbf{Si falla la comunicación} & \textbf{Si hubiera réplicas}\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+
+Identidad, permisos y sesiones &
+Cuentas y roles en PostgreSQL, gestionados por administración. El backend gestiona las sesiones; su almacenamiento está por definir. &
+Si no se puede verificar el permiso, se bloquea la acción protegida. &
+\textbf{P:} no autorizar desde una copia sin permisos verificados.
+\textbf{E:} verificar el permiso vigente aunque tome más tiempo; uno revocado no debe dar acceso. \\
+
+Datos académicos &
+Matrícula, asignatura y asignación docente bajo responsabilidad del SGA simulado. El SGRA solo los consulta. &
+Si no se puede verificar la matrícula o la asignación docente, la solicitud no se confirma. Se informa que la verificación no está disponible. &
+\textbf{P:} no admitir solicitudes con datos cuya vigencia no se pueda comprobar.
+\textbf{E:} consultar datos vigentes para validar; un catálogo informativo podría tolerar atraso. \\
+
+Solicitudes y estados &
+PostgreSQL. El estudiante registra y puede cancelar su solicitud pendiente; el docente acepta o rechaza. El gestor puede cancelar en los casos previstos. &
+No se muestra un cambio como guardado si el resultado es incierto. Al recuperar la conexión, se consulta el estado antes de repetir la acción. &
+\textbf{P:} suspender cambios que no se puedan verificar.
+\textbf{E:} mostrar el estado vigente para no ocultar un cambio ya confirmado. \\
+
+Programación y reservas &
+PostgreSQL. El docente asignado programa o reprograma; el gestor resuelve la reserva presencial. &
+Sin verificar el intervalo y guardar el cambio, no se confirma el horario ni el espacio. &
+\textbf{P:} no reservar desde una copia aislada sin disponibilidad verificable.
+\textbf{E:} verificar la ocupación vigente, incluso si hay que esperar, para evitar dobles reservas. \\
+
+Participación y asistencia &
+PostgreSQL. Cada participante responde por sí mismo; el docente asignado registra la asistencia. &
+Sin confirmar el guardado, no se da por registrada la asistencia ni se interpreta como ausencia. &
+\textbf{P:} no registrar cambios si no se pueden verificar los participantes.
+\textbf{E:} usar el horario vigente para no asociar asistencia a una sesión reprogramada con datos anteriores. \\
+
+Recursos, observaciones y cierre &
+Archivos en Azure Blob Storage; vínculos, observaciones y cierre en PostgreSQL. El docente registra y publica. &
+Si falla el almacenamiento de archivos, no se anuncia el adjunto como disponible. La sesión puede cerrarse sin él si cumple las condiciones de cierre. &
+\textbf{P:} no publicar sin verificar el archivo y su vínculo.
+\textbf{E:} esperar la confirmación antes de mostrarlo como disponible, para evitar enlaces que no se pueden usar. \\
+
+Historial y reportes &
+Se generan a partir de registros confirmados en PostgreSQL. Los usuarios autorizados los consultan; no los editan directamente. &
+Si no se puede consultar el origen, se informa que el reporte no está disponible; no se muestra vacío. &
+\textbf{P:} una copia informativa podría mostrarse con su fecha de actualización.
+\textbf{E:} admitir atraso solo en vistas informativas para responder más rápido, no para decisiones operativas. \\
+\end{longtable}
+
+\subsection{Consecuencias y comprobación}
+Si falla el envío de correo, el cambio ya guardado se conserva y el aviso queda pendiente de reintento. La demostración de E1 se limita a consultar una asignatura sintética entre dos procesos y comprobar qué ocurre si el receptor no responde. No permite verificar persistencia, replicación ni alta disponibilidad.
+
+
+\subsection{Prioridades y consecuencias para el usuario}
+
+A partir de la matriz anterior, se establecen las siguientes prioridades de diseño para escenarios hipotéticos con replicación:
+
+\begin{itemize}
+    \item \textbf{Identidad y permisos:} se prioriza la consistencia durante una partición y en condiciones normales. El usuario podría esperar o recibir una denegación temporal, pero no acceder con permisos cuya vigencia se desconoce.
+
+    \item \textbf{Datos académicos:} se prioriza la consistencia al validar matrículas, asignaturas y docentes. El estudiante no podrá confirmar una solicitud si los datos necesarios no pueden verificarse.
+
+    \item \textbf{Solicitudes y estados:} se prioriza la consistencia para evitar cambios contradictorios. Ante un resultado incierto, el usuario deberá consultar el estado antes de repetir una operación.
+
+    \item \textbf{Programación y reservas:} se prioriza la consistencia, aunque aumente el tiempo de respuesta. El docente no podrá confirmar horarios o espacios cuya disponibilidad no haya sido comprobada.
+
+    \item \textbf{Participación y asistencia:} se prioriza la consistencia para conservar registros válidos. Una asistencia no confirmada no deberá mostrarse como registrada ni interpretarse automáticamente como ausencia.
+
+    \item \textbf{Recursos y observaciones:} se prioriza la consistencia de los archivos y sus vínculos. Los usuarios no visualizarán un recurso como disponible hasta comprobar que fue almacenado correctamente.
+
+    \item \textbf{Historial y reportes informativos:} podría priorizarse la disponibilidad durante una partición y una menor latencia cuando la red funcione normalmente, siempre que existan copias adecuadas. El usuario podría consultar información anterior, identificada con su fecha de actualización. Esta posibilidad no se aplicará a decisiones operativas.
+\end{itemize}
+
+\subsection{Conclusión del análisis CAP/PACELC}
+
+Para el diseño propuesto del SGRA se considera prioritario preservar la consistencia de los datos críticos y la integridad de las operaciones de autenticación, solicitudes, programación, reservas y asistencia. Cuando no sea posible verificar la vigencia de la información o confirmar una operación, se preferirá informar su indisponibilidad antes que presentar resultados potencialmente incorrectos.
+
+En condiciones normales, las operaciones críticas deberán utilizar información vigente, aunque esto implique una mayor latencia. Para consultas exclusivamente informativas, como ciertos reportes históricos, podrá considerarse el uso de datos ligeramente desactualizados, siempre que se identifique su fecha de actualización.
+
+Estas prioridades constituyen criterios de diseño y no una clasificación definitiva del SGRA como CP o AP, ya que todavía no se ha definido una arquitectura de replicación.
+
+La demostración de E1 evidencia el manejo de una dependencia no disponible mediante HTTP 503, pero no permite evaluar una partición entre réplicas ni comprobar garantías de consistencia distribuida.

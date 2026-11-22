@@ -1,23 +1,23 @@
 # SGRA — Proyecto Fin de Curso, Aplicaciones Distribuidas
 
-**Estado:** Entrega 1 (E1) en desarrollo, con documentación y esqueleto mínimo de dos servicios; **no constituye una entrega completa**.
+**Estado:** E1 en integración: esqueleto funcional implementado y probado localmente; pendientes verificación desde clon limpio e integración final del informe
 
 **Proyecto:** Sistema de Gestión de Refuerzo Académico (SGRA).  
 **Equipo:** Mario, Belinda, Bryan y Khriz.  
 **Asignatura:** Aplicaciones Distribuidas.  
 **Roles oficiales:** Khriz Coronel, Líder de Desarrollo; Bryan Lombeida, Arquitecto; Belinda Toaquiza, Responsable de Documentación; Mario Zambrano, Responsable de Calidad.
 
-**Entrega E1:** sábado 28 de noviembre de 2026, 11:59 (hora de Ecuador).
+**Entrega E1:** domingo 22 de noviembre de 2026, 00:00.
 
 ## Estructura
 
 - `docs/main.tex`: portada, preámbulo, configuración y enlaces a las secciones.
 - `docs/secciones/`: apartados 2 al 17 de E1; cada integrante edita los archivos asignados.
 - `docs/referencias/referencias.bib`: referencias reales para `biblatex` + `biber`.
-- `docs/adr/`: ADR-001 y ADR-002 en Markdown, pendientes de decisión.
+- `docs/adr/`: registros de decisiones arquitectónicas en Markdown. ADR-001 continúa propuesto; ADR-002 está aceptado para la comunicación síncrona REST/HTTP JSON y ADR-003 está aprobado para el alcance, las tecnologías y los datos críticos del SGRA.
 - `docs/diagramas/`: bocetos C4 en `preliminares/` y editables de contexto y contenedores en `formales/`.
 - `docs/figuras/`: exportaciones de los diagramas C4 incluidas en el informe.
-- `src/`: servicio académico receptor y servicio de refuerzos emisor de la consulta mínima de E1.
+- `src/`: código del esqueleto de al menos dos servicios que se comunicarán, dos servicios implementados.
 - `evidencias/`: acta o encuesta, sesiones de diseño, capturas y demás evidencias auténticas.
 - `BITACORA.md`: registro de sesiones reales, decisiones y problemas del equipo.
 
@@ -36,33 +36,152 @@ Al finalizar se genera `docs/main.pdf`. Ese PDF compilado se versionará con la 
 
 ## Ejecución del esqueleto
 
-Requiere **JDK 21**, con `JAVA_HOME` y `PATH` configurados para esa versión. Maven Wrapper descarga Maven y las dependencias en el primer arranque, por lo que necesita acceso a Internet.
+### Descripción
 
-Desde la raíz del repositorio, iniciar el receptor en una terminal PowerShell:
+Para la Entrega 1 (E1) se implementaron dos servicios independientes que se comunican mediante REST/HTTP con intercambio de datos JSON.
+
+- `servicio-academico`: receptor que devuelve una asignatura sintética. Escucha en `127.0.0.1:8082`.
+- `servicio-refuerzos`: emisor que recibe una consulta y solicita la información al servicio académico. Escucha en `127.0.0.1:8081`.
+
+Esta implementación demuestra la comunicación entre procesos y el manejo de errores. No incluye base de datos, autenticación ni funcionalidades completas del SGRA.
+
+### Requisitos para ejecutar
+
+- Java JDK 21.
+- Conexión a Internet para descargar las dependencias de Maven durante la primera ejecución.
+- PowerShell en Windows, o una terminal compatible con Maven Wrapper en otro sistema operativo.
+
+Ambos proyectos utilizan Spring Boot 4.0.10, Spring Web MVC y Maven.
+No es necesario instalar Maven globalmente, porque cada servicio incluye Maven Wrapper.
+
+### Configuración
+
+El archivo `application.properties` de cada servicio contiene su configuración local.
+
+**Servicio académico:**
+
+```properties
+spring.application.name=servicio-academico
+server.port=8082
+server.address=127.0.0.1
+```
+
+**Servicio de refuerzos:**
+
+```properties
+spring.application.name=servicio-refuerzos
+server.port=8081
+server.address=127.0.0.1
+```
+
+El emisor consulta al receptor mediante la dirección
+`http://127.0.0.1:8082`.
+
+Esta dirección está definida en
+`ConsultaAsignaturaController.java`.
+
+No se requieren credenciales, variables de entorno ni conexiones a bases de datos para la demostración.
+
+### Iniciar el servicio académico
+
+Abrir una terminal de PowerShell desde la raíz del repositorio y ejecutar:
 
 ```powershell
-cd src/servicio-academico
+cd .\src\servicio-academico
 .\mvnw.cmd spring-boot:run
 ```
 
-En otra terminal, desde la raíz, iniciar el emisor:
+El proceso debe iniciar en el puerto 8082.
+
+Mantener esta terminal abierta.
+
+### Iniciar el servicio de refuerzos
+
+Abrir una segunda terminal desde la raíz del repositorio y ejecutar:
 
 ```powershell
-cd src/servicio-refuerzos
+cd .\src\servicio-refuerzos
 .\mvnw.cmd spring-boot:run
 ```
 
-Comprobar la comunicación desde una tercera terminal:
+El proceso debe iniciar en el puerto 8081.
+Mantener ambas terminales abiertas.
+
+### Comprobar la comunicación
+
+Abrir una tercera terminal y ejecutar:
 
 ```powershell
 curl.exe -i http://127.0.0.1:8081/api/demo/asignaturas/1
 ```
 
-Se espera HTTP `200` y `{"id":1,"nombre":"Asignatura de demostración"}`. La llamada entra por el puerto `8081` y consulta realmente al receptor en `8082`. Los registros del emisor muestran ruta, estado y duración. Para comprobar el fallo de dependencia, detener el receptor y repetir la consulta: se espera `503` con código `SERVICIO_ACADEMICO_NO_DISPONIBLE`.
+El servicio de refuerzos consulta al académico y devuelve:
 
-Los casos `0` y `abc` producen `400` sin llamada saliente; `2` produce `404` cuando el receptor está disponible. El emisor admite `SGRA_ACADEMICO_BASE_URL` para configurar el origen del receptor, sin secretos.
+```json
+{"id":1,"nombre":"Asignatura de demostración"}
+```
 
-Las instrucciones completas, la configuración y los comandos de prueba están en [el README del emisor](src/servicio-refuerzos/README.md). Las capturas, la prueba por un segundo integrante desde clon limpio y el video siguen pendientes de #34 y #29; estas instrucciones no acreditan que esas actividades se hayan realizado.
+El estado HTTP esperado es `200 OK`.
+
+### Comprobar errores
+
+**Identificador inválido:**
+
+```powershell
+curl.exe -i http://127.0.0.1:8081/api/demo/asignaturas/0
+```
+
+Resultado esperado: HTTP 400.
+
+```json
+{"codigo":"ID_INVALIDO"}
+```
+
+**Asignatura inexistente:**
+
+```powershell
+curl.exe -i http://127.0.0.1:8081/api/demo/asignaturas/2
+```
+
+Resultado esperado: HTTP 404.
+
+```json
+{"codigo":"ASIGNATURA_NO_ENCONTRADA"}
+```
+
+### Comprobar la indisponibilidad del receptor
+
+1. Detener únicamente el servicio académico mediante `Ctrl + C` en su terminal.
+2. Mantener ejecutándose el servicio de refuerzos.
+3. Ejecutar:
+
+```powershell
+curl.exe -i http://127.0.0.1:8081/api/demo/asignaturas/1
+```
+
+Resultado esperado: HTTP 503.
+
+```json
+{"codigo":"SERVICIO_ACADEMICO_NO_DISPONIBLE"}
+```
+
+Reiniciar el servicio académico y repetir la consulta. El resultado esperado vuelve a ser HTTP 200, sin reiniciar el servicio de refuerzos.
+
+El cliente HTTP utiliza tiempos de espera de un segundo para conexión y un segundo para lectura. No se ha medido un límite máximo total de latencia.
+
+### Evidencias de ejecución
+
+Las capturas auténticas se encuentran en
+`evidencias/Implementacion/`.
+
+- [Evidencia 1: comunicación HTTP 200](evidencias/Implementacion/07-integracion-http-200.png).
+- [Evidencia 2: errores HTTP 400 y 404](evidencias/Implementacion/08-integracion-http-400-404.png).
+- [Evidencia 3: consulta entre servicios](evidencias/Implementacion/09-integracion-consulta-entre-servicios.png).
+- [Registro completo de la integración](evidencias/Implementacion/README-integracion.md).
+
+Las pruebas fueron realizadas localmente mediante PowerShell y `curl.exe`. La reproducción desde un clon limpio por otro integrante sigue pendiente de verificación.
+
+**Ajuste de versión para E1:** la base inicial del backend preveía Spring Boot 4.0.3. El [receptor académico](src/servicio-academico/pom.xml) se generó con Spring Boot 4.0.10, disponible en Spring Initializr, manteniendo Java 21 y Maven. Véase [ADR-003](docs/adr/ADR-003-alcance-reutilizacion-tecnologias.md#tecnologías).
 
 ## GitHub Projects y video
 

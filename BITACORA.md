@@ -805,6 +805,8 @@ El issue #19 permanece abierto hasta comprobar la comunicación con el servicio 
 
 ## 21 de noviembre de 2026 — Revisión de cierre de las historias de solicitud y seguimiento (issue #10)
 
+**Integrante participante:** CORONEL GOMEZ KHRIZ ALEXANDER.
+
 ### Actividades realizadas
 
 - Se revisaron con asistencia de Codex las historias RF01–RF05, sus criterios de aceptación y su trazabilidad, sin cambiar el contenido de los requisitos.
@@ -829,36 +831,263 @@ El issue #19 permanece abierto hasta comprobar la comunicación con el servicio 
 
 No medido en esta revisión asistida.
 
-## 21 de noviembre de 2026 — Servicio emisor y comunicación local con el académico (issues #20 y #33)
+## 21 de noviembre de 2026 — Implementación del servicio de refuerzos y pruebas de comunicación distribuida (issues #33 y #34)
+
+**Integrante participante:** ZAMBRANO PARRAGA LUIS MARIO.
 
 ### Actividades realizadas
 
-- Se preparó con asistencia de Codex `src/servicio-refuerzos/`, usando Java 21 y Spring Boot 4.0.10 para mantener compatibilidad con el receptor académico publicado por Mario. Se reutilizó su Maven Wrapper.
-- Se implementó `GET /api/demo/asignaturas/{id}`. El emisor valida la entrada antes de consultar, conserva la respuesta `404` acordada y traduce los fallos o respuestas incompatibles del receptor a `503`.
-- Se configuró un presupuesto de 2000 ms para recibir la respuesta completa, sin reintentos automáticos ni redirecciones. La URL del receptor es configurable y la escucha permanece en loopback.
-- Se añadieron pruebas HTTP con un servidor local controlado para comprobar respuesta recibida, validación, estados, formato, redirecciones, desconexión y espera de cabeceras y cuerpo.
-- Se empaquetaron e iniciaron los dos servicios entregados y se realizaron cinco comprobaciones HTTP reales a través del emisor. Se conservaron resultados, registros y huellas de los archivos evaluados.
+- Asumí la implementación del servicio de refuerzos correspondiente al issue #33, además del servicio académico receptor que había desarrollado anteriormente.
+- Revisé el contrato REST establecido en ADR-002 para mantener la comunicación entre ambos procesos.
+- Generé el proyecto `servicio-refuerzos` con Java 21, Spring Boot 4.0.10, Maven y Spring Web.
+- Incorporé el proyecto en `src/servicio-refuerzos/` y configuré su ejecución local en el puerto 8081.
+- Implementé el controlador `ConsultaAsignaturaController.java` para recibir solicitudes mediante `GET /api/demo/asignaturas/{id}`.
+- Utilicé `RestClient` para consultar por HTTP al servicio académico, que se ejecuta independientemente en el puerto 8082.
+- Incorporé validaciones para identificadores no numéricos o no positivos y el tratamiento de respuestas de asignaturas inexistentes.
+- Configuré tiempos de espera de conexión y lectura, además del manejo de errores cuando el servicio académico no responde.
+- Ejecuté los dos servicios en terminales independientes y comprobé la comunicación mediante comandos `curl.exe`.
+- Realicé pruebas con respuestas HTTP 200, 400, 404 y 503, además de comprobar la recuperación de la consulta tras reiniciar el servicio académico.
+- Registré evidencias auténticas con el usuario de Windows, nombre del equipo, fecha, hora, puertos y respuestas HTTP.
+- Publiqué el código y las capturas de integración en GitHub, vinculando el commit con los issues #33 y #34.
 
-### Problemas y recuperación
+### Problemas y comportamientos observados
 
-- El Java predeterminado del equipo era 17. Se utilizó un JDK 21 portátil de Adoptium, con SHA-256 comprobado, sin modificar esa configuración del sistema.
-- La primera ejecución pasó 24 de 25 pruebas: al cerrar la conexión, el cliente del JDK produjo dos solicitudes en el receptor de prueba. Se sustituyó por Apache HttpClient con recuperación automática y redirecciones deshabilitadas por instancia. Las 25 pruebas pasaron después de la corrección.
-- El entorno restringido impidió inicialmente la conexión loopback de Tomcat. La ejecución con permisos autorizados permitió comprobar los dos procesos. El registro de acceso de Tomcat se recogió de su archivo `.log`; no se fabricaron capturas ni resultados.
+La implementación requería distinguir el funcionamiento independiente de ambos servicios y controlar los errores que pueden producirse cuando uno depende de otro mediante comunicación de red.
+También fue necesario comprobar qué ocurría si el servicio académico dejaba de funcionar mientras el servicio de refuerzos continuaba ejecutándose.
+La demostración se construyó sin una base de datos compartida, utilizando datos sintéticos en memoria, conforme al alcance mínimo acordado para E1.
 
-### Resultados y límites
+### Solución y recuperación
 
-- Pasaron las 25 pruebas HTTP del emisor y la prueba de contexto existente del receptor; ambos módulos se empaquetaron.
-- En la ejecución de las dos aplicaciones se obtuvieron `200` para ID `1`, `400` para `0` y `abc`, `404` para `2` y `503` después de detener el receptor.
-- El acceso del receptor registró dos llamadas, para `1` y `2`, y ninguna para las entradas inválidas. Los procesos iniciados por esta comprobación se detuvieron al terminar.
-- Los tiempos son observaciones locales, no mediciones originales de PE-U1. No se modifica el estado de los ADR ni se acredita despliegue de producción.
-- La reproducción por otro integrante y las tres capturas quedan para #34; la revisión humana de la implementación y el registro del commit en #20 y #33 siguen pendientes.
+Se implementó una comunicación síncrona REST/HTTP utilizando JSON. El servicio de refuerzos recibe las consultas, valida el identificador y realiza una petición al servicio académico.
+Para controlar los fallos de dependencia, se configuraron tiempos de espera de conexión y lectura de un segundo cada uno. Cuando el receptor no está disponible, el emisor devuelve HTTP 503 en lugar de una respuesta exitosa incorrecta.
+Durante la prueba se detuvo temporalmente el servicio académico, manteniendo activo el servicio de refuerzos. Posteriormente se reinició el receptor y se comprobó que las consultas volvían a responder correctamente, sin reiniciar el emisor.
+
+### Resultados obtenidos
+
+- Los dos servicios arrancaron independientemente en los puertos 8081 y 8082.
+- La consulta mediante refuerzos con ID `1` devolvió HTTP 200 y el JSON de la asignatura sintética.
+- La consulta con ID `0` devolvió HTTP 400 y el código `ID_INVALIDO`.
+- La consulta con ID `2` devolvió HTTP 404 y el código `ASIGNATURA_NO_ENCONTRADA`.
+- Al detener el servicio académico, el emisor devolvió HTTP 503 y el código `SERVICIO_ACADEMICO_NO_DISPONIBLE`.
+- Tras reiniciar el receptor, la consulta volvió a devolver HTTP 200.
+- Se registraron tres capturas principales de integración y evidencias complementarias de las pruebas.
+- Los archivos quedaron publicados en la rama `main`.
+
+Estas pruebas manuales evidencian comunicación síncrona entre dos procesos locales y el manejo de una indisponibilidad temporal. No acreditan alta disponibilidad, replicación, despliegue definitivo ni pruebas automatizadas completas.
+
+### Actividades pendientes
+
+- Documentar las instrucciones completas de ejecución en el `README.md` principal.
+- Completar el apartado 14 del informe LaTeX con la descripción del esqueleto y las pruebas realizadas.
+- Comprobar que otro integrante pueda reproducir los pasos desde un clon limpio.
+- Revisar con el equipo la coherencia de las versiones y tecnologías utilizadas.
+- Finalizar la verificación del issue #34 antes de cerrarlo.
 
 ### Evidencias
 
-- **Issues:** [#20](https://github.com/Yukisan-uwo/PFC-SGRA/issues/20), [#33](https://github.com/Yukisan-uwo/PFC-SGRA/issues/33) y receptor [#19](https://github.com/Yukisan-uwo/PFC-SGRA/issues/19).
-- **Código e instrucciones:** [servicio de refuerzos](src/servicio-refuerzos/README.md).
-- **Resultados:** [comprobaciones locales](evidencias/Implementacion/servicio-refuerzos/README.md) y [registro estructurado](evidencias/Implementacion/servicio-refuerzos/resultado-pruebas.json).
+- **Issue #33:** [Implementar el servicio que inicia la interacción](https://github.com/Yukisan-uwo/PFC-SGRA/issues/33).
+- **Issue #34:** [Documentar la ejecución y obtener tres capturas](https://github.com/Yukisan-uwo/PFC-SGRA/issues/34).
+- **Commit:** [aa480609 — Implementación del servicio de refuerzos y comunicación REST](https://github.com/Yukisan-uwo/PFC-SGRA/commit/aa48060927644b957a7771a04588ddfd382b8290).
+- **Código del emisor:** `src/servicio-refuerzos/`.
+- **Código del receptor:** `src/servicio-academico/`.
+- **Evidencias:** `evidencias/Implementacion/`.
+- **Registro de integración:** `evidencias/Implementacion/README-integracion.md`.
+- **Contrato técnico:** `docs/adr/ADR-002-mecanismo-comunicacion.md`.
 
 ### Tiempo dedicado
 
-No medido como dedicación humana. Las duraciones de las ejecuciones automatizadas figuran en sus registros.
+48 minutos.
+
+## 21 de noviembre de 2026 — Documentación de ejecución reproducible del esqueleto (issue #19 y #34)
+
+**Integrante participante:** ZAMBRANO PARRAGA LUIS MARIO.
+
+### Actividades realizadas
+
+- Revisé los archivos del servicio académico y del servicio de refuerzos para documentar su funcionamiento y las condiciones necesarias para ejecutarlos.
+- Actualicé el apartado «Ejecución del esqueleto» del `README.md` principal, que anteriormente conservaba una indicación pendiente de implementación.
+- Documenté las dependencias utilizadas: Java 21, Spring Boot 4.0.10, Maven Wrapper y Spring Web MVC.
+- Incorporé la configuración local de ambos servicios mediante sus respectivos archivos `application.properties`, diferenciando los puertos 8082 y 8081.
+- Expliqué los comandos necesarios para iniciar cada servicio en una terminal independiente utilizando Maven Wrapper.
+- Registré las rutas HTTP empleadas para comprobar la comunicación entre los procesos y las respuestas esperadas para los escenarios 200, 400, 404 y 503.
+- Añadí el procedimiento para detener temporalmente el servicio académico, verificar la indisponibilidad desde refuerzos y comprobar la recuperación posterior.
+- Incorporé enlaces a las tres capturas principales de integración y al registro complementario de evidencias.
+- Revisé la descripción del repositorio para diferenciar el esqueleto ya implementado de las actividades que todavía corresponden a la integración final de E1.
+
+### Problemas y comportamientos observados
+
+El README todavía describía el repositorio como una plantilla inicial y señalaba que los servicios estaban pendientes de implementación, aunque ambos ya se encontraban publicados.
+Además, las instrucciones debían permitir distinguir claramente qué servicio se inicia primero, qué puerto utiliza cada uno y cómo verificar las respuestas HTTP sin depender de herramientas adicionales.
+
+### Solución y recuperación
+
+Se organizó la documentación técnica siguiendo la secuencia de instalación, configuración, ejecución y comprobación.
+Se incluyeron comandos específicos para Windows mediante PowerShell, así como las respuestas JSON esperadas de acuerdo con el contrato del ADR-002.
+Las instrucciones se basaron en las pruebas manuales que realicé previamente.
+
+### Resultados obtenidos
+
+- Se redactaron instrucciones para iniciar ambos servicios desde el repositorio.
+- Quedaron documentadas las dependencias mínimas y las configuraciones de los puertos 8081 y 8082.
+- Se incorporaron procedimientos de comprobación para las respuestas HTTP 200, 400, 404 y 503.
+- Se documentó la recuperación de la comunicación después de reiniciar el servicio académico.
+- Se enlazaron las tres capturas principales requeridas para demostrar la ejecución y comunicación de los servicios.
+- La documentación diferencia las pruebas locales ya realizadas de la verificación desde un clon limpio, que todavía está pendiente.
+
+### Actividades pendientes
+
+- Solicitar que otro integrante reproduzca las instrucciones desde un clon limpio.
+- Completar `docs/secciones/14-esqueleto.tex` con la descripción de la implementación y las evidencias.
+- Integrar las actualizaciones al PDF final del informe.
+- Verificar los enlaces del video y las evidencias antes de cerrar el issue #34.
+
+### Evidencias
+
+- **Issue:** [#34 — Documentar la ejecución y obtener tres capturas](https://github.com/Yukisan-uwo/PFC-SGRA/issues/34).
+- **README principal:** [README.md](README.md).
+- **Servicio académico:** `src/servicio-academico/`.
+- **Servicio de refuerzos:** `src/servicio-refuerzos/`.
+- **Capturas:** `evidencias/Implementacion/07-integracion-http-200.png`, `08-integracion-http-400-404.png` y `09-integracion-consulta-entre-servicios.png`.
+- **Registro complementario:** [README de integración](evidencias/Implementacion/README-integracion.md).
+- **Contrato técnico:** [ADR-002](docs/adr/ADR-002-mecanismo-comunicacion.md).
+
+### Tiempo dedicado
+
+18 minutos.
+
+## 21 de noviembre de 2026 — Integración del esqueleto funcional en el informe LaTeX (issue #34)
+
+**Integrante participante:** ZAMBRANO PARRAGA LUIS MARIO.
+
+### Actividades realizadas
+
+- Completé el apartado 14 del informe LaTeX, correspondiente al esqueleto funcional del SGRA.
+- Documenté la estructura de los servicios académico y de refuerzos, incluyendo sus directorios, tecnologías y configuración.
+- Expliqué la comunicación síncrona REST/HTTP entre ambos procesos, de acuerdo con el contrato establecido en ADR-002.
+- Incorporé una tabla con los resultados de las pruebas manuales HTTP 200, 400, 404 y 503, así como la recuperación del servicio académico después de reiniciarlo.
+- Añadí instrucciones para ejecutar ambos servicios mediante Maven Wrapper y comprobar la comunicación con `curl.exe`.
+- Integré las tres capturas originales que muestran la ejecución de los servicios y las respuestas HTTP obtenidas.
+- Compilé el informe LaTeX y revisé visualmente que las imágenes se mostraran correctamente, con sus títulos y numeración.
+- Publiqué los cambios en GitHub mediante un commit relacionado con el issue #34.
+
+### Problemas y comportamientos observados
+
+Durante la integración fue necesario comprobar las rutas de las imágenes para que el informe pudiera encontrarlas desde las distintas ubicaciones de compilación.
+También observé que, por la distribución del contenido, la primera captura se desplazaba a la página siguiente. Esto no impidió la visualización de las evidencias ni afectó la compilación.
+
+### Solución y resultados obtenidos
+
+Se incorporaron referencias a los archivos de evidencia conservados en el repositorio, manteniendo sus proporciones originales.
+La revisión visual del PDF permitió comprobar que las tres capturas estaban insertadas y numeradas correctamente.
+El apartado 14 quedó documentado con los componentes implementados, las pruebas realmente ejecutadas y sus limitaciones.
+
+### Actividades pendientes
+
+- Solicitar una reproducción de los pasos desde un clon limpio por otro integrante.
+- Incorporar el enlace del video grupal cuando esté disponible.
+- Revisar el PDF definitivo y comprobar la legibilidad de las evidencias.
+- Completar la revisión del issue #34 antes de cerrarlo.
+
+### Evidencias
+
+- **Issue:** [#34 — Documentar la ejecución y obtener tres capturas](https://github.com/Yukisan-uwo/PFC-SGRA/issues/34).
+- **Commit:** [73f1836 — Completar apartado 14 del esqueleto funcional E1](https://github.com/Yukisan-uwo/PFC-SGRA/commit/73f18360dafd46e7a541f56019e2dcd8a7dcacdb).
+- **Documento:** `docs/secciones/14-esqueleto.tex`.
+- **Capturas:** `evidencias/Implementacion/07-integracion-http-200.png`, `08-integracion-http-400-404.png` y `09-integracion-consulta-entre-servicios.png`.
+- **Instrucciones:** `README.md`.
+- **Contrato de comunicación:** `docs/adr/ADR-002-mecanismo-comunicacion.md`.
+
+### Tiempo dedicado
+
+20 minutos.
+
+## 21 de noviembre de 2026 — Análisis CAP/PACELC con falta de conclusion (issue #17)
+
+**Responsables del issue:** Bryan Lombeida.
+
+### Actividades realizadas
+
+- Se elaboró y se reviso coherencia con apoyo del asistencia de IA codex la matriz de datos críticos del SGRA: dónde se guarda cada dato, quién puede modificarlo, qué ocurre si falla la comunicación y qué decisión se tomaría si hubiera réplicas.
+- Se cotejaron los resúmenes de los ADR con el C4 y se distinguió la arquitectura propuesta de lo que puede demostrar el esqueleto de E1.
+- Se verificó en el POM del receptor académico que utiliza Spring Boot 4.0.10 con Java 21 y Maven. El informe y el C4 distinguen esa versión de la 4.0.3 prevista inicialmente para la API del SGRA.
+- Se tituló y enlazó desde el texto la tabla del inventario de interacciones de la sección 9.
+
+### Problemas y comportamientos observados
+
+El diseño no define réplicas, por lo que no corresponde clasificar al SGRA completo como CP o AP. Las fuentes existentes respaldaban CAP y los fallos de comunicación, pero faltaba una referencia reciente que explicara directamente PACELC, a base de confirmacion de Mario para dar una conclusion del analisis.
+
+### Solución y recuperación
+
+Se separaron los fallos de comunicación del diseño actual de los escenarios hipotéticos con réplicas. Se añadió la revisión de Ahmed y colaboradores (2023) para PACELC y se situó cada cita junto a su afirmación. La sección 10 se simplificó para explicar las decisiones y sus consecuencias sin remitir a códigos de requisitos.
+
+### Resultados obtenidos
+
+- El informe incluye la propuesta de análisis por dato crítico y el ajuste de versión del receptor académico, sin extenderlo al emisor ni a toda la API.
+- Se recompiló con pdfLaTeX y Biber y se revisaron visualmente la matriz, el C4 actualizado y la referencia a la tabla de comunicaciones. No quedaron citas ni referencias sin resolver.
+- Queda pendiente revisar la matriz con Mario antes de cerrar el issue #17. No se realizaron pruebas nuevas de comunicación o replicación.
+
+### Evidencias
+
+- **Issue:** [#17 — Analizar CAP/PACELC y resumir los ADR](https://github.com/Yukisan-uwo/PFC-SGRA/issues/17).
+- **Informe:** [inventario de interacciones](docs/secciones/09-comunicacion.tex), [análisis CAP/PACELC](docs/secciones/10-cap-pacelc.tex) e [informe compilado](docs/main.pdf).
+- **Fuente:** [Ahmed et al. (2023)](docs/referencias/PDFs_Fuentes/Ahmed-2023-CAP-PACELC.pdf) y [registro de investigación](docs/referencias/analisis-arquitectura-sgra.json), apartado `issue17_cap_pacelc`.
+- **Versión de E1:** [ADR-003](docs/adr/ADR-003-alcance-reutilizacion-tecnologias.md), [C4 de contenedores](docs/diagramas/formales/c4-nivel-2-contenedores-formal.drawio) y [POM del receptor académico](src/servicio-academico/pom.xml).
+
+### Tiempo dedicado
+
+2 horas y media.
+
+## 21 de noviembre de 2026 — Actualización de ADR-002 y revisión del análisis CAP/PACELC (issues #16 y #17)
+
+**Integrante participante:** ZAMBRANO PARRAGA LUIS MARIO.
+
+### Actividades realizadas
+
+- Revisé el ADR-002 para comprobar que su contenido coincidiera con los dos servicios implementados y las pruebas realizadas durante E1.
+- Actualicé el estado de ADR-002 a **Aceptado**, de acuerdo con la confirmación del equipo sobre el uso de REST/HTTP JSON como mecanismo de comunicación síncrona.
+- Documenté el contrato implementado entre `servicio-refuerzos` y `servicio-academico`, incluyendo las rutas HTTP, los puertos y los resultados esperados.
+- Actualicé las evidencias correspondientes a las pruebas HTTP 200, 400, 404 y 503, junto con la recuperación de la comunicación después de reiniciar el receptor.
+- Corregí la descripción de los tiempos de espera para reflejar un segundo de conexión y otro de lectura, sin presentarlos como una garantía de latencia total.
+- Revisé la matriz CAP/PACELC elaborada previamente por Bryan, considerando los datos críticos y las decisiones propuestas para cada uno.
+- Añadí al apartado 10 del informe las prioridades de consistencia y disponibilidad, así como sus consecuencias para los usuarios del SGRA.
+- Establecí como criterio de diseño priorizar la consistencia de las operaciones críticas, permitiendo información ligeramente desactualizada únicamente en consultas informativas bajo condiciones controladas.
+- Actualicé el apartado 9 del informe para describir la comunicación REST como una decisión aceptada e implementada.
+- Actualicé el resumen de ADR-002 en el apartado 11 y la información de los ADR en el README principal.
+- Publiqué los cambios en GitHub mediante un commit relacionado con los issues #16 y #17.
+
+### Problemas y comportamientos observados
+
+Al revisar la documentación encontré diferencias entre el estado anterior del ADR-002 y la implementación existente. Algunas secciones todavía describían los servicios como una propuesta pendiente y mencionaban un presupuesto total de dos segundos que no había sido medido.
+En el análisis CAP/PACELC fue necesario distinguir los fallos de comunicación de la demostración E1 de las particiones entre réplicas. El diseño del SGRA todavía no establece una arquitectura de replicación, por lo que no corresponde clasificar el sistema completo como CP o AP.
+También fue necesario precisar cómo afectan las decisiones de consistencia, disponibilidad y latencia a los estudiantes, docentes y demás usuarios.
+
+### Solución y resultados obtenidos
+
+Se actualizó el ADR-002 con el contrato efectivamente implementado, las evidencias de comunicación y las limitaciones de las pruebas. Su aceptación se registró como una decisión arquitectónica, sin asumir que todos los requisitos no funcionales hayan sido verificados.
+En el análisis CAP/PACELC se conservaron las decisiones propuestas por Bryan y se complementaron con una explicación de sus consecuencias para cada grupo de datos críticos.
+Se priorizó la consistencia para permisos, validaciones académicas, solicitudes, reservas, asistencia y publicación de recursos. Para los reportes exclusivamente informativos se contempló la posibilidad de utilizar datos anteriores, identificando su fecha de actualización.
+El informe y el README quedaron actualizados para reflejar las decisiones documentadas. Los cambios fueron publicados en la rama `main`.
+
+### Actividades pendientes
+
+- Solicitar a Bryan la revisión de las prioridades y la conclusión CAP/PACELC incorporadas en el apartado 10.
+- Coordinar la actualización de ADR-003 y del diagrama C4 para distinguir las versiones tecnológicas previstas de las utilizadas en E1.
+- Corregir el formato del bloque JSON de `09-comunicacion.tex` y comprobar nuevamente la compilación.
+- Incorporar las evidencias originales de PE-U1 que correspondan al issue #16.
+- Completar la reproducción independiente de los servicios desde un clon limpio.
+- Verificar la coherencia de los documentos antes del cierre de los issues.
+
+### Evidencias
+
+- **Issue #16:** [Documentar comunicaciones y completar ADR-002](https://github.com/Yukisan-uwo/PFC-SGRA/issues/16).
+- **Issue #17:** [Analizar CAP/PACELC y resumir los ADR](https://github.com/Yukisan-uwo/PFC-SGRA/issues/17).
+- **Commit:** [eb5e017 — Actualización de ADR-002 y análisis CAP/PACELC](https://github.com/Yukisan-uwo/PFC-SGRA/commit/eb5e01728334a7c697b9cb09dd26866020290017).
+- **ADR actualizado:** `docs/adr/ADR-002-mecanismo-comunicacion.md`.
+- **Modelo de comunicación:** `docs/secciones/09-comunicacion.tex`.
+- **Análisis CAP/PACELC:** `docs/secciones/10-cap-pacelc.tex`.
+- **Resumen de decisiones arquitectónicas:** `docs/secciones/11-adr.tex`.
+- **Documentación general:** `README.md`.
+
+### Tiempo dedicado
+
+35 minutos.

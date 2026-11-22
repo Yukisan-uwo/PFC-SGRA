@@ -1,5 +1,192 @@
 \section{Esqueleto funcional en el repositorio}
-\subsection{Estructura de carpetas}\pendiente{Describir el proyecto tal como quede implementado en src/.}
-\subsection{Dos servicios comunicándose}\pendiente{Implementar y demostrar dos servicios mínimos con el mecanismo definido en ADR-002, sin exigir aún funcionalidad de negocio.}
-\subsection{Instrucciones reproducibles}\pendiente{Documentar comandos de ejecución y comprobación en README.md.}
-\subsection{Capturas y video}\pendiente{Añadir 3 capturas auténticas: servicios ejecutándose, comandos, máquina, fecha/hora visibles. Enlazar video de 5--7 minutos en README.md.}
+
+Para la primera entrega del proyecto SGRA se implementó un esqueleto funcional compuesto por dos servicios independientes desarrollados con Java 21, Spring Boot 4.0.10 y Maven. Su propósito es comprobar la comunicación entre procesos mediante REST sobre HTTP y el intercambio de mensajes JSON, de acuerdo con el contrato establecido en ADR-002.
+
+Esta demostración es independiente de la arquitectura completa propuesta para el SGRA. No incluye todavía persistencia, autenticación, interfaz web ni las reglas de negocio de la gestión de refuerzos académicos.
+
+\subsection{Estructura de carpetas}
+
+El código fuente se encuentra en el directorio \texttt{src/} del repositorio principal, organizado en dos proyectos Maven independientes:
+
+\begin{itemize}
+    \item \textbf{Servicio académico:} \texttt{src/servicio-academico/}. Actúa como receptor de las consultas y proporciona información académica sintética.
+
+    \item \textbf{Servicio de refuerzos:} \texttt{src/servicio-refuerzos/}. Actúa como emisor y consulta al servicio académico para obtener la asignatura solicitada.
+\end{itemize}
+
+Cada proyecto contiene su archivo \texttt{pom.xml}, el código Java bajo \texttt{src/main/java/}, la configuración \texttt{application.properties} y los archivos de Maven Wrapper necesarios para su ejecución sin instalar Maven globalmente.
+
+Las evidencias de implementación y las capturas de las pruebas se conservan en \texttt{evidencias/Implementacion/}. Las instrucciones de ejecución se documentaron en el archivo \texttt{README.md} principal.
+
+\subsection{Dos servicios comunicándose}
+
+La interacción implementada corresponde a una consulta síncrona de asignatura. El servicio de refuerzos recibe una solicitud HTTP y, para resolverla, realiza una segunda petición al servicio académico. La respuesta se devuelve al cliente en la misma interacción.
+
+Los servicios se ejecutan de manera independiente y escuchan únicamente en la interfaz local \texttt{127.0.0.1}, utilizando los siguientes puertos:
+
+\begin{itemize}
+    \item \textbf{Servicio de refuerzos:} puerto \texttt{8081}. Expone la ruta \texttt{/api/demo/asignaturas/\{id\}}.
+
+    \item \textbf{Servicio académico:} puerto \texttt{8082}. Expone la ruta \texttt{/api/asignaturas/\{id\}}.
+\end{itemize}
+
+La comunicación comienza cuando el cliente solicita una asignatura al servicio de refuerzos. Este valida el identificador y utiliza \texttt{RestClient} para consultar al servicio académico mediante HTTP. El receptor procesa la solicitud y devuelve un objeto JSON con la información de la asignatura.
+
+Para la demostración se utilizó un catálogo sintético con una única asignatura de identificador \texttt{1}, denominada ``Asignatura de demostración''. No se almacenaron ni consultaron datos personales.
+
+El cliente HTTP del emisor tiene configurados tiempos de espera de un segundo para establecer la conexión y un segundo para la lectura. No se implementaron reintentos automáticos. Estos valores no representan una medición del tiempo total de respuesta.
+
+\subsubsection{Comportamiento verificado}
+
+Las pruebas manuales se realizaron con ambos servicios ejecutándose en terminales independientes y utilizando \texttt{curl.exe} desde PowerShell.
+
+La Tabla~\ref{tab:pruebas-esqueleto} resume los escenarios comprobados.
+
+\begin{table}[htbp]
+\centering
+\caption{Resultados de las pruebas manuales de integración}
+\label{tab:pruebas-esqueleto}
+\small
+\begin{tabularx}{\textwidth}{@{}p{0.25\textwidth}p{0.14\textwidth}X@{}}
+\toprule
+\textbf{Escenario} &
+\textbf{HTTP} &
+\textbf{Resultado observado} \\
+\midrule
+
+Consulta del ID 1 & 200 & Se devuelve la asignatura sintética mediante el servicio de refuerzos. \\
+
+Identificador 0 & 400 & La petición se rechaza con el código \texttt{ID\_INVALIDO}. \\
+
+Asignatura ID 2 & 404 & Se devuelve el código \texttt{ASIGNATURA\_NO\_ENCONTRADA}. \\
+
+Receptor detenido & 503 & El emisor informa que el servicio académico no está disponible. \\
+
+Receptor reiniciado & 200 & La consulta vuelve a funcionar sin reiniciar el servicio emisor. \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+La prueba de indisponibilidad consistió en detener temporalmente el servicio académico, manteniendo activo el servicio de refuerzos. Al realizar la consulta, el emisor devolvió HTTP 503 con el código \texttt{SERVICIO\_ACADEMICO\_NO\_DISPONIBLE}.
+
+Posteriormente se reinició el receptor y se repitió la petición, obteniendo nuevamente HTTP 200. Esto permitió comprobar el manejo básico de un fallo de dependencia y la recuperación de la consulta.
+
+Los resultados no demuestran alta disponibilidad, replicación, tolerancia automática a particiones ni cumplimiento de los requisitos no funcionales del sistema definitivo.
+
+\subsection{Instrucciones reproducibles}
+
+Para ejecutar la demostración se requiere Java JDK 21 y acceso a Internet durante la primera descarga de dependencias. Cada proyecto incluye Maven Wrapper.
+
+Desde la raíz del repositorio se abre una primera terminal de PowerShell para iniciar el receptor:
+
+\begin{verbatim}
+cd .\src\servicio-academico
+.\mvnw.cmd spring-boot:run
+\end{verbatim}
+
+El servicio académico debe quedar escuchando en el puerto \texttt{8082}.
+
+En una segunda terminal, nuevamente desde la raíz del repositorio, se ejecuta el servicio emisor:
+
+\begin{verbatim}
+cd .\src\servicio-refuerzos
+.\mvnw.cmd spring-boot:run
+\end{verbatim}
+
+El servicio de refuerzos debe iniciar en el puerto \texttt{8081}. Ambos procesos deben permanecer activos durante la comprobación.
+
+En una tercera terminal se realiza la consulta:
+
+\begin{verbatim}
+curl.exe -i http://127.0.0.1:8081/api/demo/asignaturas/1
+\end{verbatim}
+
+La respuesta esperada es HTTP 200, con un cuerpo JSON equivalente al siguiente:
+
+\begin{verbatim}
+{"id":1,"nombre":"Asignatura de demostración"}
+\end{verbatim}
+
+El orden de las propiedades JSON puede variar sin modificar el resultado.
+
+Para comprobar los escenarios de error se utilizan las mismas rutas con identificadores \texttt{0} y \texttt{2}, que producen respuestas HTTP 400 y HTTP 404, respectivamente.
+
+La configuración de los puertos se encuentra en los archivos \texttt{application.properties}. La dirección del receptor está definida en el controlador del servicio de refuerzos.
+
+El procedimiento completo, los comandos adicionales y los resultados esperados están documentados en el archivo \texttt{README.md} del repositorio.
+
+Las instrucciones se utilizaron en las pruebas locales registradas. La reproducción independiente desde un clon limpio por otro integrante permanece pendiente de verificación.
+
+\subsection{Capturas y video}
+
+Como evidencia de la implementación se conservaron capturas originales obtenidas durante la ejecución local del 21 de noviembre de 2026.
+
+Las tres capturas principales incluyen información del usuario de Windows, nombre del equipo, fecha, hora del sistema, puertos activos y resultados HTTP.
+
+La Figura~\ref{fig:integracion-200} presenta la respuesta satisfactoria del servicio de refuerzos, con ambos procesos en ejecución.
+
+\begin{center}
+\IfFileExists{evidencias/Implementacion/07-integracion-http-200.png}{
+    \includegraphics[
+        width=0.95\linewidth,
+        height=0.34\textheight,
+        keepaspectratio
+    ]{evidencias/Implementacion/07-integracion-http-200.png}
+}{
+    \includegraphics[
+        width=0.95\linewidth,
+        height=0.34\textheight,
+        keepaspectratio
+    ]{../evidencias/Implementacion/07-integracion-http-200.png}
+}
+\captionof{figure}{Servicios activos y consulta satisfactoria con HTTP 200.}
+\label{fig:integracion-200}
+\end{center}
+
+La Figura~\ref{fig:integracion-errores} documenta las respuestas correspondientes a identificadores inválidos y asignaturas inexistentes.
+
+\begin{center}
+\IfFileExists{evidencias/Implementacion/08-integracion-http-400-404.png}{
+    \includegraphics[
+        width=0.95\linewidth,
+        height=0.34\textheight,
+        keepaspectratio
+    ]{evidencias/Implementacion/08-integracion-http-400-404.png}
+}{
+    \includegraphics[
+        width=0.95\linewidth,
+        height=0.34\textheight,
+        keepaspectratio
+    ]{../evidencias/Implementacion/08-integracion-http-400-404.png}
+}
+\captionof{figure}{Validación de las respuestas HTTP 400 y HTTP 404.}
+\label{fig:integracion-errores}
+\end{center}
+
+Finalmente, la Figura~\ref{fig:integracion-servicios} muestra las consultas realizadas directamente al servicio académico y a través del servicio de refuerzos, con respuestas satisfactorias en ambos casos.
+
+\begin{center}
+\IfFileExists{evidencias/Implementacion/09-integracion-consulta-entre-servicios.png}{
+    \includegraphics[
+        width=0.95\linewidth,
+        height=0.34\textheight,
+        keepaspectratio
+    ]{evidencias/Implementacion/09-integracion-consulta-entre-servicios.png}
+}{
+    \includegraphics[
+        width=0.95\linewidth,
+        height=0.34\textheight,
+        keepaspectratio
+    ]{../evidencias/Implementacion/09-integracion-consulta-entre-servicios.png}
+}
+\captionof{figure}{Consultas directas e indirectas al servicio académico.}
+\label{fig:integracion-servicios}
+\end{center}
+
+Se conservaron también capturas complementarias del error HTTP 503 cuando el receptor estaba detenido y de la recuperación posterior con HTTP 200.
+
+El registro completo de evidencias se encuentra en
+\url{https://github.com/Yukisan-uwo/PFC-SGRA/tree/main/evidencias/Implementacion}.
+
+El video grupal de presentación, de cinco a siete minutos, es un entregable pendiente de grabación y publicación. Su enlace deberá incorporarse al README principal antes del cierre de E1.

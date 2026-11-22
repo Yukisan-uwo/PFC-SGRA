@@ -14,4 +14,3 @@ Capturas originales proporcionadas por Mario durante la implementación y prueba
 
 **Alcance:** evidencias de pruebas locales del servicio receptor (`src/servicio-academico/`). No acreditan todavía comunicación entre dos servicios. Las tres capturas obligatorias de E1, con ambos procesos comunicándose y los datos de usuario, equipo, fecha y hora del sistema, deberán obtenerse después de implementar e integrar el servicio emisor del issue #33.
 
-**Privacidad:** revisar que los nombres de usuario, rutas, iconos y demás información visible sean apropiados para publicar en un repositorio público. No alterar capturas para simular datos o resultados.
