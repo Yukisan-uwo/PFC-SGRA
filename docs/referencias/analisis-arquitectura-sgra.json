@@ -2092,6 +2092,26 @@
       }
     ]
   },
+  "issue17_cap_pacelc": {
+    "issue": "https://github.com/Yukisan-uwo/PFC-SGRA/issues/17",
+    "scope": "Justificar decisiones por dato crítico y distinguir los fallos de dependencia de los escenarios hipotéticos con réplicas.",
+    "reused": {
+      "vansteen2023-distributed": "Capítulo 8, pp. 505–506: alcance de CAP durante particiones de un servicio que comparte datos.",
+      "kazanavicius2022-database": "§2.3: responsabilidad y persistencia de servicios.",
+      "botros2024-unfragile": "§5.1: propagación de problemas de latencia entre componentes dependientes."
+    },
+    "added": {
+      "key": "ahmed2023-consistency",
+      "doi": "10.32620/reks.2023.2.14",
+      "body_language": "en",
+      "pdf_url": "https://nti.khai.edu/ojs/index.php/reks/article/download/reks.2023.2.14/2075",
+      "pdf_file": "PDFs_Fuentes/Ahmed-2023-CAP-PACELC.pdf",
+      "sha256": "4179291d709ee34ff1ae3920a9f24c8d2918161b32268897f55b0515d0981bcf",
+      "license": "CC BY-NC 4.0, según la ficha editorial",
+      "locator": "§§1–2, pp. 172–173: replicación, CAP, PACELC y compromiso entre consistencia y latencia.",
+      "verification": "Texto completo editorial cotejado con Crossref. No se utiliza como prueba de indexación ni de decisiones del SGRA."
+    }
+  },
   "metadata_corrections": [
     "SciSpace omitió Bivol, Jackson y Yilmaz en la ficha de Abgaz; se conservan los diez autores de PDF y Crossref.",
     "SciSpace omitió al primer autor Hamdy Michael Ayas; Crossref registra familia Michael Ayas, nombre Hamdy.",

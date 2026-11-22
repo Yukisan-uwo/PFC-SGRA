@@ -6,7 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ServicioRefuerzosApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(ServicioRefuerzosApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(ServicioRefuerzosApplication.class, args);
+	}
+
 }

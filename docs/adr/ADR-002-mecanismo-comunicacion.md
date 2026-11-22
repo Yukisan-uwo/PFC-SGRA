@@ -1,72 +1,144 @@
 # ADR-002 — Mecanismo de comunicación principal
 
-**Estado:** Propuesto; pendiente de validación con PE-U1, C4 y esqueleto
+**Estado:** Aceptado. Decisión de utilizar REST/HTTP JSON síncrono, según confirmación del equipo comunicada por Mario Zambrano.
 
 **Fecha de registro:** 17 de noviembre de 2026
 
 **Fecha de la propuesta:** 18 de noviembre de 2026
 
-**Participantes:** Mario Zambrano, Belinda Toaquiza, Bryan Lombeida, Khriz Coronel
+**Fecha de confirmación de aceptación:** 21 de noviembre de 2026
+
+**Participantes:** Mario Zambrano, Belinda Toaquiza, Bryan Lombeida, Khriz Coronel.
 
 ## Contexto
 
-La base técnica del SGRA contempla una SPA Angular y una API Spring Boot con HTTP/JSON, persistencia JPA/PostgreSQL e integraciones de correo y almacenamiento de recursos. El diseño actual propone usar Groq únicamente como apoyo a la validación del formulario de solicitudes de refuerzo, fuera de la demostración mínima. La autenticación por sesión de la interacción navegador-API no define por sí misma la autenticación entre servicios.
+La base técnica del SGRA contempla una aplicación web SPA desarrollada con Angular y una API Spring Boot con comunicación HTTP/JSON, persistencia mediante JPA/PostgreSQL e integraciones externas de correo y almacenamiento de recursos. El diseño actual propone utilizar Groq únicamente como apoyo a la validación del formulario de solicitudes de refuerzo, fuera de la demostración mínima. La autenticación por sesión entre el navegador y la API no establece por sí misma un mecanismo de autenticación entre servicios.
 
-E1 exige demostrar dos servicios comunicándose, sin completar todavía las reglas de negocio. Se propone una consulta de asignatura entre un servicio de refuerzos y un servicio académico. El caso se relaciona con los módulos `reinforcement` y `academic` y con las consultas de asignaturas del SGRA anterior; no representa una extracción de módulos ya realizada.
+La primera entrega (E1) requiere demostrar la comunicación entre al menos dos servicios independientes, sin implementar todavía todas las reglas de negocio. Para cumplir este objetivo, se definió una consulta de asignaturas entre un servicio de refuerzos y un servicio académico. Esta interacción se relaciona con los dominios `reinforcement` y `academic` del SGRA anterior, pero no representa una extracción completa de sus módulos.
 
-La vista C4 de contenedores representa la relación propuesta entre la API del SGRA y el SGA simulado. La demostración la ilustra mediante dos procesos locales, sin constituir su despliegue definitivo. Quedan pendientes las mediciones de PE-U1, la ejecución del esqueleto y la revisión del equipo; no se atribuyen resultados de rendimiento ni cumplimiento de RNF.
+La vista C4 de contenedores representa la arquitectura propuesta del SGRA, que contempla una API modular y su comunicación con un SGA simulado. Por su parte, la demostración de E1 implementa dos procesos locales independientes que permiten comprobar el mecanismo de comunicación seleccionado, sin constituir el despliegue definitivo del sistema.
+
+Los servicios `servicio-academico` y `servicio-refuerzos` fueron implementados utilizando Java 21, Spring Boot 4.0.10 y Maven. La versión inicial prevista para el backend completo era Spring Boot 4.0.3; la diferencia correspondiente a la demostración se documenta en [ADR-003](ADR-003-alcance-reutilizacion-tecnologias.md).
+
+Durante las pruebas locales se verificaron la consulta satisfactoria, el tratamiento de identificadores inválidos, la respuesta ante asignaturas inexistentes y el comportamiento cuando el servicio académico deja de estar disponible. Estas comprobaciones permiten respaldar la implementación del contrato, pero no sustituyen las mediciones de rendimiento, las pruebas de disponibilidad ni la validación de los requisitos no funcionales.
 
 ## Opciones consideradas
 
 | Opción | Tipo | Beneficios | Costos y riesgos |
 |---|---|---|---|
-| REST/HTTP JSON | Petición-respuesta síncrona | Coincide con la tecnología previa, contrato legible y comprobación con herramientas HTTP. | Dependencia temporal, serialización y tratamiento explícito de errores y tiempos de espera. |
-| gRPC | Petición-respuesta síncrona para este caso | Contrato definido en Protocol Buffers y generación de clientes. | Añade definición y herramientas de generación; no hay mediciones locales que justifiquen su adopción. El navegador necesitaría integración adicional, pero dos servicios backend pueden comunicarse directamente. |
-| Mensajería asíncrona | Solicitud y respuesta mediante mensajes | Permite desacoplar productores y consumidores y procesar trabajo diferido. | Para esta consulta introduce broker, correlación y gestión de entrega, duplicados y espera de respuesta. No hay una necesidad de procesamiento diferido acreditada para el caso mínimo. |
+| REST/HTTP JSON | Petición-respuesta síncrona | Coincide con las tecnologías utilizadas en el SGRA, permite definir contratos legibles y facilita las pruebas con herramientas HTTP. | Genera dependencia temporal entre servicios, requiere serialización de mensajes y tratamiento explícito de errores y tiempos de espera. |
+| gRPC | Petición-respuesta síncrona para este caso | Permite definir contratos mediante Protocol Buffers y generar clientes para la comunicación entre servicios. | Introduce herramientas adicionales de definición y generación de código. No se dispone de mediciones comparables que justifiquen su adopción para esta consulta mínima. |
+| Mensajería asíncrona | Comunicación mediante intercambio de mensajes | Facilita el desacoplamiento temporal y el procesamiento diferido de determinadas operaciones. | Para esta consulta requiere infraestructura adicional, correlación de solicitudes y respuestas, y tratamiento de entregas duplicadas o retrasadas. No se identificó una necesidad de procesamiento diferido para el caso mínimo. |
 
-## Decisión propuesta
+## Decisión aceptada
 
-Usar **REST sobre HTTP con JSON y comunicación síncrona** para la consulta académica mínima de E1. La persona que ejecuta la demostración espera una respuesta en la misma petición. La elección reduce las herramientas necesarias y permite observar la llamada y sus fallos. No se sostiene que REST sea más rápido que gRPC ni que resulte suficiente para todas las interacciones futuras.
+El equipo acepta utilizar **REST sobre HTTP con mensajes JSON y comunicación síncrona** como mecanismo principal para la consulta académica mínima de E1.
 
-Esta decisión no resuelve ADR-001 ni obliga a extraer todo el backend como microservicios. La tabla de interacciones del informe distingue las relaciones de la arquitectura C4 de la llamada específica de la demostración. La clasificación síncrona describe la espera de respuesta; utilizar HTTP no implica necesariamente REST, ni delegar correo a un hilo equivale a usar un broker.
+Esta decisión se fundamenta en la compatibilidad con la base tecnológica disponible, la simplicidad del contrato y la posibilidad de comprobar directamente la comunicación entre los servicios mediante herramientas HTTP.
 
-## Contrato propuesto para E1
+La interacción funciona mediante un modelo de petición-respuesta: el servicio de refuerzos recibe una solicitud del cliente, consulta al servicio académico y espera su respuesta antes de devolver el resultado.
+
+La decisión no establece que REST tenga mejor rendimiento que gRPC ni que sea el mecanismo más adecuado para todas las interacciones futuras del SGRA. Tampoco implica que el sistema completo deba dividirse en microservicios.
+
+La alternativa de mensajería asíncrona podrá evaluarse posteriormente para operaciones que admitan procesamiento diferido, como determinadas notificaciones. No se incorpora un intermediario de mensajes en la demostración E1.
+
+La aceptación de este ADR corresponde a la **elección del mecanismo de comunicación**. No implica que se hayan verificado todos los requisitos no funcionales ni que se hayan completado las mediciones de PE-U1.
+
+## Contrato de comunicación implementado para E1
 
 | Elemento | Definición |
 |---|---|
-| Emisor | `servicio-refuerzos`, proceso independiente en `127.0.0.1:8081`. |
-| Receptor | `servicio-academico`, proceso independiente en `127.0.0.1:8082`. |
+| Emisor | `servicio-refuerzos`, proceso independiente que escucha en `127.0.0.1:8081`. |
+| Receptor | `servicio-academico`, proceso independiente que escucha en `127.0.0.1:8082`. |
 | Entrada de la demostración | `GET http://127.0.0.1:8081/api/demo/asignaturas/{id}`. |
-| Llamada entre servicios | Refuerzos ejecuta `GET http://127.0.0.1:8082/api/asignaturas/{id}` y transmite su resultado al cliente. |
-| Parámetro | `id`: entero positivo. El catálogo sintético contiene únicamente el ID `1`; no se consulta matrícula ni información personal. |
-| Respuesta correcta | HTTP `200`, `Content-Type: application/json`, cuerpo `{"id":1,"nombre":"Asignatura de demostración"}`. |
-| ID inválido | HTTP `400`, cuerpo `{"codigo":"ID_INVALIDO"}` para un valor no entero o no positivo; refuerzos no llama al receptor. |
-| Asignatura inexistente | HTTP `404`, cuerpo `{"codigo":"ASIGNATURA_NO_ENCONTRADA"}` para cualquier entero positivo distinto de `1`; refuerzos conserva este resultado. |
-| Fallo de dependencia | Refuerzos devuelve HTTP `503`, cuerpo `{"codigo":"SERVICIO_ACADEMICO_NO_DISPONIBLE"}` ante desconexión, tiempo agotado, respuesta `5xx` o respuesta incompatible con el contrato del receptor. |
-| Espera y reintentos | Presupuesto total propuesto de dos segundos para la llamada saliente, incluyendo conexión y lectura. Una sola tentativa, sin reintentos automáticos. El límite es una configuración inicial pendiente de medición, no una garantía temporal de toda la petición. |
-| Datos y seguridad de la demo | Datos sintéticos en memoria, sin escritura ni base de datos; ambos procesos escuchan solo en loopback. Sin autenticación exclusivamente en esta demostración local. Cualquier exposición fuera del equipo requiere definir autenticación entre servicios y transporte protegido. |
+| Llamada entre servicios | Refuerzos ejecuta `GET http://127.0.0.1:8082/api/asignaturas/{id}` y devuelve al cliente los datos recibidos. |
+| Parámetro | `id`: identificador entero positivo. El catálogo sintético contiene únicamente la asignatura con ID `1`. |
+| Respuesta correcta | HTTP `200`, contenido JSON equivalente a `{"id":1,"nombre":"Asignatura de demostración"}`. |
+| Identificador inválido | HTTP `400`, cuerpo `{"codigo":"ID_INVALIDO"}` para identificadores no numéricos o no positivos. El emisor rechaza estas entradas sin consultar al receptor. |
+| Asignatura inexistente | HTTP `404`, cuerpo `{"codigo":"ASIGNATURA_NO_ENCONTRADA"}` para identificadores positivos diferentes de `1`. |
+| Fallo de dependencia | HTTP `503`, cuerpo `{"codigo":"SERVICIO_ACADEMICO_NO_DISPONIBLE"}` cuando el receptor no está disponible, se produce un error del cliente HTTP o el contenido recibido es incompatible con el contrato esperado. |
+| Espera y reintentos | El emisor utiliza `SimpleClientHttpRequestFactory`, con un segundo de espera para conexión y un segundo para lectura. Se realiza una sola tentativa, sin reintentos automáticos configurados. Estos valores no garantizan un máximo total de dos segundos para toda la petición. |
+| Datos utilizados | Información sintética en memoria, sin consultas a matrículas reales ni almacenamiento de datos personales. |
+| Seguridad de la demostración | Ambos procesos escuchan únicamente en loopback (`127.0.0.1`). La demostración no incorpora autenticación ni transporte cifrado entre servicios. Su exposición fuera del equipo requerirá controles adicionales. |
 
-Los nombres y rutas son nuevos y propuestos. No sustituyen los endpoints del SGRA anterior. La implementación de los procesos corresponde a los issues #19 y #33; la ejecución reproducible y sus capturas, al #34.
+Los nombres y rutas anteriores corresponden al esqueleto implementado para E1 y no sustituyen los endpoints del SGRA preexistente.
+
+La implementación del servicio receptor se relaciona con el issue [#19](https://github.com/Yukisan-uwo/PFC-SGRA/issues/19), la del emisor con el issue [#33](https://github.com/Yukisan-uwo/PFC-SGRA/issues/33) y la documentación de ejecución con el issue [#34](https://github.com/Yukisan-uwo/PFC-SGRA/issues/34).
+
+## Implementación y comprobación del contrato
+
+La comunicación se implementó mediante dos aplicaciones Spring Boot independientes.
+
+El servicio académico utiliza `AsignaturaController.java` para procesar las consultas de asignaturas y devolver respuestas HTTP con mensajes JSON.
+
+El servicio de refuerzos utiliza `ConsultaAsignaturaController.java`, que recibe las solicitudes y emplea `RestClient` para comunicarse con el receptor. El emisor valida el identificador solicitado y comprueba que la respuesta recibida corresponda a la asignatura esperada.
+
+Los proyectos se encuentran en las siguientes ubicaciones:
+
+- [Servicio académico](../../src/servicio-academico/).
+- [Servicio de refuerzos](../../src/servicio-refuerzos/).
+
+### Pruebas manuales realizadas
+
+Las pruebas se ejecutaron localmente el 21 de noviembre de 2026 mediante PowerShell y `curl.exe`, con cada servicio iniciado en una terminal independiente.
+
+| Prueba | Petición o condición | Resultado observado |
+|---|---|---|
+| Consulta satisfactoria | `GET /api/demo/asignaturas/1` | HTTP `200` y JSON de la asignatura sintética. |
+| Identificador inválido | `GET /api/demo/asignaturas/0` | HTTP `400` y código `ID_INVALIDO`. |
+| Asignatura inexistente | `GET /api/demo/asignaturas/2` | HTTP `404` y código `ASIGNATURA_NO_ENCONTRADA`. |
+| Receptor no disponible | Detener el servicio académico y consultar el ID `1` desde refuerzos. | HTTP `503` y código `SERVICIO_ACADEMICO_NO_DISPONIBLE`. |
+| Recuperación del receptor | Reiniciar el servicio académico y repetir la consulta del ID `1`. | HTTP `200`, sin reiniciar el servicio de refuerzos. |
+
+La prueba de indisponibilidad consistió en detener temporalmente el servicio académico mientras el servicio de refuerzos permanecía en ejecución. La respuesta HTTP `503` confirmó que el emisor no devolvía una asignatura ficticia cuando su dependencia estaba fuera de servicio.
+
+Después de reiniciar el receptor, se repitió la consulta y se obtuvo HTTP `200`, comprobando la recuperación de la comunicación.
+
+Las capturas auténticas de estas pruebas se conservan en [evidencias/Implementacion/](../../evidencias/Implementacion/).
+
+Se identifican como evidencias principales:
+
+- [07-integracion-http-200.png](../../evidencias/Implementacion/07-integracion-http-200.png): servicios activos y consulta satisfactoria.
+- [08-integracion-http-400-404.png](../../evidencias/Implementacion/08-integracion-http-400-404.png): validación de identificadores y asignaturas inexistentes.
+- [09-integracion-consulta-entre-servicios.png](../../evidencias/Implementacion/09-integracion-consulta-entre-servicios.png): consulta directa al receptor y consulta mediante el emisor.
+
+También se conservaron capturas complementarias del error HTTP `503` y de la recuperación posterior.
+
+**Limitaciones de las pruebas:** no se ejecutaron pruebas específicas que simularan una respuesta HTTP `5xx` del receptor, un contenido JSON incompatible o un agotamiento artificial de los tiempos de espera. Tampoco se realizaron mediciones de latencia, carga concurrente o disponibilidad prolongada. Estas situaciones no deben considerarse verificadas únicamente por estar contempladas en el código.
 
 ## Consecuencias
 
-- **Beneficios:** contrato pequeño, consulta sin efectos de escritura, respuesta inmediata y prueba independiente de Angular, PostgreSQL y servicios externos.
-- **Costos:** refuerzos depende de la disponibilidad del servicio académico para responder correctamente; existe latencia de red y hay que validar el resultado recibido.
-- **Fallos:** no se devuelve un éxito ficticio ni una asignatura almacenada localmente en refuerzos cuando falla el receptor. El cliente recibe `503` y puede repetir la consulta manualmente.
-- **Observabilidad propuesta:** registrar en cada proceso el servicio, ruta, resultado y duración de la operación, sin credenciales ni datos personales. Los registros y capturas deberán evidenciar que la respuesta procede del receptor.
-- **Límites:** esta consulta no demuestra persistencia distribuida, replicación, alta disponibilidad, mejora de rendimiento ni las reglas completas de solicitud de refuerzo. Las políticas de creación de solicitudes, programación y asistencia se decidirán con sus requisitos.
+- **Beneficios:** el mecanismo aceptado permite una comunicación directa entre dos procesos independientes, con un contrato pequeño, mensajes legibles y pruebas reproducibles mediante herramientas HTTP.
+- **Dependencia temporal:** el servicio de refuerzos necesita que el servicio académico responda para completar correctamente la consulta. Si el receptor no está disponible, la operación puede fallar.
+- **Manejo de errores:** el emisor informa la indisponibilidad mediante HTTP `503`, en lugar de presentar una consulta fallida como si hubiera sido satisfactoria.
+- **Recuperación:** las pruebas locales demostraron que, al reiniciar el receptor, el emisor puede volver a consultar la asignatura sin necesidad de reiniciarse.
+- **Observabilidad:** las capturas y respuestas HTTP permiten comprobar manualmente los estados de la interacción. Para una implementación posterior se propone incorporar registros estructurados de servicio, ruta, resultado y duración, sin exponer credenciales ni datos personales.
+- **Seguridad:** la demostración es exclusivamente local. Una integración entre equipos o entornos diferentes necesitará autenticación entre servicios y protección del transporte.
+- **Limitaciones arquitectónicas:** estas pruebas no acreditan persistencia distribuida, replicación, tolerancia a particiones de red, alta disponibilidad ni cumplimiento de los requisitos no funcionales del sistema completo.
 
 ## Evidencia y condiciones de aceptación
 
-| Comprobación | Evidencia requerida | Situación al redactar |
+| Comprobación | Evidencia requerida | Estado actualizado |
 |---|---|---|
-| Fundamentación empírica | Informe o datos originales de PE-U1: mecanismo realmente ensayado, equipo y red, carga/tamaño de mensaje, repeticiones, métricas, unidades, errores y localizador. | Pendiente del issue #6. |
-| Coherencia de diseño | C4 nivel 2 con la flecha HTTP/JSON entre la API del SGRA y el SGA simulado e inventario de las interacciones. El contrato identifica por separado los procesos de la demostración. | Cotejo documental en las secciones 8 y 9; falta verificar la llamada ejecutada. |
-| Consulta correcta | Ejecución del emisor y registro de la llamada al receptor para ID `1`, con el `200` y el JSON pactado. | Pendiente de #19, #33 y #34. |
-| Entradas y fallos | Pruebas de ID inválido (`400`), inexistente (`404`), receptor detenido, respuesta incompatible y espera agotada (`503`), sin reintentos. | Pendiente de implementación y prueba. |
-| Aceptación del ADR | Revisión del equipo y fecha de aceptación, conservando las limitaciones y el respaldo de PE-U1. | Pendiente; estado Propuesto. |
+| Fundamentación empírica | Resultados originales de PE-U1: mecanismos ensayados, equipo y red, carga, tamaño de mensajes, repeticiones, métricas, unidades y errores. | Pendiente de incorporar o localizar los resultados completos en la documentación del ADR. No se atribuyen mediciones no verificadas. |
+| Coherencia del diseño | Correspondencia entre el C4 nivel 2, el inventario de interacciones y el contrato de comunicación. | Revisada documentalmente. El C4 distingue la arquitectura propuesta del SGRA y la demostración local de E1. |
+| Consulta correcta | Ejecución de ambos servicios, petición al receptor y respuesta HTTP `200` con el JSON esperado. | Verificada mediante las pruebas locales y las capturas `07` y `09`. |
+| Identificadores y fallos | HTTP `400`, `404`, `503`, recuperación, respuestas incompatibles y tiempos de espera agotados. | Verificados manualmente `400`, `404`, `503` por receptor detenido y recuperación a `200`. Pendientes pruebas específicas de respuesta incompatible, HTTP `5xx` y agotamiento de tiempos de espera. |
+| Documentación reproducible | Dependencias, configuración, comandos de arranque, peticiones de prueba y respuestas esperadas. | Documentada en `README.md` y en el apartado 14 del informe LaTeX. Pendiente reproducción independiente desde un clon limpio. |
+| Aceptación del mecanismo | Confirmación de la decisión arquitectónica por el equipo y registro de las condiciones y limitaciones. | **Aceptado**, según la confirmación del equipo comunicada por Mario Zambrano el 21 de noviembre de 2026. La aceptación no constituye una validación experimental de los RNF. |
 
-Al recibir PE-U1 se resumirán solo los resultados realmente obtenidos, con sus condiciones y limitaciones. Si no se ensayaron las alternativas, no se presentará una comparación empírica inexistente. La propuesta se revisará si la evidencia o los RNF la contradicen. El issue #16 permanece abierto hasta comprobar sus criterios de cierre; redactar este ADR no acredita la comunicación ejecutada.
+### Verificaciones pendientes
+
+Aunque el mecanismo de comunicación fue aceptado y su implementación mínima fue comprobada, todavía deben atenderse las siguientes actividades para completar la evidencia técnica:
+
+1. Incorporar o localizar las mediciones originales de PE-U1 y explicar qué alternativas se ensayaron realmente.
+2. Solicitar a otro integrante la reproducción de ambos servicios desde un clon limpio del repositorio.
+3. Verificar en la integración final que el informe, el C4, ADR-002 y el código publicado describan el mismo mecanismo.
+4. Completar las pruebas adicionales de manejo de fallos si el equipo decide incluirlas en el alcance de E1.
+
+Si una alternativa no fue medida en PE-U1, se mantendrá como comparación conceptual y no se presentarán resultados experimentales inexistentes.
+
+El issue [#16 — Documentar comunicaciones y completar ADR-002](https://github.com/Yukisan-uwo/PFC-SGRA/issues/16) puede permanecer abierto hasta reunir las evidencias pendientes y comprobar sus criterios de cierre, aunque la decisión arquitectónica ya tenga estado **Aceptado**.
 
 ## Fuentes técnicas consultadas
 
@@ -77,4 +149,6 @@ Código del backend previo, revisión `858ff67fb91604e7a2974efcfeaae3c0f3e40612`
 - [Correo SMTP y variante con delegación asíncrona local](https://github.com/BelindaTZ/SEG-INF-back-SGRA-Docker/blob/858ff67fb91604e7a2974efcfeaae3c0f3e40612/src/main/java/com/CLMTZ/Backend/service/external/impl/EmailService.java).
 - [Operaciones de archivos con el cliente síncrono de Azure Blob](https://github.com/BelindaTZ/SEG-INF-back-SGRA-Docker/blob/858ff67fb91604e7a2974efcfeaae3c0f3e40612/src/main/java/com/CLMTZ/Backend/service/external/impl/StorageService.java).
 
-Estas fuentes documentan la base técnica reutilizada. No reemplazan las mediciones de PE-U1 ni acreditan una ejecución de E1. La estructura del registro se apoya en la guía de AWS citada en el informe.
+Estas fuentes documentan la base técnica reutilizada y las decisiones de diseño. No reemplazan las mediciones de PE-U1 ni constituyen evidencia de rendimiento del esqueleto implementado.
+
+La estructura del ADR se apoya en la guía de registros de decisiones de arquitectura de AWS utilizada en el informe.
