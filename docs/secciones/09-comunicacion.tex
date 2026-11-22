@@ -1,6 +1,15 @@
 \section{Modelo de comunicación entre servicios}
+
 \subsection{Alcance y estado del diseño}
-Se propone REST sobre HTTP con mensajes JSON y comunicación síncrona para una consulta académica mínima entre dos servicios.
+
+El equipo aceptó REST sobre HTTP con mensajes JSON y comunicación síncrona como mecanismo principal para la consulta académica mínima de E1.
+
+Esta decisión se implementó mediante dos servicios independientes: el servicio de refuerzos, que inicia la consulta, y el servicio académico, que recibe la petición y devuelve la información solicitada.
+
+La implementación permite comprobar la comunicación entre procesos y el tratamiento básico de errores, sin incorporar todavía las funcionalidades completas del SGRA.
+
+La elección del mecanismo está documentada en ADR-002 y es coherente con la arquitectura propuesta en el modelo C4. Los servicios de E1 constituyen una demostración local y no representan el despliegue definitivo del sistema distribuido.
+
 
 \subsection{Inventario de interacciones}
 La Tabla~\ref{tab:inventario-interacciones} presenta las interacciones del SGRA. Las filas C1--C7 corresponden a las relaciones del diagrama de contenedores (Figura~\ref{fig:c4-contenedores}). La fila E1 corresponde a la toma de decisiones del mecanismo de comunicación; no presupone que los procesos locales sean los componentes de producción.
@@ -27,20 +36,34 @@ E1 & Servicio de refuerzos $\rightarrow$ servicio académico & Consultar una asi
 
 El envío por SMTP no implica una cola durable ni confirma la lectura por parte del destinatario. Las llamadas internas entre módulos Java tampoco cuentan como comunicaciones entre servicios desplegados independientemente.
 
-\subsection{Contrato de la consulta mínima propuesta}
-El \textbf{servicio de refuerzos} escuchará en \texttt{127.0.0.1:8081} y expondrá \texttt{GET /api/demo/asignaturas/\{id\}}. Al recibir una entrada válida consultará al \textbf{servicio académico}, que escuchará en \texttt{127.0.0.1:8082} y expondrá \texttt{GET /api/asignaturas/\{id\}}. El emisor devolverá el resultado al cliente; no resolverá la consulta con una copia local.
+\subsection{Contrato de la consulta mínima implementada}
+El \textbf{servicio de refuerzos} escucha en \texttt{127.0.0.1:8081} y expone la ruta \texttt{GET /api/demo/asignaturas/\{id\}}. Al recibir una entrada válida, consulta al \textbf{servicio académico}, que escucha en \texttt{127.0.0.1:8082} y expone la ruta \texttt{GET /api/asignaturas/\{id\}}.
 
-El catálogo será sintético y contendrá únicamente el entero positivo \texttt{1}. La respuesta correcta será HTTP \texttt{200}, con tipo \texttt{application/json} y el cuerpo siguiente:
-\begin{quote}
-\small\ttfamily
-\{\textquotedbl id\textquotedbl:1,\textquotedbl nombre\textquotedbl:\textquotedbl Asignatura de demostración\textquotedbl\}
-\end{quote}
+El emisor devuelve al cliente el resultado de la consulta, sin utilizar una copia local de los datos académicos.
 
-Un ID no entero o no positivo producirá \texttt{400} con código \texttt{ID\_INVALIDO}, sin llamar al receptor. Un entero positivo distinto de \texttt{1} producirá \texttt{404} con código \texttt{ASIGNATURA\_NO\_ENCONTRADA}; refuerzos conservará este resultado. Una desconexión, espera agotada, respuesta \texttt{5xx} o respuesta incompatible del receptor producirá \texttt{503} con código \texttt{SERVICIO\_ACADEMICO\_NO\_DISPONIBLE}. Los errores tendrán un objeto JSON con la propiedad \texttt{codigo}, según ADR-002.
+El catálogo utilizado es sintético y contiene únicamente la asignatura con identificador \texttt{1}. Para esta consulta, la respuesta correcta es HTTP \texttt{200}, con tipo de contenido \texttt{application/json} y el siguiente cuerpo:
 
-Se propone un presupuesto total de \textbf{dos segundos} para la llamada saliente, incluyendo conexión y lectura, con una sola tentativa y sin reintentos automáticos. Es una configuración inicial pendiente de medición, no un resultado experimental ni una garantía de duración de toda la petición. Se registrarán ruta, servicio, estado y duración para observar la comunicación.
+\begin{verbatim} {"id":1,"nombre":"Asignatura de demostración"} \end{verbatim}
 
-La demostración usará memoria y datos sintéticos, sin base de datos, escrituras ni autenticación, y ambos procesos escucharán exclusivamente en loopback. La autenticación por sesión del navegador en el SGRA anterior se mantiene como contexto separado. Exponer los nuevos servicios fuera del equipo requerirá definir autenticación entre servicios y transporte protegido. Estas rutas son propuestas nuevas; no sustituyen las del sistema anterior.
+Un identificador no entero o no positivo produce HTTP \texttt{400}, con el código \texttt{ID\_INVALIDO}, sin consultar al receptor.
+
+Un entero positivo distinto de \texttt{1} produce HTTP \texttt{404}, con el código \texttt{ASIGNATURA\_NO\_ENCONTRADA}. El servicio de refuerzos conserva este resultado.
+
+Cuando ocurre una desconexión, se agota un tiempo de espera, se recibe una respuesta HTTP \texttt{5xx} o el contenido del receptor es incompatible con el contrato esperado, el emisor está preparado para devolver HTTP \texttt{503}, con el código \texttt{SERVICIO\_ACADEMICO\_NO\_DISPONIBLE}.
+
+Las pruebas manuales verificaron los estados HTTP \texttt{200}, \texttt{400} y \texttt{404}, así como el error \texttt{503} al detener el receptor y la recuperación posterior. No se realizaron pruebas específicas de agotamiento de tiempos de espera, respuestas incompatibles o errores HTTP \texttt{5xx} generados por el receptor.
+
+El mecanismo de comunicación REST/HTTP JSON fue aceptado por el equipo e implementado en la demostración E1. El cliente HTTP del servicio de refuerzos utiliza un tiempo de espera de conexión de un segundo y otro de lectura de un segundo, con una sola tentativa y sin reintentos automáticos.
+
+Estos valores corresponden a la configuración implementada y no garantizan un tiempo máximo total de respuesta. No se realizaron mediciones experimentales de latencia.
+
+Para una implementación posterior se propone registrar el servicio, la ruta, el estado HTTP y la duración de cada operación.
+
+La demostración utiliza memoria y datos sintéticos, sin base de datos, escrituras ni autenticación entre servicios. Ambos procesos escuchan exclusivamente en la interfaz local \texttt{127.0.0.1}.
+
+La autenticación por sesión del navegador en el SGRA anterior se mantiene como contexto separado. Exponer los nuevos servicios fuera del equipo requerirá definir autenticación entre servicios y transporte protegido.
+
+Las rutas implementadas corresponden a la demostración E1 y no sustituyen los endpoints del SGRA anterior.
 
 \subsection{Justificación y evidencia pendiente}
 REST/HTTP JSON permite usar las herramientas HTTP conocidas y comprobar el contrato sin un broker ni generación de clientes. gRPC permitiría un contrato Protocol Buffers y clientes generados, pero no hay una medición disponible que justifique introducir esas herramientas en este caso. Entre dos servicios backend gRPC no necesita una capa para navegador. La mensajería permite procesamiento diferido; para esta consulta exigiría correlacionar solicitud y respuesta y tratar entregas y duplicados. No se declara una ventaja de latencia o rendimiento de una alternativa sobre otra.

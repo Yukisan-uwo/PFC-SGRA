@@ -14,7 +14,7 @@
 - `docs/main.tex`: portada, preámbulo, configuración y enlaces a las secciones.
 - `docs/secciones/`: apartados 2 al 17 de E1; cada integrante edita los archivos asignados.
 - `docs/referencias/referencias.bib`: referencias reales para `biblatex` + `biber`.
-- `docs/adr/`: ADR-001, ADR-002 y ADR-003 en Markdown, pendientes de decisión.
+- `docs/adr/`: registros de decisiones arquitectónicas en Markdown. ADR-001 continúa propuesto; ADR-002 está aceptado para la comunicación síncrona REST/HTTP JSON y ADR-003 está aprobado para el alcance, las tecnologías y los datos críticos del SGRA.
 - `docs/diagramas/`: bocetos C4 en `preliminares/` y editables de contexto y contenedores en `formales/`.
 - `docs/figuras/`: exportaciones de los diagramas C4 incluidas en el informe.
 - `src/`: código del esqueleto de al menos dos servicios que se comunicarán, dos servicios implementados.
