@@ -66,3 +66,34 @@ Si no se puede consultar el origen, se informa que el reporte no está disponibl
 
 \subsection{Consecuencias y comprobación}
 Si falla el envío de correo, el cambio ya guardado se conserva y el aviso queda pendiente de reintento. La demostración de E1 se limita a consultar una asignatura sintética entre dos procesos y comprobar qué ocurre si el receptor no responde. No permite verificar persistencia, replicación ni alta disponibilidad.
+
+
+\subsection{Prioridades y consecuencias para el usuario}
+
+A partir de la matriz anterior, se establecen las siguientes prioridades de diseño para escenarios hipotéticos con replicación:
+
+\begin{itemize}
+    \item \textbf{Identidad y permisos:} se prioriza la consistencia durante una partición y en condiciones normales. El usuario podría esperar o recibir una denegación temporal, pero no acceder con permisos cuya vigencia se desconoce.
+
+    \item \textbf{Datos académicos:} se prioriza la consistencia al validar matrículas, asignaturas y docentes. El estudiante no podrá confirmar una solicitud si los datos necesarios no pueden verificarse.
+
+    \item \textbf{Solicitudes y estados:} se prioriza la consistencia para evitar cambios contradictorios. Ante un resultado incierto, el usuario deberá consultar el estado antes de repetir una operación.
+
+    \item \textbf{Programación y reservas:} se prioriza la consistencia, aunque aumente el tiempo de respuesta. El docente no podrá confirmar horarios o espacios cuya disponibilidad no haya sido comprobada.
+
+    \item \textbf{Participación y asistencia:} se prioriza la consistencia para conservar registros válidos. Una asistencia no confirmada no deberá mostrarse como registrada ni interpretarse automáticamente como ausencia.
+
+    \item \textbf{Recursos y observaciones:} se prioriza la consistencia de los archivos y sus vínculos. Los usuarios no visualizarán un recurso como disponible hasta comprobar que fue almacenado correctamente.
+
+    \item \textbf{Historial y reportes informativos:} podría priorizarse la disponibilidad durante una partición y una menor latencia cuando la red funcione normalmente, siempre que existan copias adecuadas. El usuario podría consultar información anterior, identificada con su fecha de actualización. Esta posibilidad no se aplicará a decisiones operativas.
+\end{itemize}
+
+\subsection{Conclusión del análisis CAP/PACELC}
+
+Para el diseño propuesto del SGRA se considera prioritario preservar la consistencia de los datos críticos y la integridad de las operaciones de autenticación, solicitudes, programación, reservas y asistencia. Cuando no sea posible verificar la vigencia de la información o confirmar una operación, se preferirá informar su indisponibilidad antes que presentar resultados potencialmente incorrectos.
+
+En condiciones normales, las operaciones críticas deberán utilizar información vigente, aunque esto implique una mayor latencia. Para consultas exclusivamente informativas, como ciertos reportes históricos, podrá considerarse el uso de datos ligeramente desactualizados, siempre que se identifique su fecha de actualización.
+
+Estas prioridades constituyen criterios de diseño y no una clasificación definitiva del SGRA como CP o AP, ya que todavía no se ha definido una arquitectura de replicación.
+
+La demostración de E1 evidencia el manejo de una dependencia no disponible mediante HTTP 503, pero no permite evaluar una partición entre réplicas ni comprobar garantías de consistencia distribuida.
