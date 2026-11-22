@@ -1036,3 +1036,58 @@ Se separaron los fallos de comunicación del diseño actual de los escenarios hi
 ### Tiempo dedicado
 
 2 horas y media.
+
+## 21 de noviembre de 2026 — Actualización de ADR-002 y revisión del análisis CAP/PACELC (issues #16 y #17)
+
+**Integrante participante:** ZAMBRANO PARRAGA LUIS MARIO.
+
+### Actividades realizadas
+
+- Revisé el ADR-002 para comprobar que su contenido coincidiera con los dos servicios implementados y las pruebas realizadas durante E1.
+- Actualicé el estado de ADR-002 a **Aceptado**, de acuerdo con la confirmación del equipo sobre el uso de REST/HTTP JSON como mecanismo de comunicación síncrona.
+- Documenté el contrato implementado entre `servicio-refuerzos` y `servicio-academico`, incluyendo las rutas HTTP, los puertos y los resultados esperados.
+- Actualicé las evidencias correspondientes a las pruebas HTTP 200, 400, 404 y 503, junto con la recuperación de la comunicación después de reiniciar el receptor.
+- Corregí la descripción de los tiempos de espera para reflejar un segundo de conexión y otro de lectura, sin presentarlos como una garantía de latencia total.
+- Revisé la matriz CAP/PACELC elaborada previamente por Bryan, considerando los datos críticos y las decisiones propuestas para cada uno.
+- Añadí al apartado 10 del informe las prioridades de consistencia y disponibilidad, así como sus consecuencias para los usuarios del SGRA.
+- Establecí como criterio de diseño priorizar la consistencia de las operaciones críticas, permitiendo información ligeramente desactualizada únicamente en consultas informativas bajo condiciones controladas.
+- Actualicé el apartado 9 del informe para describir la comunicación REST como una decisión aceptada e implementada.
+- Actualicé el resumen de ADR-002 en el apartado 11 y la información de los ADR en el README principal.
+- Publiqué los cambios en GitHub mediante un commit relacionado con los issues #16 y #17.
+
+### Problemas y comportamientos observados
+
+Al revisar la documentación encontré diferencias entre el estado anterior del ADR-002 y la implementación existente. Algunas secciones todavía describían los servicios como una propuesta pendiente y mencionaban un presupuesto total de dos segundos que no había sido medido.
+En el análisis CAP/PACELC fue necesario distinguir los fallos de comunicación de la demostración E1 de las particiones entre réplicas. El diseño del SGRA todavía no establece una arquitectura de replicación, por lo que no corresponde clasificar el sistema completo como CP o AP.
+También fue necesario precisar cómo afectan las decisiones de consistencia, disponibilidad y latencia a los estudiantes, docentes y demás usuarios.
+
+### Solución y resultados obtenidos
+
+Se actualizó el ADR-002 con el contrato efectivamente implementado, las evidencias de comunicación y las limitaciones de las pruebas. Su aceptación se registró como una decisión arquitectónica, sin asumir que todos los requisitos no funcionales hayan sido verificados.
+En el análisis CAP/PACELC se conservaron las decisiones propuestas por Bryan y se complementaron con una explicación de sus consecuencias para cada grupo de datos críticos.
+Se priorizó la consistencia para permisos, validaciones académicas, solicitudes, reservas, asistencia y publicación de recursos. Para los reportes exclusivamente informativos se contempló la posibilidad de utilizar datos anteriores, identificando su fecha de actualización.
+El informe y el README quedaron actualizados para reflejar las decisiones documentadas. Los cambios fueron publicados en la rama `main`.
+
+### Actividades pendientes
+
+- Solicitar a Bryan la revisión de las prioridades y la conclusión CAP/PACELC incorporadas en el apartado 10.
+- Coordinar la actualización de ADR-003 y del diagrama C4 para distinguir las versiones tecnológicas previstas de las utilizadas en E1.
+- Corregir el formato del bloque JSON de `09-comunicacion.tex` y comprobar nuevamente la compilación.
+- Incorporar las evidencias originales de PE-U1 que correspondan al issue #16.
+- Completar la reproducción independiente de los servicios desde un clon limpio.
+- Verificar la coherencia de los documentos antes del cierre de los issues.
+
+### Evidencias
+
+- **Issue #16:** [Documentar comunicaciones y completar ADR-002](https://github.com/Yukisan-uwo/PFC-SGRA/issues/16).
+- **Issue #17:** [Analizar CAP/PACELC y resumir los ADR](https://github.com/Yukisan-uwo/PFC-SGRA/issues/17).
+- **Commit:** [eb5e017 — Actualización de ADR-002 y análisis CAP/PACELC](https://github.com/Yukisan-uwo/PFC-SGRA/commit/eb5e01728334a7c697b9cb09dd26866020290017).
+- **ADR actualizado:** `docs/adr/ADR-002-mecanismo-comunicacion.md`.
+- **Modelo de comunicación:** `docs/secciones/09-comunicacion.tex`.
+- **Análisis CAP/PACELC:** `docs/secciones/10-cap-pacelc.tex`.
+- **Resumen de decisiones arquitectónicas:** `docs/secciones/11-adr.tex`.
+- **Documentación general:** `README.md`.
+
+### Tiempo dedicado
+
+35 minutos.
