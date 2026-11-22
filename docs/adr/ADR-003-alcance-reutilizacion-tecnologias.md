@@ -13,7 +13,7 @@ El SGRA cubre el proceso de refuerzo académico de la UTEQ. La base disponible s
 ### Alcance
 
 - Actores: estudiante, docente, coordinación académica, gestor de áreas de trabajo y administración.
-- Funciones incluidas: autenticación y control de acceso; catálogos académicos de periodos, carreras, materias, paralelos y horarios; solicitud de refuerzo; revisión, aceptación, rechazo y reprogramación; programación y ejecución de sesiones; registro de participantes y asistencia; carga de recursos de la sesión; historial; tablero de coordinación; administración de usuarios y roles.
+- Funciones incluidas: autenticación y control de acceso; consulta de catálogos académicos de períodos, carreras, materias, paralelos y horarios provistos por el SGA simulado; solicitud de refuerzo; revisión, aceptación, rechazo y reprogramación; programación y ejecución de sesiones; registro de participantes y asistencia; carga de recursos de la sesión; historial; tablero de coordinación; administración de usuarios y roles.
 - Fuera del alcance de la primera entrega: pagos, videoconferencia integrada, aplicación móvil nativa, chat propio y analítica predictiva.
 - Coordinación realiza seguimiento y consulta de reportes. En el diseño propuesto, los datos académicos se consultan mediante la API del SGA simulado; no se incluye un flujo de carga de estudiantes a cargo de coordinación.
 - El correo, el almacenamiento de recursos y el apoyo a la validación del formulario de solicitudes son integraciones de apoyo, no parte del dominio principal.
@@ -22,7 +22,7 @@ El SGRA cubre el proceso de refuerzo académico de la UTEQ. La base disponible s
 ### Reutilización
 
 - Se reutiliza la separación por capas y por dominios del backend: `academic`, `general`, `reinforcement` y `security`.
-- Se reutilizan las funciones de autenticación por sesión, administración de usuarios y roles, catálogos académicos, solicitudes, programación, participantes, asistencia, recursos e historial.
+- Se reutilizan como base las funciones de autenticación por sesión, administración de usuarios y roles, consulta de catálogos académicos, solicitudes, programación, participantes, asistencia, recursos e historial. La fuente y administración de los datos académicos corresponden al SGA simulado en la integración propuesta.
 - Se reutiliza la estructura de la SPA por roles y sus servicios HTTP.
 - Se adaptan nombres, configuración, dependencias y documentación al PFC; no se reescribe el sistema desde cero.
 - La reutilización conserva el modelo funcional existente como referencia para la implementación del esqueleto y de las entregas siguientes.
@@ -30,7 +30,7 @@ El SGRA cubre el proceso de refuerzo académico de la UTEQ. La base disponible s
 ### Tecnologías
 
 - Backend del SGRA (base prevista inicialmente): Java 21, Spring Boot 4.0.3, Maven, Spring Data JPA, PostgreSQL, Spring Session, Spring Security Crypto y Actuator.
-- **Ajuste de versión para E1:** el equipo generó el receptor `servicio-academico` con Spring Boot 4.0.10, disponible en Spring Initializr, manteniendo Java 21 y Maven. Lo documentan su [POM](../../src/servicio-academico/pom.xml) y las [evidencias del receptor](../../evidencias/Implementacion/README-evidencias.md). El ajuste corresponde a ese proceso del esqueleto; no cambia por sí solo la base prevista para toda la API del SGRA ni acredita la versión del emisor.
+- **Versión del esqueleto E1:** los dos proyectos implementados, [`servicio-academico`](../../src/servicio-academico/pom.xml) y [`servicio-refuerzos`](../../src/servicio-refuerzos/pom.xml), fijan Spring Boot 4.0.10, Java 21 y Maven. La base inicialmente prevista para la API completa del SGRA sigue descrita arriba con Spring Boot 4.0.3; el esqueleto no acredita que esa API ya se haya implementado o actualizado.
 - Frontend: Angular 21, TypeScript 5.9, npm 11, Bootstrap 5.3 y Chart.js 4.5.
 - Comunicación: REST/HTTP JSON y sesión HTTP para la interacción navegador-API; la demostración entre servicios usa HTTP síncrono.
 - Servicios de apoyo: correo SMTP, almacenamiento Azure Blob y, como integración propuesta, Groq para apoyar exclusivamente la validación del formulario de solicitudes de refuerzo.

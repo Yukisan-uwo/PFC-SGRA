@@ -17,7 +17,7 @@
 - `docs/adr/`: registros de decisiones arquitectónicas en Markdown. ADR-001 continúa propuesto; ADR-002 está aceptado para la comunicación síncrona REST/HTTP JSON y ADR-003 está aprobado para el alcance, las tecnologías y los datos críticos del SGRA.
 - `docs/diagramas/`: bocetos C4 en `preliminares/` y editables de contexto y contenedores en `formales/`.
 - `docs/figuras/`: exportaciones de los diagramas C4 incluidas en el informe.
-- `src/`: código del esqueleto de al menos dos servicios que se comunicarán, dos servicios implementados.
+- `src/`: código de los dos servicios implementados y comunicados para el esqueleto E1.
 - `evidencias/`: acta o encuesta, sesiones de diseño, capturas y demás evidencias auténticas.
 - `BITACORA.md`: registro de sesiones reales, decisiones y problemas del equipo.
 
@@ -183,20 +183,20 @@ Las capturas auténticas se encuentran en
 
 Las pruebas fueron realizadas localmente mediante PowerShell y `curl.exe`. La reproducción desde un clon limpio por otro integrante sigue pendiente de verificación.
 
-**Ajuste de versión para E1:** la base inicial del backend preveía Spring Boot 4.0.3. El [receptor académico](src/servicio-academico/pom.xml) se generó con Spring Boot 4.0.10, disponible en Spring Initializr, manteniendo Java 21 y Maven. Véase [ADR-003](docs/adr/ADR-003-alcance-reutilizacion-tecnologias.md#tecnologías).
+**Versiones por alcance:** la base inicialmente prevista para la API completa del SGRA contemplaba Spring Boot 4.0.3. Los dos servicios implementados para E1, [académico](src/servicio-academico/pom.xml) y [refuerzos](src/servicio-refuerzos/pom.xml), utilizan Spring Boot 4.0.10, Java 21 y Maven. Véase [ADR-003](docs/adr/ADR-003-alcance-reutilizacion-tecnologias.md#tecnologías).
 
 ## GitHub Projects y video
 
-- **Tablero de tareas E1/E2:** pendiente de enlace, asignación y cierre de issues.
+- **Tablero de tareas E1/E2:** [PFC-SGRA | Aplicaciones Distribuidas](https://github.com/users/Yukisan-uwo/projects/1/views/6). El estado de las tareas debe verificarse en el tablero antes de la entrega.
 - **Video de presentación (5–7 minutos):** pendiente de grabación y enlace.
-- **Repositorio definitivo:** sustituir por el URL público único que se usará durante las cuatro entregas.
+- **Repositorio de E1:** https://github.com/Yukisan-uwo/PFC-SGRA. El equipo debe confirmar que esta será la URL única utilizada en las cuatro entregas.
 
 ## Código SGRA preexistente (referencia; repositorios aún no definitivos)
 
 - Backend: https://github.com/BelindaTZ/SEG-INF-back-SGRA-Docker
 - Frontend: https://github.com/BelindaTZ/SEG-INF-front-SGRA-Docker
 
-El código existente se incorporará a este repositorio o se reorganizará según la arquitectura que el equipo apruebe; **no** se incluye en esta plantilla. No dar por implementado el esqueleto por el hecho de existir una carpeta `src/`.
+Los repositorios anteriores contienen la base funcional de referencia y todavía no están incorporados aquí. El directorio `src/` de este repositorio contiene únicamente los dos servicios del esqueleto E1 descritos arriba; no contiene la API SGRA completa ni su interfaz Angular.
 
 ## Evidencia y autoría
 

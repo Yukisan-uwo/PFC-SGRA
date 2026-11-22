@@ -1091,3 +1091,33 @@ El informe y el README quedaron actualizados para reflejar las decisiones docume
 ### Tiempo dedicado
 
 35 minutos.
+
+## 21 de noviembre de 2026 — Cotejo documental y de evidencias del issue #28
+
+**Alcance de esta entrada:** revisión técnica asistida por Codex a solicitud de Bryan. No constituye una sesión nueva ni la aprobación de los cuatro integrantes.
+
+### Material cotejado
+
+- ADR-001, ADR-002 y ADR-003 con las secciones 6, 8, 9, 10, 11 y 14 del informe; los C4 formales editables y sus PDF; los dos `pom.xml`, controladores y archivos `application.properties` del esqueleto E1.
+- Los dos bocetos preliminares, las capturas de diseño del 20 y 21 de noviembre, la captura de reunión del 18 de noviembre, el inventario de pruebas HTTP y los enlaces del README y de esta bitácora.
+- Los C4 muestran cinco perfiles, una API SGRA modular, PostgreSQL y sistemas externos. ADR-001 permanece propuesto; ADR-002 está aceptado. El código y las evidencias registran las rutas, puertos y respuestas HTTP 200, 400, 404 y 503, además de la recuperación tras reiniciar el receptor. La sección CAP/PACELC no atribuye replicación ni alta disponibilidad a E1.
+
+### Diferencias y correcciones documentales
+
+- ADR-003 enumeraba catálogos académicos sin expresar que, en la integración propuesta, el SGRA los consulta y el SGA simulado administra los datos de origen. Se precisó la responsabilidad y se mantuvo separado el desglose de requisitos de administración de RF13.
+- ADR-003, el resumen del apartado 11 y una nota del README identificaban Spring Boot 4.0.10 solo para el receptor. Los dos POM fijan esa versión. Se distinguió la base inicialmente prevista para la API SGRA (4.0.3) de los dos servicios E1 implementados (4.0.10).
+- El C4 editable de contenedores indicaba por error 4.0.10 para la API SGRA, mientras su figura PDF indicaba 4.0.3. Ambos quedaron alineados en 4.0.3 para la base inicial. El recuadro E1 dejó de llamarse «propuesto» y muestra los dos servicios implementados con 4.0.10; se actualizaron la figura PDF y su leyenda en el informe.
+- El README conservaba texto de plantilla que ponía en duda la implementación del esqueleto. Se precisó que `src/` contiene los dos servicios E1, no la API SGRA completa. Se añadió el enlace al tablero documentado previamente en esta bitácora y la URL del repositorio actual; esta última se incorporó también a la portada del informe. Ambos enlaces respondieron HTTP 200 en la comprobación de esta revisión.
+- Se compiló el informe con pdfLaTeX y Biber tras instalar las dependencias TeX faltantes en un árbol temporal; no quedaron citas ni referencias sin resolver. Se revisaron visualmente la figura de contenedores y el resumen de ADR-003 en el PDF generado. No se ejecutaron pruebas nuevas de los servicios.
+
+### Pendientes para cerrar la revisión grupal
+
+- Los cuatro integrantes deben cotejar y confirmar estos ajustes. Registrar fecha, participantes y acuerdos reales en la issue #28; la presente revisión técnica no equivale a ese acuerdo.
+- Confirmar si `https://github.com/Yukisan-uwo/PFC-SGRA` será la URL única de las cuatro entregas y añadir el video grupal cuando exista. El README indica entrega E1 el 22 de noviembre, mientras la portada indica 28 de noviembre; verificar la fecha aplicable con la consigna antes de editarla.
+- La reproducción desde un clon limpio por otro integrante y las mediciones PE-U1 siguen registradas como pendientes en sus issues; no son resultados de esta revisión.
+
+### Evidencias y enlaces
+
+- [Issue #28 — Revisar coherencia y evidencias de las sesiones](https://github.com/Yukisan-uwo/PFC-SGRA/issues/28).
+- [Bocetos preliminares](docs/diagramas/preliminares/), [C4 formales editables](docs/diagramas/formales/), [captura de diseño preliminar](evidencias/sesiones%20de%20dise%C3%B1o/sesion-diseno-preliminar-20112026.png), [captura de diseño formal](evidencias/sesiones%20de%20dise%C3%B1o/sesion-diseno-formal-21112026.png) y [captura de la reunión del 18 de noviembre](evidencias/Reunion-18-11-2026.png).
+- [Informe compilado](docs/main.pdf), [evidencias de integración](evidencias/Implementacion/README-integracion.md) y [tablero del proyecto](https://github.com/users/Yukisan-uwo/projects/1/views/6).
