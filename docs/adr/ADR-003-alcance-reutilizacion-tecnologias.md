@@ -29,7 +29,8 @@ El SGRA cubre el proceso de refuerzo académico de la UTEQ. La base disponible s
 
 ### Tecnologías
 
-- Backend: Java 21, Spring Boot 4.0.3, Maven, Spring Data JPA, PostgreSQL, Spring Session, Spring Security Crypto y Actuator.
+- Backend del SGRA (base prevista inicialmente): Java 21, Spring Boot 4.0.3, Maven, Spring Data JPA, PostgreSQL, Spring Session, Spring Security Crypto y Actuator.
+- **Ajuste de versión para E1:** el equipo generó el receptor `servicio-academico` con Spring Boot 4.0.10, disponible en Spring Initializr, manteniendo Java 21 y Maven. Lo documentan su [POM](../../src/servicio-academico/pom.xml) y las [evidencias del receptor](../../evidencias/Implementacion/README-evidencias.md). El ajuste corresponde a ese proceso del esqueleto; no cambia por sí solo la base prevista para toda la API del SGRA ni acredita la versión del emisor.
 - Frontend: Angular 21, TypeScript 5.9, npm 11, Bootstrap 5.3 y Chart.js 4.5.
 - Comunicación: REST/HTTP JSON y sesión HTTP para la interacción navegador-API; la demostración entre servicios usa HTTP síncrono.
 - Servicios de apoyo: correo SMTP, almacenamiento Azure Blob y, como integración propuesta, Groq para apoyar exclusivamente la validación del formulario de solicitudes de refuerzo.

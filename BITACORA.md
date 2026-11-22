@@ -831,7 +831,6 @@ El issue #19 permanece abierto hasta comprobar la comunicación con el servicio 
 
 No medido en esta revisión asistida.
 
-
 ## 21 de noviembre de 2026 — Implementación del servicio de refuerzos y pruebas de comunicación distribuida (issues #33 y #34)
 
 **Integrante participante:** ZAMBRANO PARRAGA LUIS MARIO.
@@ -1001,3 +1000,39 @@ El apartado 14 quedó documentado con los componentes implementados, las pruebas
 ### Tiempo dedicado
 
 20 minutos.
+
+## 21 de noviembre de 2026 — Análisis CAP/PACELC con falta de conclusion (issue #17)
+
+**Responsables del issue:** Bryan Lombeida.
+
+### Actividades realizadas
+
+- Se elaboró y se reviso coherencia con apoyo del asistencia de IA codex la matriz de datos críticos del SGRA: dónde se guarda cada dato, quién puede modificarlo, qué ocurre si falla la comunicación y qué decisión se tomaría si hubiera réplicas.
+- Se cotejaron los resúmenes de los ADR con el C4 y se distinguió la arquitectura propuesta de lo que puede demostrar el esqueleto de E1.
+- Se verificó en el POM del receptor académico que utiliza Spring Boot 4.0.10 con Java 21 y Maven. El informe y el C4 distinguen esa versión de la 4.0.3 prevista inicialmente para la API del SGRA.
+- Se tituló y enlazó desde el texto la tabla del inventario de interacciones de la sección 9.
+
+### Problemas y comportamientos observados
+
+El diseño no define réplicas, por lo que no corresponde clasificar al SGRA completo como CP o AP. Las fuentes existentes respaldaban CAP y los fallos de comunicación, pero faltaba una referencia reciente que explicara directamente PACELC, a base de confirmacion de Mario para dar una conclusion del analisis.
+
+### Solución y recuperación
+
+Se separaron los fallos de comunicación del diseño actual de los escenarios hipotéticos con réplicas. Se añadió la revisión de Ahmed y colaboradores (2023) para PACELC y se situó cada cita junto a su afirmación. La sección 10 se simplificó para explicar las decisiones y sus consecuencias sin remitir a códigos de requisitos.
+
+### Resultados obtenidos
+
+- El informe incluye la propuesta de análisis por dato crítico y el ajuste de versión del receptor académico, sin extenderlo al emisor ni a toda la API.
+- Se recompiló con pdfLaTeX y Biber y se revisaron visualmente la matriz, el C4 actualizado y la referencia a la tabla de comunicaciones. No quedaron citas ni referencias sin resolver.
+- Queda pendiente revisar la matriz con Mario antes de cerrar el issue #17. No se realizaron pruebas nuevas de comunicación o replicación.
+
+### Evidencias
+
+- **Issue:** [#17 — Analizar CAP/PACELC y resumir los ADR](https://github.com/Yukisan-uwo/PFC-SGRA/issues/17).
+- **Informe:** [inventario de interacciones](docs/secciones/09-comunicacion.tex), [análisis CAP/PACELC](docs/secciones/10-cap-pacelc.tex) e [informe compilado](docs/main.pdf).
+- **Fuente:** [Ahmed et al. (2023)](docs/referencias/PDFs_Fuentes/Ahmed-2023-CAP-PACELC.pdf) y [registro de investigación](docs/referencias/analisis-arquitectura-sgra.json), apartado `issue17_cap_pacelc`.
+- **Versión de E1:** [ADR-003](docs/adr/ADR-003-alcance-reutilizacion-tecnologias.md), [C4 de contenedores](docs/diagramas/formales/c4-nivel-2-contenedores-formal.drawio) y [POM del receptor académico](src/servicio-academico/pom.xml).
+
+### Tiempo dedicado
+
+2 horas y media.

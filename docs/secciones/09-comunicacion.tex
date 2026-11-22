@@ -3,11 +3,14 @@
 Se propone REST sobre HTTP con mensajes JSON y comunicación síncrona para una consulta académica mínima entre dos servicios.
 
 \subsection{Inventario de interacciones}
-Las filas C1--C7 corresponden a las relaciones del diagrama de contenedores (Figura~\ref{fig:c4-contenedores}). La fila E1 corresponde a la toma de decisiones del mecanismo de comunicación; no presupone que los procesos locales sean los componentes de producción.
+La Tabla~\ref{tab:inventario-interacciones} presenta las interacciones del SGRA. Las filas C1--C7 corresponden a las relaciones del diagrama de contenedores (Figura~\ref{fig:c4-contenedores}). La fila E1 corresponde a la toma de decisiones del mecanismo de comunicación; no presupone que los procesos locales sean los componentes de producción.
 
 \begingroup
 \small
 \begin{longtable}{@{}p{0.06\textwidth}p{0.20\textwidth}p{0.22\textwidth}p{0.17\textwidth}p{0.22\textwidth}@{}}
+\caption{Inventario de interacciones del SGRA}\label{tab:inventario-interacciones}\\
+\toprule
+\textbf{ID}&\textbf{Origen y destino}&\textbf{Finalidad}&\textbf{Tipo y mecanismo}&\textbf{Motivo}\\\midrule\endfirsthead
 \toprule
 \textbf{ID}&\textbf{Origen y destino}&\textbf{Finalidad}&\textbf{Tipo y mecanismo}&\textbf{Motivo}\\\midrule\endhead
 C1 & Usuarios $\rightarrow$ SPA Angular & Acceder a la interfaz según el perfil. & Navegador web. & Los perfiles interactúan con el SGRA mediante la aplicación web.\\
@@ -30,7 +33,7 @@ El \textbf{servicio de refuerzos} escuchará en \texttt{127.0.0.1:8081} y expond
 El catálogo será sintético y contendrá únicamente el entero positivo \texttt{1}. La respuesta correcta será HTTP \texttt{200}, con tipo \texttt{application/json} y el cuerpo siguiente:
 \begin{quote}
 \small\ttfamily
-\{"id":1,"nombre":"Asignatura de demostración"\}
+\{\textquotedbl id\textquotedbl:1,\textquotedbl nombre\textquotedbl:\textquotedbl Asignatura de demostración\textquotedbl\}
 \end{quote}
 
 Un ID no entero o no positivo producirá \texttt{400} con código \texttt{ID\_INVALIDO}, sin llamar al receptor. Un entero positivo distinto de \texttt{1} producirá \texttt{404} con código \texttt{ASIGNATURA\_NO\_ENCONTRADA}; refuerzos conservará este resultado. Una desconexión, espera agotada, respuesta \texttt{5xx} o respuesta incompatible del receptor producirá \texttt{503} con código \texttt{SERVICIO\_ACADEMICO\_NO\_DISPONIBLE}. Los errores tendrán un objeto JSON con la propiedad \texttt{codigo}, según ADR-002.
@@ -45,4 +48,4 @@ REST/HTTP JSON permite usar las herramientas HTTP conocidas y comprobar el contr
 \pendiente{Incorporar desde el issue \#6 las mediciones reales de PE-U1: mecanismos ensayados, equipo y red, carga y tamaño de mensaje, repeticiones, métricas con unidades, errores y enlace a datos originales. Explicar su relación y límites respecto a esta consulta; revisar la propuesta si la evidencia o los RNF la contradicen.}
 
 \subsection{Comprobación y cierre}
-La implementación corresponde a los issues \#19 y \#33 y las evidencias de ejecución al \#34. Se deberá comprobar la consulta correcta (\texttt{200}), ID inválido (\texttt{400}), asignatura inexistente (\texttt{404}) y receptor detenido, lento o incompatible (\texttt{503}), verificando que no haya reintentos automáticos. Las pruebas todavía no se han ejecutado. El issue \#16 permanecerá abierto hasta incorporar PE-U1 y comprobar que C4, ADR-002 y llamada ejecutada describen la misma interacción.
+El esqueleto implementa ambos servicios con Spring Boot 4.0.10, Java 21 y Maven. Las pruebas de integración locales verificaron la consulta correcta (\texttt{200}), el ID inválido (\texttt{400}), la asignatura inexistente (\texttt{404}), el receptor detenido (\texttt{503}) y la recuperación posterior (\texttt{200}), sin reintentos automáticos. La reproducción desde un clon limpio y las mediciones de PE-U1 siguen pendientes; el issue \#16 permanecerá abierto hasta incorporarlas y comprobar que C4, ADR-002 y la llamada ejecutada describen la misma interacción.
