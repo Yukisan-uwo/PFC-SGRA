@@ -1,11 +1,177 @@
 \section{Análisis de riesgos técnicos}
-% Mínimo 5; al menos 3 provenientes del incidente FORM-AC-01.
-\begin{longtable}{@{}p{0.10\textwidth}p{0.33\textwidth}p{0.12\textwidth}p{0.12\textwidth}p{0.23\textwidth}@{}}
-\toprule\textbf{ID}&\textbf{Riesgo y origen}&\textbf{Prob.}&\textbf{Impacto}&\textbf{Mitigación}\\\midrule\endhead
-R1 & \pendiente{riesgo FORM-AC-01} & \pendiente{P} & \pendiente{I} & \pendiente{acción}\\
-R2 & \pendiente{riesgo FORM-AC-01} & \pendiente{P} & \pendiente{I} & \pendiente{acción}\\
-R3 & \pendiente{riesgo FORM-AC-01} & \pendiente{P} & \pendiente{I} & \pendiente{acción}\\
-R4 & \pendiente{riesgo} & \pendiente{P} & \pendiente{I} & \pendiente{acción}\\
-R5 & \pendiente{riesgo} & \pendiente{P} & \pendiente{I} & \pendiente{acción}\\
+
+El análisis de riesgos del SGRA considera las dependencias entre servicios, la integridad de los datos y los posibles errores durante el despliegue y la recuperación.
+
+Como antecedente se utiliza la práctica \href{https://github.com/Yukisan-uwo/FORM-AC-01-Analisis-de-Caso-Fallo-en-Sistema-Distribuido-Real} {FORM-AC-01}, en la que se analizó la caída de Cloudflare del 21 de junio de 2022.
+
+El incidente se originó por una modificación incorrecta en el orden de reglas BGP. Las pruebas previas no detectaron el problema, el despliegue permitió que se propagara y algunas reversiones descoordinadas dificultaron la recuperación.
+
+Estas situaciones se utilizan como antecedentes para identificar riesgos del SGRA. No significa que el proyecto haya sufrido los mismos fallos.
+
+\subsection{Escala de valoración}
+
+La probabilidad y el impacto se valoran cualitativamente mediante tres niveles:
+
+\begin{itemize}
+    \item \textbf{Baja (1):} ocurrencia poco probable
+    o consecuencias limitadas.
+    \item \textbf{Media (2):} ocurrencia posible
+    durante la operación o integración, o
+    afectación importante pero recuperable.
+    \item \textbf{Alta (3):} ocurrencia probable
+    o consecuencias graves para la continuidad,
+    la integridad o el acceso al servicio.
+\end{itemize}
+
+Las valoraciones corresponden a estimaciones iniciales del diseño y deben revisarse con el equipo. No representan frecuencias estadísticas ni resultados experimentales.
+
+\subsection{Matriz de riesgos identificados}
+
+\begingroup
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.18}
+
+\begin{longtable}{@{}p{0.065\textwidth}
+p{0.36\textwidth}
+p{0.08\textwidth}
+p{0.08\textwidth}
+p{0.30\textwidth}@{}}
+
+\caption{Matriz de riesgos técnicos del SGRA}
+\label{tab:riesgos-sgra}\\
+
+\toprule
+\textbf{ID} &
+\textbf{Riesgo, causa y consecuencia} &
+\textbf{Prob.} &
+\textbf{Imp.} &
+\textbf{Mitigación propuesta}\\
+\midrule
+\endfirsthead
+
+\toprule
+\textbf{ID} &
+\textbf{Riesgo, causa y consecuencia} &
+\textbf{Prob.} &
+\textbf{Imp.} &
+\textbf{Mitigación propuesta}\\
+\midrule
+\endhead
+
 \bottomrule
+\endlastfoot
+
+R1 &
+\textbf{Configuración incorrecta entre servicios
+(FORM-AC-01).}
+Una URL, un puerto o una ruta mal configurada
+puede impedir que refuerzos consulte al
+servicio académico. El estudiante no podría
+completar la validación de su asignatura. &
+Media &
+Alta &
+Revisar los cambios de configuración por pares.
+Comprobar las rutas y ejecutar consultas HTTP
+de prueba antes de publicar una versión.\\
+
+\addlinespace[4pt]
+
+R2 &
+\textbf{Propagación de cambios incompatibles
+(FORM-AC-01).}
+Una actualización del contrato REST sin pruebas
+de integración podría afectar simultáneamente
+a los servicios dependientes e interrumpir
+las consultas académicas. &
+Media &
+Alta &
+Probar la compatibilidad del contrato en un
+entorno controlado. Desplegar cambios por
+etapas, comprobar las respuestas y detener
+el despliegue ante errores.\\
+
+\addlinespace[4pt]
+
+R3 &
+\textbf{Recuperación descoordinada
+(FORM-AC-01).}
+Si varios integrantes revierten o modifican
+servicios sin coordinación, podrían restaurar
+versiones incompatibles y prolongar una
+interrupción. &
+Baja &
+Alta &
+Asignar un responsable de recuperación,
+registrar las versiones y coordinar cada
+reversión. Comprobar la comunicación después
+de restaurar los servicios.\\
+
+\addlinespace[4pt]
+
+R4 &
+\textbf{Indisponibilidad del servicio académico.}
+La comunicación síncrona depende de que
+el receptor responda. Si se detiene o pierde
+conectividad, refuerzos no puede obtener
+la asignatura y devuelve HTTP 503. &
+Media &
+Alta &
+Mantener tiempos de espera y tratamiento
+explícito de errores. Informar al usuario
+sin confirmar operaciones y verificar la
+recuperación del receptor.\\
+
+\addlinespace[4pt]
+
+R5 &
+\textbf{Confirmaciones o notificaciones
+duplicadas (FORM-AC-01).}
+Si una asignación se guarda, pero falla el
+aviso al estudiante, un reintento sin control
+podría producir duplicaciones o dejar al
+usuario sin notificación. &
+Media &
+Alta &
+Registrar la asignación y el evento pendiente
+en una transacción. Utilizar procesamiento
+idempotente y comprobar que los reintentos
+no dupliquen confirmaciones.\\
+
 \end{longtable}
+\endgroup
+
+\subsection{Relación con el incidente FORM-AC-01}
+
+Los riesgos R1, R2 y R3 se relacionan directamente con las causas y dificultades de recuperación identificadas en la práctica FORM-AC-01.
+
+\begin{itemize}
+    \item \textbf{R1:} el cambio incorrecto en el orden de reglas BGP de Cloudflare demuestra cómo una configuración defectuosa puede interrumpir la comunicación. En el SGRA, una situación análoga podría producirse al modificar direcciones o rutas de servicios.
+
+    \item \textbf{R2:} las pruebas previas y el despliegue escalonado del incidente no detectaron ni contuvieron adecuadamente el problema. Para el SGRA, esta lección justifica verificar los contratos antes de propagar cambios entre componentes.
+
+    \item \textbf{R3:} durante la recuperación de Cloudflare, algunas reversiones interfirieron con correcciones anteriores. En el SGRA se propone coordinar las acciones de recuperación y comprobar la compatibilidad de las versiones.
+\end{itemize}
+
+Adicionalmente, R5 retoma la lección específica para el SGRA documentada en FORM-AC-01: una interrupción entre el registro de un refuerzo y el envío de su notificación puede provocar inconsistencias o duplicaciones.
+
+Como medida de diseño se propone registrar de forma transaccional la operación y el evento pendiente de notificación. El envío posterior debe controlar los reintentos para evitar efectos duplicados.
+
+\subsection{Relación con la implementación E1}
+
+El riesgo R4 se relaciona con la comunicación síncrona REST/HTTP implementada durante E1.
+
+Las pruebas manuales demostraron que, al detener el servicio académico, el servicio de refuerzos respondió con HTTP 503 y el código \texttt{SERVICIO\_ACADEMICO\_NO\_DISPONIBLE}.
+
+Después de reiniciar el receptor, la consulta volvió a responder con HTTP 200 sin reiniciar el emisor.
+
+El cliente HTTP incorpora tiempos de espera de un segundo para conexión y un segundo para lectura. Sin embargo, estas configuraciones no garantizan alta disponibilidad ni eliminan la dependencia entre los servicios.
+
+Las medidas de despliegue escalonado, recuperación coordinada y notificaciones idempotentes son propuestas para las siguientes etapas del SGRA. No se consideran implementadas ni verificadas en el esqueleto de E1.
+
+\subsection{Seguimiento de los riesgos}
+
+Antes de ampliar la implementación, el equipo deberá revisar las valoraciones y mitigaciones con el arquitecto y el líder de desarrollo.
+
+La validación incluirá pruebas de integración, revisión de configuraciones, comprobaciones de recuperación y pruebas de duplicación de operaciones cuando se implementen las funcionalidades correspondientes.
+
