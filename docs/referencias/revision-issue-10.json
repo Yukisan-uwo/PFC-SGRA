@@ -249,7 +249,7 @@
     "Se consultaron las transcripciones recuperadas; no se realizó escucha ni nueva transcripción de audio en esta actividad.",
     "La encuesta de estudiantes figura como procedencia en el informe anterior; no se verificaron respuestas crudas ni se atribuyen respuestas individuales.",
     "Los escenarios definen comprobaciones futuras y no son pruebas ejecutadas del sistema.",
-    "No se modifica el reparto ni el estado de los issues en GitHub. El cierre de #10 requiere la comprensión del conjunto por los cuatro integrantes, aún no acreditada."
+    "En la revisión inicial no se modificaron el reparto ni el estado de los issues. La comprensión del conjunto por los cuatro integrantes quedó pendiente; su confirmación posterior se registra en completion_review."
   ],
   "consulted_files": [
     {
@@ -297,5 +297,89 @@
     "rf06_rf10_and_rnf_preserved": true,
     "functional_tests_executed": false,
     "team_review": "Pendiente"
+  },
+  "completion_review": {
+    "date": "2026-11-21",
+    "scope": "Revisión documental asistida de RF01–RF05 para el cierre del issue #10; no implementación ni pruebas funcionales.",
+    "local_base_commit": "f87c9820d799ec16d34d462d98eda4542124f23b",
+    "remote_snapshot_commit": "eebae6d53c2f3a4226c7dbc6a14d1072df2d484c",
+    "requirements_commit": "39ab75a5d7afb3252b4484820adc98c44bb8de05",
+    "remote_requirements_and_traceability_match_local": true,
+    "checks": {
+      "five_stories_with_actor_need_and_benefit": true,
+      "observable_acceptance_criteria_in_each_story": true,
+      "source_and_locator_present_for_each_story": true,
+      "source_hashes_match_consulted_files_record": true,
+      "story_table_parent_identifiers": [
+        "RF01", "RF02", "RF03", "RF04", "RF05",
+        "RF06", "RF07", "RF08", "RF09", "RF10",
+        "RF11", "RF12", "RF13", "RF14", "RF15"
+      ],
+      "story_table_parent_identifiers_are_unique": true,
+      "undefined_citation_keys_in_requirements": [],
+      "scope_distinguished_from_teacher_stories": true,
+      "reviewed_against_complementary_requirements": ["RF12", "RF14", "RF15"],
+      "functional_changes_needed_in_this_review": false,
+      "functional_tests_executed": false
+    },
+    "story_review": [
+      {
+        "id": "RF01",
+        "result": "La capacidad de registro distingue la disponibilidad indicada por el estudiante de la programación docente. Los criterios incluyen validación temprana de asignatura sin docente, solicitud individual o grupal, límites de motivo y archivo y ausencia de guardado ante un error.",
+        "checked_source_locators": ["Documento original, páginas PDF 77–78, 90 y 187–188", "ENT-01, 07:54 y 11:28", "Aclaraciones del usuario conservadas en user_clarifications"],
+        "related_requirements": ["RF06", "RF07", "RF14"],
+        "limit": "Se conserva la aclaración de que no se fijaron obligatoriedad, formato ni granularidad adicional del horario de preferencia. No se inventa una respuesta de encuesta."
+      },
+      {
+        "id": "RF02",
+        "result": "La consulta distingue solicitudes propias y grupales vinculadas, identifica al solicitante, especifica estados y filtros y no cambia la solicitud. Se diferencia el estado global del refuerzo de la respuesta individual a una reprogramación regulada en RF15.",
+        "checked_source_locators": ["Documento original, páginas PDF 78 y 188", "ENT-01, 13:24"],
+        "related_requirements": ["RF01", "RF03", "RF06", "RF07", "RF08", "RF10", "RF12", "RF15"]
+      },
+      {
+        "id": "RF03",
+        "result": "La cancelación estudiantil queda limitada al creador y al estado Pendiente al confirmar. Se contemplan la conservación del registro, la auditoría, la ausencia de confirmación y el cambio de estado concurrente. No contradice la cancelación operativa de otros roles, que tiene alcance propio en RF12.",
+        "checked_source_locators": ["Documento original, páginas PDF 78 y 188", "Aclaración actual sobre el creador de una solicitud grupal"],
+        "related_requirements": ["RF01", "RF02", "RF12", "RNF05", "RNF06"],
+        "limit": "El origen de la cancelación es el análisis funcional previo, no una petición literal de entrevista. La concurrencia es un escenario de aceptación, no una prueba ejecutada."
+      },
+      {
+        "id": "RF04",
+        "result": "El detalle muestra la programación vigente y distingue espacio o enlace pendientes. La consulta no modifica horario ni sustituye la respuesta del estudiante prevista en RF15; permite diferenciar una programación existente de una reserva todavía no confirmada.",
+        "checked_source_locators": ["Documento original, páginas PDF 78, 90 y 188", "ENT-01, 13:24"],
+        "related_requirements": ["RF07", "RF08", "RF12", "RF15"]
+      },
+      {
+        "id": "RF05",
+        "result": "El historial incluye solo sesiones Realizadas vinculadas al estudiante y recursos asociados. Se especifican filtros inclusivos, rango invertido, ausencia de resultados y recursos ajenos. El cambio a Realizada corresponde al cierre de RF10, no a consultar el historial ni a guardar asistencia.",
+        "checked_source_locators": ["Documento original, páginas PDF 78 y 188", "ENT-02, 14:04–14:13"],
+        "related_requirements": ["RF09", "RF10", "RF15"],
+        "limit": "ENT-02 respalda la necesidad de conservar evidencia; el acceso del estudiante, los filtros y los recursos se apoyan además en el análisis funcional previo."
+      }
+    ],
+    "visual_verification": {
+      "file": "docs/main.pdf",
+      "pages": 52,
+      "story_pdf_pages_reviewed": [14, 15, 16],
+      "traceability_pdf_pages_reviewed": [27, 28],
+      "result": "Texto, criterios y fuentes legibles, sin solapamientos ni recortes visibles en las páginas inspeccionadas.",
+      "latex_or_pdf_content_modified": false,
+      "new_compilation_executed": false,
+      "note": "Se inspeccionó el PDF existente. Esta revisión solo amplía el registro y la bitácora; no modifica fuentes LaTeX ni vuelve a declarar como propia una compilación anterior."
+    },
+    "snapshot_hashes": {
+      "docs/secciones/06-requisitos.tex": "7b7e5bb9b644d4af642b47e16b2fc57a1b84ad248c131caf7771ae67cbba37eb",
+      "docs/main.pdf": "d3d664caafb2e2e50fdd1f56f9556a031b101f01d54cd909a35e2698f108012b",
+      "docs/referencias/revision-rf-complementarios.json": "b1a58a89f7d79c708a73e5a364a906c4917132af37227a2cd38ea54e8b29bcd8"
+    },
+    "team_review": {
+      "status": "Confirmada por el usuario en el chat",
+      "date_reported": "2026-11-21",
+      "participants_reported": ["Belinda Toaquiza", "Bryan Lombeida", "Mario Zambrano", "Khriz Coronel"],
+      "question": "¿Belinda, Bryan, Mario y tú ya revisaron juntos RF01–RF05 y confirmaron que entienden sus criterios?",
+      "user_reply": "Sí, los cuatro ya la revisamos",
+      "limit": "Constancia de la confirmación del usuario; no observación de una reunión por el asistente. No se atribuyen fecha de reunión, firmas, tiempos ni pruebas funcionales."
+    },
+    "conclusion": "Los criterios documentales del issue #10 están comprobados y el usuario confirmó la revisión y comprensión del conjunto por los cuatro integrantes. Procede registrar el cierre del issue sin atribuir implementación o validación funcional al sistema."
   }
 }
