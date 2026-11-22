@@ -955,3 +955,49 @@ Las instrucciones se basaron en las pruebas manuales que realicé previamente.
 ### Tiempo dedicado
 
 18 minutos.
+
+## 21 de noviembre de 2026 — Integración del esqueleto funcional en el informe LaTeX (issue #34)
+
+**Integrante participante:** ZAMBRANO PARRAGA LUIS MARIO.
+
+### Actividades realizadas
+
+- Completé el apartado 14 del informe LaTeX, correspondiente al esqueleto funcional del SGRA.
+- Documenté la estructura de los servicios académico y de refuerzos, incluyendo sus directorios, tecnologías y configuración.
+- Expliqué la comunicación síncrona REST/HTTP entre ambos procesos, de acuerdo con el contrato establecido en ADR-002.
+- Incorporé una tabla con los resultados de las pruebas manuales HTTP 200, 400, 404 y 503, así como la recuperación del servicio académico después de reiniciarlo.
+- Añadí instrucciones para ejecutar ambos servicios mediante Maven Wrapper y comprobar la comunicación con `curl.exe`.
+- Integré las tres capturas originales que muestran la ejecución de los servicios y las respuestas HTTP obtenidas.
+- Compilé el informe LaTeX y revisé visualmente que las imágenes se mostraran correctamente, con sus títulos y numeración.
+- Publiqué los cambios en GitHub mediante un commit relacionado con el issue #34.
+
+### Problemas y comportamientos observados
+
+Durante la integración fue necesario comprobar las rutas de las imágenes para que el informe pudiera encontrarlas desde las distintas ubicaciones de compilación.
+También observé que, por la distribución del contenido, la primera captura se desplazaba a la página siguiente. Esto no impidió la visualización de las evidencias ni afectó la compilación.
+
+### Solución y resultados obtenidos
+
+Se incorporaron referencias a los archivos de evidencia conservados en el repositorio, manteniendo sus proporciones originales.
+La revisión visual del PDF permitió comprobar que las tres capturas estaban insertadas y numeradas correctamente.
+El apartado 14 quedó documentado con los componentes implementados, las pruebas realmente ejecutadas y sus limitaciones.
+
+### Actividades pendientes
+
+- Solicitar una reproducción de los pasos desde un clon limpio por otro integrante.
+- Incorporar el enlace del video grupal cuando esté disponible.
+- Revisar el PDF definitivo y comprobar la legibilidad de las evidencias.
+- Completar la revisión del issue #34 antes de cerrarlo.
+
+### Evidencias
+
+- **Issue:** [#34 — Documentar la ejecución y obtener tres capturas](https://github.com/Yukisan-uwo/PFC-SGRA/issues/34).
+- **Commit:** [73f1836 — Completar apartado 14 del esqueleto funcional E1](https://github.com/Yukisan-uwo/PFC-SGRA/commit/73f18360dafd46e7a541f56019e2dcd8a7dcacdb).
+- **Documento:** `docs/secciones/14-esqueleto.tex`.
+- **Capturas:** `evidencias/Implementacion/07-integracion-http-200.png`, `08-integracion-http-400-404.png` y `09-integracion-consulta-entre-servicios.png`.
+- **Instrucciones:** `README.md`.
+- **Contrato de comunicación:** `docs/adr/ADR-002-mecanismo-comunicacion.md`.
+
+### Tiempo dedicado
+
+20 minutos.
