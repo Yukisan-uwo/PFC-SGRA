@@ -1091,3 +1091,45 @@ El informe y el README quedaron actualizados para reflejar las decisiones docume
 ### Tiempo dedicado
 
 35 minutos.
+
+## 21 de noviembre de 2026 — Trazabilidad y redacción del anexo de levantamiento (issues #8 y #10)
+
+**Integrante participante:** TOAQUIZA ZAMBRANO BELINDA BETZABETH.
+
+### Actividades realizadas
+
+- Revise el anexo de evidencias y los requisitos actuales frente al catálogo funcional, las reglas de proceso, las historias y las transcripciones del informe original del SGRA.
+- Completé la tabla de origen de RF01–RF15 con el identificador de entrevista, el minuto o la pregunta, el hallazgo y las páginas del documento anterior que respaldan cada requisito.
+- Diferencié las necesidades expresadas en las entrevistas de los requisitos derivados del análisis funcional del equipo y de los ajustes realizados para el PFC.
+- Precisé que los audios y los consentimientos se cargaron en Drive el mismo día de su obtención. Incorporé las fechas de las entrevistas al anexo y a las referencias bibliográficas a partir de los registros de carga de los audios.
+- Confirmé que las cinco transcripciones reproducen íntegramente las grabaciones y retiré los pendientes de cotejo del anexo y del inventario de evidencias.
+- Ajusté la redacción del anexo para presentar directamente los antecedentes, las fechas y la trazabilidad, conservando las diferencias entre los requisitos originales y los actuales.
+- Actualicé la declaración de asistencia de IA y recompilé el informe con pdfLaTeX y Biber. Revisé visualmente el anexo y comprobé que no quedaran citas ni referencias sin resolver.
+- Publiqué los cambios con referencias a los issues #8 y #10, después de integrar los aportes recientes del equipo.
+
+### Problemas y comportamientos observados
+
+El anexo mantenía pendiente la relación entre entrevistas y requisitos, aunque la sección de requisitos ya contenía parte de esa trazabilidad. Algunos RF procedían del análisis funcional y necesitaban explicar su origen sin atribuirlos a una petición literal de entrevista. Los formularios de consentimiento carecen de fecha escrita y las transcripciones de ENT-03 y ENT-04 no incluyen minutos. Al publicar los cambios, la rama remota contenía nuevos aportes y se produjo un conflicto en el PDF compilado.
+
+### Solución y recuperación
+
+Se reunió la trazabilidad de los quince RF en una tabla con localizadores y hallazgos concretos. Para las entrevistas sin marcas de tiempo se utilizaron las preguntas como localizadores. Se registraron las fechas de entrevista mediante las cargas de los audios, realizadas el mismo día de cada sesión, y se conservaron los consentimientos como respaldo de autorización. Los requisitos derivados se justificaron mediante los procesos, estados y permisos que completan. Se integraron los cambios remotos y se regeneró el PDF para conservar tanto la nueva matriz de riesgos como el anexo actualizado.
+
+### Resultados obtenidos
+
+- El anexo relaciona RF01–RF15 con sus fuentes y distingue los hallazgos de entrevista del análisis funcional y sus adaptaciones.
+- Las cinco entrevistas cuentan con fechas registradas y transcripciones cuya fidelidad fue confirmada durante esta revisión.
+- El informe presenta una redacción formal y directa, con las referencias bibliográficas y el inventario de evidencias actualizados.
+- El PDF quedó compilado y revisado visualmente, incorporando los aportes recientes del equipo.
+- Los cambios del informe se publicaron en `main` mediante el commit `2024211`, asociado a los issues #8 y #10.
+
+### Evidencias
+
+- **Issues:** [#8 — Levantamiento y evidencias](https://github.com/Yukisan-uwo/PFC-SGRA/issues/8) y [#10 — Requisitos funcionales](https://github.com/Yukisan-uwo/PFC-SGRA/issues/10).
+- **Commit:** [2024211 — Completa trazabilidad y formaliza el anexo de levantamiento](https://github.com/Yukisan-uwo/PFC-SGRA/commit/2024211).
+- **Informe:** [anexo de evidencias](docs/secciones/18-evidencias.tex), [requisitos y trazabilidad](docs/secciones/06-requisitos.tex) e [informe compilado](docs/main.pdf).
+- **Fuentes:** [documentación original del SGRA](evidencias/levantamiento/SGRA-documentacion-original.pdf), [transcripciones](docs/secciones/19-transcripciones.tex) e [inventario del levantamiento](evidencias/levantamiento/README.md).
+- **Bibliografía y asistencia:** [referencias](docs/referencias/referencias.bib) y [declaración de IA](docs/secciones/16-ia.tex).
+
+### Tiempo dedicado
+40 min.
