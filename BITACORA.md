@@ -749,3 +749,56 @@ Se incorporaron los cinco perfiles al texto del informe y se precisó que coordi
 ### Tiempo dedicado
 
 2 horas.
+
+## 21 de noviembre de 2026 — Implementación y pruebas del servicio académico receptor (issue #19)
+
+**Integrante participante:** ZAMBRANO PARRAGA LUIS MARIO.
+
+### Actividades realizadas
+
+- Revisé el contrato de comunicación del ADR-002 y los diagramas C4 formales para comprobar cómo se relaciona el servicio académico con la demostración distribuida de E1.
+- Coordiné con Khriz el contrato REST que utilizarán ambos servicios.
+- Generé el proyecto `servicio-academico` con Java 21, Spring Boot 4.0.10, Maven y Spring Web.
+- Organicé el proyecto dentro de `src/servicio-academico/` y configuré su ejecución local en `127.0.0.1:8082`.
+- Implementé el controlador `AsignaturaController.java` para atender la ruta `GET /api/asignaturas/{id}` utilizando datos sintéticos en memoria.
+- Incorporé las validaciones necesarias para distinguir identificadores inválidos de asignaturas inexistentes.
+- Ejecuté el servicio mediante Maven Wrapper y comprobé su funcionamiento con el navegador y comandos `curl.exe`.
+- Organicé las capturas de configuración, ejecución y respuestas HTTP en `evidencias/Implementacion/`.
+- Publiqué el código y las evidencias en GitHub mediante un commit relacionado con el issue #19.
+
+### Problemas y comportamientos observados
+
+Durante la preparación se identificó que el entorno tenía Java 25 como versión predeterminada, mientras que el proyecto requería Java 21. También fue necesario distinguir las dependencias de la arquitectura completa del SGRA de las necesarias para el esqueleto funcional de E1.
+Spring Initializr ofrecía Spring Boot 4.0.10, una versión posterior a la 4.0.3 registrada en ADR-003.
+
+### Solución y recuperación
+Se configuró el proyecto con Java 21 y se comprobó que la aplicación arrancara con esa versión. Para la demostración se mantuvo únicamente Spring Web como dependencia funcional, ya que el servicio consulta datos sintéticos y no necesita persistencia ni autenticación.
+Se utilizó Spring Boot 4.0.10, conservando la rama 4.0. Queda pendiente reflejar esta diferencia de versión en la documentación técnica del equipo.
+
+### Resultados obtenidos
+
+- El servicio académico arrancó correctamente en el puerto 8082.
+- La consulta con ID `1` devolvió HTTP `200` y el JSON de la asignatura de demostración.
+- La consulta con ID `0` devolvió HTTP `400` y el código `ID_INVALIDO`.
+- La consulta con ID `abc` devolvió HTTP `400` y el código `ID_INVALIDO`.
+- La consulta con ID `2` devolvió HTTP `404` y el código `ASIGNATURA_NO_ENCONTRADA`.
+- Se conservaron las capturas de las pruebas manuales realizadas.
+- El código fuente y las evidencias quedaron publicados en la rama `main`.
+
+Las pruebas anteriores corresponden al servicio receptor ejecutado de forma independiente. No se realizaron todavía pruebas de comunicación entre los dos servicios ni pruebas automatizadas de los casos HTTP.
+El issue #19 permanece abierto hasta comprobar la comunicación con el servicio emisor del issue #33.
+
+### Evidencias
+
+- **Issue:** [#19 — Implementar el servicio que atiende la interacción](https://github.com/Yukisan-uwo/PFC-SGRA/issues/19).
+- **Commit:** [79dee54 — Implementar servicio académico receptor REST](https://github.com/Yukisan-uwo/PFC-SGRA/commit/79dee54ec2040ab0382c647c796f71730fd93691).
+- **Código fuente:** `src/servicio-academico/`.
+- **Controlador REST:** `src/servicio-academico/src/main/java/com/sgra/academico/AsignaturaController.java`.
+- **Configuración:** `src/servicio-academico/src/main/resources/application.properties`.
+- **Capturas:** `evidencias/Implementacion/`.
+- **Registro de evidencias:** `evidencias/Implementacion/README-evidencias.md`.
+- **Contrato utilizado:** `docs/adr/ADR-002-mecanismo-comunicacion.md`.
+
+### Tiempo dedicado
+
+57 minutos.
