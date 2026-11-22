@@ -19,7 +19,7 @@
 **Repositorio:** https://github.com/Yukisan-uwo/PFC-SGRA
 
 **Carátula para el SGA:** [PDF de una página](docs/caratula-e1.pdf). Comparte datos y diseño con la portada del informe mediante `docs/datos-portada.tex` y `docs/portada.tex`. Para regenerarla desde `docs/`, ejecutar `pdflatex -interaction=nonstopmode -halt-on-error caratula-e1.tex`.
-
+**Link del video: ** https://youtu.be/m74iTQC4bY4  
 ## Estructura
 
 - `docs/main.tex`: portada, preámbulo, configuración y enlaces a las secciones.
