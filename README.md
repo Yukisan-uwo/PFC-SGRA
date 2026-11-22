@@ -1,6 +1,6 @@
 # SGRA — Proyecto Fin de Curso, Aplicaciones Distribuidas
 
-**Estado:** estructura documental inicial de la Entrega 1 (E1), **no constituye una entrega completa**.
+**Estado:** Entrega 1 (E1) en desarrollo, con documentación y esqueleto mínimo de dos servicios; **no constituye una entrega completa**.
 
 **Proyecto:** Sistema de Gestión de Refuerzo Académico (SGRA).  
 **Equipo:** Mario, Belinda, Bryan y Khriz.  
@@ -17,7 +17,7 @@
 - `docs/adr/`: ADR-001 y ADR-002 en Markdown, pendientes de decisión.
 - `docs/diagramas/`: bocetos C4 en `preliminares/` y editables de contexto y contenedores en `formales/`.
 - `docs/figuras/`: exportaciones de los diagramas C4 incluidas en el informe.
-- `src/`: código del esqueleto de al menos dos servicios que se comunicarán, por implementar.
+- `src/`: servicio académico receptor y servicio de refuerzos emisor de la consulta mínima de E1.
 - `evidencias/`: acta o encuesta, sesiones de diseño, capturas y demás evidencias auténticas.
 - `BITACORA.md`: registro de sesiones reales, decisiones y problemas del equipo.
 
@@ -36,7 +36,33 @@ Al finalizar se genera `docs/main.pdf`. Ese PDF compilado se versionará con la 
 
 ## Ejecución del esqueleto
 
-**Pendiente de implementación.** Antes de la entrega documentar aquí las dependencias, variables de entorno de ejemplo (sin secretos), comandos exactos para iniciar al menos dos servicios, prueba de comunicación, salida esperada y procedimiento de verificación.
+Requiere **JDK 21**, con `JAVA_HOME` y `PATH` configurados para esa versión. Maven Wrapper descarga Maven y las dependencias en el primer arranque, por lo que necesita acceso a Internet.
+
+Desde la raíz del repositorio, iniciar el receptor en una terminal PowerShell:
+
+```powershell
+cd src/servicio-academico
+.\mvnw.cmd spring-boot:run
+```
+
+En otra terminal, desde la raíz, iniciar el emisor:
+
+```powershell
+cd src/servicio-refuerzos
+.\mvnw.cmd spring-boot:run
+```
+
+Comprobar la comunicación desde una tercera terminal:
+
+```powershell
+curl.exe -i http://127.0.0.1:8081/api/demo/asignaturas/1
+```
+
+Se espera HTTP `200` y `{"id":1,"nombre":"Asignatura de demostración"}`. La llamada entra por el puerto `8081` y consulta realmente al receptor en `8082`. Los registros del emisor muestran ruta, estado y duración. Para comprobar el fallo de dependencia, detener el receptor y repetir la consulta: se espera `503` con código `SERVICIO_ACADEMICO_NO_DISPONIBLE`.
+
+Los casos `0` y `abc` producen `400` sin llamada saliente; `2` produce `404` cuando el receptor está disponible. El emisor admite `SGRA_ACADEMICO_BASE_URL` para configurar el origen del receptor, sin secretos.
+
+Las instrucciones completas, la configuración y los comandos de prueba están en [el README del emisor](src/servicio-refuerzos/README.md). Las capturas, la prueba por un segundo integrante desde clon limpio y el video siguen pendientes de #34 y #29; estas instrucciones no acreditan que esas actividades se hayan realizado.
 
 ## GitHub Projects y video
 
